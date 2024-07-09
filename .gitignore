@@ -3,4 +3,5 @@ Nescafe/obj/*
 Nescafe.userprefs
 .vscode
 .vs
-
+roms/*
+**/*.csproj.user
