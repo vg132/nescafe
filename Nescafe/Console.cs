@@ -181,12 +181,12 @@ namespace Nescafe
 				CpuState = Cpu.SaveState(),
 				PpuState = Ppu.SaveState()
 			};
-			StateSerializer.SaveState(Cartridge.Id, state);
+			StateSerializer.SaveState(Cartridge.Id, 0, state);
 		}
 
 		public void LoadState()
 		{
-			var state = StateSerializer.LoadState(Cartridge.Id) as ConsoleState;
+			var state = StateSerializer.LoadState(Cartridge.Id, 0) as ConsoleState;
 			if (state != null)
 			{
 				Mapper.LoadState(state.MapperState);

@@ -9,6 +9,26 @@ namespace Nescafe
 {
 	public static class StateSerializer
 	{
+		public static void SaveState(string id, int slot, object state)
+		{
+			var fileName = $"state\\{id}_{slot}.state";
+			Directory.CreateDirectory("state");
+			var base64State = SerializeToBase64(state);
+			File.WriteAllBytes(fileName, CompressString(base64State));
+		}
+
+		public static object LoadState(string id, int slot)
+		{
+			var fileName = $"state\\{id}_{slot}.state";
+			if (File.Exists(fileName))
+			{
+				var byteState = File.ReadAllBytes(fileName);
+				var base64State = DecompressString(byteState);
+				return DeserializeFromBase64(base64State);
+			}
+			return null;
+		}
+
 		public static string GenerateHash(byte[] inputBytes)
 		{
 			using (MD5 md5 = MD5.Create())
@@ -24,27 +44,7 @@ namespace Nescafe
 			}
 		}
 
-		public static void SaveState(string id, object state)
-		{
-			var fileName = $"state\\{id}.state";
-			Directory.CreateDirectory("state");
-			var base64State = SerializeToBase64(state);
-			File.WriteAllBytes(fileName, CompressString(base64State));
-		}
-
-		public static object LoadState(string id)
-		{
-			var fileName = $"state\\{id}.state";
-			if (File.Exists(fileName))
-			{
-				var byteState = File.ReadAllBytes(fileName);
-				var base64State = DecompressString(byteState);
-				return DeserializeFromBase64(base64State);
-			}
-			return null;
-		}
-
-		public static string SerializeToBase64(object obj)
+		private static string SerializeToBase64(object obj)
 		{
 			byte[] serializedData;
 			var formatter = new BinaryFormatter();
@@ -56,7 +56,7 @@ namespace Nescafe
 			return Convert.ToBase64String(serializedData);
 		}
 
-		public static object DeserializeFromBase64(string base64String)
+		private static object DeserializeFromBase64(string base64String)
 		{
 			var serializedData = Convert.FromBase64String(base64String);
 			var formatter = new BinaryFormatter();
@@ -66,7 +66,7 @@ namespace Nescafe
 			}
 		}
 
-		public static byte[] CompressString(string text)
+		private static byte[] CompressString(string text)
 		{
 			var buffer = Encoding.UTF8.GetBytes(text);
 			using (var memoryStream = new MemoryStream())
@@ -79,7 +79,7 @@ namespace Nescafe
 			}
 		}
 
-		public static string DecompressString(byte[] compressedData)
+		private static string DecompressString(byte[] compressedData)
 		{
 			using (var memoryStream = new MemoryStream(compressedData))
 			{
