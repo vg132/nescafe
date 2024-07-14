@@ -12,8 +12,9 @@ namespace Nescafe
 
 		byte[] _prgRom;
 		byte[] _chr;
-
 		byte[] _prgRam;
+
+		// _chr and _prgRam must be saved
 
 		/// <summary>
 		/// Gets or sets the console that this cartridge is loaded into.

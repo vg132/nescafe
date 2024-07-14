@@ -59,7 +59,6 @@ namespace Nescafe.Mappers
 					{
 						index -= 0x800;
 					}
-
 					break;
 				case VramMirroring.Horizontal:
 					if (index > 0x800)
@@ -70,7 +69,6 @@ namespace Nescafe.Mappers
 					{
 						index %= 0x400; // In one of the 2 A regions
 					}
-
 					break;
 				case VramMirroring.SingleLower:
 					index %= 0x400;

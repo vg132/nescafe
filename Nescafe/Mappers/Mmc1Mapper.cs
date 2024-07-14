@@ -102,7 +102,6 @@ namespace Nescafe.Mappers
 				{
 					throw new Exception("Attempt to write to CHR ROM at " + address.ToString("X4"));
 				}
-
 				var offset = (address / 0x1000) == 0 ? _chrBank0Offset : _chrBank1Offset;
 				offset += address % 0x1000;
 				_console.Cartridge.WriteChr(offset, data);

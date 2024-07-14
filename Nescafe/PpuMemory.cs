@@ -52,13 +52,29 @@ namespace Nescafe
 		/// <param name="address">the address to read from</param>
 		public override byte Read(ushort address)
 		{
-			var data = address < 0x2000
-				? _console.Mapper.Read(address)
-				: address <= 0x3EFF
-					? _vRam[_console.Mapper.VramAddressToIndex(address)]
-					: address >= 0x3F00 && address <= 0x3FFF
-									? _paletteRam[GetPaletteRamIndex(address)]
-									: throw new Exception("Invalid PPU Memory Read at address: " + address.ToString("x4"));
+			byte data;
+			if (address < 0x2000)
+			{
+				data = _console.Mapper.Read(address);
+			}
+			else
+			{
+				if (address <= 0x3EFF)
+				{
+					data = _vRam[_console.Mapper.VramAddressToIndex(address)];
+				}
+				else
+				{
+					if (address >= 0x3F00 && address <= 0x3FFF)
+					{
+						data = _paletteRam[GetPaletteRamIndex(address)];
+					}
+					else
+					{
+						throw new Exception("Invalid PPU Memory Read at address: " + address.ToString("x4"));
+					}
+				}
+			}
 			return data;
 		}
 

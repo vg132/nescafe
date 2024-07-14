@@ -97,10 +97,7 @@ namespace Nescafe
 		/// Is <c>true</c> if rendering is currently enabled.
 		/// </summary>
 		/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
-		public bool RenderingEnabled
-		{
-			get { return _flagShowSprites != 0 || _flagShowBackground != 0; }
-		}
+		public bool RenderingEnabled => _flagShowSprites != 0 || _flagShowBackground != 0;
 
 		/// <summary>
 		/// Constructs a new PPU.
@@ -138,7 +135,7 @@ namespace Nescafe
 			Array.Clear(_sprites, 0, _sprites.Length);
 		}
 
-		byte LookupBackgroundColor(byte data)
+		private byte LookupBackgroundColor(byte data)
 		{
 			var colorNum = data & 0x3;
 			var paletteNum = (data >> 2) & 0x3;
@@ -172,7 +169,7 @@ namespace Nescafe
 			return _memory.Read(paletteAddress);
 		}
 
-		byte LookupSpriteColor(byte data)
+		private byte LookupSpriteColor(byte data)
 		{
 			var colorNum = data & 0x3;
 			var paletteNum = (data >> 2) & 0x3;
@@ -206,14 +203,14 @@ namespace Nescafe
 			return _memory.Read(paletteAddress);
 		}
 
-		byte GetBgPixelData()
+		private byte GetBgPixelData()
 		{
 			var xPos = Cycle - 1;
 
 			return _flagShowBackground == 0 ? (byte)0 : _flagShowBackgroundLeft == 0 && xPos < 8 ? (byte)0 : (byte)((_tileShiftReg >> (x * 4)) & 0xF);
 		}
 
-		byte GetSpritePixelData(out int spriteIndex)
+		private byte GetSpritePixelData(out int spriteIndex)
 		{
 			var xPos = Cycle - 1;
 			var yPos = Scanline - 1;
@@ -282,34 +279,34 @@ namespace Nescafe
 			return 0x00; // No sprite
 		}
 
-		void CopyHorizPositionData()
+		private void CopyHorizPositionData()
 		{
 			// v: ....F.. ...EDCBA = t: ....F.. ...EDCBA
 			v = (ushort)((v & 0x7BE0) | (t & 0x041F));
 		}
 
-		void CopyVertPositionData()
+		private void CopyVertPositionData()
 		{
 			// v: IHGF.ED CBA..... = t: IHGF.ED CBA.....
 			v = (ushort)((v & 0x041F) | (t & 0x7BE0));
 		}
 
-		int CoarseX()
+		private int CoarseX()
 		{
 			return v & 0x1f;
 		}
 
-		int CoarseY()
+		private int CoarseY()
 		{
 			return (v >> 5) & 0x1f;
 		}
 
-		int FineY()
+		private int FineY()
 		{
 			return (v >> 12) & 0x7;
 		}
 
-		int GetSpritePatternPixel(ushort patternAddr, int xPos, int yPos, bool flipHoriz = false, bool flipVert = false)
+		private int GetSpritePatternPixel(ushort patternAddr, int xPos, int yPos, bool flipHoriz = false, bool flipVert = false)
 		{
 			var h = _flagSpriteSize == 0 ? 7 : 15;
 
@@ -340,7 +337,7 @@ namespace Nescafe
 			return ((hiBit << 1) | loBit) & 0x03;
 		}
 
-		void IncrementX()
+		private void IncrementX()
 		{
 			if ((v & 0x001F) == 31)
 			{
@@ -353,7 +350,7 @@ namespace Nescafe
 			}
 		}
 
-		void IncrementY()
+		private void IncrementY()
 		{
 			if ((v & 0x7000) != 0x7000)
 			{ // if fine Y < 7
@@ -380,7 +377,7 @@ namespace Nescafe
 			}
 		}
 
-		void EvalSprites()
+		private void EvalSprites()
 		{
 			Array.Clear(_sprites, 0, _sprites.Length);
 			Array.Clear(_spriteIndicies, 0, _spriteIndicies.Length);
@@ -417,7 +414,7 @@ namespace Nescafe
 			}
 		}
 
-		void RenderPixel()
+		private void RenderPixel()
 		{
 			// Get pixel data (4 bits of tile shift register as specified by x)
 			var bgPixelData = GetBgPixelData();
@@ -457,32 +454,32 @@ namespace Nescafe
 			BitmapData[(Scanline * 256) + (Cycle - 1)] = color;
 		}
 
-		void FetchNametableByte()
+		private void FetchNametableByte()
 		{
 			var address = (ushort)(0x2000 | (v & 0x0FFF));
 			_nameTableByte = _memory.Read(address);
 		}
 
-		void FetchAttributeTableByte()
+		private void FetchAttributeTableByte()
 		{
 			var address = (ushort)(0x23C0 | (v & 0x0C00) | ((v >> 4) & 0x38) | ((v >> 2) & 0x07));
 			_attributeTableByte = _memory.Read(address);
 		}
 
-		void FetchTileBitfieldLo()
+		private void FetchTileBitfieldLo()
 		{
 			var address = (ushort)(_bgPatternTableAddress + (_nameTableByte * 16) + FineY());
 			_tileBitfieldLo = _memory.Read(address);
 		}
 
-		void FetchTileBitfieldHi()
+		private void FetchTileBitfieldHi()
 		{
 			var address = (ushort)(_bgPatternTableAddress + (_nameTableByte * 16) + FineY() + 8);
 			_tileBitfieldHi = _memory.Read(address);
 		}
 
 		// Stores data for the next 8 pixels in the upper 32 bits of _tileShiftReg
-		void StoreTileData()
+		private void StoreTileData()
 		{
 			var _palette = (byte)((_attributeTableByte >> ((CoarseX() & 0x2) | ((CoarseY() & 0x2) << 1))) & 0x3);
 
@@ -507,7 +504,7 @@ namespace Nescafe
 		}
 
 		// Updates scanline and cycle counters, triggers NMI's if needed.
-		void UpdateCounters()
+		private void UpdateCounters()
 		{
 			// Trigger an NMI at the start of _scanline 241 if VBLANK NMI's are enabled
 			if (Scanline == 241 && Cycle == 1)
@@ -719,7 +716,7 @@ namespace Nescafe
 		}
 
 		// $2000
-		void WritePpuCtrl(byte data)
+		private void WritePpuCtrl(byte data)
 		{
 			_flagBaseNametableAddr = (byte)(data & 0x3);
 			_flagVRamIncrement = (byte)((data >> 2) & 1);
@@ -740,7 +737,7 @@ namespace Nescafe
 		}
 
 		// $2001
-		void WritePpuMask(byte data)
+		private void WritePpuMask(byte data)
 		{
 			_flagGreyscale = (byte)(data & 1);
 			_flagShowBackgroundLeft = (byte)((data >> 1) & 1);
@@ -753,20 +750,20 @@ namespace Nescafe
 		}
 
 		// $4014
-		void WriteOamAddr(byte data)
+		private void WriteOamAddr(byte data)
 		{
 			_oamAddr = data;
 		}
 
 		// $2004
-		void WriteOamData(byte data)
+		private void WriteOamData(byte data)
 		{
 			_oam[_oamAddr] = data;
 			_oamAddr++;
 		}
 
 		// $2005
-		void WritePpuScroll(byte data)
+		private void WritePpuScroll(byte data)
 		{
 			if (w == 0) // First write
 			{
@@ -789,7 +786,7 @@ namespace Nescafe
 		}
 
 		// $2006
-		void WritePpuAddr(byte data)
+		private void WritePpuAddr(byte data)
 		{
 			if (w == 0)  // First write
 			{
@@ -811,14 +808,14 @@ namespace Nescafe
 		}
 
 		// $2007
-		void WritePpuData(byte data)
+		private void WritePpuData(byte data)
 		{
 			_memory.Write(v, data);
 			v += (ushort)_vRamIncrement;
 		}
 
 		// $4014
-		void WriteOamDma(byte data)
+		private void WriteOamDma(byte data)
 		{
 			var startAddr = (ushort)(data << 8);
 			_console.CpuMemory.ReadBufWrapping(_oam, _oamAddr, startAddr, 256);
@@ -834,7 +831,7 @@ namespace Nescafe
 		}
 
 		// $2002
-		byte ReadPpuStatus()
+		private byte ReadPpuStatus()
 		{
 			byte retVal = 0;
 			retVal |= (byte)(_lastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
@@ -852,13 +849,13 @@ namespace Nescafe
 		}
 
 		// $2004
-		byte ReadOamData()
+		private byte ReadOamData()
 		{
 			return _oam[_oamAddr];
 		}
 
 		// $2007
-		byte ReadPpuData()
+		private byte ReadPpuData()
 		{
 			var data = _memory.Read(v);
 

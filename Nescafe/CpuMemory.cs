@@ -94,15 +94,35 @@ namespace Nescafe
 			}
 			else
 			{
-				data = address <= 0x3FFF
-					? ReadPpuRegister(address)
-					: address <= 0x4017
-									? ReadApuIoRegister(address)
-									: address <= 0x401F
-													? (byte)0
-													: address >= 0x4020
-																	? _console.Mapper.Read(address)
-																	: throw new Exception("Invalid CPU read at address " + address.ToString("X4"));
+				if (address <= 0x3FFF)
+				{
+					data = ReadPpuRegister(address);
+				}
+				else
+				{
+					if (address <= 0x4017)
+					{
+						data = ReadApuIoRegister(address);
+					}
+					else
+					{
+						if (address <= 0x401F)
+						{
+							data = (byte)0;
+						}
+						else
+						{
+							if (address >= 0x4020)
+							{
+								data = _console.Mapper.Read(address);
+							}
+							else
+							{
+								throw new Exception("Invalid CPU read at address " + address.ToString("X4"));
+							}
+						}
+					}
+				}
 			}
 
 			return data;
