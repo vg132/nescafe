@@ -8,7 +8,7 @@ namespace Nescafe
 	public class CpuMemory : Memory
 	{
 		// First 2KB of internal ram
-		readonly byte[] _internalRam = new byte[2048];
+		byte[] _internalRam = new byte[2048];
 		readonly Console _console;
 
 		/// <summary>
@@ -161,5 +161,28 @@ namespace Nescafe
 				throw new Exception("Invalid CPU write to address " + address.ToString("X4"));
 			}
 		}
+
+		#region Save/Load state
+
+		[Serializable]
+		public class CpuMemoryState
+		{
+			public byte[] InternalRam;
+		}
+
+		public override object SaveState()
+		{
+			return new CpuMemoryState
+			{
+				InternalRam = _internalRam
+			};
+		}
+
+		public override void LoadState(object state)
+		{
+			_internalRam = ((CpuMemoryState)state).InternalRam;
+		}
+
+		#endregion
 	}
 }

@@ -59,5 +59,18 @@ namespace Nescafe.Mappers
 				_console.Cartridge.WriteChr(address, data);
 			}
 		}
+
+		#region Save/Load state
+
+		public override object SaveState()
+		{
+			return null;
+		}
+
+		public override void LoadState(object state)
+		{
+		}
+
+		#endregion
 	}
 }

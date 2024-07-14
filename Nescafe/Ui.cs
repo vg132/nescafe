@@ -144,43 +144,12 @@ namespace Nescafe
 
 		private void SaveState(object sender, EventArgs e)
 		{
-			SerializeConsole();
+			_console.SaveState();
 		}
-		//Serializing the List
-		public void SerializeConsole()
-		{
-			////Create the stream to add object into it.
-			//var ms = File.OpenWrite("c:\\temp\\savestate.sav");
-			////Format the object as Binary
-
-			//var formatter = new BinaryFormatter();
-			////It serialize the employee object
-			//_console.DrawAction = null;
-			//formatter.Serialize(ms, _console);
-			//_console.DrawAction = Draw;
-			//ms.Flush();
-			//ms.Close();
-			//ms.Dispose();
-		}
-
 
 		private void LoadState(object sender, EventArgs e)
 		{
-			DeserializeConsole("c:\\temp\\savestate.sav");
-		}
-
-		private void DeserializeConsole(string fileName)
-		{
-			//_console.Stop = true;
-			//var ms = File.OpenRead(fileName);
-
-			//var formatter = new BinaryFormatter();
-			//_console = formatter.Deserialize(ms) as Console;
-			//_console.DrawAction = Draw;
-			//ms.Flush();
-			//ms.Close();
-			//ms.Dispose();
-			//_console.Start();
+			_console.LoadState();
 		}
 
 		void TakeScreenshot(object sender, EventArgs e)

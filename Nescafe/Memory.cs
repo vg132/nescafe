@@ -103,5 +103,8 @@ namespace Nescafe
 			}
 			return data;
 		}
+
+		public abstract object SaveState();
+		public abstract void LoadState(object state);
 	}
 }
