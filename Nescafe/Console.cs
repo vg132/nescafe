@@ -181,31 +181,18 @@ namespace Nescafe
 				CpuState = Cpu.SaveState(),
 				PpuState = Ppu.SaveState()
 			};
-			//var mapperState = Mapper.SaveState();
-			//Create the stream to add object into it.
-			var ms = File.OpenWrite("c:\\temp\\console.state");
-			//Format the object as Binary
-			var formatter = new BinaryFormatter();
-			//It serialize the employee object
-			formatter.Serialize(ms, state);
-			ms.Flush();
-			ms.Close();
-			ms.Dispose();
+			StateSerializer.SaveState(Cartridge.Id, state);
 		}
 
 		public void LoadState()
 		{
-			var ms = File.OpenRead("c:\\temp\\console.state");
-
-			var formatter = new BinaryFormatter();
-			var state = formatter.Deserialize(ms) as ConsoleState;
-			ms.Flush();
-			ms.Close();
-			ms.Dispose();
-
-			Mapper.LoadState(state.MapperState);
-			Cpu.LoadState(state.CpuState);
-			Ppu.LoadState(state.PpuState);
+			var state = StateSerializer.LoadState(Cartridge.Id) as ConsoleState;
+			if (state != null)
+			{
+				Mapper.LoadState(state.MapperState);
+				Cpu.LoadState(state.CpuState);
+				Ppu.LoadState(state.PpuState);
+			}
 		}
 
 		/// <summary>

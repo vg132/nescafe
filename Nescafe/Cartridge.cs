@@ -22,6 +22,8 @@ namespace Nescafe
 		/// <value>The console that this this cartridge is loaded into</value>
 		public Console Console { get; set; }
 
+		public string Id => StateSerializer.GenerateHash(_prgRom);
+
 		/// <summary>
 		/// Gets the number of 16KB PRG ROM banks present in this cartridge.
 		/// </summary>
