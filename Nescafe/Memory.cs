@@ -1,4 +1,6 @@
-﻿namespace Nescafe
+﻿using System;
+
+namespace Nescafe
 {
 	/// <summary>
 	/// Abstract base class for memory devices.

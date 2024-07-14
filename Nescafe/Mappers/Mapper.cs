@@ -1,4 +1,6 @@
-﻿namespace Nescafe.Mappers
+﻿using System;
+
+namespace Nescafe.Mappers
 {
 	/// <summary>
 	/// Abstract base class for all mappers.

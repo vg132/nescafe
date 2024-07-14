@@ -1,4 +1,6 @@
-﻿namespace Nescafe
+﻿using System;
+
+namespace Nescafe
 {
 	/// <summary>
 	/// Represents a NES controller.

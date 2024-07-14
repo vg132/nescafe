@@ -1,9 +1,11 @@
-﻿namespace Nescafe.Mappers
+﻿using System;
+
+namespace Nescafe.Mappers
 {
 	/// <summary>
 	/// Represents Nintendo's NROM Mapper.
 	/// </summary>
-	class NromMapper : Mapper
+	public class NromMapper : Mapper
 	{
 		/// <summary>
 		/// Construct a new NROM mapper.

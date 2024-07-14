@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -123,12 +125,62 @@ namespace Nescafe
 			fileMenu.DropDownItems.Add(exitMenuItem);
 			ms.Items.Add(fileMenu);
 
+			// Save menu
+			var saveMenu = new ToolStripMenuItem("Save");
+			var saveStateMenu = new ToolStripMenuItem("Save state", null, new EventHandler(SaveState));
+			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
+			saveMenu.DropDownItems.Add(saveStateMenu);
+			saveMenu.DropDownItems.Add(loadStateMenu);
+			ms.Items.Add(saveMenu);
+
 			// Help menu
 			var helpMenu = new ToolStripMenuItem("Help");
 			var helpGithubMenu = new ToolStripMenuItem("GitHub", null, new EventHandler(LaunchGitHubLink));
 			helpMenu.DropDownItems.Add(helpGithubMenu);
 			ms.Items.Add(helpMenu);
 			Controls.Add(ms);
+		}
+
+
+		private void SaveState(object sender, EventArgs e)
+		{
+			SerializeConsole();
+		}
+		//Serializing the List
+		public void SerializeConsole()
+		{
+			////Create the stream to add object into it.
+			//var ms = File.OpenWrite("c:\\temp\\savestate.sav");
+			////Format the object as Binary
+
+			//var formatter = new BinaryFormatter();
+			////It serialize the employee object
+			//_console.DrawAction = null;
+			//formatter.Serialize(ms, _console);
+			//_console.DrawAction = Draw;
+			//ms.Flush();
+			//ms.Close();
+			//ms.Dispose();
+		}
+
+
+		private void LoadState(object sender, EventArgs e)
+		{
+			DeserializeConsole("c:\\temp\\savestate.sav");
+		}
+
+		private void DeserializeConsole(string fileName)
+		{
+			//_console.Stop = true;
+			//var ms = File.OpenRead(fileName);
+
+			//var formatter = new BinaryFormatter();
+			//_console = formatter.Deserialize(ms) as Console;
+			//_console.DrawAction = Draw;
+			//ms.Flush();
+			//ms.Close();
+			//ms.Dispose();
+			//_console.Start();
 		}
 
 		void TakeScreenshot(object sender, EventArgs e)

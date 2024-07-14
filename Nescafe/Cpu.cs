@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Emit;
 
 namespace Nescafe
 {
@@ -305,9 +306,7 @@ namespace Nescafe
 			{
 				Cycles += _instructionPageCycles[opCode];
 			}
-
 			_instructions[opCode](mode, address);
-
 			return Cycles - cyclesOrig;
 		}
 
