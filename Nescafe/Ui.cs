@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
+using System.Drawing.Imaging;
 using System.Threading;
+using System.Windows.Forms;
 
 //0,9375
 //
@@ -86,7 +86,7 @@ namespace Nescafe
 		{
 			StopConsole();
 
-			OpenFileDialog openFileDialog = new OpenFileDialog();
+			var openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter = "NES ROMs | *.nes";
 			openFileDialog.RestoreDirectory = true;
 
@@ -133,7 +133,7 @@ namespace Nescafe
 
 		void TakeScreenshot(object sender, EventArgs e)
 		{
-			String filename = "screenshot_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".png";
+			var filename = "screenshot_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".png";
 			_frame.Save(filename);
 		}
 
@@ -149,7 +149,7 @@ namespace Nescafe
 
 		void InitPalette()
 		{
-			ColorPalette palette = _frame.Palette;
+			var palette = _frame.Palette;
 			palette.Entries[0x0] = Color.FromArgb(84, 84, 84);
 			palette.Entries[0x1] = Color.FromArgb(0, 30, 116);
 			palette.Entries[0x2] = Color.FromArgb(8, 16, 144);
@@ -220,10 +220,10 @@ namespace Nescafe
 
 		unsafe void Draw(byte[] screen)
 		{
-			BitmapData _frameData = _frame.LockBits(new Rectangle(0, 0, 256, 240), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+			var _frameData = _frame.LockBits(new Rectangle(0, 0, 256, 240), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 
-			byte* ptr = (byte*)_frameData.Scan0;
-			for (int i = 0; i < 256 * 240; i++)
+			var ptr = (byte*)_frameData.Scan0;
+			for (var i = 0; i < 256 * 240; i++)
 			{
 				ptr[i] = screen[i];
 			}

@@ -2,9 +2,9 @@
 namespace Nescafe.Mappers
 {
 	/// <summary>
-	/// Represents Nintendo's MMC3 mapper.
+	/// Represents Nintendo's MMC6 mapper.
 	/// </summary>
-	public class Mmc3Mapper : Mapper
+	public class Mmc6Mapper : Mapper
 	{
 		// Bank select register
 		byte _bank;
@@ -30,10 +30,10 @@ namespace Nescafe.Mappers
 		byte _irqCounterReload;
 
 		/// <summary>
-		/// Constructs a new MMC3 mapper.
+		/// Constructs a new MMC6 mapper.
 		/// </summary>
 		/// <param name="console">Console.</param>
-		public Mmc3Mapper(Console console)
+		public Mmc6Mapper(Console console)
 		{
 			_console = console;
 
