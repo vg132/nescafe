@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Nescafe.Services;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -128,9 +127,11 @@ namespace Nescafe
 			// Save menu
 			var saveMenu = new ToolStripMenuItem("Save");
 			var saveStateMenu = new ToolStripMenuItem("Save state", null, new EventHandler(SaveState));
-			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
 			saveMenu.DropDownItems.Add(saveStateMenu);
+			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
 			saveMenu.DropDownItems.Add(loadStateMenu);
+			var saveBattery = new ToolStripMenuItem("Save battery", null, new EventHandler(SaveBattery));
+			saveMenu.DropDownItems.Add(saveBattery);
 			ms.Items.Add(saveMenu);
 
 			// Help menu
@@ -141,46 +142,19 @@ namespace Nescafe
 			Controls.Add(ms);
 		}
 
+		private void SaveBattery(object sender, EventArgs e)
+		{
+			StateService.SaveBatteryMemory(_console);
+		}
 
 		private void SaveState(object sender, EventArgs e)
 		{
-			SerializeConsole();
+			StateService.SaveState(_console, 0);
 		}
-		//Serializing the List
-		public void SerializeConsole()
-		{
-			////Create the stream to add object into it.
-			//var ms = File.OpenWrite("c:\\temp\\savestate.sav");
-			////Format the object as Binary
-
-			//var formatter = new BinaryFormatter();
-			////It serialize the employee object
-			//_console.DrawAction = null;
-			//formatter.Serialize(ms, _console);
-			//_console.DrawAction = Draw;
-			//ms.Flush();
-			//ms.Close();
-			//ms.Dispose();
-		}
-
 
 		private void LoadState(object sender, EventArgs e)
 		{
-			DeserializeConsole("c:\\temp\\savestate.sav");
-		}
-
-		private void DeserializeConsole(string fileName)
-		{
-			//_console.Stop = true;
-			//var ms = File.OpenRead(fileName);
-
-			//var formatter = new BinaryFormatter();
-			//_console = formatter.Deserialize(ms) as Console;
-			//_console.DrawAction = Draw;
-			//ms.Flush();
-			//ms.Close();
-			//ms.Dispose();
-			//_console.Start();
+			StateService.LoadState(_console, 0);
 		}
 
 		void TakeScreenshot(object sender, EventArgs e)
@@ -324,9 +298,11 @@ namespace Nescafe
 					_console.Controller.setButtonState(Controller.Button.Down, state);
 					break;
 				case Keys.Q:
+				case Keys.Enter:
 					_console.Controller.setButtonState(Controller.Button.Start, state);
 					break;
 				case Keys.W:
+				case Keys.Escape:
 					_console.Controller.setButtonState(Controller.Button.Select, state);
 					break;
 			}

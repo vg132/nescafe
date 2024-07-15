@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Nescafe.Mappers
 {
@@ -246,5 +247,65 @@ namespace Nescafe.Mappers
 					break;
 			}
 		}
+
+		#region Save/Load state
+
+		[Serializable]
+		public class Mmc1MapperState
+		{
+			public byte _shiftReg;
+			public byte _controlReg;
+			public byte _chr0Reg;
+			public byte _chr1Reg;
+			public byte _prgReg;
+			public byte _prgMode;
+			public byte _chrMode;
+			public byte _prgRamEnable;
+			public int _chrBank0Offset;
+			public int _chrBank1Offset;
+			public int _prgBank0Offset;
+			public int _prgBank1Offset;
+			public int _shiftCount;
+		}
+
+		public override object SaveState()
+		{
+			return new Mmc1MapperState
+			{
+				_chr0Reg = _chr0Reg,
+				_chr1Reg = _chr1Reg,
+				_prgReg = _prgReg,
+				_prgMode = _prgMode,
+				_chrMode = _chrMode,
+				_prgRamEnable = _prgRamEnable,
+				_chrBank0Offset = _chrBank0Offset,
+				_chrBank1Offset = _chrBank1Offset,
+				_controlReg = _controlReg,
+				_prgBank0Offset = _prgBank0Offset,
+				_prgBank1Offset = _prgBank1Offset,
+				_shiftCount = _shiftCount,
+				_shiftReg = _shiftReg
+			};
+		}
+
+		public override void LoadState(object stateItem)
+		{
+			var state = stateItem as Mmc1MapperState;
+			_chr0Reg = state._chr0Reg;
+			_chr1Reg = state._chr1Reg;
+			_prgReg = state._prgReg;
+			_prgMode = state._prgMode;
+			_chrMode = state._chrMode;
+			_prgRamEnable = state._prgRamEnable;
+			_chrBank0Offset = state._chrBank0Offset;
+			_chrBank1Offset = state._chrBank1Offset;
+			_controlReg = state._controlReg;
+			_prgBank0Offset = state._prgBank0Offset;
+			_prgBank1Offset = state._prgBank1Offset;
+			_shiftCount = state._shiftCount;
+			_shiftReg = state._shiftReg;
+		}
+
+		#endregion
 	}
 }

@@ -8,8 +8,8 @@ namespace Nescafe
 	public class PpuMemory : Memory
 	{
 		readonly Console _console;
-		readonly byte[] _vRam;
-		readonly byte[] _paletteRam;
+		byte[] _vRam;
+		byte[] _paletteRam;
 
 		/// <summary>
 		/// Construct a new PPU memory device.
@@ -103,5 +103,32 @@ namespace Nescafe
 				throw new Exception("Invalid PPU Memory Write at address: " + address.ToString("x4"));
 			}
 		}
+
+		#region Save/Load state
+
+		[Serializable]
+		public class PpuMemoryStae
+		{
+			public byte[] VRam;
+			public byte[] PaletteRam;
+		}
+
+		public override object SaveState()
+		{
+			return new PpuMemoryStae
+			{
+				VRam = _vRam,
+				PaletteRam = _paletteRam
+			};
+		}
+
+		public override void LoadState(object state)
+		{
+			var ppuMemoryState = state as PpuMemoryStae;
+			_vRam = ppuMemoryState.VRam;
+			_paletteRam = ppuMemoryState.PaletteRam;
+		}
+
+		#endregion
 	}
 }

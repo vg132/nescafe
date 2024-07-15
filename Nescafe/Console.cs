@@ -1,6 +1,8 @@
 ﻿using Nescafe.Mappers;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
 namespace Nescafe
@@ -91,7 +93,10 @@ namespace Nescafe
 		public bool LoadCartridge(string path)
 		{
 			System.Console.WriteLine("Loading ROM " + path);
-
+			if (Cartridge != null)
+			{
+				Cartridge.Eject();
+			}
 			Cartridge = new Cartridge(path);
 			if (Cartridge.Invalid)
 			{

@@ -109,5 +109,8 @@ namespace Nescafe.Mappers
 		/// <param name="address">The address to write to</param>
 		/// <param name="data">The byte to write to the specified address</param>
 		public abstract void Write(ushort address, byte data);
+
+		public abstract object SaveState();
+		public abstract void LoadState(object state);
 	}
 }

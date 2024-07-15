@@ -45,11 +45,21 @@ namespace Nescafe.Mappers
 			}
 			else
 			{
-				data = address <= 0xC000
-					? _console.Cartridge.ReadPrgRom(_bank0Offset + (address - 0x8000))
-					: address <= 0xFFFF
-									? _console.Cartridge.ReadPrgRom(_bank1Offset + (address - 0xC000))
-									: throw new Exception("Invalid mapper read at address: " + address.ToString("X4"));
+				if (address <= 0xC000)
+				{
+					data = _console.Cartridge.ReadPrgRom(_bank0Offset + (address - 0x8000));
+				}
+				else
+				{
+					if (address <= 0xFFFF)
+					{
+						data = _console.Cartridge.ReadPrgRom(_bank1Offset + (address - 0xC000));
+					}
+					else
+					{
+						throw new Exception("Invalid mapper read at address: " + address.ToString("X4"));
+					}
+				}
 			}
 			return data;
 		}
@@ -83,5 +93,28 @@ namespace Nescafe.Mappers
 		{
 			_bank0Offset = (data & 0x0F) * 0x4000;
 		}
+
+		#region Save/Load state
+
+		[Serializable]
+		private class UxRomMapperSaveState
+		{
+			public int Bank0Offset;
+		}
+
+		public override object SaveState()
+		{
+			return new UxRomMapperSaveState
+			{
+				Bank0Offset = _bank0Offset
+			};
+		}
+
+		public override void LoadState(object state)
+		{
+			_bank0Offset = ((UxRomMapperSaveState)state).Bank0Offset;
+		}
+
+		#endregion
 	}
 }
