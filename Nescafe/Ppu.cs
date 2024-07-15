@@ -19,7 +19,7 @@ namespace Nescafe
 
 		// OAM / Sprite rendering
 		byte[] _oam;
-		ushort _oamAddr;
+		byte _oamAddr;
 		byte[] _sprites;
 		int[] _spriteIndicies;
 		int _numSprites;
@@ -883,7 +883,7 @@ namespace Nescafe
 		public class PpuState
 		{
 			public byte[] _oam;
-			public ushort _oamAddr;
+			public byte _oamAddr;
 			public byte[] _sprites;
 			public int[] _spriteIndicies;
 			public int _numSprites;
