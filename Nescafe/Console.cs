@@ -119,6 +119,10 @@ namespace Nescafe
 					System.Console.WriteLine(" (UxROM) Supported!");
 					Mapper = new UxRomMapper(this);
 					break;
+				case 3:
+					System.Console.WriteLine(" (CNROM) Supported!");
+					Mapper = new CnRomMapper(this);
+					break;
 				case 4:
 					System.Console.WriteLine(" (MMC3) Supported!");
 					Mapper = new Mmc3Mapper(this);

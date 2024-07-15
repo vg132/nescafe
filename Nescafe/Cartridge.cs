@@ -104,6 +104,7 @@ namespace Nescafe
 			ParseHeader(reader);
 			LoadPrgRom(reader);
 			LoadChr(reader);
+
 			_loaded = true;
 			if (BatteryBackedMemory)
 			{
@@ -191,7 +192,7 @@ namespace Nescafe
 			_chr[index] = data;
 		}
 
-		void LoadPrgRom(BinaryReader reader)
+		private void LoadPrgRom(BinaryReader reader)
 		{
 			// Add 512 byte trainer offset (if present as specified in _flags6)
 			var _prgRomOffset = ContainsTrainer ? 16 + 512 : 16;
@@ -202,7 +203,7 @@ namespace Nescafe
 			reader.Read(_prgRom, 0, PrgRomBanks * 16384);
 		}
 
-		void LoadChr(BinaryReader reader)
+		private void LoadChr(BinaryReader reader)
 		{
 			if (UsesChrRam)
 			{
@@ -228,7 +229,7 @@ namespace Nescafe
 
 			// Size of PRG ROM
 			PrgRomBanks = reader.ReadByte();
-			System.Console.WriteLine((16 * PrgRomBanks).ToString() + "Kb of PRG ROM");
+			System.Console.WriteLine($"{16 * PrgRomBanks} Kb of PRG ROM in {PrgRomBanks} banks");
 
 			// Size of CHR ROM (Or set CHR RAM if using it)
 			ChrBanks = reader.ReadByte();
@@ -240,7 +241,7 @@ namespace Nescafe
 			}
 			else
 			{
-				System.Console.WriteLine((8 * ChrBanks).ToString() + "Kb of CHR ROM");
+				System.Console.WriteLine($"{8 * ChrBanks} Kb of CHR ROM in {ChrBanks} banks");
 				UsesChrRam = false;
 			}
 
