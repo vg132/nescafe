@@ -93,7 +93,10 @@ namespace Nescafe
 		public bool LoadCartridge(string path)
 		{
 			System.Console.WriteLine("Loading ROM " + path);
-
+			if (Cartridge != null)
+			{
+				Cartridge.Eject();
+			}
 			Cartridge = new Cartridge(path);
 			if (Cartridge.Invalid)
 			{
@@ -162,36 +165,6 @@ namespace Nescafe
 					Ppu.Step();
 					Mapper.Step();
 				}
-			}
-		}
-
-		[Serializable]
-		class ConsoleState
-		{
-			public object MapperState { get; set; }
-			public object CpuState { get; set; }
-			public object PpuState { get; set; }
-		}
-
-		public void SaveState()
-		{
-			var state = new ConsoleState
-			{
-				MapperState = Mapper.SaveState(),
-				CpuState = Cpu.SaveState(),
-				PpuState = Ppu.SaveState()
-			};
-			StateSerializer.SaveState(Cartridge.Id, 0, state);
-		}
-
-		public void LoadState()
-		{
-			var state = StateSerializer.LoadState(Cartridge.Id, 0) as ConsoleState;
-			if (state != null)
-			{
-				Mapper.LoadState(state.MapperState);
-				Cpu.LoadState(state.CpuState);
-				Ppu.LoadState(state.PpuState);
 			}
 		}
 

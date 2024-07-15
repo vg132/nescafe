@@ -61,7 +61,7 @@
     <Compile Include="Memory.cs" />
     <Compile Include="Ppu.cs" />
     <Compile Include="PpuMemory.cs" />
-    <Compile Include="StateSerializer.cs" />
+    <Compile Include="Services\StateService.cs" />
     <Compile Include="Ui.cs">
       <SubType>Form</SubType>
     </Compile>

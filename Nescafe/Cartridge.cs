@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Nescafe.Services;
+using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Nescafe
 {
@@ -8,11 +11,11 @@ namespace Nescafe
 	/// </summary>
 	public class Cartridge
 	{
-		const int HeaderMagic = 0x1A53454E;
+		private const int HeaderMagic = 0x1A53454E;
 
-		byte[] _prgRom;
-		byte[] _chr;
-		byte[] _prgRam;
+		private byte[] _prgRom;
+		private byte[] _chr;
+		private byte[] _prgRam;
 
 		// _chr and _prgRam must be saved
 
@@ -22,13 +25,22 @@ namespace Nescafe
 		/// <value>The console that this this cartridge is loaded into</value>
 		public Console Console { get; set; }
 
-		public string Id => StateSerializer.GenerateHash(_prgRom);
+		public string Id => StateService.GenerateHash(_prgRom);
 
 		/// <summary>
 		/// Gets the number of 16KB PRG ROM banks present in this cartridge.
 		/// </summary>
 		/// <value>The number of 16 KB PRG ROM banks present in this cartridge.</value>
 		public int PrgRomBanks { get; private set; }
+
+		public byte[] PrgRam
+		{
+			get => _prgRam;
+			set
+			{
+				_prgRam = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets the number of 8KB CHR banks present in this cartridge.
@@ -73,8 +85,11 @@ namespace Nescafe
 		/// <value><c>true</c> if cartridge is invalid; otherwise, <c>false</c>.</value>
 		public bool Invalid { get; private set; }
 
-		int _flags6;
-		int _flags7;
+		private int _flags6;
+		private int _flags7;
+		private Thread _saveBatteryMemoryThread;
+		private bool _loaded = false;
+
 
 		/// <summary>
 		/// Constructs a new Cartridge from the iNES cartridge file at the
@@ -89,8 +104,36 @@ namespace Nescafe
 			ParseHeader(reader);
 			LoadPrgRom(reader);
 			LoadChr(reader);
+			_loaded = true;
+			if (BatteryBackedMemory)
+			{
+				_prgRam = StateService.LoadBatteryMemory(Id);
 
-			_prgRam = new byte[8192];
+				_saveBatteryMemoryThread = new Thread(new ThreadStart(SaveBatteryMemory));
+				_saveBatteryMemoryThread.IsBackground = true;
+				_saveBatteryMemoryThread.Start();
+			}
+			if (_prgRam == null)
+			{
+				_prgRam = new byte[8192];
+			}
+		}
+
+		public void Eject()
+		{
+			_loaded = false;
+		}
+
+		private void SaveBatteryMemory()
+		{
+			while (_loaded)
+			{
+				Thread.Sleep(1000);
+				if (Console != null)
+				{
+					StateService.SaveBatteryMemory(Console);
+				}
+			}
 		}
 
 		/// <summary>

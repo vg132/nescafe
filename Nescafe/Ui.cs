@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Nescafe.Services;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -128,9 +127,11 @@ namespace Nescafe
 			// Save menu
 			var saveMenu = new ToolStripMenuItem("Save");
 			var saveStateMenu = new ToolStripMenuItem("Save state", null, new EventHandler(SaveState));
-			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
 			saveMenu.DropDownItems.Add(saveStateMenu);
+			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
 			saveMenu.DropDownItems.Add(loadStateMenu);
+			var saveBattery = new ToolStripMenuItem("Save battery", null, new EventHandler(SaveBattery));
+			saveMenu.DropDownItems.Add(saveBattery);
 			ms.Items.Add(saveMenu);
 
 			// Help menu
@@ -141,15 +142,19 @@ namespace Nescafe
 			Controls.Add(ms);
 		}
 
+		private void SaveBattery(object sender, EventArgs e)
+		{
+			StateService.SaveBatteryMemory(_console);
+		}
 
 		private void SaveState(object sender, EventArgs e)
 		{
-			_console.SaveState();
+			StateService.SaveState(_console, 0);
 		}
 
 		private void LoadState(object sender, EventArgs e)
 		{
-			_console.LoadState();
+			StateService.LoadState(_console, 0);
 		}
 
 		void TakeScreenshot(object sender, EventArgs e)
@@ -293,9 +298,11 @@ namespace Nescafe
 					_console.Controller.setButtonState(Controller.Button.Down, state);
 					break;
 				case Keys.Q:
+				case Keys.Enter:
 					_console.Controller.setButtonState(Controller.Button.Start, state);
 					break;
 				case Keys.W:
+				case Keys.Escape:
 					_console.Controller.setButtonState(Controller.Button.Select, state);
 					break;
 			}
