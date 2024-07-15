@@ -58,6 +58,7 @@
     <Compile Include="CpuMemory.cs" />
     <Compile Include="Emulator.cs" />
     <Compile Include="Mappers\Mmc6Mapper.cs" />
+    <Compile Include="Mappers\CnRomMapper.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="Ppu.cs" />
     <Compile Include="PpuMemory.cs" />

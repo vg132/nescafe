@@ -1,27 +1,24 @@
 ﻿using System;
+
 namespace Nescafe.Mappers
 {
 	/// <summary>
-	/// Represents Nintendo's UNROM/UOROM and similar mappers.
+	/// Represents Nintendo's CNROM Mapper.
 	/// </summary>
-	public class UxRomMapper : Mapper
+	public class CnRomMapper : Mapper
 	{
 		int _bank0Offset;
-		int _bank1Offset;
 
 		/// <summary>
-		/// Construct a new UxROM mapper.
+		/// Construct a new CNROM mapper.
 		/// </summary>
 		/// <param name="console">the console that this mapper is a part of</param>
-		public UxRomMapper(Console console)
+		public CnRomMapper(Console console)
 		{
 			_console = console;
 
 			// PRG Bank 0 is switchable
 			_bank0Offset = 0;
-
-			// PRG Bank 1 is always fixed to the last bank
-			_bank1Offset = (_console.Cartridge.PrgRomBanks - 1) * 0x4000;
 
 			_vramMirroringType = _console.Cartridge.VerticalVramMirroring ? VramMirroring.Vertical : VramMirroring.Horizontal;
 		}
@@ -36,30 +33,16 @@ namespace Nescafe.Mappers
 			byte data;
 			if (address < 0x2000) // CHR ROM or RAM
 			{
-				data = _console.Cartridge.ReadChr(address);
+				data = _console.Cartridge.ReadChr(_bank0Offset + address);
 			}
-			else if (address >= 0x6000 && address < 0x8000)
+			else if (address >= 0x8000) // PRG ROM stored at $8000 and above
 			{
-				// Open Bus
-				data = 0x00;
+				data = _console.Cartridge.ReadPrgRom(address - 0x8000);
 			}
 			else
 			{
-				if (address <= 0xC000)
-				{
-					data = _console.Cartridge.ReadPrgRom(_bank0Offset + (address - 0x8000));
-				}
-				else
-				{
-					if (address <= 0xFFFF)
-					{
-						data = _console.Cartridge.ReadPrgRom(_bank1Offset + (address - 0xC000));
-					}
-					else
-					{
-						throw new Exception("Invalid mapper read at address: " + address.ToString("X4"));
-					}
-				}
+				// Open Bus
+				data = 0x00;
 			}
 			return data;
 		}
@@ -73,7 +56,7 @@ namespace Nescafe.Mappers
 		{
 			if (address < 0x2000) // CHR ROM or RAM
 			{
-				_console.Cartridge.WriteChr(address, data);
+				_console.Cartridge.WriteChr(_bank0Offset + address, data);
 			}
 			else if (address >= 0x6000 && address < 0x8000)
 			{
@@ -91,7 +74,7 @@ namespace Nescafe.Mappers
 
 		private void WriteBankSelect(byte data)
 		{
-			_bank0Offset = (data & 0x0F) * 0x4000;
+			_bank0Offset = (data & 0x3) * 0x2000;
 		}
 
 		#region Save/Load state

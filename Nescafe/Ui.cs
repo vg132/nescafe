@@ -130,8 +130,6 @@ namespace Nescafe
 			saveMenu.DropDownItems.Add(saveStateMenu);
 			var loadStateMenu = new ToolStripMenuItem("Load state", null, new EventHandler(LoadState));
 			saveMenu.DropDownItems.Add(loadStateMenu);
-			var saveBattery = new ToolStripMenuItem("Save battery", null, new EventHandler(SaveBattery));
-			saveMenu.DropDownItems.Add(saveBattery);
 			ms.Items.Add(saveMenu);
 
 			// Help menu
@@ -140,11 +138,6 @@ namespace Nescafe
 			helpMenu.DropDownItems.Add(helpGithubMenu);
 			ms.Items.Add(helpMenu);
 			Controls.Add(ms);
-		}
-
-		private void SaveBattery(object sender, EventArgs e)
-		{
-			StateService.SaveBatteryMemory(_console);
 		}
 
 		private void SaveState(object sender, EventArgs e)
