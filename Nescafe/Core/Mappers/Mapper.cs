@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nescafe.Mappers
+namespace Nescafe.Core.Mappers
 {
 	/// <summary>
 	/// Abstract base class for all mappers.

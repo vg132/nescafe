@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	/// <summary>
 	/// Represents the PPU's memory and memory mapped IO.

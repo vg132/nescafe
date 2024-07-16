@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	class Emulator
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	/// <summary>
 	/// Represents a MOS Technologies 6502 CPU with Decimal Mode disabled (as

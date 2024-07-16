@@ -1,11 +1,9 @@
-﻿using Nescafe.Mappers;
+﻿using Nescafe.Core.Mappers;
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	/// <summary>
 	/// Represents a NES console.

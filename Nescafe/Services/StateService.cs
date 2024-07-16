@@ -9,7 +9,7 @@ namespace Nescafe.Services
 {
 	public static class StateService
 	{
-		public static void SaveBatteryMemory(Console console)
+		public static void SaveBatteryMemory(Core.Console console)
 		{
 			var fileName = $"battery\\{console.Cartridge.Id}.bat";
 			Directory.CreateDirectory("battery");
@@ -29,7 +29,7 @@ namespace Nescafe.Services
 			return null;
 		}
 
-		public static void SaveState(Console console, int slot)
+		public static void SaveState(Core.Console console, int slot)
 		{
 			var state = new ConsoleState
 			{
@@ -44,7 +44,7 @@ namespace Nescafe.Services
 			File.WriteAllBytes(fileName, CompressString(base64State));
 		}
 
-		public static bool LoadState(Console console, int slot)
+		public static bool LoadState(Core.Console console, int slot)
 		{
 			var fileName = $"state\\{console.Cartridge.Id}_{slot}.state";
 			if (File.Exists(fileName))

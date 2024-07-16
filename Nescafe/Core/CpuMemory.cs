@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	/// <summary>
 	/// Represents the CPU's memory and memory mapped IO.

@@ -1,4 +1,5 @@
 ﻿using Nescafe.Services;
+using Nescafe.Core;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -13,7 +14,7 @@ namespace Nescafe
 	class Ui : Form
 	{
 		Bitmap _frame;
-		Console _console;
+		Core.Console _console;
 
 		Thread _nesThread;
 
@@ -53,7 +54,7 @@ namespace Nescafe
 			CenterToScreen();
 			InitMenus();
 
-			this._console = new Console();
+			this._console = new Core.Console();
 			_console.DrawAction = Draw;
 
 			_frame = new Bitmap(256, 240, PixelFormat.Format8bppIndexed);

@@ -1,7 +1,6 @@
 ﻿using System;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
-namespace Nescafe.Mappers
+namespace Nescafe.Core.Mappers
 {
 	/// <summary>
 	/// Represents Nintendo's MMC1 mapper.

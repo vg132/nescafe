@@ -51,26 +51,26 @@
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Cartridge.cs" />
-    <Compile Include="Console.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="Cpu.cs" />
-    <Compile Include="CpuMemory.cs" />
-    <Compile Include="Emulator.cs" />
-    <Compile Include="Mappers\Mmc6Mapper.cs" />
-    <Compile Include="Mappers\CnRomMapper.cs" />
-    <Compile Include="Memory.cs" />
-    <Compile Include="Ppu.cs" />
-    <Compile Include="PpuMemory.cs" />
+    <Compile Include="Core\Cartridge.cs" />
+    <Compile Include="Core\Console.cs" />
+    <Compile Include="Core\Controller.cs" />
+    <Compile Include="Core\Cpu.cs" />
+    <Compile Include="Core\CpuMemory.cs" />
+    <Compile Include="Core\Emulator.cs" />
+    <Compile Include="Core\Mappers\Mmc6Mapper.cs" />
+    <Compile Include="Core\Mappers\CnRomMapper.cs" />
+    <Compile Include="Core\Memory.cs" />
+    <Compile Include="Core\Ppu.cs" />
+    <Compile Include="Core\PpuMemory.cs" />
     <Compile Include="Services\StateService.cs" />
     <Compile Include="Ui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mappers\NromMapper.cs" />
-    <Compile Include="Mappers\Mapper.cs" />
-    <Compile Include="Mappers\Mmc1Mapper.cs" />
-    <Compile Include="Mappers\UxRomMapper.cs" />
-    <Compile Include="Mappers\Mmc3Mapper.cs" />
+    <Compile Include="Core\Mappers\NromMapper.cs" />
+    <Compile Include="Core\Mappers\Mapper.cs" />
+    <Compile Include="Core\Mappers\Mmc1Mapper.cs" />
+    <Compile Include="Core\Mappers\UxRomMapper.cs" />
+    <Compile Include="Core\Mappers\Mmc3Mapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

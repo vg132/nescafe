@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Nescafe
+﻿namespace Nescafe.Core
 {
 	/// <summary>
 	/// Abstract base class for memory devices.

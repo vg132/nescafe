@@ -1,7 +1,6 @@
 ﻿using System;
-using static System.Windows.Forms.AxHost;
 
-namespace Nescafe
+namespace Nescafe.Core
 {
 	/// <summary>
 	/// Represents a NTSC PPU.
