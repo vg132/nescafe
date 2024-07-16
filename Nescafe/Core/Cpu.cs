@@ -90,11 +90,11 @@ namespace Nescafe.Core
 				new CPUInstruction(0, AddressMode.Implied, 1, 7, 0, brk), // 00
 				new CPUInstruction(1, AddressMode.IndexedIndirect, 2, 6, 0, ora), // 01
 				new CPUInstruction(2, AddressMode.Implied, 0, 2, 0, ___), // 02
-				new CPUInstruction(3, AddressMode.IndexedIndirect, 2, 8, 0, aso), // 03
+				new CPUInstruction(3, AddressMode.IndexedIndirect, 2, 8, 0, slo), // 03
 				new CPUInstruction(4, AddressMode.ZeroPage, 2, 3, 0, nop), // 04
 				new CPUInstruction(5, AddressMode.ZeroPage, 2, 3, 0, ora), // 05
 				new CPUInstruction(6, AddressMode.ZeroPage, 2, 5, 0, asl), // 06
-				new CPUInstruction(7, AddressMode.ZeroPage, 2, 5, 0, aso), // 07
+				new CPUInstruction(7, AddressMode.ZeroPage, 2, 5, 0, slo), // 07
 				new CPUInstruction(8, AddressMode.Implied, 1, 3, 0, php), // 08
 				new CPUInstruction(9, AddressMode.Immediate, 2, 2, 0, ora), // 09
 				new CPUInstruction(10, AddressMode.Accumulator, 1, 2, 0, asl), // 0A
@@ -102,23 +102,23 @@ namespace Nescafe.Core
 				new CPUInstruction(12, AddressMode.Absolute, 3, 4, 0, nop), // 0C
 				new CPUInstruction(13, AddressMode.Absolute, 3, 4, 0, ora), // 0D
 				new CPUInstruction(14, AddressMode.Absolute, 3, 6, 0, asl), // 0E
-				new CPUInstruction(15, AddressMode.Absolute, 3, 6, 0, aso), // 0F
+				new CPUInstruction(15, AddressMode.Absolute, 3, 6, 0, slo), // 0F
 				new CPUInstruction(16, AddressMode.Relative, 2, 2, 1, bpl), // 10
 				new CPUInstruction(17, AddressMode.IndirectIndexed, 2, 5, 1, ora), // 11
 				new CPUInstruction(18, AddressMode.Implied, 0, 2, 0, ___), // 12
-				new CPUInstruction(19, AddressMode.IndirectIndexed, 2, 8, 0, aso), // 13
+				new CPUInstruction(19, AddressMode.IndirectIndexed, 2, 8, 0, slo), // 13
 				new CPUInstruction(20, AddressMode.ZeroPageX, 2, 4, 0, nop), // 14
 				new CPUInstruction(21, AddressMode.ZeroPageX, 2, 4, 0, ora), // 15
 				new CPUInstruction(22, AddressMode.ZeroPageX, 2, 6, 0, asl), // 16
-				new CPUInstruction(23, AddressMode.ZeroPageX, 2, 6, 0, aso), // 17
+				new CPUInstruction(23, AddressMode.ZeroPageX, 2, 6, 0, slo), // 17
 				new CPUInstruction(24, AddressMode.Implied, 1, 2, 0, clc), // 18
 				new CPUInstruction(25, AddressMode.AbsoluteY, 3, 4, 1, ora), // 19
 				new CPUInstruction(26, AddressMode.Implied, 1, 2, 0, nop), // 1A
-				new CPUInstruction(27, AddressMode.AbsoluteY, 3, 7, 0, aso), // 1B
+				new CPUInstruction(27, AddressMode.AbsoluteY, 3, 7, 0, slo), // 1B
 				new CPUInstruction(28, AddressMode.AbsoluteX, 3, 4, 1, nop), // 1C
 				new CPUInstruction(29, AddressMode.AbsoluteX, 3, 4, 1, ora), // 1D
 				new CPUInstruction(30, AddressMode.AbsoluteX, 3, 7, 0, asl), // 1E
-				new CPUInstruction(31, AddressMode.AbsoluteX, 3, 7, 0, aso), // 1F
+				new CPUInstruction(31, AddressMode.AbsoluteX, 3, 7, 0, slo), // 1F
 				new CPUInstruction(32, AddressMode.Absolute, 3, 6, 0, jsr), // 20
 				new CPUInstruction(33, AddressMode.IndexedIndirect, 2, 6, 0, and), // 21
 				new CPUInstruction(34, AddressMode.Implied, 0, 2, 0, ___), // 22
@@ -154,11 +154,11 @@ namespace Nescafe.Core
 				new CPUInstruction(64, AddressMode.Implied, 1, 6, 0, rti), // 40
 				new CPUInstruction(65, AddressMode.IndexedIndirect, 2, 6, 0, eor), // 41
 				new CPUInstruction(66, AddressMode.Implied, 0, 2, 0, ___), // 42
-				new CPUInstruction(67, AddressMode.IndexedIndirect, 2, 8, 0, lse), // 43
+				new CPUInstruction(67, AddressMode.IndexedIndirect, 2, 8, 0, sre), // 43
 				new CPUInstruction(68, AddressMode.ZeroPage, 2, 3, 0, nop), // 44
 				new CPUInstruction(69, AddressMode.ZeroPage, 2, 3, 0, eor), // 45
 				new CPUInstruction(70, AddressMode.ZeroPage, 2, 5, 0, lsr), // 46
-				new CPUInstruction(71, AddressMode.ZeroPage, 2, 5, 0, lse), // 47
+				new CPUInstruction(71, AddressMode.ZeroPage, 2, 5, 0, sre), // 47
 				new CPUInstruction(72, AddressMode.Implied, 1, 3, 0, pha), // 48
 				new CPUInstruction(73, AddressMode.Immediate, 2, 2, 0, eor), // 49
 				new CPUInstruction(74, AddressMode.Accumulator, 1, 2, 0, lsr), // 4A
@@ -166,23 +166,23 @@ namespace Nescafe.Core
 				new CPUInstruction(76, AddressMode.Absolute, 3, 3, 0, jmp), // 4C
 				new CPUInstruction(77, AddressMode.Absolute, 3, 4, 0, eor), // 4D
 				new CPUInstruction(78, AddressMode.Absolute, 3, 6, 0, lsr), // 4E
-				new CPUInstruction(79, AddressMode.Absolute, 3, 6, 0, lse), // 4F
+				new CPUInstruction(79, AddressMode.Absolute, 3, 6, 0, sre), // 4F
 				new CPUInstruction(80, AddressMode.Relative, 2, 2, 1, bvc), // 50
 				new CPUInstruction(81, AddressMode.IndirectIndexed, 2, 5, 1, eor), // 51
 				new CPUInstruction(82, AddressMode.Implied, 0, 2, 0, ___), // 52
-				new CPUInstruction(83, AddressMode.IndirectIndexed, 2, 8, 0, lse), // 53
+				new CPUInstruction(83, AddressMode.IndirectIndexed, 2, 8, 0, sre), // 53
 				new CPUInstruction(84, AddressMode.ZeroPageX, 2, 4, 0, nop), // 54
 				new CPUInstruction(85, AddressMode.ZeroPageX, 2, 4, 0, eor), // 55
 				new CPUInstruction(86, AddressMode.ZeroPageX, 2, 6, 0, lsr), // 56
-				new CPUInstruction(87, AddressMode.ZeroPageX, 2, 6, 0, lse), // 57
+				new CPUInstruction(87, AddressMode.ZeroPageX, 2, 6, 0, sre), // 57
 				new CPUInstruction(88, AddressMode.Implied, 1, 2, 0, cli), // 58
 				new CPUInstruction(89, AddressMode.AbsoluteY, 3, 4, 1, eor), // 59
 				new CPUInstruction(90, AddressMode.Implied, 1, 2, 0, nop), // 5A
-				new CPUInstruction(91, AddressMode.AbsoluteY, 3, 7, 0, lse), // 5B
+				new CPUInstruction(91, AddressMode.AbsoluteY, 3, 7, 0, sre), // 5B
 				new CPUInstruction(92, AddressMode.AbsoluteX, 3, 4, 1, nop), // 5C
 				new CPUInstruction(93, AddressMode.AbsoluteX, 3, 4, 1, eor), // 5D
 				new CPUInstruction(94, AddressMode.AbsoluteX, 3, 7, 0, lsr), // 5E
-				new CPUInstruction(95, AddressMode.AbsoluteX, 3, 7, 0, lse), // 5F
+				new CPUInstruction(95, AddressMode.AbsoluteX, 3, 7, 0, sre), // 5F
 				new CPUInstruction(96, AddressMode.Implied, 1, 6, 0, rts), // 60
 				new CPUInstruction(97, AddressMode.IndexedIndirect, 2, 6, 0, adc), // 61
 				new CPUInstruction(98, AddressMode.Implied, 0, 2, 0, ___), // 62
@@ -245,8 +245,8 @@ namespace Nescafe.Core
 				new CPUInstruction(155, AddressMode.AbsoluteY, 3, 5, 0, tas), // 9B
 				new CPUInstruction(156, AddressMode.AbsoluteX, 3, 5, 0, shy), // 9C
 				new CPUInstruction(157, AddressMode.AbsoluteX, 3, 5, 0, sta), // 9D
-				new CPUInstruction(158, AddressMode.AbsoluteY, 0, 5, 0, shx), // 9E
-				new CPUInstruction(159, AddressMode.AbsoluteY, 0, 5, 0, sha), // 9F
+				new CPUInstruction(158, AddressMode.AbsoluteY, 3, 5, 0, shx), // 9E
+				new CPUInstruction(159, AddressMode.AbsoluteY, 3, 5, 0, sha), // 9F
 				new CPUInstruction(160, AddressMode.Immediate, 2, 2, 0, ldy), // A0
 				new CPUInstruction(161, AddressMode.IndexedIndirect, 2, 6, 0, lda), // A1
 				new CPUInstruction(162, AddressMode.Immediate, 2, 2, 0, ldx), // A2
@@ -685,17 +685,19 @@ namespace Nescafe.Core
 		private void rla(AddressMode mode, ushort address)
 		{
 			var data = _memory.Read(address);
-			C = (data & 0x80) != 0;
-			var rotatedValue = (byte)((data << 1) | (C ? 1 : 0));
-			A &= rotatedValue;
+			uint rotatedValue = (uint)((data << 1) | (C ? 1 : 0));
+			//C = (data & 0x80) != 0;
+			SetCarry(rotatedValue);
+			rotatedValue &= 0xff;
+			A &= (byte)rotatedValue;
 			SetZn(A);
+			_memory.Write(address, (byte)rotatedValue);
 		}
 
-		// LSE (LSR then EOR) Absolute addressing mode
-		private void lse(AddressMode mode, ushort address)
+		// SRE (LSR then EOR) Absolute addressing mode
+		private void sre(AddressMode mode, ushort address)
 		{
 			var data = _memory.Read(address);
-
 			C = (data & 0x01) != 0;
 			// Shift right operation
 			byte shiftedValue = (byte)(data >> 1); 
@@ -704,21 +706,25 @@ namespace Nescafe.Core
 
 			// Set flags based on the result (e.g., update zero, negative, carry flags)
 			SetZn(A);
+			_memory.Write(address, shiftedValue);
 		}
 
 		// RRA (ROR then ADC) Absolute addressing mode
 		private void rra(AddressMode mode, ushort address)
 		{
-			var data = _memory.Read(address);
-			// Perform Rotate Right (ROR) operation on the value
-			byte rotatedValue = (byte)((data >> 1) | (C ? 0x80 : 0x00));
-			C = (data & 0x01) != 0; // Update carry flag with the old bit 0
+			byte value = _memory.Read(address);
 
-			// Perform Add with Carry (ADC) operation with Accumulator
-			int sum = A + rotatedValue + (C ? 1 : 0);
-			A = (byte)sum;
+			// Rotate Right
+			bool oldCarry = C;
+			C = (value & 0x01) != 0;
+			value = (byte)((value >> 1) | (oldCarry ? 0x80 : 0x00));
+			_memory.Write(address, value);
 
-			// Update flags based on the result (e.g., update zero, negative, carry flags)
+			// ADC operation
+			int result = A + value + (C ? 1 : 0);
+			C = result > 0xFF;
+			V = ((A ^ result) & (value ^ result) & 0x80) != 0;
+			A = (byte)result;
 			SetZn(A);
 		}
 
@@ -774,21 +780,50 @@ namespace Nescafe.Core
 
 		private void arr(AddressMode mode, ushort address)
 		{
-			// Fetch immediate operand
-			byte data = _memory.Read(address);
-
-			// Perform AND operation
+			var data = _memory.Read(address);
 			A &= data;
 
-			// Rotate right A
-			var Corig = C;
-			C = (A & 0x01) != 0; // New carry flag is the old bit 0 of A
-			A >>= 1;
-			if (Corig)
-			{
-				A |= 0x80; // Set bit 7 if old carry was set
-			}
+			A = (byte)((A >> 1) | (C ? 0x80 : 0));
+			C = (A & 0x1) != 0;
 			SetZn(A);
+
+			V = C = false;
+			switch (A & 0x60)
+			{
+				case 0x20:
+					V = true;
+					break;
+				case 0x40:
+					V = C = true;
+					break;
+				case 0x60:
+					C = true;
+					break;
+			}
+
+
+
+
+
+
+
+
+
+			//// Fetch immediate operand
+			//byte data = _memory.Read(address);
+
+			//// Perform AND operation
+			//A &= data;
+
+			//// Rotate right A
+			//var Corig = C;
+			//C = (A & 0x01) != 0; // New carry flag is the old bit 0 of A
+			//A >>= 1;
+			//if (Corig)
+			//{
+			//	A |= 0x80; // Set bit 7 if old carry was set
+			//}
+			//SetZn(A);
 		}
 
 		// ANE Immediate addressing mode
@@ -803,11 +838,41 @@ namespace Nescafe.Core
 		// OAL Immediate addressing mode
 		private void oal(AddressMode mode, ushort address)
 		{
-			var data = _memory.Read(address);
-			// Perform AND with the accumulator and the immediate value, then transfer to X register
-			A = (byte)((A | 0xFF) & data);
+
+			uint immediateValue = _memory.Read(address);
+			immediateValue |= (uint)(_memory.Read((ushort)(address + 1)) >> 8);
+			//(cpuMemory->Read8(newoffset) << 8)
+			
+			// Perform the AND operation
+			A &= (byte)immediateValue;
+			// Set the Zero flag if the result is 0
+			Z = (A == 0);
+			// Set the Negative flag based on the result
+			N = (A & 0x80) != 0;
+			// Set the Carry flag based on the result (same as Negative flag in this case)
+			C = (A & 0x80) != 0;
 			X = A;
-			SetZn(A);
+
+			//var data = _memory.Read(address);
+			//A |= 0xFF;
+			//SetZn(A);
+			//A &= data;
+			//SetZn(A);
+			//X = A;
+			//SetZn(X);
+
+
+
+
+
+
+
+
+			//var data = _memory.Read(address);
+			//// Perform AND with the accumulator and the immediate value, then transfer to X register
+			//A = (byte)((A | 0xFF) & data);
+			//X = A;
+			//SetZn(A);
 		}
 
 		// SAX (Store Accumulator AND X) Absolute addressing mode
@@ -817,11 +882,13 @@ namespace Nescafe.Core
 			var result = (byte)(A & X);
 			// Store the result in memory at the specified address
 			_memory.Write(address, result);
-			SetZn((byte)result);
 		}
 
 		private void sbx(AddressMode mode, ushort address)
 		{
+			//var data = (byte)(A & X);
+			//_memory.Write(address, data);
+
 			// Fetch immediate value
 			var data = _memory.Read(address);
 
@@ -830,9 +897,10 @@ namespace Nescafe.Core
 
 			// Store the result in X register
 			X = (byte)result;
-
+			C = result > data;
+			//_memory.Write(address, (byte)result);
 			// Update flags
-			SetZn(X);
+			//SetZn(X);
 		}
 
 		private void tas(AddressMode mode, ushort address)
@@ -844,7 +912,8 @@ namespace Nescafe.Core
 
 		private void shy(AddressMode mode, ushort address)
 		{
-			var data = (byte)((Y & 0xFF00) >> 8);
+			//var data  = _memory.Read(address);
+			var data = (byte)(((Y & 0xFF00) >> 8) + 1);
 			_memory.Write(address, data);
 		}
 
@@ -860,13 +929,10 @@ namespace Nescafe.Core
 			var data = _memory.Read(address);
 
 			// Perform the AND operation
-			byte result = (byte)(A & data);
-
-			// Store the result in the accumulator
-			A = result;
+			A &= data;
 
 			// Set the carry flag based on the result
-			C = (result != 0) ? true : false;
+			SetCarry(A);
 
 			// Set other flags as needed (ZeroFlag, NegativeFlag, OverflowFlag, etc.)
 			// Update CPU cycles, memory access, etc. as per the 6502 specification
@@ -890,14 +956,12 @@ namespace Nescafe.Core
 			_memory.Write(address, 0);
 		}
 
-		#endregion
-
 		// ASO (Arithmetic Shift Left followed by OR with Accumulator) Absolute addressing mode
-		private void aso(AddressMode mode, ushort address)
+		private void slo(AddressMode mode, ushort address)
 		{
 			// Read data from memory at the specified address
 			byte value = _memory.Read(address);
-
+			C = (value & 0x80) != 0;  // Set Carry flag if the bit 7 is set
 			// Perform ASL (Arithmetic Shift Left) on the value
 			var shiftedValue = (byte)(value << 1);
 
@@ -905,12 +969,15 @@ namespace Nescafe.Core
 			A |= shiftedValue;
 
 			// Set flags based on the result (e.g., update zero, negative, carry flags)
-			SetZn(shiftedValue);
+			SetZn(A);
 
 			// Write back the result to memory (if necessary)
 			_memory.Write(address, shiftedValue);
 			//WriteMemory(address, shiftedValue);
 		}
+
+
+		#endregion
 
 		// TXS - Transfer X to Stack Pointer
 		private void txs(AddressMode mode, ushort address)
