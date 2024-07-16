@@ -16,6 +16,7 @@ namespace Nescafe.Core
 		private byte[] _prgRom;
 		private byte[] _chr;
 		private byte[] _prgRam;
+		private byte[] _expRam;
 
 		// _chr and _prgRam must be saved
 
@@ -118,6 +119,7 @@ namespace Nescafe.Core
 			{
 				_prgRam = new byte[8192];
 			}
+			_expRam = new byte[8168];
 		}
 
 		public void Eject()
@@ -155,6 +157,16 @@ namespace Nescafe.Core
 		public byte ReadPrgRam(int index)
 		{
 			return _prgRam[index];
+		}
+
+		public byte ReadExpRam(int index)
+		{
+			return _expRam[index];
+		}
+
+		public void WriteExpRam(int index, byte data)
+		{
+			_expRam[index] = data;
 		}
 
 		/// <summary>

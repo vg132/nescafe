@@ -69,6 +69,10 @@ namespace Nescafe.Core.Mappers
 				offset += address % 0x1000;
 				data = _console.Cartridge.ReadChr(offset);
 			}
+			else if (address >= 0x4018 && address <= 0x5FFF)
+			{
+				data = _console.Cartridge.ReadExpRam(address - 0x4018);
+			}
 			else if (address >= 0x6000 && address <= 0x7FFF) // 8 KB PRG RAM bank (CPU) $6000-$7FFF
 			{
 				data = _console.Cartridge.ReadPrgRam(address - 0x6000);
@@ -107,6 +111,10 @@ namespace Nescafe.Core.Mappers
 				var offset = (address / 0x1000) == 0 ? _chrBank0Offset : _chrBank1Offset;
 				offset += address % 0x1000;
 				_console.Cartridge.WriteChr(offset, data);
+			}
+			else if(address >= 0x4018 && address<= 0x5FFF)
+			{
+				_console.Cartridge.WriteExpRam(address - 0x4018, data);
 			}
 			else if (address >= 0x6000 && address <= 0x7FFF)
 			{
