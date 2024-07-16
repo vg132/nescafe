@@ -29,29 +29,29 @@ namespace Nescafe
 		}
 
 		// Return the index in internalRam of the address (handle mirroring)
-		ushort HandleInternalRamMirror(ushort address)
+		private ushort HandleInternalRamMirror(ushort address)
 		{
 			return (ushort)(address % 0x800);
 		}
 
 		// Handles mirroring of PPU register addresses
-		ushort GetPpuRegisterFromAddress(ushort address)
+		private ushort GetPpuRegisterFromAddress(ushort address)
 		{
 			// Special case for OAMDMA ($4014) which is not alongside the other registers
 			return address == 0x4014 ? address : (ushort)(0x2000 + ((address - 0x2000) % 8));
 		}
 
-		void WritePpuRegister(ushort address, byte data)
+		private void WritePpuRegister(ushort address, byte data)
 		{
 			_console.Ppu.WriteToRegister(GetPpuRegisterFromAddress(address), data);
 		}
 
-		byte ReadPpuRegister(ushort address)
+		private byte ReadPpuRegister(ushort address)
 		{
 			return _console.Ppu.ReadFromRegister(GetPpuRegisterFromAddress(address));
 		}
 
-		byte ReadApuIoRegister(ushort address)
+		private byte ReadApuIoRegister(ushort address)
 		{
 			byte data;
 			switch (address)

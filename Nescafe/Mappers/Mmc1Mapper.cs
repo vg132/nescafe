@@ -84,7 +84,9 @@ namespace Nescafe.Mappers
 			}
 			else
 			{
-				throw new Exception("Invalid Mapper read at address " + address.ToString("X4"));
+				System.Console.WriteLine("Invalid Mapper read at address " + address.ToString("X4"));
+				//throw new Exception("Invalid Mapper read at address " + address.ToString("X4"));
+				data = 0;
 			}
 			return data;
 		}
