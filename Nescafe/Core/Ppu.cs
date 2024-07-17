@@ -420,7 +420,7 @@ namespace Nescafe.Core
 			var bgPixelData = GetBgPixelData();
 
 			var spritePixelData = GetSpritePixelData(out var spriteScanlineIndex);
-			var isSpriteZero = _spriteIndicies[spriteScanlineIndex] == 0;
+			var isSpriteZero = _flagSpriteZeroHit == 0 && _flagShowBackground == 1 && _spriteIndicies[spriteScanlineIndex] == 0;
 
 			var bgColorNum = bgPixelData & 0x03;
 			var spriteColorNum = spritePixelData & 0x03;
@@ -838,13 +838,6 @@ namespace Nescafe.Core
 			retVal |= (byte)(_flagSpriteOverflow << 5);
 			retVal |= (byte)(_flagSpriteZeroHit << 6);
 			retVal |= (byte)(_nmiOccurred << 7);
-
-			// Old status of _nmiOccurred is returned then _nmiOccurred is cleared
-			_nmiOccurred = 0;
-
-			// w:                  = 0
-			w = 0;
-
 			return retVal;
 		}
 
