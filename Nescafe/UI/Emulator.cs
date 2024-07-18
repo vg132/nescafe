@@ -126,7 +126,7 @@ public class Emulator
 
 		//Instantiating our new abstractions
 		Ebo = new BufferObject<uint>(_gl, Indices, BufferTargetARB.ElementArrayBuffer);
-		Vbo = new BufferObject<float>(_gl, VerticesTest, BufferTargetARB.ArrayBuffer);
+		Vbo = new BufferObject<float>(_gl, Vertices, BufferTargetARB.ArrayBuffer);
 		Vao = new VertexArrayObject<float, uint>(_gl, Vbo, Ebo);
 
 		//Telling the VAO object how to lay out the attribute pointers
