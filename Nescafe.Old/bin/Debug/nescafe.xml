@@ -1,0 +1,736 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>nescafe</name>
+    </assembly>
+    <members>
+        <member name="T:Nescafe.Core.Cartridge">
+            <summary>
+            Represents a NES Cartridge.
+            </summary>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.Console">
+            <summary>
+            Gets or sets the console that this cartridge is loaded into.
+            </summary>
+            <value>The console that this this cartridge is loaded into</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.PrgRomBanks">
+            <summary>
+            Gets the number of 16KB PRG ROM banks present in this cartridge.
+            </summary>
+            <value>The number of 16 KB PRG ROM banks present in this cartridge.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.ChrBanks">
+            <summary>
+            Gets the number of 8KB CHR banks present in this cartridge.
+            </summary>
+            <value>The number of 8KB CHR banks present in this cartridge.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.VerticalVramMirroring">
+            <summary>
+            Is <c>true</c> if the Vertical VRAM mirroring iNES flag is set on
+            on this cartridge.
+            </summary>
+            <value><c>true</c> if the vertical VRAM mirroring flag is set; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.BatteryBackedMemory">
+            <summary>
+            Is <c>true</c> if this cartridge contains battery backed persistent memory.
+            </summary>
+            <value><c>true</c> if battery backed memory present; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.ContainsTrainer">
+            <summary>
+            Is <c>true</c> if this cartridge contains a 512 byte trainer.
+            </summary>
+            <value><c>true</c> if this cartridge contains a trainer; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.UsesChrRam">
+            <summary>
+            Is true if this cartridge uses CHR RAM as opposed to CHR ROM.
+            </summary>
+            <value><c>true</c> if this cartridge uses CHR RAM; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.MapperNumber">
+            <summary>
+            Gets the iNES mapper number set on this cartridge.
+            </summary>
+            <value>This cartridge's iNES mapper number.</value>
+        </member>
+        <member name="P:Nescafe.Core.Cartridge.Invalid">
+            <summary>
+            Is true if this cartridge is for some reason invalid, fase otherwise.
+            </summary>
+            <value><c>true</c> if cartridge is invalid; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.#ctor(System.String)">
+            <summary>
+            Constructs a new Cartridge from the iNES cartridge file at the
+            specified path.
+            </summary>
+            <param name="path">The path to the .nes file to load</param>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.ReadPrgRom(System.Int32)">
+            <summary>
+            Reads and returns a byte of this cartridge's PRG ROM at the specified index.
+            </summary>
+            <returns>This cartridge's PRG ROM at the specified index</returns>
+            <param name="index">The index to read the PRG ROM at</param>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.ReadPrgRam(System.Int32)">
+            <summary>
+            Reads and returns a byte of this cartridge's PRG RAM at the specified index.
+            </summary>
+            <returns>A byte of this cartridge's PRG ROM at the specified index</returns>
+            <param name="index">The index to read the PRG RAM at</param>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.WritePrgRam(System.Int32,System.Byte)">
+            <summary>
+            Write a byte to this cartridge's PRG RAM at the specified index.
+            </summary>
+            <param name="index">The PRG RAM index to write to</param>
+            <param name="data">The byte to write to PRG RAm</param>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.ReadChr(System.Int32)">
+            <summary>
+            Reads and returns a byte of this cartridge's CHR data at the specified index.
+            </summary>
+            <returns>A byte of this cartridge's CHR at the specified index</returns>
+            <param name="index">The index to read the CHR data at</param>
+        </member>
+        <member name="M:Nescafe.Core.Cartridge.WriteChr(System.Int32,System.Byte)">
+            <summary>
+            Write a byte to this cartridge's CHR at the specified index.
+            </summary>
+            <param name="index">The index to write the data to in CHR</param>
+            <param name="data">The byte to write to CHR</param>
+        </member>
+        <member name="T:Nescafe.Core.Console">
+            <summary>
+            Represents a NES console.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Console.Cpu">
+            <summary>
+            This Console's CPU.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Console.Ppu">
+            <summary>
+            This Console's PPU
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Console.CpuMemory">
+            <summary>
+            This Console's CPU Memory.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Console.PpuMemory">
+            <summary>
+            This Console's PPU Memory.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Console.Controller">
+            <summary>
+            This Console's Controller
+            </summary>
+            <remarks>
+            This is currently set up to only work as controller 1.
+            </remarks>
+        </member>
+        <member name="P:Nescafe.Core.Console.Cartridge">
+            <summary>
+            Gets or sets the console's Cartridge.
+            </summary>
+            <value>The Cartridge currently loaded in this console</value>
+        </member>
+        <member name="P:Nescafe.Core.Console.Mapper">
+            <summary>
+            Gets or sets the mapper for the cartridge currently loaded in this console.
+            </summary>
+            <value>The mapper for the cartridge currently loaded in this console.</value>
+        </member>
+        <member name="P:Nescafe.Core.Console.DrawAction">
+            <summary>
+            Gets or sets the Action called when the Console is ready to draw a frame.
+            </summary>
+            <value>The Action called when the Console is ready to draw a frame.</value>
+        </member>
+        <member name="P:Nescafe.Core.Console.Stop">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Nescafe.Console"/> should stop.
+            </summary>
+            <value><c>true</c> if the console has been stopped; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Nescafe.Core.Console.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nescafe.Console"/> class.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Console.LoadCartridge(System.String)">
+            <summary>
+            Loads a cartridge into the console.
+            </summary>
+            <remarks>
+            Logs information about the cartridge to stdout while loading including
+            any errors that would cause the method to return <c>false</c>.
+            </remarks>
+            <returns><c>true</c>, if cartridge was loaded successfully, <c>false</c> otherwise.</returns>
+            <param name="path">Path to the iNES cartridge file to load</param>
+        </member>
+        <member name="M:Nescafe.Core.Console.DrawFrame">
+            <summary>
+            Forces the console to call <see cref="T:Nescafe.Console.DrawAction"/>
+            with current data from the PPU.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Console.Start">
+            <summary>
+            Starts running the console and drawing frames.
+            </summary>
+        </member>
+        <member name="T:Nescafe.Core.Controller">
+            <summary>
+            Represents a NES controller.
+            </summary>
+        </member>
+        <member name="T:Nescafe.Core.Controller.Button">
+            <summary>
+            Enumeration representing a button on the controller.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.A">
+            <summary>
+            the A button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.B">
+            <summary>
+            the B button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Select">
+            <summary>
+            the select button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Start">
+            <summary>
+            the start button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Up">
+            <summary>
+            the up arrow button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Down">
+            <summary>
+            the down arrow button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Left">
+            <summary>
+            the left arrow button
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Controller.Button.Right">
+            <summary>
+            the right arrow button
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Controller.#ctor">
+            <summary>
+            Construct a new controller.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Controller.setButtonState(Nescafe.Core.Controller.Button,System.Boolean)">
+            <summary>
+            Sets the state of a button (up/down).
+            </summary>
+            <param name="button">the button to set the state of</param>
+            <param name="state"><c>true</c> if button is down, <c>false</c> if button is up</param>
+        </member>
+        <member name="M:Nescafe.Core.Controller.WriteControllerInput(System.Byte)">
+            <summary>
+            Writes the specified byte to the controller input bus.
+            </summary>
+            <param name="input">the byte to write to the controller input bus</param>
+        </member>
+        <member name="M:Nescafe.Core.Controller.ReadControllerOutput">
+            <summary>
+            Reads a byte from the controller output bus.
+            </summary>
+            <returns>the byte read from the controller output bus</returns>
+        </member>
+        <member name="T:Nescafe.Core.Cpu">
+            <summary>
+            Represents a MOS Technologies 6502 CPU with Decimal Mode disabled (as
+            is the case with the NES).
+            </summary>
+        </member>
+        <member name="P:Nescafe.Core.Cpu.Cycles">
+            <summary>
+            Gets the current number of cycles executed by the CPU.
+            </summary>
+            <value>The current number of cycles executed by the CPU.</value>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Initializes a new <see cref="T:Nescafe.Cpu"/> CPU.
+            </summary>
+            <param name="console">The Console that this CPU is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.Reset">
+            <summary>
+            Resets this CPU to its power on state.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.TriggerNmi">
+            <summary>
+            Triggers a non maskable interrupt on this CPU.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.TriggerIrq">
+            <summary>
+            Triggers an interrupt on this CPU if the interrupt disable flag
+            is not set.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.AddIdleCycles(System.Int32)">
+            <summary>
+            Instructs the CPU to idle for the specified number of cycles.
+            </summary>
+            <param name="idleCycles">Idle cycles.</param>
+        </member>
+        <member name="M:Nescafe.Core.Cpu.Step">
+            <summary>
+            Executes the next CPU instruction specified by the Program Counter.
+            </summary>
+            <returns>The number of CPU cycles excuted</returns>
+        </member>
+        <member name="T:Nescafe.Core.CpuMemory">
+            <summary>
+            Represents the CPU's memory and memory mapped IO.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.CpuMemory.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new CPU memory device.
+            </summary>
+            <param name="console">the console that this CPU Memory is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.CpuMemory.Reset">
+            <summary>
+            Resets this CPU Memory to its startup state
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.CpuMemory.Read(System.UInt16)">
+            <summary>
+            Read a byte of memory from the specified address.
+            </summary>
+            <returns>the byte read</returns>
+            <param name="address">the address to read from</param>
+        </member>
+        <member name="M:Nescafe.Core.CpuMemory.Write(System.UInt16,System.Byte)">
+            <summary>
+            Write a byte of memory to the specified address.
+            </summary>
+            <param name="address">the address to write to</param>
+            <param name="data">the byte to write to the specified address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.Mmc6Mapper">
+            <summary>
+            Represents Nintendo's MMC6 mapper.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc6Mapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Constructs a new MMC6 mapper.
+            </summary>
+            <param name="console">Console.</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc6Mapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc6Mapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the specified address.
+            </summary>
+            <param name="address">the address to write a byte to</param>
+            <param name="data">the byte to write to the address</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc6Mapper.Step">
+            <summary>
+            Inform the mapper that a PPU step has occurred.
+            </summary>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.CnRomMapper">
+            <summary>
+            Represents Nintendo's CNROM Mapper.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.CnRomMapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new CNROM mapper.
+            </summary>
+            <param name="console">the console that this mapper is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.CnRomMapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.CnRomMapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the specified address.
+            </summary>
+            <param name="address">the address to write a byte to</param>
+            <param name="data">the byte to write to the address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.NromMapper">
+            <summary>
+            Represents Nintendo's NROM Mapper.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.NromMapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new NROM mapper.
+            </summary>
+            <param name="console">the console that this mapper is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.NromMapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.NromMapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the specified address.
+            </summary>
+            <param name="address">the address to write a byte to</param>
+            <param name="data">the byte to write to the address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.Mapper">
+            <summary>
+            Abstract base class for all mappers.
+            </summary>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.Mapper.VramMirroring">
+            <summary>
+            Enumeration representing VRAM mirroring types.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper.VramMirroring.Horizontal">
+            <summary>
+            Specifies Horizontal VRAM mirroring (vertical arrangement of the nametables)
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper.VramMirroring.Vertical">
+            <summary>
+            Specifies Vertical VRAM mirroring (horizontal arrangement of the nametables)
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper.VramMirroring.SingleLower">
+            <summary>
+            Specifies single screen mirroring of the lower nametable.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper.VramMirroring.SingleUpper">
+            <summary>
+            Specifies single screen mirroring of the upper nametable.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper._console">
+            <summary>
+            Console that this Mapper is a part of.
+            </summary>
+        </member>
+        <member name="F:Nescafe.Core.Mappers.Mapper._vramMirroringType">
+            <summary>
+            The current VRAM mirroring type.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mapper.VramAddressToIndex(System.UInt16)">
+            <summary>
+            Given a address $2000-$3EFFF, returns the index in the VRAM array
+            that the address points to depending on the current VRAM mirroring
+            mode.
+            </summary>
+            <returns>The address to index.</returns>
+            <param name="address">Address.</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mapper.Step">
+            <summary>
+            Informs the Mapper that a PPU step has just occurred.
+            </summary>
+            <remarks>
+            Some mappers eg. MMC3 make use of this for IRQ timing. If not
+            overridden it does nothing.
+            </remarks>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mapper.Read(System.UInt16)">
+            <summary>
+            Reads a byte of data from the specified cartridge address 
+            ($4020-$FFFF). This is mapper dependent and should be implemented 
+            by each mapper.
+            </summary>
+            <returns>The byte read from the specified address</returns>
+            <param name="address">The address to read from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte of memory to the specified cartridge address
+            ($4020-$FFFF). This is mapper dependent and should be implemented
+            by each mapper.
+            </summary>
+            <param name="address">The address to write to</param>
+            <param name="data">The byte to write to the specified address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.Mmc1Mapper">
+            <summary>
+            Represents Nintendo's MMC1 mapper.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc1Mapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new MMC1 mapper.
+            </summary>
+            <param name="console">the console that this mapper is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc1Mapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc1Mapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+            <param name="data">The data to write to the address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.UxRomMapper">
+            <summary>
+            Represents Nintendo's UNROM/UOROM and similar mappers.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.UxRomMapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new UxROM mapper.
+            </summary>
+            <param name="console">the console that this mapper is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.UxRomMapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.UxRomMapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the specified address.
+            </summary>
+            <param name="address">the address to write a byte to</param>
+            <param name="data">the byte to write to the address</param>
+        </member>
+        <member name="T:Nescafe.Core.Mappers.Mmc3Mapper">
+            <summary>
+            Represents Nintendo's MMC3 mapper.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc3Mapper.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Constructs a new MMC3 mapper.
+            </summary>
+            <param name="console">Console.</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc3Mapper.Read(System.UInt16)">
+            <summary>
+            Read a byte from the specified address.
+            </summary>
+            <returns>the byte read from the specified address</returns>
+            <param name="address">the address to read a byte from</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc3Mapper.Write(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the specified address.
+            </summary>
+            <param name="address">the address to write a byte to</param>
+            <param name="data">the byte to write to the address</param>
+        </member>
+        <member name="M:Nescafe.Core.Mappers.Mmc3Mapper.Step">
+            <summary>
+            Inform the mapper that a PPU step has occurred.
+            </summary>
+        </member>
+        <member name="T:Nescafe.Core.Memory">
+            <summary>
+            Abstract base class for memory devices.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Memory.Read(System.UInt16)">
+            <summary>
+            Read a byte of memory from the specified address.
+            </summary>
+            <returns>The byte of memory read from the specified address</returns>
+            <param name="address">The address to read from</param>
+        </member>
+        <member name="M:Nescafe.Core.Memory.Write(System.UInt16,System.Byte)">
+            <summary>
+            Write a byte of memory to the specified address.
+            </summary>
+            <param name="address">The address to write the byte of memory to</param>
+            <param name="data">The byte to write to the specified address</param>
+        </member>
+        <member name="M:Nescafe.Core.Memory.ReadBuf(System.Byte[],System.UInt16,System.UInt16)">
+            <summary>
+            Reads the specified number of bytes into the buffer starting from 
+            the specified address.
+            </summary>
+            <param name="buffer">Buffer to read into</param>
+            <param name="address">Address to start reading from</param>
+            <param name="size">Number of bytes to read</param>
+        </member>
+        <member name="M:Nescafe.Core.Memory.ReadBufWrapping(System.Byte[],System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Reads the specified number of bytes into the buffer starting from 
+            the specified address and starting at the specified index in the
+            buffer, wrapping around to index 0 in the buffer if the end is
+            reached.
+            </summary>
+            <param name="buffer">Buffer.</param>
+            <param name="startIndex">Start index.</param>
+            <param name="startAddress">Start address.</param>
+            <param name="size">Size.</param>
+        </member>
+        <member name="M:Nescafe.Core.Memory.Read16(System.UInt16)">
+            <summary>
+            Reads two bytes from the specified address (little endian).
+            </summary>
+            <returns>A 16 bit value representing the two bytes read in a little endian fashion.</returns>
+            <param name="address">The address to read two bytes from</param>
+        </member>
+        <member name="M:Nescafe.Core.Memory.Read16WrapPage(System.UInt16)">
+            <summary>
+            Reads two bytes (little endian) wrapping around to the start of
+            the 256 byte page if the lower byte is at beginning
+            </summary>
+            <remarks>
+            For example, reading from $0AFF Reads $0AFF first and $0A00 second.
+            </remarks>
+            <returns>A 16 bit value representing the two bytes read in a little endian fashion</returns>
+            <param name="address">The address to read two bytes from</param>
+        </member>
+        <member name="T:Nescafe.Core.Ppu">
+            <summary>
+            Represents a NTSC PPU.
+            </summary>
+        </member>
+        <member name="P:Nescafe.Core.Ppu.BitmapData">
+            <summary>
+            Gets an array containing bitmap data currently drawn to the screen.
+            </summary>
+            <value>The bitmap data.</value>
+        </member>
+        <member name="P:Nescafe.Core.Ppu.Scanline">
+            <summary>
+            Gets the current scanline number.
+            </summary>
+            <value>The current scanline number.</value>
+        </member>
+        <member name="P:Nescafe.Core.Ppu.Cycle">
+            <summary>
+            Gets the cycle number on the current scanline.
+            </summary>
+            <value>The cycle number on the current scanline.</value>
+        </member>
+        <member name="P:Nescafe.Core.Ppu.RenderingEnabled">
+            <summary>
+            Is <c>true</c> if rendering is currently enabled.
+            </summary>
+            <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Nescafe.Core.Ppu.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Constructs a new PPU.
+            </summary>
+            <param name="console">Console that this PPU is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.Ppu.Reset">
+            <summary>
+            Resets this PPU to its startup state.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Ppu.Step">
+            <summary>
+            Executes a single PPU step.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.Ppu.ReadFromRegister(System.UInt16)">
+            <summary>
+            Reads a byte from the register at the specified address.
+            </summary>
+            <returns>A byte read from the register at the specified address</returns>
+            <param name="address">The address of the register to read from</param>
+        </member>
+        <member name="M:Nescafe.Core.Ppu.WriteToRegister(System.UInt16,System.Byte)">
+            <summary>
+            Writes a byte to the register at the specified address.
+            </summary>
+            <param name="address">The address of the register to write to</param>
+            <param name="data">The byte to write to the register</param>
+        </member>
+        <member name="T:Nescafe.Core.PpuMemory">
+            <summary>
+            Represents the PPU's memory and memory mapped IO.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.PpuMemory.#ctor(Nescafe.Core.Console)">
+            <summary>
+            Construct a new PPU memory device.
+            </summary>
+            <param name="console">the console that this PPU memory is a part of</param>
+        </member>
+        <member name="M:Nescafe.Core.PpuMemory.Reset">
+            <summary>
+            Reset this PPU memory to its startup state.
+            </summary>
+        </member>
+        <member name="M:Nescafe.Core.PpuMemory.GetPaletteRamIndex(System.UInt16)">
+            <summary>
+            Given a palette RAM address ($3F00-$3FFF), return the index in
+            palette RAM that it corresponds to.
+            </summary>
+            <returns>The palette ram index.</returns>
+            <param name="address">Address.</param>
+        </member>
+        <member name="M:Nescafe.Core.PpuMemory.Read(System.UInt16)">
+            <summary>
+            Read a byte of memory from the specified address.
+            </summary>
+            <returns>the byte read</returns>
+            <param name="address">the address to read from</param>
+        </member>
+        <member name="M:Nescafe.Core.PpuMemory.Write(System.UInt16,System.Byte)">
+            <summary>
+            Write a byte of memory to the specified address.
+            </summary>
+            <param name="address">the address to write to</param>
+            <param name="data">the byte to write to the specified address</param>
+        </member>
+    </members>
+</doc>

@@ -80,6 +80,7 @@ namespace Nescafe.Services
 
 		private static string SerializeToBase64(object obj)
 		{
+			#pragma warning disable SYSLIB0011
 			byte[] serializedData;
 			var formatter = new BinaryFormatter();
 			using (MemoryStream memoryStream = new MemoryStream())
@@ -87,17 +88,20 @@ namespace Nescafe.Services
 				formatter.Serialize(memoryStream, obj);
 				serializedData = memoryStream.ToArray();
 			}
+			#pragma warning restore SYSLIB0011
 			return Convert.ToBase64String(serializedData);
 		}
 
 		private static object DeserializeFromBase64(string base64String)
 		{
+			#pragma warning disable SYSLIB0011
 			var serializedData = Convert.FromBase64String(base64String);
 			var formatter = new BinaryFormatter();
 			using (MemoryStream memoryStream = new MemoryStream(serializedData))
 			{
 				return formatter.Deserialize(memoryStream);
 			}
+			#pragma warning restore SYSLIB0011
 		}
 
 		private static byte[] CompressString(string text)
