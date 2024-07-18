@@ -1,7 +1,8 @@
-Nescafe/bin/*
-Nescafe/obj/*
+bin
+obj
 Nescafe.userprefs
 .vscode
 .vs
 roms/*
 **/*.csproj.user
+packages/*

@@ -7,8 +7,6 @@ using System.Drawing.Imaging;
 using System.Threading;
 using System.Windows.Forms;
 
-//0,9375
-//
 namespace Nescafe
 {
 	class Ui : Form
@@ -20,39 +18,11 @@ namespace Nescafe
 
 		private Graphics g;
 		private Panel panel1;
-		private uint _frameCounter;
-		private uint _fps;
-		private long _nextFPSCalculation;
-
-		//protected override void OnResize(EventArgs e)
-		//{
-		//	base.OnResize(e);
-		//	if (_state != WindowState)
-		//	{
-		//		g = CreateGraphics();
-		//		g.InterpolationMode = InterpolationMode.NearestNeighbor;
-		//		g.Clear(Color.Black);
-		//	}
-		//	_state = WindowState;
-		//}
-
-		//protected override void OnResizeEnd(EventArgs e)
-		//{
-		//	base.OnResizeEnd(e);
-		//	g = CreateGraphics();
-		//	g.InterpolationMode = InterpolationMode.NearestNeighbor;
-		//	g.Clear(Color.Black);
-		//}
 
 		public Ui()
 		{
 			InitializeComponent();
 			Text = "NEScafé";
-			//Size = new Size(512, 480);
-			//FormBorderStyle = FormBorderStyle.Sizable;
-
-			//g = CreateGraphics();
-			//g.InterpolationMode = InterpolationMode.NearestNeighbor;
 
 			CenterToScreen();
 			InitMenus();
@@ -263,17 +233,6 @@ namespace Nescafe
 				x = (panel1.Size.Width - width) / 2;
 			}
 			g.DrawImage(_frame, x, 0, width, height);
-			_frameCounter++;
-			if(_nextFPSCalculation<DateTime.Now.Ticks)
-			{
-				_fps = _frameCounter;
-				_frameCounter = 0;
-				_nextFPSCalculation = DateTime.Now.Ticks + 10000000;
-			}
-			BeginInvoke((MethodInvoker)delegate ()
-			{
-				Text = "FPS: " + (_fps);
-			});
 		}
 
 		void OnKeyDown(object sender, KeyEventArgs e)
