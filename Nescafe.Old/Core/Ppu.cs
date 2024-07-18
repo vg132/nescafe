@@ -12,6 +12,18 @@ namespace Nescafe.Core
 		/// </summary>
 		/// <value>The bitmap data.</value>
 		public byte[] BitmapData { get; }
+		public byte[] NewBitmapData { get; }
+
+		private readonly uint[] _palette = {
+			0xA8A8A8, 0x003CE8, 0x102090, 0x600088, 0x880064, 0xB80060, 0xA80000, 0x783000,
+			0x405400, 0x103C00, 0x008000, 0x007800, 0x00643C, 0x000000, 0x000000, 0x000000,
+			0x989898, 0x104CC4, 0x6064EC, 0xB81ED4, 0x1100B0, 0x1A00C8, 0xF02020, 0x781E00,
+			0x549A00, 0x286200, 0x106800, 0x003C28, 0x003C78, 0x000000, 0x000000, 0x000000,
+			0xECEFEC, 0x4C9AEC, 0x784EC0, 0xD862EC, 0xE454EC, 0xEC58B4, 0xEC6A64, 0xD48820,
+			0xA0AA00, 0x74C400, 0x4CD020, 0x38CC6C, 0x38B4CC, 0x3C3C3C, 0x000000, 0x000000,
+			0xECEFEC, 0xA8CCEC, 0xBCBCBC, 0xD4B2EC, 0xECACEC, 0xECAFEC, 0xECB4B0, 0xE4C490,
+			0xCCD278, 0xB4DE78, 0xA8E290, 0x98E2B4, 0xA0D6E4, 0xA0A2A0, 0x000000, 0x000000
+		};
 
 		readonly PpuMemory _memory;
 		readonly Console _console;
@@ -109,6 +121,7 @@ namespace Nescafe.Core
 			_console = console;
 
 			BitmapData = new byte[256 * 240];
+			NewBitmapData = new byte[256 * 240];
 
 			_oam = new byte[256];
 			_sprites = new byte[32];
@@ -121,6 +134,7 @@ namespace Nescafe.Core
 		public void Reset()
 		{
 			Array.Clear(BitmapData, 0, BitmapData.Length);
+			Array.Clear(NewBitmapData, 0, NewBitmapData.Length);
 
 			Scanline = 240;
 			Cycle = 340;
@@ -452,6 +466,7 @@ namespace Nescafe.Core
 			}
 
 			BitmapData[(Scanline * 256) + (Cycle - 1)] = color;
+			NewBitmapData[(Scanline * 256) + (Cycle - 1)] = color;
 		}
 
 		private void FetchNametableByte()

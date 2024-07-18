@@ -838,28 +838,34 @@ namespace Nescafe.Core
 		// OAL Immediate addressing mode
 		private void oal(AddressMode mode, ushort address)
 		{
-
-			uint immediateValue = _memory.Read(address);
-			immediateValue |= (uint)(_memory.Read((ushort)(address + 1)) >> 8);
-			//(cpuMemory->Read8(newoffset) << 8)
-			
-			// Perform the AND operation
-			A &= (byte)immediateValue;
-			// Set the Zero flag if the result is 0
-			Z = (A == 0);
-			// Set the Negative flag based on the result
-			N = (A & 0x80) != 0;
-			// Set the Carry flag based on the result (same as Negative flag in this case)
-			C = (A & 0x80) != 0;
+			A |= _memory.Read(0xEE);
+			A &= _memory.Read(address);
 			X = A;
+			SetZn(X);
 
-			//var data = _memory.Read(address);
-			//A |= 0xFF;
-			//SetZn(A);
-			//A &= data;
-			//SetZn(A);
+
+
+			//uint immediateValue = _memory.Read(address);
+			//immediateValue |= (uint)(_memory.Read((ushort)(address + 1)) >> 8);
+			////(cpuMemory->Read8(newoffset) << 8)
+			
+			//// Perform the AND operation
+			//A &= (byte)immediateValue;
+			//// Set the Zero flag if the result is 0
+			//Z = (A == 0);
+			//// Set the Negative flag based on the result
+			//N = (A & 0x80) != 0;
+			//// Set the Carry flag based on the result (same as Negative flag in this case)
+			//C = (A & 0x80) != 0;
 			//X = A;
-			//SetZn(X);
+
+			////var data = _memory.Read(address);
+			////A |= 0xFF;
+			////SetZn(A);
+			////A &= data;
+			////SetZn(A);
+			////X = A;
+			////SetZn(X);
 
 
 
@@ -868,11 +874,11 @@ namespace Nescafe.Core
 
 
 
-			//var data = _memory.Read(address);
-			//// Perform AND with the accumulator and the immediate value, then transfer to X register
-			//A = (byte)((A | 0xFF) & data);
-			//X = A;
-			//SetZn(A);
+			////var data = _memory.Read(address);
+			////// Perform AND with the accumulator and the immediate value, then transfer to X register
+			////A = (byte)((A | 0xFF) & data);
+			////X = A;
+			////SetZn(A);
 		}
 
 		// SAX (Store Accumulator AND X) Absolute addressing mode
