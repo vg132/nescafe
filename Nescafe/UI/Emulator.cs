@@ -49,7 +49,7 @@ public class Emulator
 		var options = WindowOptions.Default;
 		options.Size = new Vector2D<int>(512, 480);
 		options.Title = "Nescafe";
-		options.FramesPerSecond = 60;
+		options.FramesPerSecond = 120;
 		_window = Window.Create(options);
 
 		_window.Load += OnLoad;
@@ -177,7 +177,7 @@ public class Emulator
 	{
 		lock (_drawLock)
 		{
-			System.Diagnostics.Debug.WriteLineIf(!screenDataUpdated, "No new screen on render call");
+			//System.Diagnostics.Debug.WriteLineIf(!screenDataUpdated, "No new screen on render call");
 			if (screenDataUpdated)
 			{
 				byte[] textureData = new byte[256 * 240 * 3]; // RGB format

@@ -176,16 +176,23 @@ namespace Nescafe.Core
 		public void Start()
 		{
 			Stop = false;
+			var s = new Stopwatch();
 			while (!Stop)
 			{
-				var frameWatch = Stopwatch.StartNew();
-				GoUntilFrame();
-				frameWatch.Stop();
+				s.Restart();
+				for (var i = 0; i < 60; i++)
+				{
+					var frameWatch = Stopwatch.StartNew();
+					GoUntilFrame();
+					frameWatch.Stop();
 
-				var timeTaken = frameWatch.ElapsedMilliseconds;
+					var timeTaken = frameWatch.ElapsedMilliseconds;
 
-				var sleepTime = (int)((1000.0 / 60) - timeTaken);
-				Thread.Sleep(Math.Max(sleepTime, 0));
+					var sleepTime = (int)((1000.0 / 60) - timeTaken);
+					Thread.Sleep(Math.Max(sleepTime, 0));
+				}
+				s.Stop();
+				Debug.WriteLine($"60 frames in {s.ElapsedMilliseconds}ms");
 			}
 		}
 	}
