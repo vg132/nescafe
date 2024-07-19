@@ -176,8 +176,6 @@ namespace Nescafe.Core
 		public void Start()
 		{
 			Stop = false;
-			var bitmapData = Ppu.BitmapData;
-
 			while (!Stop)
 			{
 				var frameWatch = Stopwatch.StartNew();
