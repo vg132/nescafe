@@ -2,28 +2,27 @@
 using Silk.NET.Windowing;
 using Silk.NET.OpenGL;
 using Silk.NET.Input;
-using System.Drawing;
 using Nescafe.Core;
 
 namespace Nescafe.UI;
 
 public class Emulator
 {
-	private static Thread _nesThread;
-	private static Core.Console _console;
+	private Thread _nesThread;
+	private Core.Console _console;
 
-	private static readonly object _drawLock = new object();
+	private bool screenDataUpdated = false;
+	private byte[] screenData;
+	private readonly object _drawLock = new object();
 
-	private static IWindow _window;
-	private static GL _gl;
+	private IWindow _window;
+	private GL _gl;
 
-	private static BufferObject<float> Vbo;
-	private static BufferObject<uint> Ebo;
-	private static VertexArrayObject<float, uint> Vao;
-	public static Texture Texture2;
+	private BufferObject<float> Vbo;
+	private BufferObject<uint> Ebo;
+	private VertexArrayObject<float, uint> Vao;
+	private Texture _screenTexture;
 	private static Shader Shader;
-
-	private static uint _program;
 
 	private static readonly float[] Vertices =
 	{
@@ -42,6 +41,11 @@ public class Emulator
 
 	private static void Main(string[] args)
 	{
+		new Emulator().Start();
+	}
+
+	public void Start()
+	{
 		var options = WindowOptions.Default;
 		options.Size = new Vector2D<int>(512, 480);
 		options.Title = "Nescafe";
@@ -56,17 +60,17 @@ public class Emulator
 		_window.Dispose();
 	}
 
-	private static void OnClose()
+	private void OnClose()
 	{
 		//Remember to dispose all the instances.
 		Vbo.Dispose();
 		Ebo.Dispose();
 		Vao.Dispose();
 		Shader.Dispose();
-		Texture2?.Dispose();
+		_screenTexture?.Dispose();
 	}
 
-	private static void KeyDown(IKeyboard arg1, Key key, int arg3)
+	private void KeyDown(IKeyboard arg1, Key key, int arg3)
 	{
 		//if (key == Key.Escape)
 		//{
@@ -75,12 +79,12 @@ public class Emulator
 		SetControllerButton(true, key);
 	}
 
-	private static void KeyUp(IKeyboard keyboard, Key key, int arg3)
+	private void KeyUp(IKeyboard keyboard, Key key, int arg3)
 	{
 		SetControllerButton(false, key);
 	}
 
-	private static void SetControllerButton(bool state, Key key)
+	private void SetControllerButton(bool state, Key key)
 	{
 		switch (key)
 		{
@@ -113,14 +117,9 @@ public class Emulator
 		}
 	}
 
-	private static void OnLoad()
+	private void OnLoad()
 	{
-		IInputContext input = _window.CreateInput();
-		for (int i = 0; i < input.Keyboards.Count; i++)
-		{
-			input.Keyboards[i].KeyDown += KeyDown;
-			input.Keyboards[i].KeyUp += KeyUp;
-		}
+		SetupControls();
 
 		_gl = GL.GetApi(_window);
 
@@ -143,74 +142,69 @@ public class Emulator
 		StartConsole();
 	}
 
-	static int counter = 0;
-	static byte[] screenData;
-
-	private static readonly Color[] _palette = new[]
-{
-		Color.FromArgb(84, 84, 84), Color.FromArgb(0, 30, 116), Color.FromArgb(8, 16, 144), Color.FromArgb(48, 0, 136), Color.FromArgb(68, 0, 100), Color.FromArgb(92, 0, 48), Color.FromArgb(84, 4, 0), Color.FromArgb(60, 24, 0),
-		Color.FromArgb(32, 42, 0), Color.FromArgb(8, 58, 0), Color.FromArgb(0, 64, 0), Color.FromArgb(0, 60, 0), Color.FromArgb(0, 50, 60), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0),
-		Color.FromArgb(152, 150, 152), Color.FromArgb(8, 76, 196), Color.FromArgb(48, 50, 236), Color.FromArgb(92, 30, 228), Color.FromArgb(136, 20, 176), Color.FromArgb(160, 20, 100), Color.FromArgb(152, 34, 32), Color.FromArgb(120, 60, 0),
-		Color.FromArgb(84, 90, 0), Color.FromArgb(40, 114, 0), Color.FromArgb(8, 124, 0), Color.FromArgb(0, 118, 40), Color.FromArgb(0, 102, 120), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0),
-		Color.FromArgb(236, 238, 236), Color.FromArgb(76, 154, 236), Color.FromArgb(120, 124, 236), Color.FromArgb(176, 98, 236), Color.FromArgb(228, 84, 236), Color.FromArgb(236, 88, 180), Color.FromArgb(236, 106, 100), Color.FromArgb(212, 136, 32),
-		Color.FromArgb(160, 170, 0), Color.FromArgb(116, 196, 0), Color.FromArgb(76, 208, 32), Color.FromArgb(56, 204, 108), Color.FromArgb(56, 180, 204), Color.FromArgb(60, 60, 60), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0),
-		Color.FromArgb(236, 238, 236), Color.FromArgb(168, 204, 236), Color.FromArgb(188, 188, 236), Color.FromArgb(212, 178, 236), Color.FromArgb(236, 174, 236), Color.FromArgb(236, 174, 212), Color.FromArgb(236, 180, 176), Color.FromArgb(228, 196, 144),
-		Color.FromArgb(204, 210, 120), Color.FromArgb(180, 222, 120), Color.FromArgb(168, 226, 144), Color.FromArgb(152, 226, 180), Color.FromArgb(160, 214, 228), Color.FromArgb(160, 162, 160), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 0)
-	};
-	private static bool newScreen = false;
-	unsafe static void Draw(byte[] screen)
+	private void SetupControls()
 	{
-		counter++;
-		lock (_drawLock)
+		IInputContext input = _window.CreateInput();
+		for (int i = 0; i < input.Keyboards.Count; i++)
 		{
-			screenData = screen;
-			newScreen = true;
+			input.Keyboards[i].KeyDown += KeyDown;
+			input.Keyboards[i].KeyUp += KeyUp;
 		}
 	}
 
-	private static void StartConsole()
+	unsafe void Draw(byte[] screen)
+	{
+		lock (_drawLock)
+		{
+			screenData = screen;
+			screenDataUpdated = true;
+		}
+	}
+
+	private void StartConsole()
 	{
 		_nesThread = new Thread(new ThreadStart(StartNes));
 		_nesThread.IsBackground = true;
 		_nesThread.Start();
 	}
 
-	private static void StartNes()
+	private void StartNes()
 	{
 		_console.Start();
 	}
 
-	private static unsafe void OnRender(double obj)
+	private unsafe void OnRender(double obj)
 	{
 		lock (_drawLock)
 		{
-			if (newScreen)
+			System.Diagnostics.Debug.WriteLineIf(!screenDataUpdated, "No new screen on render call");
+			if (screenDataUpdated)
 			{
 				byte[] textureData = new byte[256 * 240 * 3]; // RGB format
 				for (int i = 0; i < screenData.Length; i++)
 				{
 					int colorIndex = screenData[i];
-					var color = _palette[colorIndex];
+					var color = Palette.GetColor(colorIndex);
 					textureData[i * 3] = color.R;
 					textureData[i * 3 + 1] = color.G;
 					textureData[i * 3 + 2] = color.B;
 				}
-				if (Texture2 != null)
+				if (_screenTexture != null)
 				{
-					Texture2.Dispose();
+					_screenTexture.Dispose();
 				}
-				Texture2 = new Texture(_gl, textureData, 256, 240);
-				newScreen = false;
+				_screenTexture = new Texture(_gl, textureData, 256, 240);
+				screenDataUpdated = false;
 			}
 		}
 		_gl.Clear((uint)ClearBufferMask.ColorBufferBit);
 
-		if (Texture2 != null)
+		if (_screenTexture != null)
 		{
 			//Binding and using our VAO and shader.
 			Vao.Bind();
 			Shader.Use();
-			Texture2.Bind(TextureUnit.Texture0);
+			_screenTexture.Bind(TextureUnit.Texture0);
 			Shader.SetUniform("uTexture", 0);
 			_gl.DrawElements(PrimitiveType.Triangles, (uint)Indices.Length, DrawElementsType.UnsignedInt, null);
 		}

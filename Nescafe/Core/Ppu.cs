@@ -16,12 +16,15 @@ namespace Nescafe.Core
 		readonly PpuMemory _memory;
 		readonly Console _console;
 
+		private int _width = 256;
+		private int _height = 240;
+
 		// OAM / Sprite rendering
-		byte[] _oam;
-		byte _oamAddr;
-		byte[] _sprites;
-		int[] _spriteIndicies;
-		int _numSprites;
+		private byte[] _oam;
+		private byte _oamAddr;
+		private byte[] _sprites;
+		private int[] _spriteIndicies;
+		private int _numSprites;
 
 		/// <summary>
 		/// Gets the current scanline number.
@@ -108,7 +111,7 @@ namespace Nescafe.Core
 			_memory = console.PpuMemory;
 			_console = console;
 
-			BitmapData = new byte[256 * 240];
+			BitmapData = new byte[_width * _height];
 
 			_oam = new byte[256];
 			_sprites = new byte[32];
