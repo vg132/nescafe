@@ -13,6 +13,7 @@ public partial class Launcher : Form
 
 		glControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 		glControl1.Dock = DockStyle.Fill;
+		SetFormSize(3);
 
 		_console = new Core.Console();
 	}
@@ -49,6 +50,7 @@ public partial class Launcher : Form
 		openFileDialog.RestoreDirectory = true;
 		if (openFileDialog.ShowDialog() == DialogResult.OK)
 		{
+			StopConsole();
 			if (_console.LoadCartridge(openFileDialog.FileName))
 			{
 				Text = "NEScafé - " + openFileDialog.SafeFileName;
@@ -61,9 +63,33 @@ public partial class Launcher : Form
 		}
 	}
 
+	#region Menu items
+
 	private void videoSizeMenuItem_Click(object sender, EventArgs e)
 	{
 		var size = int.Parse(((ToolStripMenuItem)sender).Tag.ToString());
-		ClientSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height);
+		SetFormSize(size);
 	}
+
+	private void SetFormSize(int size) => ClientSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height);
+
+	private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		Application.Exit();
+	}
+
+	private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		_console.Pause = !_console.Pause;
+		pauseToolStripMenuItem.Checked = _console.Pause;
+	}
+
+	private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		_console.Pause = false;
+		pauseToolStripMenuItem.Checked = _console.Pause;
+		_console.Reset();
+	}
+
+	#endregion
 }

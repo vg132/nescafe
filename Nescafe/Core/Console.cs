@@ -62,6 +62,9 @@ namespace Nescafe.Core
 		/// <value><c>true</c> if the console has been stopped; otherwise, <c>false</c>.</value>
 		public bool Stop { get; set; }
 
+		public bool Pause { get; set; }
+		private static object _resetLock = new object();
+
 		// Used internally to determine if we've reached a new frame
 		bool _frameEvenOdd;
 
@@ -77,6 +80,20 @@ namespace Nescafe.Core
 
 			Cpu = new Cpu(this);
 			Ppu = new Ppu(this);
+		}
+
+		public void Reset()
+		{
+			lock (_resetLock)
+			{
+				CpuMemory.Reset();
+				PpuMemory.Reset();
+
+				Cpu.Reset();
+				Ppu.Reset();
+
+				_frameEvenOdd = false;
+			}
 		}
 
 		/// <summary>
@@ -134,13 +151,7 @@ namespace Nescafe.Core
 					return false;
 			}
 
-			Cpu.Reset();
-			Ppu.Reset();
-
-			CpuMemory.Reset();
-			PpuMemory.Reset();
-
-			_frameEvenOdd = false;
+			Reset();
 			return true;
 		}
 
@@ -162,13 +173,16 @@ namespace Nescafe.Core
 			var orig = _frameEvenOdd;
 			while (orig == _frameEvenOdd)
 			{
-				var cpuCycles = Cpu.Step();
-
-				// 3 PPU cycles for each CPU cycle
-				for (var i = 0; i < cpuCycles * 3; i++)
+				lock (_resetLock)
 				{
-					Ppu.Step();
-					Mapper.Step();
+					var cpuCycles = Cpu.Step();
+
+					// 3 PPU cycles for each CPU cycle
+					for (var i = 0; i < cpuCycles * 3; i++)
+					{
+						Ppu.Step();
+						Mapper.Step();
+					}
 				}
 			}
 		}
@@ -187,7 +201,10 @@ namespace Nescafe.Core
 				for (var i = 0; i < 60; i++)
 				{
 					var frameWatch = Stopwatch.StartNew();
-					GoUntilFrame();
+					if(!Pause)
+					{
+						GoUntilFrame();
+					}
 					frameWatch.Stop();
 
 					var timeTaken = frameWatch.ElapsedMilliseconds;

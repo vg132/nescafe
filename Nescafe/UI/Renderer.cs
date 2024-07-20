@@ -6,7 +6,7 @@ using Nescafe.Core;
 
 namespace Nescafe.UI;
 
-public class Renderer
+public partial class Renderer
 {
 	private readonly GLControl _control;
 
@@ -108,10 +108,9 @@ public class Renderer
 
 	private unsafe void Render()
 	{
-		lock (_drawLock)
+		if (screenDataUpdated)
 		{
-			//System.Diagnostics.Debug.WriteLineIf(!screenDataUpdated, "No new screen on render call");
-			if (screenDataUpdated)
+			lock (_drawLock)
 			{
 				byte[] textureData = new byte[256 * 240 * 3]; // RGB format
 				for (int i = 0; i < screenData.Length; i++)
@@ -129,19 +128,19 @@ public class Renderer
 				_texture = new Texture(textureData, 256, 240);
 				screenDataUpdated = false;
 			}
-		}
-		if (_texture != null)
-		{
-			_control.MakeCurrent();
-			GL.Clear(ClearBufferMask.ColorBufferBit);
+			if (_texture != null)
+			{
+				_control.MakeCurrent();
+				GL.Clear(ClearBufferMask.ColorBufferBit);
 
-			GL.BindVertexArray(_vertexArrayObject);
-			_texture.Bind(TextureUnit.Texture0);
-			_shader.Use();
+				GL.BindVertexArray(_vertexArrayObject);
+				_texture.Bind(TextureUnit.Texture0);
+				_shader.Use();
 
-			GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+				GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
 
-			_control.SwapBuffers();
+				_control.SwapBuffers();
+			}
 		}
 	}
 
@@ -151,43 +150,6 @@ public class Renderer
 		{
 			screenData = screen;
 			screenDataUpdated = true;
-		}
-	}
-
-	public class Texture : IDisposable
-	{
-		private readonly int _handle;
-
-		public unsafe Texture(byte[] data, int width, int height)
-		{
-			_handle = GL.GenTexture();
-			Bind();
-			fixed (void* p = &data[0])
-			{
-				GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, width, height, 0, PixelFormat.Rgb, PixelType.UnsignedByte, (nint)p);
-				SetParameters();
-			}
-		}
-
-		private void SetParameters()
-		{
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureBaseLevel, 0);
-			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMaxLevel, 8);
-		}
-
-		public void Bind(TextureUnit textureSlot = TextureUnit.Texture0)
-		{
-			GL.ActiveTexture(textureSlot);
-			GL.BindTexture(TextureTarget.Texture2D, _handle);
-		}
-
-		public void Dispose()
-		{
-			GL.DeleteTexture(_handle);
 		}
 	}
 }

@@ -183,6 +183,7 @@ partial class Launcher
 		exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 		exitToolStripMenuItem.Size = new Size(128, 22);
 		exitToolStripMenuItem.Text = "E&xit";
+		exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 		// 
 		// gToolStripMenuItem
 		// 
@@ -196,6 +197,7 @@ partial class Launcher
 		pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
 		pauseToolStripMenuItem.Size = new Size(105, 22);
 		pauseToolStripMenuItem.Text = "Pause";
+		pauseToolStripMenuItem.Click += pauseToolStripMenuItem_Click;
 		// 
 		// toolStripMenuItem3
 		// 
@@ -207,6 +209,7 @@ partial class Launcher
 		resetToolStripMenuItem.Name = "resetToolStripMenuItem";
 		resetToolStripMenuItem.Size = new Size(105, 22);
 		resetToolStripMenuItem.Text = "Reset";
+		resetToolStripMenuItem.Click += resetToolStripMenuItem_Click;
 		// 
 		// settingsToolStripMenuItem
 		// 
@@ -219,7 +222,7 @@ partial class Launcher
 		// 
 		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem9, toolStripMenuItem10, normalToolStripMenuItem, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7, toolStripMenuItem8 });
 		videoSizeToolStripMenuItem.Name = "videoSizeToolStripMenuItem";
-		videoSizeToolStripMenuItem.Size = new Size(180, 22);
+		videoSizeToolStripMenuItem.Size = new Size(127, 22);
 		videoSizeToolStripMenuItem.Text = "Speed";
 		// 
 		// toolStripMenuItem9
@@ -268,13 +271,13 @@ partial class Launcher
 		// 
 		videoSizeToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { videoSize1MenuItem, videoSize2MenuItem, videoSize3MenuItem, videoSize4MenuItem, videoSize5MenuItem, videoSize6MenuItem, fullScreenToolStripMenuItem });
 		videoSizeToolStripMenuItem1.Name = "videoSizeToolStripMenuItem1";
-		videoSizeToolStripMenuItem1.Size = new Size(180, 22);
+		videoSizeToolStripMenuItem1.Size = new Size(127, 22);
 		videoSizeToolStripMenuItem1.Text = "&Video Size";
 		// 
 		// videoSize1MenuItem
 		// 
 		videoSize1MenuItem.Name = "videoSize1MenuItem";
-		videoSize1MenuItem.Size = new Size(180, 22);
+		videoSize1MenuItem.Size = new Size(151, 22);
 		videoSize1MenuItem.Tag = "1";
 		videoSize1MenuItem.Text = "1x (256x240)";
 		videoSize1MenuItem.Click += videoSizeMenuItem_Click;
@@ -282,7 +285,7 @@ partial class Launcher
 		// videoSize2MenuItem
 		// 
 		videoSize2MenuItem.Name = "videoSize2MenuItem";
-		videoSize2MenuItem.Size = new Size(180, 22);
+		videoSize2MenuItem.Size = new Size(151, 22);
 		videoSize2MenuItem.Tag = "2";
 		videoSize2MenuItem.Text = "2x (512x480)";
 		videoSize2MenuItem.Click += videoSizeMenuItem_Click;
@@ -290,7 +293,7 @@ partial class Launcher
 		// videoSize3MenuItem
 		// 
 		videoSize3MenuItem.Name = "videoSize3MenuItem";
-		videoSize3MenuItem.Size = new Size(180, 22);
+		videoSize3MenuItem.Size = new Size(151, 22);
 		videoSize3MenuItem.Tag = "3";
 		videoSize3MenuItem.Text = "3x (768x720)";
 		videoSize3MenuItem.Click += videoSizeMenuItem_Click;
@@ -298,7 +301,7 @@ partial class Launcher
 		// videoSize4MenuItem
 		// 
 		videoSize4MenuItem.Name = "videoSize4MenuItem";
-		videoSize4MenuItem.Size = new Size(180, 22);
+		videoSize4MenuItem.Size = new Size(151, 22);
 		videoSize4MenuItem.Tag = "4";
 		videoSize4MenuItem.Text = "4x (1024x960)";
 		videoSize4MenuItem.Click += videoSizeMenuItem_Click;
@@ -306,7 +309,7 @@ partial class Launcher
 		// videoSize5MenuItem
 		// 
 		videoSize5MenuItem.Name = "videoSize5MenuItem";
-		videoSize5MenuItem.Size = new Size(180, 22);
+		videoSize5MenuItem.Size = new Size(151, 22);
 		videoSize5MenuItem.Tag = "5";
 		videoSize5MenuItem.Text = "5x (1280x1200)";
 		videoSize5MenuItem.Click += videoSizeMenuItem_Click;
@@ -314,7 +317,7 @@ partial class Launcher
 		// videoSize6MenuItem
 		// 
 		videoSize6MenuItem.Name = "videoSize6MenuItem";
-		videoSize6MenuItem.Size = new Size(180, 22);
+		videoSize6MenuItem.Size = new Size(151, 22);
 		videoSize6MenuItem.Tag = "6";
 		videoSize6MenuItem.Text = "6x (1536x1440)";
 		videoSize6MenuItem.Click += videoSizeMenuItem_Click;
@@ -322,7 +325,7 @@ partial class Launcher
 		// fullScreenToolStripMenuItem
 		// 
 		fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-		fullScreenToolStripMenuItem.Size = new Size(180, 22);
+		fullScreenToolStripMenuItem.Size = new Size(151, 22);
 		fullScreenToolStripMenuItem.Text = "Full Screen";
 		// 
 		// glControl1
@@ -350,7 +353,8 @@ partial class Launcher
 		FormBorderStyle = FormBorderStyle.FixedSingle;
 		MainMenuStrip = menuStrip1;
 		Name = "Launcher";
-		Text = "Form1";
+		StartPosition = FormStartPosition.CenterScreen;
+		Text = "NEScafé";
 		menuStrip1.ResumeLayout(false);
 		menuStrip1.PerformLayout();
 		ResumeLayout(false);
