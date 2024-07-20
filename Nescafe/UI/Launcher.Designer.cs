@@ -60,12 +60,12 @@ partial class Launcher
 		toolStripMenuItem7 = new ToolStripMenuItem();
 		toolStripMenuItem8 = new ToolStripMenuItem();
 		videoSizeToolStripMenuItem1 = new ToolStripMenuItem();
-		xToolStripMenuItem = new ToolStripMenuItem();
-		xToolStripMenuItem1 = new ToolStripMenuItem();
-		xToolStripMenuItem2 = new ToolStripMenuItem();
-		toolStripMenuItem11 = new ToolStripMenuItem();
-		xToolStripMenuItem3 = new ToolStripMenuItem();
-		xToolStripMenuItem4 = new ToolStripMenuItem();
+		videoSize1MenuItem = new ToolStripMenuItem();
+		videoSize2MenuItem = new ToolStripMenuItem();
+		videoSize3MenuItem = new ToolStripMenuItem();
+		videoSize4MenuItem = new ToolStripMenuItem();
+		videoSize5MenuItem = new ToolStripMenuItem();
+		videoSize6MenuItem = new ToolStripMenuItem();
 		fullScreenToolStripMenuItem = new ToolStripMenuItem();
 		glControl1 = new OpenTK.WinForms.GLControl();
 		menuStrip1.SuspendLayout();
@@ -219,16 +219,14 @@ partial class Launcher
 		// 
 		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem9, toolStripMenuItem10, normalToolStripMenuItem, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7, toolStripMenuItem8 });
 		videoSizeToolStripMenuItem.Name = "videoSizeToolStripMenuItem";
-		videoSizeToolStripMenuItem.Size = new Size(127, 22);
+		videoSizeToolStripMenuItem.Size = new Size(180, 22);
 		videoSizeToolStripMenuItem.Text = "Speed";
-		videoSizeToolStripMenuItem.Click += videoSizeToolStripMenuItem_Click;
 		// 
 		// toolStripMenuItem9
 		// 
 		toolStripMenuItem9.Name = "toolStripMenuItem9";
 		toolStripMenuItem9.Size = new Size(148, 22);
 		toolStripMenuItem9.Text = "50%";
-		toolStripMenuItem9.Click += toolStripMenuItem9_Click;
 		// 
 		// toolStripMenuItem10
 		// 
@@ -247,7 +245,6 @@ partial class Launcher
 		toolStripMenuItem5.Name = "toolStripMenuItem5";
 		toolStripMenuItem5.Size = new Size(148, 22);
 		toolStripMenuItem5.Text = "125%";
-		toolStripMenuItem5.Click += toolStripMenuItem5_Click;
 		// 
 		// toolStripMenuItem6
 		// 
@@ -269,65 +266,77 @@ partial class Launcher
 		// 
 		// videoSizeToolStripMenuItem1
 		// 
-		videoSizeToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { xToolStripMenuItem, xToolStripMenuItem1, xToolStripMenuItem2, toolStripMenuItem11, xToolStripMenuItem3, xToolStripMenuItem4, fullScreenToolStripMenuItem });
+		videoSizeToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { videoSize1MenuItem, videoSize2MenuItem, videoSize3MenuItem, videoSize4MenuItem, videoSize5MenuItem, videoSize6MenuItem, fullScreenToolStripMenuItem });
 		videoSizeToolStripMenuItem1.Name = "videoSizeToolStripMenuItem1";
-		videoSizeToolStripMenuItem1.Size = new Size(127, 22);
+		videoSizeToolStripMenuItem1.Size = new Size(180, 22);
 		videoSizeToolStripMenuItem1.Text = "&Video Size";
 		// 
-		// xToolStripMenuItem
+		// videoSize1MenuItem
 		// 
-		xToolStripMenuItem.Name = "xToolStripMenuItem";
-		xToolStripMenuItem.Size = new Size(131, 22);
-		xToolStripMenuItem.Text = "1x";
+		videoSize1MenuItem.Name = "videoSize1MenuItem";
+		videoSize1MenuItem.Size = new Size(180, 22);
+		videoSize1MenuItem.Tag = "1";
+		videoSize1MenuItem.Text = "1x (256x240)";
+		videoSize1MenuItem.Click += videoSizeMenuItem_Click;
 		// 
-		// xToolStripMenuItem1
+		// videoSize2MenuItem
 		// 
-		xToolStripMenuItem1.Name = "xToolStripMenuItem1";
-		xToolStripMenuItem1.Size = new Size(131, 22);
-		xToolStripMenuItem1.Text = "2x";
+		videoSize2MenuItem.Name = "videoSize2MenuItem";
+		videoSize2MenuItem.Size = new Size(180, 22);
+		videoSize2MenuItem.Tag = "2";
+		videoSize2MenuItem.Text = "2x (512x480)";
+		videoSize2MenuItem.Click += videoSizeMenuItem_Click;
 		// 
-		// xToolStripMenuItem2
+		// videoSize3MenuItem
 		// 
-		xToolStripMenuItem2.Name = "xToolStripMenuItem2";
-		xToolStripMenuItem2.Size = new Size(131, 22);
-		xToolStripMenuItem2.Text = "3x";
+		videoSize3MenuItem.Name = "videoSize3MenuItem";
+		videoSize3MenuItem.Size = new Size(180, 22);
+		videoSize3MenuItem.Tag = "3";
+		videoSize3MenuItem.Text = "3x (768x720)";
+		videoSize3MenuItem.Click += videoSizeMenuItem_Click;
 		// 
-		// toolStripMenuItem11
+		// videoSize4MenuItem
 		// 
-		toolStripMenuItem11.Name = "toolStripMenuItem11";
-		toolStripMenuItem11.Size = new Size(131, 22);
-		toolStripMenuItem11.Text = "4x";
+		videoSize4MenuItem.Name = "videoSize4MenuItem";
+		videoSize4MenuItem.Size = new Size(180, 22);
+		videoSize4MenuItem.Tag = "4";
+		videoSize4MenuItem.Text = "4x (1024x960)";
+		videoSize4MenuItem.Click += videoSizeMenuItem_Click;
 		// 
-		// xToolStripMenuItem3
+		// videoSize5MenuItem
 		// 
-		xToolStripMenuItem3.Name = "xToolStripMenuItem3";
-		xToolStripMenuItem3.Size = new Size(131, 22);
-		xToolStripMenuItem3.Text = "5x";
+		videoSize5MenuItem.Name = "videoSize5MenuItem";
+		videoSize5MenuItem.Size = new Size(180, 22);
+		videoSize5MenuItem.Tag = "5";
+		videoSize5MenuItem.Text = "5x (1280x1200)";
+		videoSize5MenuItem.Click += videoSizeMenuItem_Click;
 		// 
-		// xToolStripMenuItem4
+		// videoSize6MenuItem
 		// 
-		xToolStripMenuItem4.Name = "xToolStripMenuItem4";
-		xToolStripMenuItem4.Size = new Size(131, 22);
-		xToolStripMenuItem4.Text = "6x";
+		videoSize6MenuItem.Name = "videoSize6MenuItem";
+		videoSize6MenuItem.Size = new Size(180, 22);
+		videoSize6MenuItem.Tag = "6";
+		videoSize6MenuItem.Text = "6x (1536x1440)";
+		videoSize6MenuItem.Click += videoSizeMenuItem_Click;
 		// 
 		// fullScreenToolStripMenuItem
 		// 
 		fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-		fullScreenToolStripMenuItem.Size = new Size(131, 22);
+		fullScreenToolStripMenuItem.Size = new Size(180, 22);
 		fullScreenToolStripMenuItem.Text = "Full Screen";
 		// 
 		// glControl1
 		// 
+		glControl1.Anchor = AnchorStyles.None;
 		glControl1.API = OpenTK.Windowing.Common.ContextAPI.OpenGL;
 		glControl1.APIVersion = new Version(3, 3, 0, 0);
-		glControl1.Dock = DockStyle.Fill;
 		glControl1.Flags = OpenTK.Windowing.Common.ContextFlags.Default;
 		glControl1.IsEventDriven = true;
-		glControl1.Location = new Point(0, 24);
+		glControl1.Location = new Point(583, 299);
 		glControl1.Name = "glControl1";
 		glControl1.Profile = OpenTK.Windowing.Common.ContextProfile.Core;
 		glControl1.SharedContext = null;
-		glControl1.Size = new Size(800, 426);
+		glControl1.Size = new Size(147, 98);
 		glControl1.TabIndex = 1;
 		glControl1.Text = "glControl1";
 		// 
@@ -338,6 +347,7 @@ partial class Launcher
 		ClientSize = new Size(800, 450);
 		Controls.Add(glControl1);
 		Controls.Add(menuStrip1);
+		FormBorderStyle = FormBorderStyle.FixedSingle;
 		MainMenuStrip = menuStrip1;
 		Name = "Launcher";
 		Text = "Form1";
@@ -381,12 +391,12 @@ partial class Launcher
 	private ToolStripMenuItem toolStripMenuItem9;
 	private ToolStripMenuItem toolStripMenuItem10;
 	private ToolStripMenuItem videoSizeToolStripMenuItem1;
-	private ToolStripMenuItem xToolStripMenuItem;
-	private ToolStripMenuItem xToolStripMenuItem1;
-	private ToolStripMenuItem xToolStripMenuItem2;
-	private ToolStripMenuItem toolStripMenuItem11;
-	private ToolStripMenuItem xToolStripMenuItem3;
-	private ToolStripMenuItem xToolStripMenuItem4;
+	private ToolStripMenuItem videoSize1MenuItem;
+	private ToolStripMenuItem videoSize2MenuItem;
+	private ToolStripMenuItem videoSize3MenuItem;
+	private ToolStripMenuItem videoSize4MenuItem;
+	private ToolStripMenuItem videoSize5MenuItem;
+	private ToolStripMenuItem videoSize6MenuItem;
 	private ToolStripMenuItem fullScreenToolStripMenuItem;
 	private OpenTK.WinForms.GLControl glControl1;
 }

@@ -150,7 +150,10 @@ namespace Nescafe.Core
 		/// </summary>
 		public void DrawFrame()
 		{
-			DrawAction(Ppu.BitmapData);
+			if(DrawAction!=null)
+			{
+				DrawAction(Ppu.BitmapData);
+			}
 			_frameEvenOdd = !_frameEvenOdd;
 		}
 
@@ -180,6 +183,7 @@ namespace Nescafe.Core
 			while (!Stop)
 			{
 				s.Restart();
+				Debug.WriteLine("Start framecounter");
 				for (var i = 0; i < 60; i++)
 				{
 					var frameWatch = Stopwatch.StartNew();
@@ -189,7 +193,7 @@ namespace Nescafe.Core
 					var timeTaken = frameWatch.ElapsedMilliseconds;
 
 					var sleepTime = (int)((1000.0 / 60) - timeTaken);
-					Thread.Sleep(Math.Max(sleepTime, 0));
+					PreciseSleep.Sleep(sleepTime);
 				}
 				s.Stop();
 				Debug.WriteLine($"60 frames in {s.ElapsedMilliseconds}ms");

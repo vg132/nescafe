@@ -11,20 +11,17 @@ public partial class Launcher : Form
 	{
 		InitializeComponent();
 
-		//_screen = new Screen();
-		//new Task(() =>
-		//{
-		//	_screen.Start();
-		//}).Start();
+		glControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+		glControl1.Dock = DockStyle.Fill;
 
-		//_console = new Core.Console();
-		//_console.DrawAction = _screen.UpdateScreen;
+		_console = new Core.Console();
 	}
 
 	protected override void OnLoad(EventArgs e)
 	{
 		base.OnLoad(e);
 		_renderer = new Renderer(glControl1);
+		_console.DrawAction = _renderer.UpdateScreen;
 	}
 
 	private void StopConsole()
@@ -64,18 +61,9 @@ public partial class Launcher : Form
 		}
 	}
 
-	private void toolStripMenuItem5_Click(object sender, EventArgs e)
+	private void videoSizeMenuItem_Click(object sender, EventArgs e)
 	{
-
-	}
-
-	private void videoSizeToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-
-	}
-
-	private void toolStripMenuItem9_Click(object sender, EventArgs e)
-	{
-		
+		var size = int.Parse(((ToolStripMenuItem)sender).Tag.ToString());
+		ClientSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height);
 	}
 }

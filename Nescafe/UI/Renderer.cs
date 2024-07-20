@@ -1,6 +1,8 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.WinForms;
 using OpenTK.Graphics.OpenGL4;
+using Nescafe.UI.Shaders;
+using Nescafe.Core;
 
 namespace Nescafe.UI;
 
@@ -9,101 +11,36 @@ public class Renderer
 	private readonly GLControl _control;
 
 	private System.Windows.Forms.Timer _timer;
-	private float _angle = 0.0f;
+	private readonly object _drawLock = new object();
+	private byte[] screenData;
+	private bool screenDataUpdated = false;
+	private int _elementBufferObject;
+	private int _vertexBufferObject;
+	private int _vertexArrayObject;
+	private Shader _shader;
+	private Texture _texture;
+
+	private readonly float[] _vertices =
+	{
+		// Position         Texture coordinates
+		1.0f,  1.0f, 0.0f, 1.0f, 0.0f, // top right
+		1.0f, -1.0f, 0.0f, 1.0f, 1.0f, // bottom right
+		-1.0f, -1.0f, 0.0f, 0.0f, 1.0f, // bottom left
+		-1.0f,  1.0f, 0.0f, 0.0f, 0.0f  // top left
+	};
+
+	private readonly uint[] _indices =
+	{
+		0, 1, 3,
+		1, 2, 3
+	};
+
 
 	public Renderer(GLControl control)
 	{
 		_control = control;
 		Setup();
 	}
-
-	private static readonly Vector3[] VertexData = new Vector3[]
-	{
-						new Vector3(-1.0f, -1.0f, -1.0f),
-						new Vector3(-1.0f, 1.0f, -1.0f),
-						new Vector3(1.0f, 1.0f, -1.0f),
-						new Vector3(1.0f, -1.0f, -1.0f),
-
-						new Vector3(-1.0f, -1.0f, -1.0f),
-						new Vector3(1.0f, -1.0f, -1.0f),
-						new Vector3(1.0f, -1.0f, 1.0f),
-						new Vector3(-1.0f, -1.0f, 1.0f),
-
-						new Vector3(-1.0f, -1.0f, -1.0f),
-						new Vector3(-1.0f, -1.0f, 1.0f),
-						new Vector3(-1.0f, 1.0f, 1.0f),
-						new Vector3(-1.0f, 1.0f, -1.0f),
-
-						new Vector3(-1.0f, -1.0f, 1.0f),
-						new Vector3(1.0f, -1.0f, 1.0f),
-						new Vector3(1.0f, 1.0f, 1.0f),
-						new Vector3(-1.0f, 1.0f, 1.0f),
-
-						new Vector3(-1.0f, 1.0f, -1.0f),
-						new Vector3(-1.0f, 1.0f, 1.0f),
-						new Vector3(1.0f, 1.0f, 1.0f),
-						new Vector3(1.0f, 1.0f, -1.0f),
-
-						new Vector3(1.0f, -1.0f, -1.0f),
-						new Vector3(1.0f, 1.0f, -1.0f),
-						new Vector3(1.0f, 1.0f, 1.0f),
-						new Vector3(1.0f, -1.0f, 1.0f),
-	};
-
-	private static readonly int[] IndexData = new int[]
-	{
-						 0,  1,  2,  2,  3,  0,
-						 4,  5,  6,  6,  7,  4,
-						 8,  9, 10, 10, 11,  8,
-						12, 13, 14, 14, 15, 12,
-						16, 17, 18, 18, 19, 16,
-						20, 21, 22, 22, 23, 20,
-	};
-
-	private static readonly Color4[] ColorData = new Color4[]
-	{
-						Color4.Silver, Color4.Silver, Color4.Silver, Color4.Silver,
-						Color4.Honeydew, Color4.Honeydew, Color4.Honeydew, Color4.Honeydew,
-						Color4.Moccasin, Color4.Moccasin, Color4.Moccasin, Color4.Moccasin,
-						Color4.IndianRed, Color4.IndianRed, Color4.IndianRed, Color4.IndianRed,
-						Color4.PaleVioletRed, Color4.PaleVioletRed, Color4.PaleVioletRed, Color4.PaleVioletRed,
-						Color4.ForestGreen, Color4.ForestGreen, Color4.ForestGreen, Color4.ForestGreen,
-	};
-
-	private const string VertexShaderSource = @"#version 330 core
-
-layout(location = 0) in vec3 aPos;
-layout(location = 1) in vec4 aColor;
-
-out vec4 fColor;
-
-uniform mat4 MVP;
-
-void main()
-{
-    gl_Position = vec4(aPos, 1) * MVP;
-    fColor = aColor;
-}
-";
-
-	private const string FragmentShaderSource = @"#version 330 core
-
-in vec4 fColor;
-
-out vec4 oColor;
-
-void main()
-{
-    oColor = fColor;
-}
-";
-
-	private int CubeShader;
-
-	private int VAO;
-	private int EBO;
-	private int PositionBuffer;
-	private int ColorBuffer;
 
 	private void Setup()
 	{
@@ -112,90 +49,49 @@ void main()
 		_control.Resize += glControl_Resize;
 		_control.Paint += glControl_Paint;
 
-		// Redraw the screen every 1/20 of a second.
+		// Redraw the screen every 1/120 of a second.
 		_timer = new System.Windows.Forms.Timer();
 		_timer.Tick += (sender, e) =>
 		{
-			const float DELTA_TIME = 1 / 50f;
-			_angle += 180f * DELTA_TIME;
 			Render();
 		};
-		_timer.Interval = 50;   // 1000 ms per sec / 50 ms per frame = 20 FPS
+		_timer.Interval = 1000/60;   // 1000 ms per sec / 120 fps = 8 MS
 		_timer.Start();
 
 		// Ensure that the viewport and projection matrix are set correctly initially.
 		glControl_Resize(_control, EventArgs.Empty);
 
-		CubeShader = CompileProgram(VertexShaderSource, FragmentShaderSource);
+		_vertexArrayObject = GL.GenVertexArray();
+		GL.BindVertexArray(_vertexArrayObject);
 
-		VAO = GL.GenVertexArray();
-		GL.BindVertexArray(VAO);
+		_vertexBufferObject = GL.GenBuffer();
+		GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
+		GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
 
-		EBO = GL.GenBuffer();
-		GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
-		GL.BufferData(BufferTarget.ElementArrayBuffer, IndexData.Length * sizeof(int), IndexData, BufferUsageHint.StaticDraw);
+		_elementBufferObject = GL.GenBuffer();
+		GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
+		GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
 
-		PositionBuffer = GL.GenBuffer();
-		GL.BindBuffer(BufferTarget.ArrayBuffer, PositionBuffer);
-		GL.BufferData(BufferTarget.ArrayBuffer, VertexData.Length * sizeof(float) * 3, VertexData, BufferUsageHint.StaticDraw);
+		// The shaders have been modified to include the texture coordinates, check them out after finishing the OnLoad function.
+		_shader = new Shader(@"D:\Projects\nescafe\Nescafe\UI\Shaders\shader.vert", @"D:\Projects\nescafe\Nescafe\UI\Shaders\shader.frag");
+		_shader.Use();
 
-		GL.EnableVertexAttribArray(0);
-		GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, 0);
+		// Because there's now 5 floats between the start of the first vertex and the start of the second,
+		// we modify the stride from 3 * sizeof(float) to 5 * sizeof(float).
+		// This will now pass the new vertex array to the buffer.
+		var vertexLocation = _shader.GetAttribLocation("aPosition");
+		GL.EnableVertexAttribArray(vertexLocation);
+		GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
 
-		ColorBuffer = GL.GenBuffer();
-		GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBuffer);
-		GL.BufferData(BufferTarget.ArrayBuffer, ColorData.Length * sizeof(float) * 4, ColorData, BufferUsageHint.StaticDraw);
-
-		GL.EnableVertexAttribArray(1);
-		GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, sizeof(float) * 4, 0);
+		// Next, we also setup texture coordinates. It works in much the same way.
+		// We add an offset of 3, since the texture coordinates comes after the position data.
+		// We also change the amount of data to 2 because there's only 2 floats for texture coordinates.
+		var texCoordLocation = _shader.GetAttribLocation("aTexCoord");
+		GL.EnableVertexAttribArray(texCoordLocation);
+		GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
 	}
 
-	private int CompileProgram(string vertexShader, string fragmentShader)
-	{
-		int program = GL.CreateProgram();
-
-		int vert = CompileShader(ShaderType.VertexShader, vertexShader);
-		int frag = CompileShader(ShaderType.FragmentShader, fragmentShader);
-
-		GL.AttachShader(program, vert);
-		GL.AttachShader(program, frag);
-
-		GL.LinkProgram(program);
-
-		GL.GetProgram(program, GetProgramParameterName.LinkStatus, out int success);
-		if (success == 0)
-		{
-			string log = GL.GetProgramInfoLog(program);
-			throw new Exception($"Could not link program: {log}");
-		}
-
-		GL.DetachShader(program, vert);
-		GL.DetachShader(program, frag);
-
-		GL.DeleteShader(vert);
-		GL.DeleteShader(frag);
-
-		return program;
-
-		static int CompileShader(ShaderType type, string source)
-		{
-			int shader = GL.CreateShader(type);
-
-			GL.ShaderSource(shader, source);
-			GL.CompileShader(shader);
-
-			GL.GetShader(shader, ShaderParameter.CompileStatus, out int status);
-			if (status == 0)
-			{
-				string log = GL.GetShaderInfoLog(shader);
-				throw new Exception($"Failed to compile {type}: {log}");
-			}
-
-			return shader;
-		}
-	}
-
-	private void glControl_Resize(object? sender, EventArgs e)
+	private void glControl_Resize(object sender, EventArgs e)
 	{
 		_control.MakeCurrent();
 		if (_control.ClientSize.Height == 0)
@@ -203,9 +99,6 @@ void main()
 			_control.ClientSize = new Size(_control.ClientSize.Width, 1);
 		}
 		GL.Viewport(0, 0, _control.ClientSize.Width, _control.ClientSize.Height);
-
-		float aspect_ratio = Math.Max(_control.ClientSize.Width, 1) / (float)Math.Max(_control.ClientSize.Height, 1);
-		projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspect_ratio, 1, 64);
 	}
 
 	private void glControl_Paint(object sender, PaintEventArgs e)
@@ -213,28 +106,88 @@ void main()
 		Render();
 	}
 
-	Matrix4 projection;
-
-	private void Render()
+	private unsafe void Render()
 	{
-		_control.MakeCurrent();
+		lock (_drawLock)
+		{
+			//System.Diagnostics.Debug.WriteLineIf(!screenDataUpdated, "No new screen on render call");
+			if (screenDataUpdated)
+			{
+				byte[] textureData = new byte[256 * 240 * 3]; // RGB format
+				for (int i = 0; i < screenData.Length; i++)
+				{
+					int colorIndex = screenData[i];
+					var color = Palette.GetColor(colorIndex);
+					textureData[i * 3] = color.R;
+					textureData[i * 3 + 1] = color.G;
+					textureData[i * 3 + 2] = color.B;
+				}
+				if (_texture != null)
+				{
+					_texture.Dispose();
+				}
+				_texture = new Texture(textureData, 256, 240);
+				screenDataUpdated = false;
+			}
+		}
+		if (_texture != null)
+		{
+			_control.MakeCurrent();
+			GL.Clear(ClearBufferMask.ColorBufferBit);
 
-		GL.ClearColor(Color4.MidnightBlue);
-		GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+			GL.BindVertexArray(_vertexArrayObject);
+			_texture.Bind(TextureUnit.Texture0);
+			_shader.Use();
 
-		GL.Enable(EnableCap.DepthTest);
+			GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
 
-		Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
-		Matrix4 model = Matrix4.CreateFromAxisAngle(new Vector3(0.0f, 1.0f, 0.0f), MathHelper.DegreesToRadians(_angle));
+			_control.SwapBuffers();
+		}
+	}
 
-		Matrix4 mvp = model * lookat * projection;
+	public unsafe void UpdateScreen(byte[] screen)
+	{
+		lock (_drawLock)
+		{
+			screenData = screen;
+			screenDataUpdated = true;
+		}
+	}
 
-		GL.UseProgram(CubeShader);
-		GL.UniformMatrix4(GL.GetUniformLocation(CubeShader, "MVP"), true, ref mvp);
+	public class Texture : IDisposable
+	{
+		private readonly int _handle;
 
+		public unsafe Texture(byte[] data, int width, int height)
+		{
+			_handle = GL.GenTexture();
+			Bind();
+			fixed (void* p = &data[0])
+			{
+				GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, width, height, 0, PixelFormat.Rgb, PixelType.UnsignedByte, (nint)p);
+				SetParameters();
+			}
+		}
 
-		GL.DrawElements(BeginMode.Triangles, IndexData.Length, DrawElementsType.UnsignedInt, 0);
+		private void SetParameters()
+		{
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureBaseLevel, 0);
+			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMaxLevel, 8);
+		}
 
-		_control.SwapBuffers();
+		public void Bind(TextureUnit textureSlot = TextureUnit.Texture0)
+		{
+			GL.ActiveTexture(textureSlot);
+			GL.BindTexture(TextureTarget.Texture2D, _handle);
+		}
+
+		public void Dispose()
+		{
+			GL.DeleteTexture(_handle);
+		}
 	}
 }
