@@ -3,13 +3,13 @@
 //using Silk.NET.OpenGL;
 //using Silk.NET.Input;
 //using Nescafe.Core;
+//using Silk.NET.GLFW;
 
 //namespace Nescafe.UI;
 
-//public class Emulator
+//public class Screen
 //{
-//	private Thread _nesThread;
-//	private Core.Console _console;
+//	public Core.Console Console { get; set; }
 
 //	private bool screenDataUpdated = false;
 //	private byte[] screenData;
@@ -39,25 +39,30 @@
 //		1, 2, 3
 //	};
 
-//	private static void Main(string[] args)
-//	{
-//		new Emulator().Start();
-//	}
-
 //	public void Start()
 //	{
 //		var options = WindowOptions.Default;
 //		options.Size = new Vector2D<int>(512, 480);
 //		options.Title = "Nescafe";
 //		options.FramesPerSecond = 120;
-//		_window = Window.Create(options);
 
+//		_window = Window.Create(options);
 //		_window.Load += OnLoad;
 //		_window.Render += OnRender;
 //		_window.Closing += OnClose;
+//		_window.IsVisible = false;
+//		_window.WindowBorder = WindowBorder.Resizable;
 //		_window.Run();
 
 //		_window.Dispose();
+//	}
+
+//	public nint Handle { get; set; }
+
+//	public bool IsVisible
+//	{
+//		get => _window.IsVisible;
+//		set => _window.IsVisible = value;
 //	}
 
 //	private void OnClose()
@@ -89,39 +94,45 @@
 //		switch (key)
 //		{
 //			case Key.Z:
-//				_console.Controller.setButtonState(Controller.Button.A, state);
+//				Console.Controller.setButtonState(Controller.Button.A, state);
 //				break;
 //			case Key.X:
-//				_console.Controller.setButtonState(Controller.Button.B, state);
+//				Console.Controller.setButtonState(Controller.Button.B, state);
 //				break;
 //			case Key.Left:
-//				_console.Controller.setButtonState(Controller.Button.Left, state);
+//				Console.Controller.setButtonState(Controller.Button.Left, state);
 //				break;
 //			case Key.Right:
-//				_console.Controller.setButtonState(Controller.Button.Right, state);
+//				Console.Controller.setButtonState(Controller.Button.Right, state);
 //				break;
 //			case Key.Up:
-//				_console.Controller.setButtonState(Controller.Button.Up, state);
+//				Console.Controller.setButtonState(Controller.Button.Up, state);
 //				break;
 //			case Key.Down:
-//				_console.Controller.setButtonState(Controller.Button.Down, state);
+//				Console.Controller.setButtonState(Controller.Button.Down, state);
 //				break;
 //			case Key.Q:
 //			case Key.Enter:
-//				_console.Controller.setButtonState(Controller.Button.Start, state);
+//				Console.Controller.setButtonState(Controller.Button.Start, state);
 //				break;
 //			case Key.W:
 //			case Key.Escape:
-//				_console.Controller.setButtonState(Controller.Button.Select, state);
+//				Console.Controller.setButtonState(Controller.Button.Select, state);
 //				break;
 //		}
 //	}
 
-//	private void OnLoad()
+//	private unsafe void OnLoad()
 //	{
 //		SetupControls();
 
 //		_gl = GL.GetApi(_window);
+
+
+//		//IntPtr nativeHandle = _gl.   //GetWin32Window((Silk.NET.GLFW.WindowHandle*)window.Handle);
+
+//		var glfw = Glfw.GetApi();
+//		Handle = new GlfwNativeWindow(glfw, (WindowHandle*)_window.Handle).Win32.Value.Hwnd;
 
 //		//Instantiating our new abstractions
 //		Ebo = new BufferObject<uint>(_gl, Indices, BufferTargetARB.ElementArrayBuffer);
@@ -133,13 +144,6 @@
 //		Vao.VertexAttributePointer(1, 2, VertexAttribPointerType.Float, 5, 3);
 
 //		Shader = new Shader(_gl, @"D:\Projects\nescafe\Nescafe\UI\shader.vert", @"D:\Projects\nescafe\Nescafe\UI\shader.frag");
-
-//		_console = new Core.Console();
-//		_console.DrawAction = Draw;
-
-//		//_console.LoadCartridge(@"D:\Projects\nescafe\test_roms\blargg_nes_cpu_test5\official.nes");
-//		_console.LoadCartridge(@"D:\Projects\nescafe\roms\Super Mario Bros. (World).nes");
-//		StartConsole();
 //	}
 
 //	private void SetupControls()
@@ -152,25 +156,13 @@
 //		}
 //	}
 
-//	unsafe void Draw(byte[] screen)
+//	public unsafe void UpdateScreen(byte[] screen)
 //	{
 //		lock (_drawLock)
 //		{
 //			screenData = screen;
 //			screenDataUpdated = true;
 //		}
-//	}
-
-//	private void StartConsole()
-//	{
-//		_nesThread = new Thread(new ThreadStart(StartNes));
-//		_nesThread.IsBackground = true;
-//		_nesThread.Start();
-//	}
-
-//	private void StartNes()
-//	{
-//		_console.Start();
 //	}
 
 //	private unsafe void OnRender(double obj)
