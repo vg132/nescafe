@@ -304,36 +304,42 @@ namespace Nescafe.Core.Mappers
 
 		public override object SaveState()
 		{
-			return new Mmc6MapperState
+			lock (_console.CpuCycleLock)
 			{
-				Bank = _bank,
-				PrgRomMode = _prgRomMode,
-				ChrRomMode = _chrRomMode,
-				PrgRamEnable = _prgRamEnable,
-				PrgRamProtect = _prgRamProtect,
-				BankRegisters = _bankRegisters,
-				ChrOffsets = _chrOffsets,
-				PrgOffsets = _prgOffsets,
-				IrqCounter = _irqCounter,
-				IrqCounterReload = _irqCounterReload,
-				IrqEnabled = _irqEnabled
-			};
+				return new Mmc6MapperState
+				{
+					Bank = _bank,
+					PrgRomMode = _prgRomMode,
+					ChrRomMode = _chrRomMode,
+					PrgRamEnable = _prgRamEnable,
+					PrgRamProtect = _prgRamProtect,
+					BankRegisters = _bankRegisters,
+					ChrOffsets = _chrOffsets,
+					PrgOffsets = _prgOffsets,
+					IrqCounter = _irqCounter,
+					IrqCounterReload = _irqCounterReload,
+					IrqEnabled = _irqEnabled
+				};
+			}
 		}
 
 		public override void LoadState(object stateItem)
 		{
-			var state = stateItem as Mmc6MapperState;
-			_bank = state.Bank;
-			_prgRomMode = state.PrgRomMode;
-			_chrRomMode = state.ChrRomMode;
-			_prgRamEnable = state.PrgRamEnable;
-			_prgRamProtect = state.PrgRamProtect;
-			_bankRegisters = state.BankRegisters;
-			_chrOffsets = state.ChrOffsets;
-			_prgOffsets = state.PrgOffsets;
-			_irqCounter = state.IrqCounter;
-			_irqCounterReload = state.IrqCounterReload;
-			_irqEnabled = state.IrqEnabled;
+			lock (_console.CpuCycleLock)
+			{
+				var state = stateItem as Mmc6MapperState;
+				_bank = state.Bank;
+				_prgRomMode = state.PrgRomMode;
+				_chrRomMode = state.ChrRomMode;
+				_prgRamEnable = state.PrgRamEnable;
+				_prgRamProtect = state.PrgRamProtect;
+				_bankRegisters = state.BankRegisters;
+				_chrOffsets = state.ChrOffsets;
+				_prgOffsets = state.PrgOffsets;
+				_irqCounter = state.IrqCounter;
+				_irqCounterReload = state.IrqCounterReload;
+				_irqEnabled = state.IrqEnabled;
+			}
 		}
 
 		#endregion

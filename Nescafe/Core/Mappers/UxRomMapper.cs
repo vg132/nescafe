@@ -104,15 +104,21 @@ namespace Nescafe.Core.Mappers
 
 		public override object SaveState()
 		{
-			return new UxRomMapperSaveState
+			lock (_console.CpuCycleLock)
 			{
-				Bank0Offset = _bank0Offset
-			};
+				return new UxRomMapperSaveState
+				{
+					Bank0Offset = _bank0Offset
+				};
+			}
 		}
 
 		public override void LoadState(object state)
 		{
-			_bank0Offset = ((UxRomMapperSaveState)state).Bank0Offset;
+			lock (_console.CpuCycleLock)
+			{
+				_bank0Offset = ((UxRomMapperSaveState)state).Bank0Offset;
+			}
 		}
 
 		#endregion

@@ -8,7 +8,8 @@ namespace Nescafe.Core
 	/// </summary>
 	public class Cpu
 	{
-		readonly CpuMemory _memory;
+		private readonly CpuMemory _memory;
+		private readonly Console _console;
 
 		public enum AddressMode
 		{
@@ -85,6 +86,8 @@ namespace Nescafe.Core
 		public Cpu(Console console)
 		{
 			_memory = console.CpuMemory;
+			_console = console;
+
 			_instructions = new CPUInstruction[256]
 			{
 				new CPUInstruction(0, AddressMode.Implied, 1, 7, 0, brk), // 00
@@ -1472,50 +1475,56 @@ namespace Nescafe.Core
 
 		public object SaveState()
 		{
-			return new CpuState
+			lock (_console.CpuCycleLock)
 			{
-				A = A,
-				X = X,
-				Y = Y,
-				S = S,
-				PC = PC,
-				C = C,
-				Z = Z,
-				I = I,
-				D = D,
-				B = B,
-				V = V,
-				N = N,
-				irqInterrupt = irqInterrupt,
-				nmiInterrupt = nmiInterrupt,
-				Cycles = Cycles,
-				_idle = _idle,
-				CpuMemory = _memory.SaveState()
-			};
+				return new CpuState
+				{
+					A = A,
+					X = X,
+					Y = Y,
+					S = S,
+					PC = PC,
+					C = C,
+					Z = Z,
+					I = I,
+					D = D,
+					B = B,
+					V = V,
+					N = N,
+					irqInterrupt = irqInterrupt,
+					nmiInterrupt = nmiInterrupt,
+					Cycles = Cycles,
+					_idle = _idle,
+					CpuMemory = _memory.SaveState()
+				};
+			}
 		}
 
 		public void LoadState(object stateObj)
 		{
-			var state = stateObj as CpuState;
+			lock (_console.CpuCycleLock)
+			{
+				var state = stateObj as CpuState;
 
-			A = state.A;
-			X = state.X;
-			Y = state.Y;
-			S = state.S;
-			PC = state.PC;
-			C = state.C;
-			Z = state.Z;
-			I = state.I;
-			D = state.D;
-			B = state.B;
-			V = state.V;
-			N = state.N;
-			irqInterrupt = state.irqInterrupt;
-			nmiInterrupt = state.nmiInterrupt;
-			Cycles = state.Cycles;
-			_idle = state._idle;
+				A = state.A;
+				X = state.X;
+				Y = state.Y;
+				S = state.S;
+				PC = state.PC;
+				C = state.C;
+				Z = state.Z;
+				I = state.I;
+				D = state.D;
+				B = state.B;
+				V = state.V;
+				N = state.N;
+				irqInterrupt = state.irqInterrupt;
+				nmiInterrupt = state.nmiInterrupt;
+				Cycles = state.Cycles;
+				_idle = state._idle;
 
-			_memory.LoadState(state.CpuMemory);
+				_memory.LoadState(state.CpuMemory);
+			}
 		}
 
 		#endregion

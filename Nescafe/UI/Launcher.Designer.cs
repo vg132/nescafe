@@ -32,18 +32,18 @@ partial class Launcher
 		fileToolStripMenuItem = new ToolStripMenuItem();
 		openToolStripMenuItem = new ToolStripMenuItem();
 		toolStripMenuItem1 = new ToolStripSeparator();
-		saveStateToolStripMenuItem = new ToolStripMenuItem();
-		slot1ToolStripMenuItem = new ToolStripMenuItem();
-		slot2ToolStripMenuItem = new ToolStripMenuItem();
-		slot3ToolStripMenuItem = new ToolStripMenuItem();
-		slot4ToolStripMenuItem = new ToolStripMenuItem();
-		slot5ToolStripMenuItem = new ToolStripMenuItem();
-		loadStateToolStripMenuItem = new ToolStripMenuItem();
-		slot1ToolStripMenuItem1 = new ToolStripMenuItem();
-		slot2ToolStripMenuItem1 = new ToolStripMenuItem();
-		slot3ToolStripMenuItem1 = new ToolStripMenuItem();
-		slot4ToolStripMenuItem1 = new ToolStripMenuItem();
-		slot5ToolStripMenuItem1 = new ToolStripMenuItem();
+		saveStateMenuItem = new ToolStripMenuItem();
+		saveState1MenuItem = new ToolStripMenuItem();
+		saveState2MenuItem = new ToolStripMenuItem();
+		saveState3MenuItem = new ToolStripMenuItem();
+		saveState4MenuItem = new ToolStripMenuItem();
+		saveState5MenuItem = new ToolStripMenuItem();
+		loadStateMenuItem = new ToolStripMenuItem();
+		loadState1MenuItem = new ToolStripMenuItem();
+		loadState2MenuItem = new ToolStripMenuItem();
+		loadState3MenuItem = new ToolStripMenuItem();
+		loadState4MenuItem = new ToolStripMenuItem();
+		loadState5MenuItem = new ToolStripMenuItem();
 		toolStripMenuItem4 = new ToolStripSeparator();
 		mruListMenuItem = new ToolStripMenuItem();
 		toolStripMenuItem2 = new ToolStripSeparator();
@@ -84,7 +84,7 @@ partial class Launcher
 		// 
 		// fileToolStripMenuItem
 		// 
-		fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, toolStripMenuItem1, saveStateToolStripMenuItem, loadStateToolStripMenuItem, toolStripMenuItem4, mruListMenuItem, toolStripMenuItem2, exitToolStripMenuItem });
+		fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, toolStripMenuItem1, saveStateMenuItem, loadStateMenuItem, toolStripMenuItem4, mruListMenuItem, toolStripMenuItem2, exitToolStripMenuItem });
 		fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 		fileToolStripMenuItem.Size = new Size(37, 20);
 		fileToolStripMenuItem.Text = "&File";
@@ -101,79 +101,99 @@ partial class Launcher
 		toolStripMenuItem1.Name = "toolStripMenuItem1";
 		toolStripMenuItem1.Size = new Size(177, 6);
 		// 
-		// saveStateToolStripMenuItem
+		// saveStateMenuItem
 		// 
-		saveStateToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { slot1ToolStripMenuItem, slot2ToolStripMenuItem, slot3ToolStripMenuItem, slot4ToolStripMenuItem, slot5ToolStripMenuItem });
-		saveStateToolStripMenuItem.Name = "saveStateToolStripMenuItem";
-		saveStateToolStripMenuItem.Size = new Size(180, 22);
-		saveStateToolStripMenuItem.Text = "Save state";
+		saveStateMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveState1MenuItem, saveState2MenuItem, saveState3MenuItem, saveState4MenuItem, saveState5MenuItem });
+		saveStateMenuItem.Name = "saveStateMenuItem";
+		saveStateMenuItem.Size = new Size(180, 22);
+		saveStateMenuItem.Text = "Save state";
 		// 
-		// slot1ToolStripMenuItem
+		// saveState1MenuItem
 		// 
-		slot1ToolStripMenuItem.Name = "slot1ToolStripMenuItem";
-		slot1ToolStripMenuItem.Size = new Size(110, 22);
-		slot1ToolStripMenuItem.Text = "Slot #1";
+		saveState1MenuItem.Name = "saveState1MenuItem";
+		saveState1MenuItem.Size = new Size(180, 22);
+		saveState1MenuItem.Tag = "1";
+		saveState1MenuItem.Text = "Slot #1";
+		saveState1MenuItem.Click += saveStateMenuItem_Click;
 		// 
-		// slot2ToolStripMenuItem
+		// saveState2MenuItem
 		// 
-		slot2ToolStripMenuItem.Name = "slot2ToolStripMenuItem";
-		slot2ToolStripMenuItem.Size = new Size(110, 22);
-		slot2ToolStripMenuItem.Text = "Slot #2";
+		saveState2MenuItem.Name = "saveState2MenuItem";
+		saveState2MenuItem.Size = new Size(180, 22);
+		saveState2MenuItem.Tag = "2";
+		saveState2MenuItem.Text = "Slot #2";
+		saveState2MenuItem.Click += saveStateMenuItem_Click;
 		// 
-		// slot3ToolStripMenuItem
+		// saveState3MenuItem
 		// 
-		slot3ToolStripMenuItem.Name = "slot3ToolStripMenuItem";
-		slot3ToolStripMenuItem.Size = new Size(110, 22);
-		slot3ToolStripMenuItem.Text = "Slot #3";
+		saveState3MenuItem.Name = "saveState3MenuItem";
+		saveState3MenuItem.Size = new Size(180, 22);
+		saveState3MenuItem.Tag = "3";
+		saveState3MenuItem.Text = "Slot #3";
+		saveState3MenuItem.Click += saveStateMenuItem_Click;
 		// 
-		// slot4ToolStripMenuItem
+		// saveState4MenuItem
 		// 
-		slot4ToolStripMenuItem.Name = "slot4ToolStripMenuItem";
-		slot4ToolStripMenuItem.Size = new Size(110, 22);
-		slot4ToolStripMenuItem.Text = "Slot #4";
+		saveState4MenuItem.Name = "saveState4MenuItem";
+		saveState4MenuItem.Size = new Size(180, 22);
+		saveState4MenuItem.Tag = "4";
+		saveState4MenuItem.Text = "Slot #4";
+		saveState4MenuItem.Click += saveStateMenuItem_Click;
 		// 
-		// slot5ToolStripMenuItem
+		// saveState5MenuItem
 		// 
-		slot5ToolStripMenuItem.Name = "slot5ToolStripMenuItem";
-		slot5ToolStripMenuItem.Size = new Size(110, 22);
-		slot5ToolStripMenuItem.Text = "Slot #5";
+		saveState5MenuItem.Name = "saveState5MenuItem";
+		saveState5MenuItem.Size = new Size(180, 22);
+		saveState5MenuItem.Tag = "5";
+		saveState5MenuItem.Text = "Slot #5";
+		saveState5MenuItem.Click += saveStateMenuItem_Click;
 		// 
-		// loadStateToolStripMenuItem
+		// loadStateMenuItem
 		// 
-		loadStateToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { slot1ToolStripMenuItem1, slot2ToolStripMenuItem1, slot3ToolStripMenuItem1, slot4ToolStripMenuItem1, slot5ToolStripMenuItem1 });
-		loadStateToolStripMenuItem.Name = "loadStateToolStripMenuItem";
-		loadStateToolStripMenuItem.Size = new Size(180, 22);
-		loadStateToolStripMenuItem.Text = "Load state";
+		loadStateMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loadState1MenuItem, loadState2MenuItem, loadState3MenuItem, loadState4MenuItem, loadState5MenuItem });
+		loadStateMenuItem.Name = "loadStateMenuItem";
+		loadStateMenuItem.Size = new Size(180, 22);
+		loadStateMenuItem.Text = "Load state";
 		// 
-		// slot1ToolStripMenuItem1
+		// loadState1MenuItem
 		// 
-		slot1ToolStripMenuItem1.Name = "slot1ToolStripMenuItem1";
-		slot1ToolStripMenuItem1.Size = new Size(110, 22);
-		slot1ToolStripMenuItem1.Text = "Slot #1";
+		loadState1MenuItem.Name = "loadState1MenuItem";
+		loadState1MenuItem.Size = new Size(180, 22);
+		loadState1MenuItem.Tag = "1";
+		loadState1MenuItem.Text = "Slot #1";
+		loadState1MenuItem.Click += loadStateMenuItem_Click;
 		// 
-		// slot2ToolStripMenuItem1
+		// loadState2MenuItem
 		// 
-		slot2ToolStripMenuItem1.Name = "slot2ToolStripMenuItem1";
-		slot2ToolStripMenuItem1.Size = new Size(110, 22);
-		slot2ToolStripMenuItem1.Text = "Slot #2";
+		loadState2MenuItem.Name = "loadState2MenuItem";
+		loadState2MenuItem.Size = new Size(180, 22);
+		loadState2MenuItem.Tag = "2";
+		loadState2MenuItem.Text = "Slot #2";
+		loadState2MenuItem.Click += loadStateMenuItem_Click;
 		// 
-		// slot3ToolStripMenuItem1
+		// loadState3MenuItem
 		// 
-		slot3ToolStripMenuItem1.Name = "slot3ToolStripMenuItem1";
-		slot3ToolStripMenuItem1.Size = new Size(110, 22);
-		slot3ToolStripMenuItem1.Text = "Slot #3";
+		loadState3MenuItem.Name = "loadState3MenuItem";
+		loadState3MenuItem.Size = new Size(180, 22);
+		loadState3MenuItem.Tag = "3";
+		loadState3MenuItem.Text = "Slot #3";
+		loadState3MenuItem.Click += loadStateMenuItem_Click;
 		// 
-		// slot4ToolStripMenuItem1
+		// loadState4MenuItem
 		// 
-		slot4ToolStripMenuItem1.Name = "slot4ToolStripMenuItem1";
-		slot4ToolStripMenuItem1.Size = new Size(110, 22);
-		slot4ToolStripMenuItem1.Text = "Slot #4";
+		loadState4MenuItem.Name = "loadState4MenuItem";
+		loadState4MenuItem.Size = new Size(180, 22);
+		loadState4MenuItem.Tag = "4";
+		loadState4MenuItem.Text = "Slot #4";
+		loadState4MenuItem.Click += loadStateMenuItem_Click;
 		// 
-		// slot5ToolStripMenuItem1
+		// loadState5MenuItem
 		// 
-		slot5ToolStripMenuItem1.Name = "slot5ToolStripMenuItem1";
-		slot5ToolStripMenuItem1.Size = new Size(110, 22);
-		slot5ToolStripMenuItem1.Text = "Slot #5";
+		loadState5MenuItem.Name = "loadState5MenuItem";
+		loadState5MenuItem.Size = new Size(180, 22);
+		loadState5MenuItem.Tag = "5";
+		loadState5MenuItem.Text = "Slot #5";
+		loadState5MenuItem.Click += loadStateMenuItem_Click;
 		// 
 		// toolStripMenuItem4
 		// 
@@ -395,18 +415,18 @@ partial class Launcher
 	private ToolStripMenuItem openToolStripMenuItem;
 	private ToolStripSeparator toolStripMenuItem1;
 	private ToolStripMenuItem exitToolStripMenuItem;
-	private ToolStripMenuItem saveStateToolStripMenuItem;
-	private ToolStripMenuItem slot1ToolStripMenuItem;
-	private ToolStripMenuItem slot2ToolStripMenuItem;
-	private ToolStripMenuItem slot3ToolStripMenuItem;
-	private ToolStripMenuItem slot4ToolStripMenuItem;
-	private ToolStripMenuItem slot5ToolStripMenuItem;
-	private ToolStripMenuItem loadStateToolStripMenuItem;
-	private ToolStripMenuItem slot1ToolStripMenuItem1;
-	private ToolStripMenuItem slot2ToolStripMenuItem1;
-	private ToolStripMenuItem slot3ToolStripMenuItem1;
-	private ToolStripMenuItem slot4ToolStripMenuItem1;
-	private ToolStripMenuItem slot5ToolStripMenuItem1;
+	private ToolStripMenuItem saveStateMenuItem;
+	private ToolStripMenuItem saveState1MenuItem;
+	private ToolStripMenuItem saveState2MenuItem;
+	private ToolStripMenuItem saveState3MenuItem;
+	private ToolStripMenuItem saveState4MenuItem;
+	private ToolStripMenuItem saveState5MenuItem;
+	private ToolStripMenuItem loadStateMenuItem;
+	private ToolStripMenuItem loadState1MenuItem;
+	private ToolStripMenuItem loadState2MenuItem;
+	private ToolStripMenuItem loadState3MenuItem;
+	private ToolStripMenuItem loadState4MenuItem;
+	private ToolStripMenuItem loadState5MenuItem;
 	private ToolStripSeparator toolStripMenuItem2;
 	private ToolStripMenuItem gToolStripMenuItem;
 	private ToolStripMenuItem pauseToolStripMenuItem;

@@ -29,6 +29,8 @@ namespace Nescafe.Services
 			return null;
 		}
 
+		public static bool HasState(Core.Console console, int slot) => File.Exists($"state\\{console.Cartridge.Id}_{slot}.state");
+
 		public static void SaveState(Core.Console console, int slot)
 		{
 			var state = new ConsoleState

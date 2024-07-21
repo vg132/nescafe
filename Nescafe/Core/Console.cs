@@ -57,6 +57,11 @@ namespace Nescafe.Core
 		public Action<byte[]> DrawAction { get; set; }
 
 		/// <summary>
+		/// Event that is triggered when the console starts running a game
+		/// </summary>
+		public event Action<Console> OnRunning;
+
+		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="T:Nescafe.Console"/> should stop.
 		/// </summary>
 		/// <value><c>true</c> if the console has been stopped; otherwise, <c>false</c>.</value>
@@ -64,7 +69,7 @@ namespace Nescafe.Core
 		public bool IsRunning { get; set; }
 
 		public bool Pause { get; set; }
-		private readonly object _resetLock = new object();
+		public readonly object CpuCycleLock = new object();
 
 		// Used internally to determine if we've reached a new frame
 		bool _frameEvenOdd;
@@ -85,7 +90,7 @@ namespace Nescafe.Core
 
 		public void Reset()
 		{
-			lock (_resetLock)
+			lock (CpuCycleLock)
 			{
 				CpuMemory.Reset();
 				PpuMemory.Reset();
@@ -174,7 +179,7 @@ namespace Nescafe.Core
 			var orig = _frameEvenOdd;
 			while (orig == _frameEvenOdd)
 			{
-				lock (_resetLock)
+				lock (CpuCycleLock)
 				{
 					var cpuCycles = Cpu.Step();
 
@@ -204,6 +209,7 @@ namespace Nescafe.Core
 		{
 			_stop = false;
 			IsRunning = true;
+			OnRunning?.Invoke(this);
 			var s = new Stopwatch();
 			while (!_stop)
 			{

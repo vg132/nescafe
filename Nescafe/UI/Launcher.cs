@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Nescafe.Services;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Nescafe.UI;
@@ -21,6 +22,7 @@ public partial class Launcher : Form
 		CheckCorrectVideoSizeMenuItem();
 		CheckCorrectCpuSpeedMenuItem();
 		SetupMruList();
+		SetupStateMenuItems();
 
 		_console = new Core.Console();
 	}
@@ -30,6 +32,12 @@ public partial class Launcher : Form
 		base.OnLoad(e);
 		_renderer = new Renderer(glControl1);
 		_console.DrawAction = _renderer.UpdateScreen;
+		_console.OnRunning += Console_OnRunning;
+	}
+
+	private void Console_OnRunning(Core.Console obj)
+	{
+		SetupStateMenuItems();
 	}
 
 	private void StopConsole()
@@ -47,7 +55,6 @@ public partial class Launcher : Form
 
 	private void StartNes()
 	{
-		Debug.WriteLine("Start console");
 		_console.Start();
 	}
 
@@ -128,7 +135,39 @@ public partial class Launcher : Form
 		LoadROM(path);
 	}
 
+	private void saveStateMenuItem_Click(object sender, EventArgs e)
+	{
+		var slot = int.Parse(((ToolStripMenuItem)sender).Tag.ToString());
+		StateService.SaveState(_console, slot);
+		SetupStateMenuItems();
+	}
+
+	private void loadStateMenuItem_Click(object sender, EventArgs e)
+	{
+		var slot = int.Parse(((ToolStripMenuItem)sender).Tag.ToString());
+		StateService.LoadState(_console, slot);
+	}
+
 	#endregion
+
+	private void SetupStateMenuItems()
+	{
+		if (_console?.IsRunning == true)
+		{
+			saveStateMenuItem.Enabled = true;
+			loadStateMenuItem.Enabled = true;
+			loadState1MenuItem.Enabled = StateService.HasState(_console, 1);
+			loadState2MenuItem.Enabled = StateService.HasState(_console, 2);
+			loadState3MenuItem.Enabled = StateService.HasState(_console, 3);
+			loadState4MenuItem.Enabled = StateService.HasState(_console, 4);
+			loadState5MenuItem.Enabled = StateService.HasState(_console, 5);
+		}
+		else
+		{
+			loadStateMenuItem.Enabled = false;
+			saveStateMenuItem.Enabled = false;
+		}
+	}
 
 	private void CheckCorrectVideoSizeMenuItem()
 	{

@@ -279,40 +279,46 @@ namespace Nescafe.Core.Mappers
 
 		public override object SaveState()
 		{
-			return new Mmc1MapperState
+			lock (_console.CpuCycleLock)
 			{
-				_chr0Reg = _chr0Reg,
-				_chr1Reg = _chr1Reg,
-				_prgReg = _prgReg,
-				_prgMode = _prgMode,
-				_chrMode = _chrMode,
-				_prgRamEnable = _prgRamEnable,
-				_chrBank0Offset = _chrBank0Offset,
-				_chrBank1Offset = _chrBank1Offset,
-				_controlReg = _controlReg,
-				_prgBank0Offset = _prgBank0Offset,
-				_prgBank1Offset = _prgBank1Offset,
-				_shiftCount = _shiftCount,
-				_shiftReg = _shiftReg
-			};
+				return new Mmc1MapperState
+				{
+					_chr0Reg = _chr0Reg,
+					_chr1Reg = _chr1Reg,
+					_prgReg = _prgReg,
+					_prgMode = _prgMode,
+					_chrMode = _chrMode,
+					_prgRamEnable = _prgRamEnable,
+					_chrBank0Offset = _chrBank0Offset,
+					_chrBank1Offset = _chrBank1Offset,
+					_controlReg = _controlReg,
+					_prgBank0Offset = _prgBank0Offset,
+					_prgBank1Offset = _prgBank1Offset,
+					_shiftCount = _shiftCount,
+					_shiftReg = _shiftReg
+				};
+			}
 		}
 
 		public override void LoadState(object stateItem)
 		{
-			var state = stateItem as Mmc1MapperState;
-			_chr0Reg = state._chr0Reg;
-			_chr1Reg = state._chr1Reg;
-			_prgReg = state._prgReg;
-			_prgMode = state._prgMode;
-			_chrMode = state._chrMode;
-			_prgRamEnable = state._prgRamEnable;
-			_chrBank0Offset = state._chrBank0Offset;
-			_chrBank1Offset = state._chrBank1Offset;
-			_controlReg = state._controlReg;
-			_prgBank0Offset = state._prgBank0Offset;
-			_prgBank1Offset = state._prgBank1Offset;
-			_shiftCount = state._shiftCount;
-			_shiftReg = state._shiftReg;
+			lock (_console.CpuCycleLock)
+			{
+				var state = stateItem as Mmc1MapperState;
+				_chr0Reg = state._chr0Reg;
+				_chr1Reg = state._chr1Reg;
+				_prgReg = state._prgReg;
+				_prgMode = state._prgMode;
+				_chrMode = state._chrMode;
+				_prgRamEnable = state._prgRamEnable;
+				_chrBank0Offset = state._chrBank0Offset;
+				_chrBank1Offset = state._chrBank1Offset;
+				_controlReg = state._controlReg;
+				_prgBank0Offset = state._prgBank0Offset;
+				_prgBank1Offset = state._prgBank1Offset;
+				_shiftCount = state._shiftCount;
+				_shiftReg = state._shiftReg;
+			}
 		}
 
 		#endregion

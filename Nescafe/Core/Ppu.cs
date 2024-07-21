@@ -926,100 +926,106 @@ namespace Nescafe.Core
 
 		public object SaveState()
 		{
-			var state = new PpuState();
+			lock (_console.CpuCycleLock)
+			{
+				var state = new PpuState();
 
-			state._oam = _oam;
-			state._oamAddr = _oamAddr;
-			state._sprites = _sprites;
-			state._spriteIndicies = _spriteIndicies;
-			state._numSprites = _numSprites;
-			state.Scanline = Scanline;
-			state.Cycle = Cycle;
-			state._baseNametableAddress = _baseNametableAddress;
-			state._bgPatternTableAddress = _bgPatternTableAddress;
-			state._spritePatternTableAddress = _spritePatternTableAddress;
-			state._vRamIncrement = _vRamIncrement;
-			state._lastRegisterWrite = _lastRegisterWrite;
-			state._flagSpriteOverflow = _flagSpriteOverflow;
-			state._flagSpriteZeroHit = _flagSpriteZeroHit;
-			state._flagBaseNametableAddr = _flagBaseNametableAddr;
-			state._flagVRamIncrement = _flagVRamIncrement;
-			state._flagSpritePatternTableAddr = _flagSpritePatternTableAddr;
-			state._flagBgPatternTableAddr = _flagBgPatternTableAddr;
-			state._flagSpriteSize = _flagSpriteSize;
-			state._flagMasterSlaveSelect = _flagMasterSlaveSelect;
-			state._nmiOutput = _nmiOutput;
-			state._nmiOccurred = _nmiOccurred;
-			state._flagGreyscale = _flagGreyscale;
-			state._flagShowBackgroundLeft = _flagShowBackgroundLeft;
-			state._flagShowSpritesLeft = _flagShowSpritesLeft;
-			state._flagShowBackground = _flagShowBackground;
-			state._flagShowSprites = _flagShowSprites;
-			state._flagEmphasizeRed = _flagEmphasizeRed;
-			state._flagEmphasizeGreen = _flagEmphasizeGreen;
-			state._flagEmphasizeBlue = _flagEmphasizeBlue;
-			state.v = v;
-			state.t = t;
-			state.x = x;
-			state.w = w;
-			state.f = f;
-			state._tileShiftReg = _tileShiftReg;
-			state._nameTableByte = _nameTableByte;
-			state._attributeTableByte = _attributeTableByte;
-			state._tileBitfieldLo = _tileBitfieldLo;
-			state._tileBitfieldHi = _tileBitfieldHi;
-			state._ppuDataBuffer = _ppuDataBuffer;
-			state.PpuMemory = _memory.SaveState();
+				state._oam = _oam;
+				state._oamAddr = _oamAddr;
+				state._sprites = _sprites;
+				state._spriteIndicies = _spriteIndicies;
+				state._numSprites = _numSprites;
+				state.Scanline = Scanline;
+				state.Cycle = Cycle;
+				state._baseNametableAddress = _baseNametableAddress;
+				state._bgPatternTableAddress = _bgPatternTableAddress;
+				state._spritePatternTableAddress = _spritePatternTableAddress;
+				state._vRamIncrement = _vRamIncrement;
+				state._lastRegisterWrite = _lastRegisterWrite;
+				state._flagSpriteOverflow = _flagSpriteOverflow;
+				state._flagSpriteZeroHit = _flagSpriteZeroHit;
+				state._flagBaseNametableAddr = _flagBaseNametableAddr;
+				state._flagVRamIncrement = _flagVRamIncrement;
+				state._flagSpritePatternTableAddr = _flagSpritePatternTableAddr;
+				state._flagBgPatternTableAddr = _flagBgPatternTableAddr;
+				state._flagSpriteSize = _flagSpriteSize;
+				state._flagMasterSlaveSelect = _flagMasterSlaveSelect;
+				state._nmiOutput = _nmiOutput;
+				state._nmiOccurred = _nmiOccurred;
+				state._flagGreyscale = _flagGreyscale;
+				state._flagShowBackgroundLeft = _flagShowBackgroundLeft;
+				state._flagShowSpritesLeft = _flagShowSpritesLeft;
+				state._flagShowBackground = _flagShowBackground;
+				state._flagShowSprites = _flagShowSprites;
+				state._flagEmphasizeRed = _flagEmphasizeRed;
+				state._flagEmphasizeGreen = _flagEmphasizeGreen;
+				state._flagEmphasizeBlue = _flagEmphasizeBlue;
+				state.v = v;
+				state.t = t;
+				state.x = x;
+				state.w = w;
+				state.f = f;
+				state._tileShiftReg = _tileShiftReg;
+				state._nameTableByte = _nameTableByte;
+				state._attributeTableByte = _attributeTableByte;
+				state._tileBitfieldLo = _tileBitfieldLo;
+				state._tileBitfieldHi = _tileBitfieldHi;
+				state._ppuDataBuffer = _ppuDataBuffer;
+				state.PpuMemory = _memory.SaveState();
 
-			return state;
+				return state;
+			}
 		}
 
 		public void LoadState(object stateObj)
 		{
-			var state = stateObj as PpuState;
-			_oam = state._oam;
-			_oamAddr = state._oamAddr;
-			_sprites = state._sprites;
-			_spriteIndicies = state._spriteIndicies;
-			_numSprites = state._numSprites;
-			Scanline = state.Scanline;
-			Cycle = state.Cycle;
-			_baseNametableAddress = state._baseNametableAddress;
-			_bgPatternTableAddress = state._bgPatternTableAddress;
-			_spritePatternTableAddress = state._spritePatternTableAddress;
-			_vRamIncrement = state._vRamIncrement;
-			_lastRegisterWrite = state._lastRegisterWrite;
-			_flagSpriteOverflow = state._flagSpriteOverflow;
-			_flagSpriteZeroHit = state._flagSpriteZeroHit;
-			_flagBaseNametableAddr = state._flagBaseNametableAddr;
-			_flagVRamIncrement = state._flagVRamIncrement;
-			_flagSpritePatternTableAddr = state._flagSpritePatternTableAddr;
-			_flagBgPatternTableAddr = state._flagBgPatternTableAddr;
-			_flagSpriteSize = state._flagSpriteSize;
-			_flagMasterSlaveSelect = state._flagMasterSlaveSelect;
-			_nmiOutput = state._nmiOutput;
-			_nmiOccurred = state._nmiOccurred;
-			_flagGreyscale = state._flagGreyscale;
-			_flagShowBackgroundLeft = state._flagShowBackgroundLeft;
-			_flagShowSpritesLeft = state._flagShowSpritesLeft;
-			_flagShowBackground = state._flagShowBackground;
-			_flagShowSprites = state._flagShowSprites;
-			_flagEmphasizeRed = state._flagEmphasizeRed;
-			_flagEmphasizeGreen = state._flagEmphasizeGreen;
-			_flagEmphasizeBlue = state._flagEmphasizeBlue;
-			v = state.v;
-			t = state.t;
-			x = state.x;
-			w = state.w;
-			f = state.f;
-			_tileShiftReg = state._tileShiftReg;
-			_nameTableByte = state._nameTableByte;
-			_attributeTableByte = state._attributeTableByte;
-			_tileBitfieldLo = state._tileBitfieldLo;
-			_tileBitfieldHi = state._tileBitfieldHi;
-			_ppuDataBuffer = state._ppuDataBuffer;
+			lock (_console.CpuCycleLock)
+			{
+				var state = stateObj as PpuState;
+				_oam = state._oam;
+				_oamAddr = state._oamAddr;
+				_sprites = state._sprites;
+				_spriteIndicies = state._spriteIndicies;
+				_numSprites = state._numSprites;
+				Scanline = state.Scanline;
+				Cycle = state.Cycle;
+				_baseNametableAddress = state._baseNametableAddress;
+				_bgPatternTableAddress = state._bgPatternTableAddress;
+				_spritePatternTableAddress = state._spritePatternTableAddress;
+				_vRamIncrement = state._vRamIncrement;
+				_lastRegisterWrite = state._lastRegisterWrite;
+				_flagSpriteOverflow = state._flagSpriteOverflow;
+				_flagSpriteZeroHit = state._flagSpriteZeroHit;
+				_flagBaseNametableAddr = state._flagBaseNametableAddr;
+				_flagVRamIncrement = state._flagVRamIncrement;
+				_flagSpritePatternTableAddr = state._flagSpritePatternTableAddr;
+				_flagBgPatternTableAddr = state._flagBgPatternTableAddr;
+				_flagSpriteSize = state._flagSpriteSize;
+				_flagMasterSlaveSelect = state._flagMasterSlaveSelect;
+				_nmiOutput = state._nmiOutput;
+				_nmiOccurred = state._nmiOccurred;
+				_flagGreyscale = state._flagGreyscale;
+				_flagShowBackgroundLeft = state._flagShowBackgroundLeft;
+				_flagShowSpritesLeft = state._flagShowSpritesLeft;
+				_flagShowBackground = state._flagShowBackground;
+				_flagShowSprites = state._flagShowSprites;
+				_flagEmphasizeRed = state._flagEmphasizeRed;
+				_flagEmphasizeGreen = state._flagEmphasizeGreen;
+				_flagEmphasizeBlue = state._flagEmphasizeBlue;
+				v = state.v;
+				t = state.t;
+				x = state.x;
+				w = state.w;
+				f = state.f;
+				_tileShiftReg = state._tileShiftReg;
+				_nameTableByte = state._nameTableByte;
+				_attributeTableByte = state._attributeTableByte;
+				_tileBitfieldLo = state._tileBitfieldLo;
+				_tileBitfieldHi = state._tileBitfieldHi;
+				_ppuDataBuffer = state._ppuDataBuffer;
 
-			_memory.LoadState(state.PpuMemory);
+				_memory.LoadState(state.PpuMemory);
+			}
 		}
 
 		#endregion
