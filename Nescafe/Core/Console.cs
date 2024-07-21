@@ -60,7 +60,8 @@ namespace Nescafe.Core
 		/// Gets or sets a value indicating whether this <see cref="T:Nescafe.Console"/> should stop.
 		/// </summary>
 		/// <value><c>true</c> if the console has been stopped; otherwise, <c>false</c>.</value>
-		public bool Stop { get; set; }
+		private bool _stop { get; set; }
+		public bool IsRunning { get; set; }
 
 		public bool Pause { get; set; }
 		private static object _resetLock = new object();
@@ -187,17 +188,26 @@ namespace Nescafe.Core
 			}
 		}
 
+		public void Stop()
+		{
+			_stop = true;
+			while (IsRunning)
+			{
+				PreciseSleep.Sleep(5);
+			}
+		}
+
 		/// <summary>
 		/// Starts running the console and drawing frames.
 		/// </summary>
 		public void Start()
 		{
-			Stop = false;
+			_stop = false;
+			IsRunning = true;
 			var s = new Stopwatch();
-			while (!Stop)
+			while (!_stop)
 			{
 				s.Restart();
-				Debug.WriteLine("Start framecounter");
 				for (var i = 0; i < 60; i++)
 				{
 					var frameWatch = Stopwatch.StartNew();
@@ -215,6 +225,8 @@ namespace Nescafe.Core
 				s.Stop();
 				Debug.WriteLine($"60 frames in {s.ElapsedMilliseconds}ms");
 			}
+			IsRunning = false;
+			Debug.WriteLine("Console Stopped");
 		}
 	}
 }

@@ -7,9 +7,9 @@ namespace Nescafe.Core
 	/// </summary>
 	public class PpuMemory : Memory
 	{
-		readonly Console _console;
-		byte[] _vRam;
-		byte[] _paletteRam;
+		private readonly Console _console;
+		private byte[] _vRam;
+		private byte[] _paletteRam;
 
 		/// <summary>
 		/// Construct a new PPU memory device.

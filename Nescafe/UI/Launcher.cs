@@ -1,4 +1,6 @@
-﻿namespace Nescafe.UI;
+﻿using System.Diagnostics;
+
+namespace Nescafe.UI;
 
 public partial class Launcher : Form
 {
@@ -27,7 +29,7 @@ public partial class Launcher : Form
 
 	private void StopConsole()
 	{
-		_console.Stop = true;
+		_console.Stop();
 	}
 
 	private void StartConsole()
@@ -40,6 +42,7 @@ public partial class Launcher : Form
 
 	private void StartNes()
 	{
+		Debug.WriteLine("Start console");
 		_console.Start();
 	}
 
@@ -51,8 +54,10 @@ public partial class Launcher : Form
 		if (openFileDialog.ShowDialog() == DialogResult.OK)
 		{
 			StopConsole();
+			Debug.WriteLine("Load cartridge");
 			if (_console.LoadCartridge(openFileDialog.FileName))
 			{
+				Debug.WriteLine("Loaded cartridge");
 				Text = "NEScafé - " + openFileDialog.SafeFileName;
 				StartConsole();
 			}
