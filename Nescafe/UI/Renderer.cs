@@ -3,6 +3,8 @@ using OpenTK.WinForms;
 using OpenTK.Graphics.OpenGL4;
 using Nescafe.UI.Shaders;
 using Nescafe.Core;
+using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 
 namespace Nescafe.UI;
 
@@ -44,20 +46,28 @@ public partial class Renderer
 
 	private void Setup()
 	{
-		// Make sure that when the GLControl is resized or needs to be painted,
-		// we update our projection matrix or re-render its contents, respectively.
 		_control.Resize += glControl_Resize;
 		_control.Paint += glControl_Paint;
 
+		SetupViewport();
+		SetupShader();
+		SetupRenderLoop();
+	}
+
+	private void SetupRenderLoop()
+	{
 		// Redraw the screen every 1/120 of a second.
 		_timer = new System.Windows.Forms.Timer();
 		_timer.Tick += (sender, e) =>
 		{
 			Render();
 		};
-		_timer.Interval = 1000/60;   // 1000 ms per sec / 120 fps = 8 MS
+		_timer.Interval = 1000 / 120;   // 1000 ms per sec / 120 fps = 8 MS
 		_timer.Start();
+	}
 
+	private void SetupViewport()
+	{
 		// Ensure that the viewport and projection matrix are set correctly initially.
 		glControl_Resize(_control, EventArgs.Empty);
 
@@ -71,9 +81,15 @@ public partial class Renderer
 		_elementBufferObject = GL.GenBuffer();
 		GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
 		GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
+	}
 
+	private void SetupShader()
+	{
 		// The shaders have been modified to include the texture coordinates, check them out after finishing the OnLoad function.
-		_shader = new Shader(@"D:\Projects\nescafe\Nescafe\UI\Shaders\shader.vert", @"D:\Projects\nescafe\Nescafe\UI\Shaders\shader.frag");
+		var fragCode = ReadEmbeddedFile("UI/Shaders/shader.frag");
+		var vertCode = ReadEmbeddedFile("UI/Shaders/shader.vert");
+
+		_shader = new Shader(vertCode, fragCode);
 		_shader.Use();
 
 		// Because there's now 5 floats between the start of the first vertex and the start of the second,
@@ -89,6 +105,14 @@ public partial class Renderer
 		var texCoordLocation = _shader.GetAttribLocation("aTexCoord");
 		GL.EnableVertexAttribArray(texCoordLocation);
 		GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+	}
+
+	private static string ReadEmbeddedFile(string path)
+	{
+		var embeddedProvider = new EmbeddedFileProvider(Assembly.GetExecutingAssembly());
+		using var reader = embeddedProvider.GetFileInfo(path).CreateReadStream();
+		using var sr = new StreamReader(reader);
+		return sr.ReadToEnd();
 	}
 
 	private void glControl_Resize(object sender, EventArgs e)
@@ -112,7 +136,7 @@ public partial class Renderer
 		{
 			lock (_drawLock)
 			{
-				byte[] textureData = new byte[256 * 240 * 3]; // RGB format
+				byte[] textureData = new byte[256 * 240 * 3];
 				for (int i = 0; i < screenData.Length; i++)
 				{
 					int colorIndex = screenData[i];

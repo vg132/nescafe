@@ -64,7 +64,7 @@ namespace Nescafe.Core
 		public bool IsRunning { get; set; }
 
 		public bool Pause { get; set; }
-		private static object _resetLock = new object();
+		private readonly object _resetLock = new object();
 
 		// Used internally to determine if we've reached a new frame
 		bool _frameEvenOdd;
