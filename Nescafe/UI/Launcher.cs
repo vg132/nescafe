@@ -1,6 +1,6 @@
 ﻿using Nescafe.Services;
+using Nescafe.UI.Input;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace Nescafe.UI;
 
@@ -10,6 +10,7 @@ public partial class Launcher : Form
 
 	private Renderer _renderer;
 	private Thread _nesThread;
+	private Keyboard _input;
 
 	public Launcher()
 	{
@@ -17,6 +18,9 @@ public partial class Launcher : Form
 
 		glControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 		glControl1.Dock = DockStyle.Fill;
+
+		// We don't want this to be visible but need it for key events to work. Bug in GLControl...
+		textBoxFixForKeyEvents.Top = -100;
 
 		SetFormSize(AppSettings.Instance.VideoSize);
 		CheckCorrectVideoSizeMenuItem();
@@ -31,8 +35,23 @@ public partial class Launcher : Form
 	{
 		base.OnLoad(e);
 		_renderer = new Renderer(glControl1);
+		glControl1.DisableNativeInput();
+		SetupConsole();
+	}
+
+	//protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+	//{
+	//	var ret = base.ProcessCmdKey(ref msg, keyData);
+	//	Debug.WriteLine($"Key! {msg.WParam} {msg.LParam}, {keyData}");
+	//	return ret;
+	//}
+
+	private void SetupConsole()
+	{
 		_console.DrawAction = _renderer.UpdateScreen;
 		_console.OnRunning += Console_OnRunning;
+
+		_input = new Keyboard(this, _console);
 	}
 
 	private void Console_OnRunning(Core.Console obj)

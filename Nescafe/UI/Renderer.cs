@@ -1,10 +1,11 @@
-﻿using OpenTK.Mathematics;
-using OpenTK.WinForms;
+﻿using OpenTK.WinForms;
 using OpenTK.Graphics.OpenGL4;
 using Nescafe.UI.Shaders;
 using Nescafe.Core;
 using Microsoft.Extensions.FileProviders;
 using System.Reflection;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using System.Windows.Forms;
 
 namespace Nescafe.UI;
 
@@ -20,6 +21,7 @@ public partial class Renderer
 	private int _vertexBufferObject;
 	private int _vertexArrayObject;
 	private Shader _shader;
+	//private Shader _scanlineShader;
 	private Texture _texture;
 
 	private readonly float[] _vertices =
@@ -51,8 +53,22 @@ public partial class Renderer
 
 		SetupViewport();
 		SetupShader();
+		//SetupScanlineShader();
 		SetupRenderLoop();
 	}
+
+	//private void SetupScanlineShader()
+	//{
+	//	// The shaders have been modified to include the texture coordinates, check them out after finishing the OnLoad function.
+	//	var fragCode = ReadEmbeddedFile("UI/Shaders/Scanline/scanline.frag");
+	//	var vertCode = ReadEmbeddedFile("UI/Shaders/Scanline/scanline.vert");
+
+	//	_scanlineShader = new Shader(vertCode, fragCode);
+	//	_scanlineShader.Use();
+
+	//	int vertexColorLocation = GL.GetUniformLocation(_scanlineShader.Handle, "u_screenHeight");
+	//	GL.Uniform1(vertexColorLocation, _control.Height);
+	//}
 
 	private void SetupRenderLoop()
 	{
@@ -156,13 +172,12 @@ public partial class Renderer
 			{
 				_control.MakeCurrent();
 				GL.Clear(ClearBufferMask.ColorBufferBit);
-
+				_shader.Use();
+				//_scanlineShader.Use();
 				GL.BindVertexArray(_vertexArrayObject);
 				_texture.Bind(TextureUnit.Texture0);
-				_shader.Use();
-
 				GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
-
+				
 				_control.SwapBuffers();
 			}
 		}

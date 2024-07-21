@@ -70,6 +70,7 @@ partial class Launcher
 		videoSize6MenuItem = new ToolStripMenuItem();
 		fullScreenToolStripMenuItem = new ToolStripMenuItem();
 		glControl1 = new OpenTK.WinForms.GLControl();
+		textBoxFixForKeyEvents = new TextBox();
 		menuStrip1.SuspendLayout();
 		SuspendLayout();
 		// 
@@ -92,26 +93,26 @@ partial class Launcher
 		// openToolStripMenuItem
 		// 
 		openToolStripMenuItem.Name = "openToolStripMenuItem";
-		openToolStripMenuItem.Size = new Size(180, 22);
+		openToolStripMenuItem.Size = new Size(128, 22);
 		openToolStripMenuItem.Text = "&Open...";
 		openToolStripMenuItem.Click += openToolStripMenuItem_Click;
 		// 
 		// toolStripMenuItem1
 		// 
 		toolStripMenuItem1.Name = "toolStripMenuItem1";
-		toolStripMenuItem1.Size = new Size(177, 6);
+		toolStripMenuItem1.Size = new Size(125, 6);
 		// 
 		// saveStateMenuItem
 		// 
 		saveStateMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveState1MenuItem, saveState2MenuItem, saveState3MenuItem, saveState4MenuItem, saveState5MenuItem });
 		saveStateMenuItem.Name = "saveStateMenuItem";
-		saveStateMenuItem.Size = new Size(180, 22);
+		saveStateMenuItem.Size = new Size(128, 22);
 		saveStateMenuItem.Text = "Save state";
 		// 
 		// saveState1MenuItem
 		// 
 		saveState1MenuItem.Name = "saveState1MenuItem";
-		saveState1MenuItem.Size = new Size(180, 22);
+		saveState1MenuItem.Size = new Size(110, 22);
 		saveState1MenuItem.Tag = "1";
 		saveState1MenuItem.Text = "Slot #1";
 		saveState1MenuItem.Click += saveStateMenuItem_Click;
@@ -119,7 +120,7 @@ partial class Launcher
 		// saveState2MenuItem
 		// 
 		saveState2MenuItem.Name = "saveState2MenuItem";
-		saveState2MenuItem.Size = new Size(180, 22);
+		saveState2MenuItem.Size = new Size(110, 22);
 		saveState2MenuItem.Tag = "2";
 		saveState2MenuItem.Text = "Slot #2";
 		saveState2MenuItem.Click += saveStateMenuItem_Click;
@@ -127,7 +128,7 @@ partial class Launcher
 		// saveState3MenuItem
 		// 
 		saveState3MenuItem.Name = "saveState3MenuItem";
-		saveState3MenuItem.Size = new Size(180, 22);
+		saveState3MenuItem.Size = new Size(110, 22);
 		saveState3MenuItem.Tag = "3";
 		saveState3MenuItem.Text = "Slot #3";
 		saveState3MenuItem.Click += saveStateMenuItem_Click;
@@ -135,7 +136,7 @@ partial class Launcher
 		// saveState4MenuItem
 		// 
 		saveState4MenuItem.Name = "saveState4MenuItem";
-		saveState4MenuItem.Size = new Size(180, 22);
+		saveState4MenuItem.Size = new Size(110, 22);
 		saveState4MenuItem.Tag = "4";
 		saveState4MenuItem.Text = "Slot #4";
 		saveState4MenuItem.Click += saveStateMenuItem_Click;
@@ -143,7 +144,7 @@ partial class Launcher
 		// saveState5MenuItem
 		// 
 		saveState5MenuItem.Name = "saveState5MenuItem";
-		saveState5MenuItem.Size = new Size(180, 22);
+		saveState5MenuItem.Size = new Size(110, 22);
 		saveState5MenuItem.Tag = "5";
 		saveState5MenuItem.Text = "Slot #5";
 		saveState5MenuItem.Click += saveStateMenuItem_Click;
@@ -152,13 +153,13 @@ partial class Launcher
 		// 
 		loadStateMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loadState1MenuItem, loadState2MenuItem, loadState3MenuItem, loadState4MenuItem, loadState5MenuItem });
 		loadStateMenuItem.Name = "loadStateMenuItem";
-		loadStateMenuItem.Size = new Size(180, 22);
+		loadStateMenuItem.Size = new Size(128, 22);
 		loadStateMenuItem.Text = "Load state";
 		// 
 		// loadState1MenuItem
 		// 
 		loadState1MenuItem.Name = "loadState1MenuItem";
-		loadState1MenuItem.Size = new Size(180, 22);
+		loadState1MenuItem.Size = new Size(110, 22);
 		loadState1MenuItem.Tag = "1";
 		loadState1MenuItem.Text = "Slot #1";
 		loadState1MenuItem.Click += loadStateMenuItem_Click;
@@ -166,7 +167,7 @@ partial class Launcher
 		// loadState2MenuItem
 		// 
 		loadState2MenuItem.Name = "loadState2MenuItem";
-		loadState2MenuItem.Size = new Size(180, 22);
+		loadState2MenuItem.Size = new Size(110, 22);
 		loadState2MenuItem.Tag = "2";
 		loadState2MenuItem.Text = "Slot #2";
 		loadState2MenuItem.Click += loadStateMenuItem_Click;
@@ -174,7 +175,7 @@ partial class Launcher
 		// loadState3MenuItem
 		// 
 		loadState3MenuItem.Name = "loadState3MenuItem";
-		loadState3MenuItem.Size = new Size(180, 22);
+		loadState3MenuItem.Size = new Size(110, 22);
 		loadState3MenuItem.Tag = "3";
 		loadState3MenuItem.Text = "Slot #3";
 		loadState3MenuItem.Click += loadStateMenuItem_Click;
@@ -182,7 +183,7 @@ partial class Launcher
 		// loadState4MenuItem
 		// 
 		loadState4MenuItem.Name = "loadState4MenuItem";
-		loadState4MenuItem.Size = new Size(180, 22);
+		loadState4MenuItem.Size = new Size(110, 22);
 		loadState4MenuItem.Tag = "4";
 		loadState4MenuItem.Text = "Slot #4";
 		loadState4MenuItem.Click += loadStateMenuItem_Click;
@@ -190,7 +191,7 @@ partial class Launcher
 		// loadState5MenuItem
 		// 
 		loadState5MenuItem.Name = "loadState5MenuItem";
-		loadState5MenuItem.Size = new Size(180, 22);
+		loadState5MenuItem.Size = new Size(110, 22);
 		loadState5MenuItem.Tag = "5";
 		loadState5MenuItem.Text = "Slot #5";
 		loadState5MenuItem.Click += loadStateMenuItem_Click;
@@ -198,23 +199,23 @@ partial class Launcher
 		// toolStripMenuItem4
 		// 
 		toolStripMenuItem4.Name = "toolStripMenuItem4";
-		toolStripMenuItem4.Size = new Size(177, 6);
+		toolStripMenuItem4.Size = new Size(125, 6);
 		// 
 		// mruListMenuItem
 		// 
 		mruListMenuItem.Name = "mruListMenuItem";
-		mruListMenuItem.Size = new Size(180, 22);
+		mruListMenuItem.Size = new Size(128, 22);
 		mruListMenuItem.Text = "&Recent";
 		// 
 		// toolStripMenuItem2
 		// 
 		toolStripMenuItem2.Name = "toolStripMenuItem2";
-		toolStripMenuItem2.Size = new Size(177, 6);
+		toolStripMenuItem2.Size = new Size(125, 6);
 		// 
 		// exitToolStripMenuItem
 		// 
 		exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-		exitToolStripMenuItem.Size = new Size(180, 22);
+		exitToolStripMenuItem.Size = new Size(128, 22);
 		exitToolStripMenuItem.Text = "E&xit";
 		exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 		// 
@@ -379,7 +380,7 @@ partial class Launcher
 		// 
 		glControl1.Anchor = AnchorStyles.None;
 		glControl1.API = OpenTK.Windowing.Common.ContextAPI.OpenGL;
-		glControl1.APIVersion = new Version(3, 3, 0, 0);
+		glControl1.APIVersion = new Version(4, 0, 0, 0);
 		glControl1.Flags = OpenTK.Windowing.Common.ContextFlags.Default;
 		glControl1.IsEventDriven = true;
 		glControl1.Location = new Point(583, 299);
@@ -390,14 +391,23 @@ partial class Launcher
 		glControl1.TabIndex = 1;
 		glControl1.Text = "glControl1";
 		// 
+		// textBoxFixForKeyEvents
+		// 
+		textBoxFixForKeyEvents.Location = new Point(137, 128);
+		textBoxFixForKeyEvents.Name = "textBoxFixForKeyEvents";
+		textBoxFixForKeyEvents.Size = new Size(100, 23);
+		textBoxFixForKeyEvents.TabIndex = 2;
+		// 
 		// Launcher
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
 		AutoScaleMode = AutoScaleMode.Font;
 		ClientSize = new Size(800, 450);
+		Controls.Add(textBoxFixForKeyEvents);
 		Controls.Add(glControl1);
 		Controls.Add(menuStrip1);
 		FormBorderStyle = FormBorderStyle.FixedSingle;
+		KeyPreview = true;
 		MainMenuStrip = menuStrip1;
 		Name = "Launcher";
 		StartPosition = FormStartPosition.CenterScreen;
@@ -452,4 +462,5 @@ partial class Launcher
 	private OpenTK.WinForms.GLControl glControl1;
 	private ToolStripSeparator toolStripMenuItem4;
 	private ToolStripMenuItem mruListMenuItem;
+	private TextBox textBoxFixForKeyEvents;
 }

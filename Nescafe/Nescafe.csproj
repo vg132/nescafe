@@ -10,11 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UI\Shaders\Scanline\scanline.frag" />
+    <None Remove="UI\Shaders\Scanline\scanline.vert" />
     <None Remove="UI\Shaders\shader.frag" />
     <None Remove="UI\Shaders\shader.vert" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="UI\Shaders\Scanline\scanline.frag" />
+    <EmbeddedResource Include="UI\Shaders\Scanline\scanline.vert" />
     <EmbeddedResource Include="UI\Shaders\shader.frag" />
     <EmbeddedResource Include="UI\Shaders\shader.vert" />
   </ItemGroup>
@@ -23,6 +27,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.7" />
 		<PackageReference Include="OpenTK" Version="4.8.2" />
+		<PackageReference Include="OpenTK.Input" Version="4.8.2" />
 		<PackageReference Include="OpenTK.Windowing.Common" Version="4.8.2" />
 		<PackageReference Include="OpenTK.Windowing.Desktop" Version="4.8.2" />
 	</ItemGroup>
