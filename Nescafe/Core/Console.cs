@@ -207,8 +207,9 @@ namespace Nescafe.Core
 			var s = new Stopwatch();
 			while (!_stop)
 			{
+				var frameRate = AppSettings.Instance.CpuSpeed;
 				s.Restart();
-				for (var i = 0; i < 60; i++)
+				for (var i = 0; i < frameRate; i++)
 				{
 					var frameWatch = Stopwatch.StartNew();
 					if(!Pause)
@@ -216,14 +217,10 @@ namespace Nescafe.Core
 						GoUntilFrame();
 					}
 					frameWatch.Stop();
-
-					var timeTaken = frameWatch.ElapsedMilliseconds;
-
-					var sleepTime = (int)((1000.0 / 60) - timeTaken);
-					PreciseSleep.Sleep(sleepTime);
+					PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
 				}
 				s.Stop();
-				Debug.WriteLine($"60 frames in {s.ElapsedMilliseconds}ms");
+				Debug.WriteLine($"{frameRate} frames in {s.ElapsedMilliseconds}ms");
 			}
 			IsRunning = false;
 			Debug.WriteLine("Console Stopped");

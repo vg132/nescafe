@@ -44,6 +44,8 @@ partial class Launcher
 		slot3ToolStripMenuItem1 = new ToolStripMenuItem();
 		slot4ToolStripMenuItem1 = new ToolStripMenuItem();
 		slot5ToolStripMenuItem1 = new ToolStripMenuItem();
+		toolStripMenuItem4 = new ToolStripSeparator();
+		mruListMenuItem = new ToolStripMenuItem();
 		toolStripMenuItem2 = new ToolStripSeparator();
 		exitToolStripMenuItem = new ToolStripMenuItem();
 		gToolStripMenuItem = new ToolStripMenuItem();
@@ -52,13 +54,13 @@ partial class Launcher
 		resetToolStripMenuItem = new ToolStripMenuItem();
 		settingsToolStripMenuItem = new ToolStripMenuItem();
 		videoSizeToolStripMenuItem = new ToolStripMenuItem();
-		toolStripMenuItem9 = new ToolStripMenuItem();
-		toolStripMenuItem10 = new ToolStripMenuItem();
-		normalToolStripMenuItem = new ToolStripMenuItem();
-		toolStripMenuItem5 = new ToolStripMenuItem();
-		toolStripMenuItem6 = new ToolStripMenuItem();
-		toolStripMenuItem7 = new ToolStripMenuItem();
-		toolStripMenuItem8 = new ToolStripMenuItem();
+		cpuSpeed50MenuItem = new ToolStripMenuItem();
+		cpuSpeed75MenuItem = new ToolStripMenuItem();
+		cpuSpeed100MenuItem = new ToolStripMenuItem();
+		cpuSpeed125MenuItem = new ToolStripMenuItem();
+		cpuSpeed150MenuItem = new ToolStripMenuItem();
+		cpuSpeed175MenuItem = new ToolStripMenuItem();
+		cpuSpeed200MenuItem = new ToolStripMenuItem();
 		videoSizeToolStripMenuItem1 = new ToolStripMenuItem();
 		videoSize1MenuItem = new ToolStripMenuItem();
 		videoSize2MenuItem = new ToolStripMenuItem();
@@ -82,7 +84,7 @@ partial class Launcher
 		// 
 		// fileToolStripMenuItem
 		// 
-		fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, toolStripMenuItem1, saveStateToolStripMenuItem, loadStateToolStripMenuItem, toolStripMenuItem2, exitToolStripMenuItem });
+		fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, toolStripMenuItem1, saveStateToolStripMenuItem, loadStateToolStripMenuItem, toolStripMenuItem4, mruListMenuItem, toolStripMenuItem2, exitToolStripMenuItem });
 		fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 		fileToolStripMenuItem.Size = new Size(37, 20);
 		fileToolStripMenuItem.Text = "&File";
@@ -90,20 +92,20 @@ partial class Launcher
 		// openToolStripMenuItem
 		// 
 		openToolStripMenuItem.Name = "openToolStripMenuItem";
-		openToolStripMenuItem.Size = new Size(128, 22);
+		openToolStripMenuItem.Size = new Size(180, 22);
 		openToolStripMenuItem.Text = "&Open...";
 		openToolStripMenuItem.Click += openToolStripMenuItem_Click;
 		// 
 		// toolStripMenuItem1
 		// 
 		toolStripMenuItem1.Name = "toolStripMenuItem1";
-		toolStripMenuItem1.Size = new Size(125, 6);
+		toolStripMenuItem1.Size = new Size(177, 6);
 		// 
 		// saveStateToolStripMenuItem
 		// 
 		saveStateToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { slot1ToolStripMenuItem, slot2ToolStripMenuItem, slot3ToolStripMenuItem, slot4ToolStripMenuItem, slot5ToolStripMenuItem });
 		saveStateToolStripMenuItem.Name = "saveStateToolStripMenuItem";
-		saveStateToolStripMenuItem.Size = new Size(128, 22);
+		saveStateToolStripMenuItem.Size = new Size(180, 22);
 		saveStateToolStripMenuItem.Text = "Save state";
 		// 
 		// slot1ToolStripMenuItem
@@ -140,7 +142,7 @@ partial class Launcher
 		// 
 		loadStateToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { slot1ToolStripMenuItem1, slot2ToolStripMenuItem1, slot3ToolStripMenuItem1, slot4ToolStripMenuItem1, slot5ToolStripMenuItem1 });
 		loadStateToolStripMenuItem.Name = "loadStateToolStripMenuItem";
-		loadStateToolStripMenuItem.Size = new Size(128, 22);
+		loadStateToolStripMenuItem.Size = new Size(180, 22);
 		loadStateToolStripMenuItem.Text = "Load state";
 		// 
 		// slot1ToolStripMenuItem1
@@ -173,15 +175,26 @@ partial class Launcher
 		slot5ToolStripMenuItem1.Size = new Size(110, 22);
 		slot5ToolStripMenuItem1.Text = "Slot #5";
 		// 
+		// toolStripMenuItem4
+		// 
+		toolStripMenuItem4.Name = "toolStripMenuItem4";
+		toolStripMenuItem4.Size = new Size(177, 6);
+		// 
+		// mruListMenuItem
+		// 
+		mruListMenuItem.Name = "mruListMenuItem";
+		mruListMenuItem.Size = new Size(180, 22);
+		mruListMenuItem.Text = "&Recent";
+		// 
 		// toolStripMenuItem2
 		// 
 		toolStripMenuItem2.Name = "toolStripMenuItem2";
-		toolStripMenuItem2.Size = new Size(125, 6);
+		toolStripMenuItem2.Size = new Size(177, 6);
 		// 
 		// exitToolStripMenuItem
 		// 
 		exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-		exitToolStripMenuItem.Size = new Size(128, 22);
+		exitToolStripMenuItem.Size = new Size(180, 22);
 		exitToolStripMenuItem.Text = "E&xit";
 		exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 		// 
@@ -220,52 +233,66 @@ partial class Launcher
 		// 
 		// videoSizeToolStripMenuItem
 		// 
-		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem9, toolStripMenuItem10, normalToolStripMenuItem, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7, toolStripMenuItem8 });
+		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cpuSpeed50MenuItem, cpuSpeed75MenuItem, cpuSpeed100MenuItem, cpuSpeed125MenuItem, cpuSpeed150MenuItem, cpuSpeed175MenuItem, cpuSpeed200MenuItem });
 		videoSizeToolStripMenuItem.Name = "videoSizeToolStripMenuItem";
 		videoSizeToolStripMenuItem.Size = new Size(127, 22);
 		videoSizeToolStripMenuItem.Text = "Speed";
 		// 
-		// toolStripMenuItem9
+		// cpuSpeed50MenuItem
 		// 
-		toolStripMenuItem9.Name = "toolStripMenuItem9";
-		toolStripMenuItem9.Size = new Size(148, 22);
-		toolStripMenuItem9.Text = "50%";
+		cpuSpeed50MenuItem.Name = "cpuSpeed50MenuItem";
+		cpuSpeed50MenuItem.Size = new Size(150, 22);
+		cpuSpeed50MenuItem.Tag = "30";
+		cpuSpeed50MenuItem.Text = "50% (30 fps)";
+		cpuSpeed50MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// toolStripMenuItem10
+		// cpuSpeed75MenuItem
 		// 
-		toolStripMenuItem10.Name = "toolStripMenuItem10";
-		toolStripMenuItem10.Size = new Size(148, 22);
-		toolStripMenuItem10.Text = "75%";
+		cpuSpeed75MenuItem.Name = "cpuSpeed75MenuItem";
+		cpuSpeed75MenuItem.Size = new Size(150, 22);
+		cpuSpeed75MenuItem.Tag = "45";
+		cpuSpeed75MenuItem.Text = "75% (45 fps)";
+		cpuSpeed75MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// normalToolStripMenuItem
+		// cpuSpeed100MenuItem
 		// 
-		normalToolStripMenuItem.Name = "normalToolStripMenuItem";
-		normalToolStripMenuItem.Size = new Size(148, 22);
-		normalToolStripMenuItem.Text = "100 % Normal";
+		cpuSpeed100MenuItem.Name = "cpuSpeed100MenuItem";
+		cpuSpeed100MenuItem.Size = new Size(150, 22);
+		cpuSpeed100MenuItem.Tag = "60";
+		cpuSpeed100MenuItem.Text = "100 % (60 fps)";
+		cpuSpeed100MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// toolStripMenuItem5
+		// cpuSpeed125MenuItem
 		// 
-		toolStripMenuItem5.Name = "toolStripMenuItem5";
-		toolStripMenuItem5.Size = new Size(148, 22);
-		toolStripMenuItem5.Text = "125%";
+		cpuSpeed125MenuItem.Name = "cpuSpeed125MenuItem";
+		cpuSpeed125MenuItem.Size = new Size(150, 22);
+		cpuSpeed125MenuItem.Tag = "75";
+		cpuSpeed125MenuItem.Text = "125% (75 fps)";
+		cpuSpeed125MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// toolStripMenuItem6
+		// cpuSpeed150MenuItem
 		// 
-		toolStripMenuItem6.Name = "toolStripMenuItem6";
-		toolStripMenuItem6.Size = new Size(148, 22);
-		toolStripMenuItem6.Text = "150%";
+		cpuSpeed150MenuItem.Name = "cpuSpeed150MenuItem";
+		cpuSpeed150MenuItem.Size = new Size(150, 22);
+		cpuSpeed150MenuItem.Tag = "90";
+		cpuSpeed150MenuItem.Text = "150% (90 fps)";
+		cpuSpeed150MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// toolStripMenuItem7
+		// cpuSpeed175MenuItem
 		// 
-		toolStripMenuItem7.Name = "toolStripMenuItem7";
-		toolStripMenuItem7.Size = new Size(148, 22);
-		toolStripMenuItem7.Text = "200%";
+		cpuSpeed175MenuItem.Name = "cpuSpeed175MenuItem";
+		cpuSpeed175MenuItem.Size = new Size(150, 22);
+		cpuSpeed175MenuItem.Tag = "105";
+		cpuSpeed175MenuItem.Text = "175% (105 fps)";
+		cpuSpeed175MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
-		// toolStripMenuItem8
+		// cpuSpeed200MenuItem
 		// 
-		toolStripMenuItem8.Name = "toolStripMenuItem8";
-		toolStripMenuItem8.Size = new Size(148, 22);
-		toolStripMenuItem8.Text = "300%";
+		cpuSpeed200MenuItem.Name = "cpuSpeed200MenuItem";
+		cpuSpeed200MenuItem.Size = new Size(150, 22);
+		cpuSpeed200MenuItem.Tag = "120";
+		cpuSpeed200MenuItem.Text = "200% (120 fps)";
+		cpuSpeed200MenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
 		// videoSizeToolStripMenuItem1
 		// 
@@ -387,13 +414,13 @@ partial class Launcher
 	private ToolStripMenuItem resetToolStripMenuItem;
 	private ToolStripMenuItem settingsToolStripMenuItem;
 	private ToolStripMenuItem videoSizeToolStripMenuItem;
-	private ToolStripMenuItem normalToolStripMenuItem;
-	private ToolStripMenuItem toolStripMenuItem5;
-	private ToolStripMenuItem toolStripMenuItem6;
-	private ToolStripMenuItem toolStripMenuItem7;
-	private ToolStripMenuItem toolStripMenuItem8;
-	private ToolStripMenuItem toolStripMenuItem9;
-	private ToolStripMenuItem toolStripMenuItem10;
+	private ToolStripMenuItem cpuSpeed100MenuItem;
+	private ToolStripMenuItem cpuSpeed125MenuItem;
+	private ToolStripMenuItem cpuSpeed150MenuItem;
+	private ToolStripMenuItem cpuSpeed175MenuItem;
+	private ToolStripMenuItem cpuSpeed200MenuItem;
+	private ToolStripMenuItem cpuSpeed50MenuItem;
+	private ToolStripMenuItem cpuSpeed75MenuItem;
 	private ToolStripMenuItem videoSizeToolStripMenuItem1;
 	private ToolStripMenuItem videoSize1MenuItem;
 	private ToolStripMenuItem videoSize2MenuItem;
@@ -403,4 +430,6 @@ partial class Launcher
 	private ToolStripMenuItem videoSize6MenuItem;
 	private ToolStripMenuItem fullScreenToolStripMenuItem;
 	private OpenTK.WinForms.GLControl glControl1;
+	private ToolStripSeparator toolStripMenuItem4;
+	private ToolStripMenuItem mruListMenuItem;
 }

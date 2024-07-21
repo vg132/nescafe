@@ -1,4 +1,6 @@
-﻿using Nescafe.UI;
+﻿using Microsoft.Extensions.Configuration;
+using Nescafe.UI;
+using System.Diagnostics;
 
 namespace Nescafe;
 
