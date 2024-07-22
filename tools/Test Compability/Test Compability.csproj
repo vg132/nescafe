@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Netcafe.Core\Nescafe.Core.csproj" />
+    <ProjectReference Include="..\..\Nescafe.Core\Nescafe.Core.csproj" />
   </ItemGroup>
 
 </Project>

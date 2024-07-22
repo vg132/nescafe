@@ -153,6 +153,7 @@ namespace Nescafe.Core
 				case 172:
 					System.Console.WriteLine(" Supported!");
 					Mapper = new Mapper172(this);
+					break;
 				default:
 					System.Console.WriteLine(" mapper is not supported");
 					return false;
