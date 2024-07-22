@@ -1,7 +1,5 @@
 ﻿using Nescafe.Core.Mappers;
-using System;
 using System.Diagnostics;
-using System.Threading;
 
 namespace Nescafe.Core
 {
@@ -151,6 +149,10 @@ namespace Nescafe.Core
 				case 68:
 					System.Console.WriteLine(" (MMC6) Supported!");
 					Mapper = new Mmc6Mapper(this);
+					break;
+				case 172:
+					System.Console.WriteLine(" Supported!");
+					Mapper = new Mapper172(this);
 					break;
 				default:
 					System.Console.WriteLine(" mapper is not supported");

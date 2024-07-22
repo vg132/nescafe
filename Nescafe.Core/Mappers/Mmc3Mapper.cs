@@ -1,39 +1,40 @@
 ﻿using System;
+
 namespace Nescafe.Core.Mappers
 {
 	/// <summary>
-	/// Represents Nintendo's MMC6 mapper.
+	/// Represents Nintendo's MMC3 mapper.
 	/// </summary>
-	public class Mmc6Mapper : Mapper
+	public class Mmc3Mapper : Mapper
 	{
 		// Bank select register
-		byte _bank;
-		byte _prgRomMode;
-		byte _chrRomMode;
+		private byte _bank;
+		private byte _prgRomMode;
+		private byte _chrRomMode;
 
 		// PRG RAM protect register
-		byte _prgRamEnable;
-		byte _prgRamProtect;
+		private byte _prgRamEnable;
+		private byte _prgRamProtect;
 
 		// Bank offsets
-		int[] _chrOffsets;
-		int[] _prgOffsets;
+		private int[] _chrOffsets;
+		private int[] _prgOffsets;
 
 		// Bank registers
-		byte[] _bankRegisters;
+		private byte[] _bankRegisters;
 
 		// IRQ enable/disable registers
-		bool _irqEnabled;
+		private bool _irqEnabled;
 
 		// IRQ counter and reload value
-		int _irqCounter;
-		byte _irqCounterReload;
+		private int _irqCounter;
+		private byte _irqCounterReload;
 
 		/// <summary>
-		/// Constructs a new MMC6 mapper.
+		/// Constructs a new MMC3 mapper.
 		/// </summary>
 		/// <param name="console">Console.</param>
-		public Mmc6Mapper(Console console)
+		public Mmc3Mapper(Console console)
 		{
 			_console = console;
 

@@ -1,5 +1,4 @@
-﻿
-namespace Nescafe.Test_Compability;
+﻿namespace Nescafe.Test_Compability;
 
 public class Program
 {

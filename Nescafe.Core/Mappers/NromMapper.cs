@@ -17,7 +17,7 @@ namespace Nescafe.Core.Mappers
 			_vramMirroringType = _console.Cartridge.VerticalVramMirroring ? VramMirroring.Vertical : VramMirroring.Horizontal;
 		}
 
-		int AddressToPrgRomIndex(ushort address)
+		private int AddressToPrgRomIndex(ushort address)
 		{
 			var mappedAddress = (ushort)(address - 0x8000); // PRG banks start at 0x8000
 			return _console.Cartridge.PrgRomBanks == 1 ? (ushort)(mappedAddress % 16384) : mappedAddress; // Wrap if only 1 PRG bank
