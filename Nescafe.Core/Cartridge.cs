@@ -224,7 +224,7 @@ public class Cartridge
 		}
 	}
 
-	void ParseHeader(BinaryReader reader)
+	private void ParseHeader(BinaryReader reader)
 	{
 		// Verify magic number
 		var magicNum = reader.ReadUInt32();
