@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Netcafe.Core\Netcafe.Core.csproj" />
+	  <ProjectReference Include="..\Netcafe.Core\Nescafe.Core.csproj" />
 	  <ProjectReference Include="..\OpenTK.WinForms\OpenTK.WinForms.csproj" />
 	</ItemGroup>
 
