@@ -1,18 +1,19 @@
 ﻿using Nescafe.Services;
 using Nescafe.UI.Input;
-using System.Diagnostics;
 
 namespace Nescafe.UI;
 
 public partial class Launcher : Form
 {
 	private readonly Core.Console _console;
-
+	private readonly string[] _args;
 	private Renderer _renderer;
 	private Thread _nesThread;
 	private Keyboard _input;
 
-	public Launcher()
+	public void Exit() => Application.Exit();
+
+	public Launcher(string[] args)
 	{
 		InitializeComponent();
 
@@ -29,6 +30,7 @@ public partial class Launcher : Form
 		SetupStateMenuItems();
 
 		_console = new Core.Console();
+		_args = args;
 	}
 
 	protected override void OnLoad(EventArgs e)
@@ -52,6 +54,10 @@ public partial class Launcher : Form
 		_console.OnRunning += Console_OnRunning;
 
 		_input = new Keyboard(this, _console);
+		if (_args?.Any() == true)
+		{
+			LoadROM(_args[0]);
+		}
 	}
 
 	private void Console_OnRunning(Core.Console obj)

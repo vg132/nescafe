@@ -213,7 +213,7 @@ namespace Nescafe.Core
 			var s = new Stopwatch();
 			while (!_stop)
 			{
-				var frameRate = AppSettings.Instance.CpuSpeed;
+				var frameRate = 60;//AppSettings.Instance.CpuSpeed;
 				s.Restart();
 				for (var i = 0; i < frameRate; i++)
 				{
