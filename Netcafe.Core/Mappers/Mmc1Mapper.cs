@@ -8,31 +8,31 @@ namespace Nescafe.Core.Mappers
 	public class Mmc1Mapper : Mapper
 	{
 		// Common shift register
-		byte _shiftReg;
+		private byte _shiftReg;
 
 		// Internal registers
-		byte _controlReg;
-		byte _chr0Reg;
-		byte _chr1Reg;
-		byte _prgReg;
+		private byte _controlReg;
+		private byte _chr0Reg;
+		private byte _chr1Reg;
+		private byte _prgReg;
 
 		// Control register
-		byte _prgMode;
-		byte _chrMode;
+		private byte _prgMode;
+		private byte _chrMode;
 
 		// PRG register
-		byte _prgRamEnable;
+		private byte _prgRamEnable;
 
 		// CHR offsets
-		int _chrBank0Offset;
-		int _chrBank1Offset;
+		private int _chrBank0Offset;
+		private int _chrBank1Offset;
 
 		// PRG offsets
-		int _prgBank0Offset;
-		int _prgBank1Offset;
+		private int _prgBank0Offset;
+		private int _prgBank1Offset;
 
 		// Current number of writes to internal shift register
-		int _shiftCount;
+		private int _shiftCount;
 
 		/// <summary>
 		/// Construct a new MMC1 mapper.
@@ -130,7 +130,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void LoadRegister(ushort address, byte data)
+		private void LoadRegister(ushort address, byte data)
 		{
 			if ((data & 0x80) != 0)
 			{
@@ -153,7 +153,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void WriteRegister(ushort address, byte data)
+		private void WriteRegister(ushort address, byte data)
 		{
 			if (address >= 0x8000 && address <= 0x9FFF)
 			{
@@ -177,7 +177,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void WriteControlReg(byte data)
+		private void WriteControlReg(byte data)
 		{
 			_controlReg = data;
 			_prgMode = (byte)((data >> 2) & 0x03);
@@ -200,26 +200,26 @@ namespace Nescafe.Core.Mappers
 			UpdateBankOffsets();
 		}
 
-		void WriteChr0Reg(byte data)
+		private void WriteChr0Reg(byte data)
 		{
 			_chr0Reg = data;
 			UpdateBankOffsets();
 		}
 
-		void WriteChr1Reg(byte data)
+		private void WriteChr1Reg(byte data)
 		{
 			_chr1Reg = data;
 			UpdateBankOffsets();
 		}
 
-		void WritePrgReg(byte data)
+		private void WritePrgReg(byte data)
 		{
 			_prgReg = data;
 			_prgRamEnable = (byte)((data >> 4) & 0x01);
 			UpdateBankOffsets();
 		}
 
-		void UpdateBankOffsets()
+		private void UpdateBankOffsets()
 		{
 			switch (_chrMode)
 			{

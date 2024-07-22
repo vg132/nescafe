@@ -8,27 +8,27 @@ namespace Nescafe.Core.Mappers
 	public class Mmc3Mapper : Mapper
 	{
 		// Bank select register
-		byte _bank;
-		byte _prgRomMode;
-		byte _chrRomMode;
+		private byte _bank;
+		private byte _prgRomMode;
+		private byte _chrRomMode;
 
 		// PRG RAM protect register
-		byte _prgRamEnable;
-		byte _prgRamProtect;
+		private byte _prgRamEnable;
+		private byte _prgRamProtect;
 
 		// Bank offsets
-		int[] _chrOffsets;
-		int[] _prgOffsets;
+		private int[] _chrOffsets;
+		private int[] _prgOffsets;
 
 		// Bank registers
-		byte[] _bankRegisters;
+		private byte[] _bankRegisters;
 
 		// IRQ enable/disable registers
-		bool _irqEnabled;
+		private bool _irqEnabled;
 
 		// IRQ counter and reload value
-		int _irqCounter;
-		byte _irqCounterReload;
+		private int _irqCounter;
+		private byte _irqCounterReload;
 
 		/// <summary>
 		/// Constructs a new MMC3 mapper.
@@ -152,7 +152,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void WriteBankSelectReg(byte data)
+		private void WriteBankSelectReg(byte data)
 		{
 			_bank = (byte)(data & 0x07);
 			_prgRomMode = (byte)((data >> 6) & 0x01);
@@ -160,7 +160,7 @@ namespace Nescafe.Core.Mappers
 			UpdateBankOffsets();
 		}
 
-		void WriteBankDataReg(byte data)
+		private void WriteBankDataReg(byte data)
 		{
 			_bankRegisters[_bank] = data;
 			UpdateBankOffsets();
@@ -184,7 +184,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void ClockA12()
+		private void ClockA12()
 		{
 			if (_irqCounter == 0)
 			{
@@ -200,33 +200,33 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void WriteIrqEnableReg(byte data)
+		private void WriteIrqEnableReg(byte data)
 		{
 			_irqEnabled = true;
 		}
 
-		void WriteIrqDisableReg(byte data)
+		private void WriteIrqDisableReg(byte data)
 		{
 			_irqEnabled = false;
 		}
 
-		void WriteIrqReloadReg(byte data)
+		private void WriteIrqReloadReg(byte data)
 		{
 			_irqCounter = 0;
 		}
 
-		void WriteIrqLatchReg(byte data)
+		private void WriteIrqLatchReg(byte data)
 		{
 			_irqCounterReload = data;
 		}
 
-		void WritePrgRamProtectReg(byte data)
+		private void WritePrgRamProtectReg(byte data)
 		{
 			_prgRamEnable = (byte)((data >> 7) & 0x01);
 			_prgRamProtect = (byte)((data >> 6) & 0x01);
 		}
 
-		void WriteMirroringReg(byte data)
+		private void WriteMirroringReg(byte data)
 		{
 			switch (data & 0x01)
 			{
@@ -239,7 +239,7 @@ namespace Nescafe.Core.Mappers
 			}
 		}
 
-		void UpdateBankOffsets()
+		private void UpdateBankOffsets()
 		{
 			switch (_chrRomMode)
 			{

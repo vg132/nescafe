@@ -7,7 +7,7 @@ namespace Nescafe.Core.Mappers
 	/// </summary>
 	public class CnRomMapper : Mapper
 	{
-		int _bank0Offset;
+		private int _bank0Offset;
 
 		/// <summary>
 		/// Construct a new CNROM mapper.
