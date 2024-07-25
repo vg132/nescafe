@@ -5,12 +5,11 @@ namespace Nescafe.Core
 	/// <summary>
 	/// Represents the PPU's memory and memory mapped IO.
 	/// </summary>
-	public class PpuMemory : Memory
+	public partial class PpuMemory : Memory
 	{
 		private readonly Console _console;
-		private byte[] _vRam;
-		private byte[] _paletteRam;
 
+		public PpuMemoryState State { get; private set; }
 		/// <summary>
 		/// Construct a new PPU memory device.
 		/// </summary>
@@ -18,8 +17,7 @@ namespace Nescafe.Core
 		public PpuMemory(Console console)
 		{
 			_console = console;
-			_vRam = new byte[2048];
-			_paletteRam = new byte[32];
+			State = new PpuMemoryState();
 		}
 
 		/// <summary>
@@ -27,8 +25,8 @@ namespace Nescafe.Core
 		/// </summary>
 		public void Reset()
 		{
-			Array.Clear(_vRam, 0, _vRam.Length);
-			Array.Clear(_paletteRam, 0, _paletteRam.Length);
+			Array.Clear(State.VRam, 0, State.VRam.Length);
+			Array.Clear(State.PaletteRam, 0, State.PaletteRam.Length);
 		}
 
 		/// <summary>
@@ -61,13 +59,13 @@ namespace Nescafe.Core
 			{
 				if (address <= 0x3EFF)
 				{
-					data = _vRam[_console.Mapper.VramAddressToIndex(address)];
+					data = State.VRam[_console.Mapper.VramAddressToIndex(address)];
 				}
 				else
 				{
 					if (address >= 0x3F00 && address <= 0x3FFF)
 					{
-						data = _paletteRam[GetPaletteRamIndex(address)];
+						data = State.PaletteRam[GetPaletteRamIndex(address)];
 					}
 					else
 					{
@@ -91,12 +89,12 @@ namespace Nescafe.Core
 			}
 			else if (address >= 0x2000 && address <= 0x3EFF) // Internal VRAM
 			{
-				_vRam[_console.Mapper.VramAddressToIndex(address)] = data;
+				State.VRam[_console.Mapper.VramAddressToIndex(address)] = data;
 			}
 			else if (address >= 0x3F00 && address <= 0x3FFF) // Palette RAM addresses
 			{
 				var addr = GetPaletteRamIndex(address);
-				_paletteRam[addr] = data;
+				State.PaletteRam[addr] = data;
 			}
 			else // Invalid Write
 			{
@@ -106,28 +104,8 @@ namespace Nescafe.Core
 
 		#region Save/Load state
 
-		[Serializable]
-		public class PpuMemoryStae
-		{
-			public byte[] VRam;
-			public byte[] PaletteRam;
-		}
-
-		public override object SaveState()
-		{
-			return new PpuMemoryStae
-			{
-				VRam = _vRam,
-				PaletteRam = _paletteRam
-			};
-		}
-
-		public override void LoadState(object state)
-		{
-			var ppuMemoryState = state as PpuMemoryStae;
-			_vRam = ppuMemoryState.VRam;
-			_paletteRam = ppuMemoryState.PaletteRam;
-		}
+		public override object SaveState() => State;
+		public override void LoadState(object state) => State = (PpuMemoryState)state;
 
 		#endregion
 	}

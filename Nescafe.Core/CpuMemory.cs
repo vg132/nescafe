@@ -1,188 +1,170 @@
-﻿using System;
+﻿namespace Nescafe.Core;
 
-namespace Nescafe.Core
+/// <summary>
+/// Represents the CPU's memory and memory mapped IO.
+/// </summary>
+public partial class CpuMemory : Memory
 {
+	// First 2KB of internal ram
+	private readonly Console _console;
+	public CpuMemoryState State { get; private set; }
+
 	/// <summary>
-	/// Represents the CPU's memory and memory mapped IO.
+	/// Construct a new CPU memory device.
 	/// </summary>
-	public class CpuMemory : Memory
+	/// <param name="console">the console that this CPU Memory is a part of</param>
+	public CpuMemory(Console console)
 	{
-		// First 2KB of internal ram
-		byte[] _internalRam = new byte[2048];
-		readonly Console _console;
+		_console = console;
+		State = new CpuMemoryState();
+	}
 
-		/// <summary>
-		/// Construct a new CPU memory device.
-		/// </summary>
-		/// <param name="console">the console that this CPU Memory is a part of</param>
-		public CpuMemory(Console console)
+	/// <summary>
+	/// Resets this CPU Memory to its startup state
+	/// </summary>
+	public void Reset()
+	{
+		Array.Clear(State.InternalRam, 0, State.InternalRam.Length);
+	}
+
+	// Return the index in internalRam of the address (handle mirroring)
+	private ushort HandleInternalRamMirror(ushort address)
+	{
+		return (ushort)(address % 0x800);
+	}
+
+	// Handles mirroring of PPU register addresses
+	private ushort GetPpuRegisterFromAddress(ushort address)
+	{
+		// Special case for OAMDMA ($4014) which is not alongside the other registers
+		return address == 0x4014 ? address : (ushort)(0x2000 + ((address - 0x2000) % 8));
+	}
+
+	private void WritePpuRegister(ushort address, byte data)
+	{
+		_console.Ppu.WriteToRegister(GetPpuRegisterFromAddress(address), data);
+	}
+
+	private byte ReadPpuRegister(ushort address)
+	{
+		return _console.Ppu.ReadFromRegister(GetPpuRegisterFromAddress(address));
+	}
+
+	private byte ReadApuIoRegister(ushort address)
+	{
+		byte data;
+		switch (address)
 		{
-			_console = console;
+			case 0x4016: // Controller 1
+				data = _console.Controller.ReadControllerOutput();
+				break;
+			default: // Unimplemented register
+				data = 0;
+				break;
 		}
+		return data;
+	}
 
-		/// <summary>
-		/// Resets this CPU Memory to its startup state
-		/// </summary>
-		public void Reset()
+	void WriteApuIoRegister(ushort address, byte data)
+	{
+		switch (address)
 		{
-			Array.Clear(_internalRam, 0, _internalRam.Length);
+			case 0x4016: // Controller 1
+				_console.Controller.WriteControllerInput(data);
+				break;
+			default: // Unimplemented register
+				data = 0;
+				break;
 		}
+	}
 
-		// Return the index in internalRam of the address (handle mirroring)
-		private ushort HandleInternalRamMirror(ushort address)
+	/// <summary>
+	/// Read a byte of memory from the specified address.
+	/// </summary>
+	/// <returns>the byte read</returns>
+	/// <param name="address">the address to read from</param>
+	public override byte Read(ushort address)
+	{
+		byte data;
+		if (address < 0x2000) // Internal CPU RAM 
 		{
-			return (ushort)(address % 0x800);
+			var addressIndex = HandleInternalRamMirror(address);
+			data = State.InternalRam[addressIndex];
 		}
-
-		// Handles mirroring of PPU register addresses
-		private ushort GetPpuRegisterFromAddress(ushort address)
+		else
 		{
-			// Special case for OAMDMA ($4014) which is not alongside the other registers
-			return address == 0x4014 ? address : (ushort)(0x2000 + ((address - 0x2000) % 8));
-		}
-
-		private void WritePpuRegister(ushort address, byte data)
-		{
-			_console.Ppu.WriteToRegister(GetPpuRegisterFromAddress(address), data);
-		}
-
-		private byte ReadPpuRegister(ushort address)
-		{
-			return _console.Ppu.ReadFromRegister(GetPpuRegisterFromAddress(address));
-		}
-
-		private byte ReadApuIoRegister(ushort address)
-		{
-			byte data;
-			switch (address)
+			if (address <= 0x3FFF)
 			{
-				case 0x4016: // Controller 1
-					data = _console.Controller.ReadControllerOutput();
-					break;
-				default: // Unimplemented register
-					data = 0;
-					break;
-			}
-			return data;
-		}
-
-		void WriteApuIoRegister(ushort address, byte data)
-		{
-			switch (address)
-			{
-				case 0x4016: // Controller 1
-					_console.Controller.WriteControllerInput(data);
-					break;
-				default: // Unimplemented register
-					data = 0;
-					break;
-			}
-		}
-
-		/// <summary>
-		/// Read a byte of memory from the specified address.
-		/// </summary>
-		/// <returns>the byte read</returns>
-		/// <param name="address">the address to read from</param>
-		public override byte Read(ushort address)
-		{
-			byte data;
-			if (address < 0x2000) // Internal CPU RAM 
-			{
-				var addressIndex = HandleInternalRamMirror(address);
-				data = _internalRam[addressIndex];
+				data = ReadPpuRegister(address);
 			}
 			else
 			{
-				if (address <= 0x3FFF)
+				if (address <= 0x4017)
 				{
-					data = ReadPpuRegister(address);
+					data = ReadApuIoRegister(address);
 				}
 				else
 				{
-					if (address <= 0x4017)
+					if (address <= 0x401F)
 					{
-						data = ReadApuIoRegister(address);
+						data = (byte)0;
 					}
 					else
 					{
-						if (address <= 0x401F)
+						if (address >= 0x4020)
 						{
-							data = (byte)0;
+							data = _console.Mapper.Read(address);
 						}
 						else
 						{
-							if (address >= 0x4020)
-							{
-								data = _console.Mapper.Read(address);
-							}
-							else
-							{
-								throw new Exception("Invalid CPU read at address " + address.ToString("X4"));
-							}
+							throw new Exception("Invalid CPU read at address " + address.ToString("X4"));
 						}
 					}
 				}
 			}
-
-			return data;
 		}
 
-		/// <summary>
-		/// Write a byte of memory to the specified address.
-		/// </summary>
-		/// <param name="address">the address to write to</param>
-		/// <param name="data">the byte to write to the specified address</param>
-		public override void Write(ushort address, byte data)
-		{
-			if (address < 0x2000) // Internal CPU RAM
-			{
-				var addressIndex = HandleInternalRamMirror(address);
-				_internalRam[addressIndex] = data;
-			}
-			else if (address <= 0x3FFF || address == 0x4014) // PPU Registers
-			{
-				WritePpuRegister(address, data);
-			}
-			else if (address <= 0x4017) // APU / IO 
-			{
-				WriteApuIoRegister(address, data);
-			}
-			else if (address <= 0x401F) // Disabled on a retail NES
-			{
-
-			}
-			else if (address >= 0x4020)
-			{
-				_console.Mapper.Write(address, data);
-			}
-			else // Invalid Write
-			{
-				throw new Exception("Invalid CPU write to address " + address.ToString("X4"));
-			}
-		}
-
-		#region Save/Load state
-
-		[Serializable]
-		public class CpuMemoryState
-		{
-			public byte[] InternalRam;
-		}
-
-		public override object SaveState()
-		{
-			return new CpuMemoryState
-			{
-				InternalRam = _internalRam
-			};
-		}
-
-		public override void LoadState(object state)
-		{
-			_internalRam = ((CpuMemoryState)state).InternalRam;
-		}
-
-		#endregion
+		return data;
 	}
+
+	/// <summary>
+	/// Write a byte of memory to the specified address.
+	/// </summary>
+	/// <param name="address">the address to write to</param>
+	/// <param name="data">the byte to write to the specified address</param>
+	public override void Write(ushort address, byte data)
+	{
+		if (address < 0x2000) // Internal CPU RAM
+		{
+			var addressIndex = HandleInternalRamMirror(address);
+			State.InternalRam[addressIndex] = data;
+		}
+		else if (address <= 0x3FFF || address == 0x4014) // PPU Registers
+		{
+			WritePpuRegister(address, data);
+		}
+		else if (address <= 0x4017) // APU / IO 
+		{
+			WriteApuIoRegister(address, data);
+		}
+		else if (address <= 0x401F) // Disabled on a retail NES
+		{
+
+		}
+		else if (address >= 0x4020)
+		{
+			_console.Mapper.Write(address, data);
+		}
+		else // Invalid Write
+		{
+			throw new Exception("Invalid CPU write to address " + address.ToString("X4"));
+		}
+	}
+
+	#region Save/Load state
+
+	public override object SaveState() => State;
+	public override void LoadState(object state) => State = (CpuMemoryState)state;
+
+	#endregion
 }
