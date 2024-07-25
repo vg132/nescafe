@@ -6,4 +6,13 @@
 		<Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Debug\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Cpu.Instructions.cs">
+			<DependentUpon>Cpu.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 </Project>

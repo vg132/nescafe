@@ -170,8 +170,8 @@ namespace Nescafe.Core.Mappers
 		/// </summary>
 		public override void Step()
 		{
-			var scanline = _console.Ppu.Scanline;
-			var cycle = _console.Ppu.Cycle;
+			var scanline = _console.Ppu.State.Scanline;
+			var cycle = _console.Ppu.State.Cycle;
 			var renderingEnabled = _console.Ppu.RenderingEnabled;
 
 			// The choice of 315 as the PPU Cycle to clock A12 on is slightly arbitrary
