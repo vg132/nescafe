@@ -1,5 +1,6 @@
 ﻿using Nescafe.Core.Mappers;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Nescafe.Core
 {
@@ -72,6 +73,8 @@ namespace Nescafe.Core
 		// Used internally to determine if we've reached a new frame
 		bool _frameEvenOdd;
 
+		private IDictionary<int, Type> _mappers;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Nescafe.Console"/> class.
 		/// </summary>
@@ -84,6 +87,24 @@ namespace Nescafe.Core
 
 			Cpu = new Cpu(this);
 			Ppu = new Ppu(this);
+
+			InitializeMappers();
+		}
+
+		private void InitializeMappers()
+		{
+			_mappers = new Dictionary<int, Type>();
+			var types = Assembly.GetExecutingAssembly()
+				.GetTypes()
+				.Where(item => !item.IsAbstract && item.IsSubclassOf(typeof(Mapper)));
+			foreach (var type in types)
+			{
+				var mapper = type.GetCustomAttribute<MapperAttribute>();
+				if (mapper != null && !_mappers.ContainsKey(mapper.Id))
+				{
+					_mappers.Add(mapper.Id, type);
+				}
+			}
 		}
 
 		public void Reset()
@@ -123,44 +144,16 @@ namespace Nescafe.Core
 			}
 
 			// Set mapper
-			System.Console.Write("iNES Mapper Number: " + Cartridge.MapperNumber.ToString());
-			switch (Cartridge.MapperNumber)
+			if (_mappers.ContainsKey(Cartridge.MapperNumber))
 			{
-				case 0:
-					System.Console.WriteLine(" (NROM) Supported!");
-					Mapper = new NromMapper(this);
-					break;
-				case 1:
-					System.Console.WriteLine(" (MMC1) Supported!");
-					Mapper = new Mmc1Mapper(this);
-					break;
-				case 2:
-					System.Console.WriteLine(" (UxROM) Supported!");
-					Mapper = new UxRomMapper(this);
-					break;
-				case 3:
-					System.Console.WriteLine(" (CNROM) Supported!");
-					Mapper = new CnRomMapper(this);
-					break;
-				case 4:
-					System.Console.WriteLine(" (MMC3) Supported!");
-					Mapper = new Mmc3Mapper(this);
-					break;
-				case 7:
-					System.Console.WriteLine(" (AxRom) Supported!");
-					Mapper = new AxROM(this);
-					break;
-				case 68:
-					System.Console.WriteLine(" (MMC6) Supported!");
-					Mapper = new Mmc6Mapper(this);
-					break;
-				case 172:
-					System.Console.WriteLine(" Supported!");
-					Mapper = new Mapper172(this);
-					break;
-				default:
+				System.Console.WriteLine($"iNES Mapper {Cartridge.MapperNumber} supported!");
+				Mapper = (Mapper)Activator.CreateInstance(_mappers[Cartridge.MapperNumber], this);
+			}
+			else
+			{
+				System.Console.WriteLine($"iNES Mapper {Cartridge.MapperNumber} not supported");
 #if DEBUG
-					throw new MapperNotSupportedException(Cartridge.MapperNumber);
+				throw new MapperNotSupportedException(Cartridge.MapperNumber);
 #else
 					return false;
 #endif

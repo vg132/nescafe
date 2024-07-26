@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents Nintendo's CNROM Mapper.
 /// </summary>
+[Mapper(3)]
 public class CnRomMapper : Mapper
 {
 	private int _bank0Offset;

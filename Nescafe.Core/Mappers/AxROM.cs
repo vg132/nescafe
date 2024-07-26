@@ -1,5 +1,6 @@
 ﻿namespace Nescafe.Core.Mappers;
 
+[Mapper(7)]
 public class AxROM : Mapper
 {
 	private int _bank0Offset;

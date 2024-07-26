@@ -3,9 +3,9 @@
 /// <summary>
 /// Not working, template implementation
 /// </summary>
+[Mapper(172)]
 public class Mapper172 : Mapper
 {
-	private readonly Console _console;
 	private int _bank0Offset;
 
 	private byte _accumulator = 0;

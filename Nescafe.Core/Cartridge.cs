@@ -87,7 +87,6 @@ public class Cartridge
 	private Thread _saveBatteryMemoryThread;
 	private bool _loaded = false;
 
-
 	/// <summary>
 	/// Constructs a new Cartridge from the iNES cartridge file at the
 	/// specified path.

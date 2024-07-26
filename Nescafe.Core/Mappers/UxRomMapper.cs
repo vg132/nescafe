@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents Nintendo's UNROM/UOROM and similar mappers.
 /// </summary>
+[Mapper(2)]
 public class UxRomMapper : Mapper
 {
 	private int _bank0Offset;

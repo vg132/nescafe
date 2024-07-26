@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents Nintendo's MMC1 mapper.
 /// </summary>
+[Mapper(1)]
 public class Mmc1Mapper : Mapper
 {
 	// Common shift register
