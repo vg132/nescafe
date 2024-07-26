@@ -1,4 +1,6 @@
-﻿namespace Nescafe.Test_Compability;
+﻿using Nescafe.Core.Mappers;
+
+namespace Nescafe.Test_Compability;
 
 public class Program
 {
@@ -37,14 +39,19 @@ public class Program
 				}
 				else
 				{
-					_notWorkingFiles.Add(_currentFile);
+					_notWorkingFiles.Add($"{_currentFile}\tNot loading");
 					Console.WriteLine($"Not loading: {path}");
 				}
 			}
 		}
-		catch
+		catch(MapperNotSupportedException ex)
 		{
-			_notWorkingFiles.Add(_currentFile);
+			_notWorkingFiles.Add($"{_currentFile}\t{ex.Mapper}");
+			Console.WriteLine(ex.Message);
+		}
+		catch(Exception ex)
+		{
+			_notWorkingFiles.Add($"{_currentFile}\t{ex.Message}");
 			Console.WriteLine($"Not working");
 		}
 		return false;
@@ -63,7 +70,7 @@ public class Program
 
 	private static void StopConsole()
 	{
-		Thread.Sleep(1500);
+		Thread.Sleep(750);
 		_console.Stop();
 		_isRunning = false;
 		Console.WriteLine("Seems to be working");
@@ -76,9 +83,9 @@ public class Program
 		{
 			_console.Start();
 		}
-		catch
+		catch (Exception ex)
 		{
-			_notWorkingFiles.Add(_currentFile);
+			_notWorkingFiles.Add($"{_currentFile}\t{ex.Message}");
 			Console.WriteLine($"Not working");
 		}
 		_isRunning = false;
@@ -92,8 +99,8 @@ public class Program
 			TestRom(file);
 		}
 		_workingFiles.Insert(0, $"Working: {_workingFiles.Distinct().Count()}");
-		File.WriteAllLines(@$"D:\Projects\nescafe\logs\working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _workingFiles.Distinct());
-		_notWorkingFiles.Insert(0, $"Working: {_notWorkingFiles.Distinct().Count()}");
-		File.WriteAllLines(@$"D:\Projects\nescafe\logs\not_working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _notWorkingFiles.Distinct());
+		File.WriteAllLines(@$"D:\Projects\nescafe\tools\Test Compability\logs\working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _workingFiles.Distinct());
+		_notWorkingFiles.Insert(0, $"Not working: {_notWorkingFiles.Distinct().Count()}");
+		File.WriteAllLines(@$"D:\Projects\nescafe\tools\Test Compability\logs\not_working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _notWorkingFiles.Distinct());
 	}
 }

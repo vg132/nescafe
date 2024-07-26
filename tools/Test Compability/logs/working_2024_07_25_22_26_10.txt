@@ -1,0 +1,603 @@
+Working: 602
+D:\Projects\nescafe\Roms\1942 (Japan, USA).nes
+D:\Projects\nescafe\Roms\1943 - The Battle of Midway (USA).nes
+D:\Projects\nescafe\Roms\2010 - Street Fighter (Japan).nes
+D:\Projects\nescafe\Roms\25th Anniversary Super Mario Bros. (Europe) (Promo, Virtual Console).nes
+D:\Projects\nescafe\Roms\8 Eyes (Japan).nes
+D:\Projects\nescafe\Roms\8 Eyes (USA).nes
+D:\Projects\nescafe\Roms\Abadox - The Deadly Inner War (USA).nes
+D:\Projects\nescafe\Roms\Action in New York (Europe).nes
+D:\Projects\nescafe\Roms\Addams Family, The (USA).nes
+D:\Projects\nescafe\Roms\Addams Family, The - Pugsley's Scavenger Hunt (USA).nes
+D:\Projects\nescafe\Roms\Advanced Dungeons & Dragons - Dragons of Flame (Japan).nes
+D:\Projects\nescafe\Roms\Advanced Dungeons & Dragons - Heroes of the Lance (USA).nes
+D:\Projects\nescafe\Roms\Advanced Dungeons & Dragons - Pool of Radiance (USA).nes
+D:\Projects\nescafe\Roms\Adventure Island (USA).nes
+D:\Projects\nescafe\Roms\Adventure Island - Takahashi Meijin no Bouken-jima IV (Japan) [E-patched].nes
+D:\Projects\nescafe\Roms\Adventure Island 2 (USA).nes
+D:\Projects\nescafe\Roms\Adventure Island 3 (USA).nes
+D:\Projects\nescafe\Roms\Adventure Island Classic (Europe).nes
+D:\Projects\nescafe\Roms\Adventure Island Part II, The (Europe).nes
+D:\Projects\nescafe\Roms\Adventures of Dino Riki (USA).nes
+D:\Projects\nescafe\Roms\Adventures of Lolo 2 (USA).nes
+D:\Projects\nescafe\Roms\Adventures of Lolo 3 (USA).nes
+D:\Projects\nescafe\Roms\Adventures of Rad Gravity, The (USA).nes
+D:\Projects\nescafe\Roms\Adventures of Tom Sawyer (USA).nes
+D:\Projects\nescafe\Roms\Al Unser Jr. Turbo Racing (USA).nes
+D:\Projects\nescafe\Roms\Aladdin (Unl).nes
+D:\Projects\nescafe\Roms\Alien 3 (USA).nes
+D:\Projects\nescafe\Roms\Alpha Mission (USA).nes
+D:\Projects\nescafe\Roms\Amagon (USA).nes
+D:\Projects\nescafe\Roms\Argos no Senshi (Japan).nes
+D:\Projects\nescafe\Roms\Arkista's Ring (USA).nes
+D:\Projects\nescafe\Roms\Artelius (J) [T+Eng0.25_MageCraft].nes
+D:\Projects\nescafe\Roms\Artelius (Japan).nes
+D:\Projects\nescafe\Roms\Asmik-kun Land (Japan).nes
+D:\Projects\nescafe\Roms\ASO - Armored Scrum Object (Japan) (En) (Sample).nes
+D:\Projects\nescafe\Roms\Astro Robo Sasa (Japan).nes
+D:\Projects\nescafe\Roms\Astyanax (Europe).nes
+D:\Projects\nescafe\Roms\Astyanax (USA).nes
+D:\Projects\nescafe\Roms\Athena (Japan).nes
+D:\Projects\nescafe\Roms\Athena (USA).nes
+D:\Projects\nescafe\Roms\Attack Animal Gakuen (Japan).nes
+D:\Projects\nescafe\Roms\Back to the Future (USA).nes
+D:\Projects\nescafe\Roms\Back to the Future Part II & III (USA).nes
+D:\Projects\nescafe\Roms\Bad Dudes (USA).nes
+D:\Projects\nescafe\Roms\Bad Dudes vs. Dragon Ninja (Europe).nes
+D:\Projects\nescafe\Roms\Bad Street Brawler (USA).nes
+D:\Projects\nescafe\Roms\Balloon Fight (Europe).nes
+D:\Projects\nescafe\Roms\Balloon Fight (Japan).nes
+D:\Projects\nescafe\Roms\Balloon Fight (USA).nes
+D:\Projects\nescafe\Roms\Baltron (Japan).nes
+D:\Projects\nescafe\Roms\Barbie (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Barbie (USA).nes
+D:\Projects\nescafe\Roms\Bard's Tale II, The - The Destiny Knight (Japan).nes
+D:\Projects\nescafe\Roms\Bard's Tale, The (Japan) (Sample).nes
+D:\Projects\nescafe\Roms\Bard's Tale, The (Japan).nes
+D:\Projects\nescafe\Roms\Bard's Tale, The (USA).nes
+D:\Projects\nescafe\Roms\Battle of Olympus, The (Europe).nes
+D:\Projects\nescafe\Roms\Battle of Olympus, The (USA).nes
+D:\Projects\nescafe\Roms\BattleCity (Japan).nes
+D:\Projects\nescafe\Roms\Beauty and the Beast (Europe).nes
+D:\Projects\nescafe\Roms\Bigfoot (USA).nes
+D:\Projects\nescafe\Roms\Bill Elliott's NASCAR Challenge (USA).nes
+D:\Projects\nescafe\Roms\Bionic Commando (USA).nes
+D:\Projects\nescafe\Roms\Blaster Master (USA).nes
+D:\Projects\nescafe\Roms\Blue Shadow (Europe).nes
+D:\Projects\nescafe\Roms\Blues Brothers, The (USA).nes
+D:\Projects\nescafe\Roms\Bomber Man (Japan).nes
+D:\Projects\nescafe\Roms\Bomber Man II (Japan).nes
+D:\Projects\nescafe\Roms\Bomberman (USA).nes
+D:\Projects\nescafe\Roms\Bomberman II (USA).nes
+D:\Projects\nescafe\Roms\Bonk's Adventure (USA).nes
+D:\Projects\nescafe\Roms\Bram Stoker's Dracula (USA).nes
+D:\Projects\nescafe\Roms\BreakThru (USA).nes
+D:\Projects\nescafe\Roms\Bubble Bobble (Europe).nes
+D:\Projects\nescafe\Roms\Bubble Bobble (USA).nes
+D:\Projects\nescafe\Roms\Bubble Bobble Part 2 (USA).nes
+D:\Projects\nescafe\Roms\Bugs Bunny Birthday Blowout, The (USA).nes
+D:\Projects\nescafe\Roms\Bugs Bunny Crazy Castle, The (USA).nes
+D:\Projects\nescafe\Roms\Bump'n'Jump (USA).nes
+D:\Projects\nescafe\Roms\BurgerTime (Japan).nes
+D:\Projects\nescafe\Roms\BurgerTime (USA).nes
+D:\Projects\nescafe\Roms\Captain America and the Avengers (Australia).nes
+D:\Projects\nescafe\Roms\Captain America and the Avengers (USA).nes
+D:\Projects\nescafe\Roms\Captain Silver (Japan).nes
+D:\Projects\nescafe\Roms\Castelian (Europe).nes
+D:\Projects\nescafe\Roms\Castelian (USA).nes
+D:\Projects\nescafe\Roms\Castlevania (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Castlevania (USA).nes
+D:\Projects\nescafe\Roms\Castlevania II - Simon's Quest (USA).nes
+D:\Projects\nescafe\Roms\Championship Lode Runner (Japan).nes
+D:\Projects\nescafe\Roms\Chaos World (J) [T+Eng.98f(B)_AGTP].nes
+D:\Projects\nescafe\Roms\Chaos World (J) [T-Eng.2_AGTP].nes
+D:\Projects\nescafe\Roms\Chaos World (J) [T-Eng.6a_AGTP].nes
+D:\Projects\nescafe\Roms\Chaos World (J) [T-Eng.98_AGTP].nes
+D:\Projects\nescafe\Roms\Chaos World (Japan).nes
+D:\Projects\nescafe\Roms\Chiki Chiki Machine Mou Race (Japan).nes
+D:\Projects\nescafe\Roms\Chiller (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Chip 'n Dale - Rescue Rangers (USA).nes
+D:\Projects\nescafe\Roms\Chip 'n Dale - Rescue Rangers 2 (USA).nes
+D:\Projects\nescafe\Roms\Chip to Dale no Daisakusen (Japan).nes
+D:\Projects\nescafe\Roms\Chip to Dale no Daisakusen 2 (Japan).nes
+D:\Projects\nescafe\Roms\Chubby Cherub (USA).nes
+D:\Projects\nescafe\Roms\City Connection (Europe).nes
+D:\Projects\nescafe\Roms\City Connection (USA).nes
+D:\Projects\nescafe\Roms\Clash at Demonhead (USA).nes
+D:\Projects\nescafe\Roms\Cliffhanger (USA).nes
+D:\Projects\nescafe\Roms\Cobra Command (USA).nes
+D:\Projects\nescafe\Roms\Cocoron (Japan).nes
+D:\Projects\nescafe\Roms\Code Name - Viper (USA).nes
+D:\Projects\nescafe\Roms\Conan (USA).nes
+D:\Projects\nescafe\Roms\Contra (USA).nes
+D:\Projects\nescafe\Roms\Contra Force (USA).nes
+D:\Projects\nescafe\Roms\Cool World (USA).nes
+D:\Projects\nescafe\Roms\Corvette ZR-1 Challenge (Europe).nes
+D:\Projects\nescafe\Roms\Cosmic Epsilon (Japan).nes
+D:\Projects\nescafe\Roms\Cosmo Genesis (Japan).nes
+D:\Projects\nescafe\Roms\Cross Fire (Japan).nes
+D:\Projects\nescafe\Roms\Crystalis (USA).nes
+D:\Projects\nescafe\Roms\Darkman (Europe).nes
+D:\Projects\nescafe\Roms\Darkman (USA).nes
+D:\Projects\nescafe\Roms\Darkwing Duck (USA).nes
+D:\Projects\nescafe\Roms\Dash Galaxy in the Alien Asylum (USA).nes
+D:\Projects\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (Europe) (Rev A).nes
+D:\Projects\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (Europe).nes
+D:\Projects\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (USA).nes
+D:\Projects\nescafe\Roms\Days of Thunder (USA).nes
+D:\Projects\nescafe\Roms\Defender II (USA).nes
+D:\Projects\nescafe\Roms\Destination Earthstar (USA).nes
+D:\Projects\nescafe\Roms\Devil World (Europe).nes
+D:\Projects\nescafe\Roms\Dick Tracy (USA).nes
+D:\Projects\nescafe\Roms\Dig Dug (Japan).nes
+D:\Projects\nescafe\Roms\Dig Dug II (Japan).nes
+D:\Projects\nescafe\Roms\Dig Dug II - Trouble in Paradise (USA).nes
+D:\Projects\nescafe\Roms\Dirty Harry (USA).nes
+D:\Projects\nescafe\Roms\Donald Duck (Japan).nes
+D:\Projects\nescafe\Roms\Donald Land (Japan).nes
+D:\Projects\nescafe\Roms\Donkey Kong (Japan).nes
+D:\Projects\nescafe\Roms\Donkey Kong (USA) (GameCube Edition).nes
+D:\Projects\nescafe\Roms\Donkey Kong (World) (Rev A).nes
+D:\Projects\nescafe\Roms\Donkey Kong 3 (World).nes
+D:\Projects\nescafe\Roms\Donkey Kong Classics (USA, Europe).nes
+D:\Projects\nescafe\Roms\Donkey Kong Jr. (USA) (GameCube Edition).nes
+D:\Projects\nescafe\Roms\Donkey Kong Jr. (World) (Rev A).nes
+D:\Projects\nescafe\Roms\Donkey Kong Jr. + Jr. Lesson (Japan).nes
+D:\Projects\nescafe\Roms\Donkey Kong Jr. Math (USA, Europe).nes
+D:\Projects\nescafe\Roms\Donkey Kong Jr. no Sansuu Asobi (Japan).nes
+D:\Projects\nescafe\Roms\Double Dragon (Europe).nes
+D:\Projects\nescafe\Roms\Double Dragon (USA).nes
+D:\Projects\nescafe\Roms\Double Dragon - Sou Setsu Ryuu (Japan).nes
+D:\Projects\nescafe\Roms\Double Dragon II - The Revenge (Europe).nes
+D:\Projects\nescafe\Roms\Double Dragon II - The Revenge (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Double Dragon II - The Revenge (USA).nes
+D:\Projects\nescafe\Roms\Double Dragon III - The Sacred Stones (Europe).nes
+D:\Projects\nescafe\Roms\Double Dragon III - The Sacred Stones (USA).nes
+D:\Projects\nescafe\Roms\Dough Boy (Japan).nes
+D:\Projects\nescafe\Roms\Dragon Quest (Japan).nes
+D:\Projects\nescafe\Roms\Dragon Quest III - Soshite Densetsu e... (Japan) (Rev B).nes
+D:\Projects\nescafe\Roms\Dragon Quest IV - Michibikareshi Monotachi (Japan).nes
+D:\Projects\nescafe\Roms\Dragon Warrior III (USA).nes
+D:\Projects\nescafe\Roms\Dragon Warrior IV (USA).nes
+D:\Projects\nescafe\Roms\DuckTales (USA).nes
+D:\Projects\nescafe\Roms\DuckTales 2 (USA).nes
+D:\Projects\nescafe\Roms\Dynablaster (Europe).nes
+D:\Projects\nescafe\Roms\Egypt (Japan).nes
+D:\Projects\nescafe\Roms\Elevator Action (Japan) (Rev A).nes
+D:\Projects\nescafe\Roms\Elevator Action (USA).nes
+D:\Projects\nescafe\Roms\Eliminator Boat Duel (USA).nes
+D:\Projects\nescafe\Roms\Elite (Europe) (En,Fr,De).nes
+D:\Projects\nescafe\Roms\Elysion (Japan).nes
+D:\Projects\nescafe\Roms\Excitebike (Japan, USA).nes
+D:\Projects\nescafe\Roms\Exerion (Japan) (En).nes
+D:\Projects\nescafe\Roms\F-1 Race (Japan).nes
+D:\Projects\nescafe\Roms\F-117A - Stealth Fighter (USA).nes
+D:\Projects\nescafe\Roms\F-15 Strike Eagle (USA).nes
+D:\Projects\nescafe\Roms\Family Circuit (Japan).nes
+D:\Projects\nescafe\Roms\Family Pinball (Japan).nes
+D:\Projects\nescafe\Roms\Fantastic Adventures of Dizzy, The (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Faria - A World of Mystery & Danger! (USA).nes
+D:\Projects\nescafe\Roms\Faria - Fuuin no Tsurugi (Japan).nes
+D:\Projects\nescafe\Roms\Faxanadu (Japan).nes
+D:\Projects\nescafe\Roms\Ferrari (Japan).nes
+D:\Projects\nescafe\Roms\Ferrari Grand Prix Challenge (USA).nes
+D:\Projects\nescafe\Roms\Fester's Quest (USA).nes
+D:\Projects\nescafe\Roms\Field Combat (Japan).nes
+D:\Projects\nescafe\Roms\Final Mission (Japan).nes
+D:\Projects\nescafe\Roms\Fire 'n Ice (USA).nes
+D:\Projects\nescafe\Roms\Fist of the North Star (USA).nes
+D:\Projects\nescafe\Roms\Flipull - An Exciting Cube Game (Japan) (En).nes
+D:\Projects\nescafe\Roms\Flying Dragon - The Secret Scroll (USA).nes
+D:\Projects\nescafe\Roms\Flying Warriors (USA).nes
+D:\Projects\nescafe\Roms\Formation Z (Japan) (Rev A).nes
+D:\Projects\nescafe\Roms\Formation Z (Japan).nes
+D:\Projects\nescafe\Roms\Formula One - Built to Win (USA).nes
+D:\Projects\nescafe\Roms\Friday the 13th (USA).nes
+D:\Projects\nescafe\Roms\Front Line (Japan).nes
+D:\Projects\nescafe\Roms\Fushigi na Blobby - Blobania no Kiki (Japan).nes
+D:\Projects\nescafe\Roms\G.I. Joe - A Real American Hero (USA).nes
+D:\Projects\nescafe\Roms\G.I. Joe - The Atlantis Factor (USA).nes
+D:\Projects\nescafe\Roms\Galaga (Europe).nes
+D:\Projects\nescafe\Roms\Galaga - Demons of Death (USA).nes
+D:\Projects\nescafe\Roms\Galaxy 5000 (USA).nes
+D:\Projects\nescafe\Roms\Gargoyle's Quest II (Europe).nes
+D:\Projects\nescafe\Roms\Gargoyle's Quest II (USA).nes
+D:\Projects\nescafe\Roms\Garry Kitchen's BattleTank (USA).nes
+D:\Projects\nescafe\Roms\Gauntlet (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Gauntlet (USA).nes
+D:\Projects\nescafe\Roms\Geimos (Japan).nes
+D:\Projects\nescafe\Roms\Ghost Lion (USA).nes
+D:\Projects\nescafe\Roms\Ghostbusters II (USA).nes
+D:\Projects\nescafe\Roms\Ghosts'n Goblins (USA).nes
+D:\Projects\nescafe\Roms\Godzilla - Monster of Monsters! (USA).nes
+D:\Projects\nescafe\Roms\Godzilla 2 - War of the Monsters (USA).nes
+D:\Projects\nescafe\Roms\Golgo 13 - Daiisshou - Kamigami no Tasogare (Japan).nes
+D:\Projects\nescafe\Roms\Golgo 13 - Dainishou - Icarus no Nazo (Japan).nes
+D:\Projects\nescafe\Roms\Golgo 13 - Top Secret Episode (USA).nes
+D:\Projects\nescafe\Roms\Goonies II, The (Europe).nes
+D:\Projects\nescafe\Roms\Goonies II, The (USA).nes
+D:\Projects\nescafe\Roms\Gradius (USA).nes
+D:\Projects\nescafe\Roms\Gran Aventura Submarina, La (Spain) (Gluk Video) (Unl).nes
+D:\Projects\nescafe\Roms\Guardian Legend, The (USA).nes
+D:\Projects\nescafe\Roms\Guardic Gaiden (Japan).nes
+D:\Projects\nescafe\Roms\Guevara (Japan).nes
+D:\Projects\nescafe\Roms\Gun Nac (USA).nes
+D:\Projects\nescafe\Roms\Gun-Dec (Japan).nes
+D:\Projects\nescafe\Roms\Gunhed - Aratanaru Tatakai (Japan).nes
+D:\Projects\nescafe\Roms\Gyrodine (Japan).nes
+D:\Projects\nescafe\Roms\Gyruss (USA).nes
+D:\Projects\nescafe\Roms\Hatris (USA).nes
+D:\Projects\nescafe\Roms\Heavy Barrel (USA).nes
+D:\Projects\nescafe\Roms\Hiryuu no Ken II - Dragon no Tsubasa (Japan).nes
+D:\Projects\nescafe\Roms\Hiryuu no Ken III - 5 Nin no Dragon (Japan).nes
+D:\Projects\nescafe\Roms\Home Alone (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Home Alone (USA).nes
+D:\Projects\nescafe\Roms\Home Alone 2 - Lost in New York (USA).nes
+D:\Projects\nescafe\Roms\Hook (USA).nes
+D:\Projects\nescafe\Roms\Hoshi o Miru Hito (Japan).nes
+D:\Projects\nescafe\Roms\Hudson Hawk (USA).nes
+D:\Projects\nescafe\Roms\Huge Insect (Asia) (Unl).nes
+D:\Projects\nescafe\Roms\Hunt for Red October, The (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Hunt for Red October, The (USA).nes
+D:\Projects\nescafe\Roms\Hydlide (USA).nes
+D:\Projects\nescafe\Roms\Hydlide Special (Japan).nes
+D:\Projects\nescafe\Roms\Ice Climber (Japan).nes
+D:\Projects\nescafe\Roms\Ice Climber (USA, Europe).nes
+D:\Projects\nescafe\Roms\Ikari III - The Rescue (USA).nes
+D:\Projects\nescafe\Roms\Ikari Warriors (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Ikari Warriors (USA).nes
+D:\Projects\nescafe\Roms\Ikari Warriors II - Victory Road (USA).nes
+D:\Projects\nescafe\Roms\Image Fight (USA).nes
+D:\Projects\nescafe\Roms\Incredible Crash Dummies, The (Europe).nes
+D:\Projects\nescafe\Roms\Incredible Crash Dummies, The (USA).nes
+D:\Projects\nescafe\Roms\Indiana Jones and the Last Crusade (USA) (Taito).nes
+D:\Projects\nescafe\Roms\Indiana Jones and the Last Crusade (USA) (UBI Soft).nes
+D:\Projects\nescafe\Roms\Indiana Jones and the Temple of Doom (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Indiana Jones and the Temple of Doom (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Indiana Jones and the Temple of Doom (USA).nes
+D:\Projects\nescafe\Roms\Infiltrator (USA).nes
+D:\Projects\nescafe\Roms\Iron Tank - The Invasion of Normandy (USA).nes
+D:\Projects\nescafe\Roms\Isolated Warrior (USA).nes
+D:\Projects\nescafe\Roms\James Bond Jr (USA).nes
+D:\Projects\nescafe\Roms\Jaws (USA).nes
+D:\Projects\nescafe\Roms\Joust (USA).nes
+D:\Projects\nescafe\Roms\Jungle Book, The (Europe).nes
+D:\Projects\nescafe\Roms\Jurassic Park (USA).nes
+D:\Projects\nescafe\Roms\Kage (Japan).nes
+D:\Projects\nescafe\Roms\Kamen no Ninja - Akakage (Japan).nes
+D:\Projects\nescafe\Roms\Kamen no Ninja - Hanamaru (Japan).nes
+D:\Projects\nescafe\Roms\Kamen Rider Club (Japan).nes
+D:\Projects\nescafe\Roms\Kamen Rider SD - Granshocker no Yabou (Japan).nes
+D:\Projects\nescafe\Roms\Karnov (Japan) (Rev 1).nes
+D:\Projects\nescafe\Roms\Kid Icarus (USA, Europe).nes
+D:\Projects\nescafe\Roms\King of Kings (Japan).nes
+D:\Projects\nescafe\Roms\Kirby's Adventure (USA).nes
+D:\Projects\nescafe\Roms\Krion Conquest, The (USA).nes
+D:\Projects\nescafe\Roms\Kung-Fu Heroes (USA).nes
+D:\Projects\nescafe\Roms\Labyrinth (Japan) [trans].nes
+D:\Projects\nescafe\Roms\Last Action Hero (USA).nes
+D:\Projects\nescafe\Roms\Legend of Zelda, The (USA).nes
+D:\Projects\nescafe\Roms\Legendary Wings (USA).nes
+D:\Projects\nescafe\Roms\Lethal Weapon (USA).nes
+D:\Projects\nescafe\Roms\Life Force (USA).nes
+D:\Projects\nescafe\Roms\Life Force - Salamander (Europe).nes
+D:\Projects\nescafe\Roms\Little Mermaid - Ningyo Hime (Japan).nes
+D:\Projects\nescafe\Roms\Lode Runner (Japan).nes
+D:\Projects\nescafe\Roms\Lode Runner (USA).nes
+D:\Projects\nescafe\Roms\Loopz (USA).nes
+D:\Projects\nescafe\Roms\M.C. Kids (USA).nes
+D:\Projects\nescafe\Roms\M.U.L.E. (USA).nes
+D:\Projects\nescafe\Roms\Mach Rider (Europe).nes
+D:\Projects\nescafe\Roms\Mach Rider (Japan, USA).nes
+D:\Projects\nescafe\Roms\Mad Max (USA).nes
+D:\Projects\nescafe\Roms\Mafat Conspiracy, The (USA).nes
+D:\Projects\nescafe\Roms\Magician (USA).nes
+D:\Projects\nescafe\Roms\Magmax (USA).nes
+D:\Projects\nescafe\Roms\Maniac Mansion (USA).nes
+D:\Projects\nescafe\Roms\Mappy (Japan).nes
+D:\Projects\nescafe\Roms\Mappy-Land (Japan).nes
+D:\Projects\nescafe\Roms\Mappy-Land (USA).nes
+D:\Projects\nescafe\Roms\Mario & Yoshi (Europe).nes
+D:\Projects\nescafe\Roms\Mario Bros. (Europe) (Rev A).nes
+D:\Projects\nescafe\Roms\Mario Bros. (World).nes
+D:\Projects\nescafe\Roms\Mario Bros. Classic (Europe).nes
+D:\Projects\nescafe\Roms\Mario Is Missing! (USA).nes
+D:\Projects\nescafe\Roms\Mario Open Golf (Japan).nes
+D:\Projects\nescafe\Roms\Mario's Time Machine (USA).nes
+D:\Projects\nescafe\Roms\McDonaldland (Europe).nes
+D:\Projects\nescafe\Roms\McDonaldland (France).nes
+D:\Projects\nescafe\Roms\Mega Man (USA).nes
+D:\Projects\nescafe\Roms\Mega Man 2 (USA).nes
+D:\Projects\nescafe\Roms\Mega Man 3 (USA).nes
+D:\Projects\nescafe\Roms\Mega Man 4 (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Mega Man 4 (USA).nes
+D:\Projects\nescafe\Roms\Mega Man 5 (USA).nes
+D:\Projects\nescafe\Roms\Mega Man 6 (USA).nes
+D:\Projects\nescafe\Roms\Metal Flame Psybuster (Japan).nes
+D:\Projects\nescafe\Roms\Metal Gear (USA).nes
+D:\Projects\nescafe\Roms\Metal Mech - Man & Machine (USA).nes
+D:\Projects\nescafe\Roms\Metal Storm (USA).nes
+D:\Projects\nescafe\Roms\Metroid (USA).nes
+D:\Projects\nescafe\Roms\Mickey Mouse - Fushigi no Kuni no Daibouken (Japan).nes
+D:\Projects\nescafe\Roms\Mickey Mouse III - Yume Fuusen (Japan).nes
+D:\Projects\nescafe\Roms\Mickey's Safari in Letterland (USA).nes
+D:\Projects\nescafe\Roms\Might & Magic - Secret of the Inner Sanctum (USA).nes
+D:\Projects\nescafe\Roms\Might and Magic - Book One - Secret of the Inner Sanctum (Japan).nes
+D:\Projects\nescafe\Roms\Mighty Bomb Jack (Europe).nes
+D:\Projects\nescafe\Roms\Mighty Bomb Jack (USA).nes
+D:\Projects\nescafe\Roms\Mighty Final Fight (Europe).nes
+D:\Projects\nescafe\Roms\Mighty Final Fight (Japan).nes
+D:\Projects\nescafe\Roms\Mighty Final Fight (USA).nes
+D:\Projects\nescafe\Roms\Millipede - Kyodai Konchuu no Gyakushuu (Japan).nes
+D:\Projects\nescafe\Roms\Milon's Secret Castle (USA).nes
+D:\Projects\nescafe\Roms\Monster in My Pocket (Europe).nes
+D:\Projects\nescafe\Roms\Monster in My Pocket (USA).nes
+D:\Projects\nescafe\Roms\Monster Truck Rally (USA).nes
+D:\Projects\nescafe\Roms\Moon Crystal (Japan).nes
+D:\Projects\nescafe\Roms\Mother (Japan).nes
+D:\Projects\nescafe\Roms\Motocross Champion (Japan).nes
+D:\Projects\nescafe\Roms\Ms. Pac-Man (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Ms. Pac-Man (USA).nes
+D:\Projects\nescafe\Roms\New Ghostbusters II (Europe).nes
+D:\Projects\nescafe\Roms\Nigel Mansell's World Championship Challenge (USA).nes
+D:\Projects\nescafe\Roms\Ninja Gaiden (USA).nes
+D:\Projects\nescafe\Roms\Ninja Gaiden II - The Dark Sword of Chaos (USA).nes
+D:\Projects\nescafe\Roms\Ninja Gaiden III - The Ancient Ship of Doom (USA).nes
+D:\Projects\nescafe\Roms\Ninja Hattori-kun - Ninja wa Syugyou de Gozaru (Japan).nes
+D:\Projects\nescafe\Roms\Ninja-kun - Majou no Bouken (Japan).nes
+D:\Projects\nescafe\Roms\Noah's Ark (Europe).nes
+D:\Projects\nescafe\Roms\Nobunaga no Yabou - Zenkoku Ban (Japan).nes
+D:\Projects\nescafe\Roms\Nobunaga's Ambition II (USA).nes
+D:\Projects\nescafe\Roms\Operation Wolf (USA) (Rev 0A).nes
+D:\Projects\nescafe\Roms\Overlord (USA).nes
+D:\Projects\nescafe\Roms\Pac-Man (Europe).nes
+D:\Projects\nescafe\Roms\Pac-Man (Japan) (En) (Rev B).nes
+D:\Projects\nescafe\Roms\Pac-Man (Japan).nes
+D:\Projects\nescafe\Roms\Pac-Man (USA) (Namco).nes
+D:\Projects\nescafe\Roms\Pac-Man (USA) (Tengen).nes
+D:\Projects\nescafe\Roms\Palamedes (USA).nes
+D:\Projects\nescafe\Roms\Paperboy (Europe).nes
+D:\Projects\nescafe\Roms\Paperboy (Japan).nes
+D:\Projects\nescafe\Roms\Paperboy (USA).nes
+D:\Projects\nescafe\Roms\Paperboy 2 (Europe).nes
+D:\Projects\nescafe\Roms\Paperboy 2 (USA).nes
+D:\Projects\nescafe\Roms\Parodius (Europe).nes
+D:\Projects\nescafe\Roms\Pin Bot (USA).nes
+D:\Projects\nescafe\Roms\Pinball (World).nes
+D:\Projects\nescafe\Roms\Pinball Quest (USA).nes
+D:\Projects\nescafe\Roms\Pipe Dream (USA).nes
+D:\Projects\nescafe\Roms\Platoon (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Popeye (Japan).nes
+D:\Projects\nescafe\Roms\Popeye (World) (Rev A).nes
+D:\Projects\nescafe\Roms\Popeye no Eigo Asobi (Japan).nes
+D:\Projects\nescafe\Roms\Power Blade (Europe).nes
+D:\Projects\nescafe\Roms\Power Blade 2 (USA).nes
+D:\Projects\nescafe\Roms\Power Blazer (Japan).nes
+D:\Projects\nescafe\Roms\Predator (USA).nes
+D:\Projects\nescafe\Roms\Prince of Persia (USA).nes
+D:\Projects\nescafe\Roms\Probotector (Europe).nes
+D:\Projects\nescafe\Roms\Punisher, The (USA).nes
+D:\Projects\nescafe\Roms\Puzslot (Japan).nes
+D:\Projects\nescafe\Roms\Puzznic (USA).nes
+D:\Projects\nescafe\Roms\Q-bert (USA).nes
+D:\Projects\nescafe\Roms\QIX (USA).nes
+D:\Projects\nescafe\Roms\Quarth (Japan).nes
+D:\Projects\nescafe\Roms\Race America (USA).nes
+D:\Projects\nescafe\Roms\Rad Racer II (USA).nes
+D:\Projects\nescafe\Roms\Raid 2020 (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Raid on Bungeling Bay (USA).nes
+D:\Projects\nescafe\Roms\Rainbow Islands (USA).nes
+D:\Projects\nescafe\Roms\Rainbow Islands - Bubble Bobble 2 (Europe).nes
+D:\Projects\nescafe\Roms\Rally Bike (USA).nes
+D:\Projects\nescafe\Roms\Rambo (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Rambo (USA).nes
+D:\Projects\nescafe\Roms\Rampage (USA).nes
+D:\Projects\nescafe\Roms\Rampart (Japan).nes
+D:\Projects\nescafe\Roms\Ren & Stimpy Show, The - Buckeroo$! (USA).nes
+D:\Projects\nescafe\Roms\Renegade (USA).nes
+D:\Projects\nescafe\Roms\River City Ransom (USA).nes
+D:\Projects\nescafe\Roms\RoboCop (USA).nes
+D:\Projects\nescafe\Roms\RoboCop 2 (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\RoboCop 2 (USA).nes
+D:\Projects\nescafe\Roms\Rocketeer, The (USA).nes
+D:\Projects\nescafe\Roms\Rockin' Kats (Europe).nes
+D:\Projects\nescafe\Roms\Rockin' Kats (USA).nes
+D:\Projects\nescafe\Roms\Rockman (Japan) (En).nes
+D:\Projects\nescafe\Roms\Rockman 2 - Dr. Wily no Nazo (Japan).nes
+D:\Projects\nescafe\Roms\Rockman 3 - Dr. Wily no Saigo! (Japan).nes
+D:\Projects\nescafe\Roms\Rockman 4 - Aratanaru Yabou!! (Japan).nes
+D:\Projects\nescafe\Roms\Rockman 5 - Blues no Wana! (Japan).nes
+D:\Projects\nescafe\Roms\Rockman 6 - Shijou Saidai no Tatakai!! (Japan).nes
+D:\Projects\nescafe\Roms\Rocman X (Asia) (Unl).nes
+D:\Projects\nescafe\Roms\Rod Land (Europe).nes
+D:\Projects\nescafe\Roms\Romance of the Three Kingdoms (USA).nes
+D:\Projects\nescafe\Roms\Romance of the Three Kingdoms II (USA).nes
+D:\Projects\nescafe\Roms\Route-16 Turbo (Japan).nes
+D:\Projects\nescafe\Roms\Rygar (Europe).nes
+D:\Projects\nescafe\Roms\Rygar (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Rygar (USA).nes
+D:\Projects\nescafe\Roms\S.C.A.T. - Special Cybernetic Attack Team (USA).nes
+D:\Projects\nescafe\Roms\SD Gundam - Gachapon Senshi 2 - Capsule Senki (Japan).nes
+D:\Projects\nescafe\Roms\SD Gundam - Gachapon Senshi 3 - Eiyuu Senki (Japan).nes
+D:\Projects\nescafe\Roms\SD Gundam - Gachapon Senshi 4 - NewType Story (Japan).nes
+D:\Projects\nescafe\Roms\SD Gundam - Gachapon Senshi 5 - Battle of Universal Century (Japan).nes
+D:\Projects\nescafe\Roms\Section-Z (USA).nes
+D:\Projects\nescafe\Roms\Seicross (USA).nes
+D:\Projects\nescafe\Roms\Shadow Warriors (Europe).nes
+D:\Projects\nescafe\Roms\Shadow Warriors II - Ninja Gaiden II (Europe).nes
+D:\Projects\nescafe\Roms\Shatterhand (Europe).nes
+D:\Projects\nescafe\Roms\Shinobi (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Silent Service (USA).nes
+D:\Projects\nescafe\Roms\Silk Worm (USA).nes
+D:\Projects\nescafe\Roms\Silver Surfer (USA).nes
+D:\Projects\nescafe\Roms\Simpsons, The - Bart vs. the Space Mutants (USA).nes
+D:\Projects\nescafe\Roms\Simpsons, The - Bart vs. the World (USA).nes
+D:\Projects\nescafe\Roms\Simpsons, The - Bartman Meets Radioactive Man (USA).nes
+D:\Projects\nescafe\Roms\Simpsons, The - Krusty's Fun House (Europe).nes
+D:\Projects\nescafe\Roms\Sky Destroyer (Japan).nes
+D:\Projects\nescafe\Roms\Sky Shark (USA) (Rev 0A).nes
+D:\Projects\nescafe\Roms\Smash T.V. (USA).nes
+D:\Projects\nescafe\Roms\Smurfs, The (Europe) (En,Fr,De,Es).nes
+D:\Projects\nescafe\Roms\Snow Brothers (Europe).nes
+D:\Projects\nescafe\Roms\Solomon's Key (USA).nes
+D:\Projects\nescafe\Roms\Solomon's Key 2 (Europe).nes
+D:\Projects\nescafe\Roms\Space Harrier (Japan).nes
+D:\Projects\nescafe\Roms\Space Invaders (Japan).nes
+D:\Projects\nescafe\Roms\Spartan X (Japan).nes
+D:\Projects\nescafe\Roms\Spelunker (Japan).nes
+D:\Projects\nescafe\Roms\Spelunker II - Yuusha e no Chousen (Japan).nes
+D:\Projects\nescafe\Roms\Spider-Man - Return of the Sinister Six (Europe).nes
+D:\Projects\nescafe\Roms\Spider-Man - Return of the Sinister Six (USA).nes
+D:\Projects\nescafe\Roms\Star Force (USA).nes
+D:\Projects\nescafe\Roms\Star Luster (Japan).nes
+D:\Projects\nescafe\Roms\Star Soldier (USA).nes
+D:\Projects\nescafe\Roms\Star Trek - 25th Anniversary (USA).nes
+D:\Projects\nescafe\Roms\Star Trek - The Next Generation (USA).nes
+D:\Projects\nescafe\Roms\Star Voyager (USA).nes
+D:\Projects\nescafe\Roms\Star Wars (Europe).nes
+D:\Projects\nescafe\Roms\Star Wars (Japan) (Victor).nes
+D:\Projects\nescafe\Roms\Star Wars - The Empire Strikes Back (USA).nes
+D:\Projects\nescafe\Roms\Starship Hector (USA).nes
+D:\Projects\nescafe\Roms\StarTropics (USA).nes
+D:\Projects\nescafe\Roms\StarTropics II - Zoda's Revenge -  (USA).nes
+D:\Projects\nescafe\Roms\Street Fighter 2010 - The Final Fight (USA).nes
+D:\Projects\nescafe\Roms\Super Arabian (Japan).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. + Duck Hunt (USA).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. + Duck Hunt + World Class Track Meet (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. + Duck Hunt + World Class Track Meet (USA).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. 2 (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. 2 (USA).nes
+D:\Projects\nescafe\Roms\Super Mario Bros. 3 (USA).nes
+D:\Projects\nescafe\Roms\Super Mario USA (Japan).nes
+D:\Projects\nescafe\Roms\Super Pinball (Japan).nes
+D:\Projects\nescafe\Roms\Super Pitfall (USA).nes
+D:\Projects\nescafe\Roms\Super Turrican (Europe).nes
+D:\Projects\nescafe\Roms\Super Xevious - Gump no Nazo (Japan).nes
+D:\Projects\nescafe\Roms\Superman (Japan).nes
+D:\Projects\nescafe\Roms\Superman (USA).nes
+D:\Projects\nescafe\Roms\Swamp Thing (Europe).nes
+D:\Projects\nescafe\Roms\Swamp Thing (USA).nes
+D:\Projects\nescafe\Roms\Sweet Home (J) [T+Eng1.00_Gaijin+Suicidal].nes
+D:\Projects\nescafe\Roms\Sweet Home (Japan).nes
+D:\Projects\nescafe\Roms\Sword Master (Europe).nes
+D:\Projects\nescafe\Roms\Sword Master (Japan).nes
+D:\Projects\nescafe\Roms\Sword Master (USA).nes
+D:\Projects\nescafe\Roms\Swords and Serpents (Europe).nes
+D:\Projects\nescafe\Roms\Swords and Serpents (USA).nes
+D:\Projects\nescafe\Roms\Taiyou no Shinden (Japan).nes
+D:\Projects\nescafe\Roms\Taiyou no Yuusha - Fighbird (Japan) [E-patched].nes
+D:\Projects\nescafe\Roms\TaleSpin (USA).nes
+D:\Projects\nescafe\Roms\Target Renegade (USA).nes
+D:\Projects\nescafe\Roms\Teenage Mutant Hero Turtles (Europe).nes
+D:\Projects\nescafe\Roms\Teenage Mutant Ninja Turtles (USA).nes
+D:\Projects\nescafe\Roms\Teenage Mutant Ninja Turtles II - The Arcade Game (USA).nes
+D:\Projects\nescafe\Roms\Teenage Mutant Ninja Turtles III - The Manhattan Project (USA).nes
+D:\Projects\nescafe\Roms\Terminator, The (USA, Europe).nes
+D:\Projects\nescafe\Roms\Terra Cresta (USA).nes
+D:\Projects\nescafe\Roms\Tetrastar - The Fighter (Japan).nes
+D:\Projects\nescafe\Roms\Tetris (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Tetris (USA).nes
+D:\Projects\nescafe\Roms\Tetris 2 (USA).nes
+D:\Projects\nescafe\Roms\Tetris 2 + Bombliss (Japan) (Rev A).nes
+D:\Projects\nescafe\Roms\Tetris Flash (Japan).nes
+D:\Projects\nescafe\Roms\Thexder (Japan).nes
+D:\Projects\nescafe\Roms\Thunder Warrior (Asia) (Unl).nes
+D:\Projects\nescafe\Roms\Thunderbirds (USA).nes
+D:\Projects\nescafe\Roms\Thundercade (USA).nes
+D:\Projects\nescafe\Roms\Tiger-Heli (USA).nes
+D:\Projects\nescafe\Roms\Time Lord (Europe).nes
+D:\Projects\nescafe\Roms\Time Zone (Japan).nes
+D:\Projects\nescafe\Roms\Times of Lore (Japan).nes
+D:\Projects\nescafe\Roms\Times of Lore (USA).nes
+D:\Projects\nescafe\Roms\Tiny Toon Adventures 2 - Trouble in Wackyland (USA).nes
+D:\Projects\nescafe\Roms\Tiny Toon Adventures Cartoon Workshop (USA).nes
+D:\Projects\nescafe\Roms\Toki no Tabibito (Japan).nes
+D:\Projects\nescafe\Roms\Tom & Jerry (Japan).nes
+D:\Projects\nescafe\Roms\Tom Sawyer no Bouken (Japan).nes
+D:\Projects\nescafe\Roms\Tombs & Treasure (USA).nes
+D:\Projects\nescafe\Roms\Toobin' (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Top Gun (USA).nes
+D:\Projects\nescafe\Roms\Top Gun - Dual Fighters (Japan).nes
+D:\Projects\nescafe\Roms\Top Gun - The Second Mission (USA).nes
+D:\Projects\nescafe\Roms\Total Recall (USA).nes
+D:\Projects\nescafe\Roms\Totally Rad (Europe).nes
+D:\Projects\nescafe\Roms\Totally Rad (USA).nes
+D:\Projects\nescafe\Roms\Town & Country Surf Designs - Thrilla's Surfari (USA).nes
+D:\Projects\nescafe\Roms\Toxic Crusaders (USA).nes
+D:\Projects\nescafe\Roms\Treasure Master (USA).nes
+D:\Projects\nescafe\Roms\Trog! (USA).nes
+D:\Projects\nescafe\Roms\Trojan (Europe).nes
+D:\Projects\nescafe\Roms\Trojan (USA).nes
+D:\Projects\nescafe\Roms\Trolls in Crazyland, The (Europe).nes
+D:\Projects\nescafe\Roms\Tsuru Pika Hagemaru - Mezase! Tsuru Seko no Akashi (Japan).nes
+D:\Projects\nescafe\Roms\Turbo Racing (Europe).nes
+D:\Projects\nescafe\Roms\Twin Eagle (USA).nes
+D:\Projects\nescafe\Roms\TwinBee (Japan).nes
+D:\Projects\nescafe\Roms\TwinBee - Stinger (USA).nes
+D:\Projects\nescafe\Roms\TwinBee 3 - Poko Poko Dai Maou (J) [trans].nes
+D:\Projects\nescafe\Roms\Ufouria - The Saga (Europe).nes
+D:\Projects\nescafe\Roms\Ultima - Exodus (USA).nes
+D:\Projects\nescafe\Roms\Ultima - Quest of the Avatar (USA).nes
+D:\Projects\nescafe\Roms\Ultima - Warriors of Destiny (USA).nes
+D:\Projects\nescafe\Roms\Ultimate Air Combat (USA).nes
+D:\Projects\nescafe\Roms\Ultraman Club 3 - Matamata Shutsugeki!! Ultra Kyoudai (Japan).nes
+D:\Projects\nescafe\Roms\Uncanny X-Men, The (USA).nes
+D:\Projects\nescafe\Roms\Uncharted Waters (USA).nes
+D:\Projects\nescafe\Roms\Untouchables, The (USA) (Rev B).nes
+D:\Projects\nescafe\Roms\Urban Champion (World).nes
+D:\Projects\nescafe\Roms\Utsurun Desu (Japan).nes
+D:\Projects\nescafe\Roms\Venus Senki - Back the City (Japan).nes
+D:\Projects\nescafe\Roms\Vice - Project Doom (USA).nes
+D:\Projects\nescafe\Roms\Vindicators (USA) (Unl).nes
+D:\Projects\nescafe\Roms\Volguard II (Japan).nes
+D:\Projects\nescafe\Roms\Wacky Races (USA).nes
+D:\Projects\nescafe\Roms\Wagyan Land (J) [T+Eng100%_AlanMidas].nes
+D:\Projects\nescafe\Roms\Wagyan Land (Japan).nes
+D:\Projects\nescafe\Roms\Wagyan Land 3 (Japan).nes
+D:\Projects\nescafe\Roms\Warpman (Japan).nes
+D:\Projects\nescafe\Roms\Wayne's World (USA).nes
+D:\Projects\nescafe\Roms\Werewolf - The Last Warrior (USA).nes
+D:\Projects\nescafe\Roms\Western Kids (Japan).nes
+D:\Projects\nescafe\Roms\Whomp 'Em (USA).nes
+D:\Projects\nescafe\Roms\Widget (USA).nes
+D:\Projects\nescafe\Roms\Wily & Light no Rockboard - That's Paradise (J) [T+Eng0.10_Interiordi_Software].nes
+D:\Projects\nescafe\Roms\Wily & Right no Rockboard - That's Paradise (Japan).nes
+D:\Projects\nescafe\Roms\Wing of Madoola, The (J) [hFFE][t1].nes
+D:\Projects\nescafe\Roms\Wizardry - Knight of Diamonds - The Second Scenario (USA).nes
+D:\Projects\nescafe\Roms\Wizardry - Proving Grounds of the Mad Overlord (USA).nes
+D:\Projects\nescafe\Roms\Wizardry II - Llylgamyn no Isan (Japan).nes
+D:\Projects\nescafe\Roms\Wizards & Warriors II - iIronSword (USA).nes
+D:\Projects\nescafe\Roms\Wolverine (USA).nes
+D:\Projects\nescafe\Roms\World Grand-Prix - Pole to Finish (Japan).nes
+D:\Projects\nescafe\Roms\Wrath of the Black Manta (Europe).nes
+D:\Projects\nescafe\Roms\Wrath of the Black Manta (USA) (Rev A).nes
+D:\Projects\nescafe\Roms\Wrath of the Black Manta (USA).nes
+D:\Projects\nescafe\Roms\Wrecking Crew (World).nes
+D:\Projects\nescafe\Roms\Wurm - Journey to the Center of the Earth! (USA).nes
+D:\Projects\nescafe\Roms\Xenophobe (USA).nes
+D:\Projects\nescafe\Roms\Xevious (Europe).nes
+D:\Projects\nescafe\Roms\Xevious - The Avenger (USA).nes
+D:\Projects\nescafe\Roms\Xexyz (USA).nes
+D:\Projects\nescafe\Roms\Yie Ar Kung-Fu (Japan) (Rev 1.2).nes
+D:\Projects\nescafe\Roms\Yie Ar Kung-Fu (Japan) (Rev 1.4).nes
+D:\Projects\nescafe\Roms\Yo! Noid (USA).nes
+D:\Projects\nescafe\Roms\Yoshi (USA).nes
+D:\Projects\nescafe\Roms\Yoshi no Tamago (Japan).nes
+D:\Projects\nescafe\Roms\Yoshi's Cookie (USA).nes
+D:\Projects\nescafe\Roms\Young Indiana Jones Chronicles, The (USA).nes
+D:\Projects\nescafe\Roms\Yousei Monogatari - Rod Land (Japan).nes
+D:\Projects\nescafe\Roms\Ys (Japan).nes
+D:\Projects\nescafe\Roms\Ys II - Ancient Ys Vanished - The Final Chapter (Japan).nes
+D:\Projects\nescafe\Roms\Ys III - Wanderers from Ys (Japan).nes
+D:\Projects\nescafe\Roms\Zanac (USA).nes
+D:\Projects\nescafe\Roms\Zelda II - The Adventure of Link (USA).nes
+D:\Projects\nescafe\Roms\Zen - Intergalactic Ninja (Europe).nes
+D:\Projects\nescafe\Roms\Zen - Intergalactic Ninja (USA).nes
+D:\Projects\nescafe\Roms\Zhen Ben Xi You Ji (Asia) (Unl).nes
+D:\Projects\nescafe\Roms\Zippy Race (Japan).nes
+D:\Projects\nescafe\Roms\Zoids - Chuuou Tairiku no Tatakai (Japan).nes
+D:\Projects\nescafe\Roms\Zoids 2 - Zenebas no Gyakushuu (Japan).nes
+D:\Projects\nescafe\Roms\Zombie Hunter (Japan) [trans].nes
+D:\Projects\nescafe\Roms\Zombie Hunter (Japan).nes
+D:\Projects\nescafe\Roms\Zombie Nation (USA).nes
+D:\Projects\nescafe\Roms\Zunou Senkan Galg (Japan).nes

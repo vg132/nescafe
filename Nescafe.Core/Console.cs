@@ -146,6 +146,10 @@ namespace Nescafe.Core
 					System.Console.WriteLine(" (MMC3) Supported!");
 					Mapper = new Mmc3Mapper(this);
 					break;
+				case 7:
+					System.Console.WriteLine(" (AxRom) Supported!");
+					Mapper = new AxROM(this);
+					break;
 				case 68:
 					System.Console.WriteLine(" (MMC6) Supported!");
 					Mapper = new Mmc6Mapper(this);
@@ -155,8 +159,11 @@ namespace Nescafe.Core
 					Mapper = new Mapper172(this);
 					break;
 				default:
-					System.Console.WriteLine(" mapper is not supported");
+#if DEBUG
+					throw new MapperNotSupportedException(Cartridge.MapperNumber);
+#else
 					return false;
+#endif
 			}
 
 			Reset();
