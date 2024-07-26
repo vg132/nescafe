@@ -9,6 +9,7 @@ public class GxROM : Mapper
 	public GxROM(Console console)
 	{
 		_console = console;
+		_vramMirroringType = VramMirroring.Vertical;
 	}
 
 	public override byte Read(ushort address)

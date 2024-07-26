@@ -115,14 +115,12 @@ public partial class Cpu
 		State.NmiInterrupt = false;
 
 		var cyclesOrig = State.Cycles;
-		var opCode = _memory.Read(State.PC);
-		var currentInstruction = _cpuInstructions[opCode];
-		var mode = currentInstruction.AddressMode;
+		var currentInstruction = _cpuInstructions[_memory.Read(State.PC)];
 
 		// Get address to operate on
 		ushort address = 0;
 		var pageCrossed = false;
-		switch (mode)
+		switch (currentInstruction.AddressMode)
 		{
 			case AddressMode.Implied:
 				break;
