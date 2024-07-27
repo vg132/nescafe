@@ -90,7 +90,7 @@ namespace Nescafe.Core
 		/// <param name="path">Path to the iNES cartridge file to load</param>
 		public bool LoadCartridge(string path)
 		{
-			System.Console.WriteLine("Loading ROM " + path);
+			System.Diagnostics.Debug.WriteLine("Loading ROM " + path);
 			if (Cartridge != null)
 			{
 				Cartridge.Eject();
@@ -106,31 +106,31 @@ namespace Nescafe.Core
 			switch (Cartridge.MapperNumber)
 			{
 				case 0:
-					System.Console.WriteLine(" (NROM) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (NROM) Supported!");
 					Mapper = new NromMapper(this);
 					break;
 				case 1:
-					System.Console.WriteLine(" (MMC1) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (MMC1) Supported!");
 					Mapper = new Mmc1Mapper(this);
 					break;
 				case 2:
-					System.Console.WriteLine(" (UxROM) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (UxROM) Supported!");
 					Mapper = new UxRomMapper(this);
 					break;
 				case 3:
-					System.Console.WriteLine(" (CNROM) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (CNROM) Supported!");
 					Mapper = new CnRomMapper(this);
 					break;
 				case 4:
-					System.Console.WriteLine(" (MMC3) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (MMC3) Supported!");
 					Mapper = new Mmc3Mapper(this);
 					break;
 				case 68:
-					System.Console.WriteLine(" (MMC6) Supported!");
+					System.Diagnostics.Debug.WriteLine(" (MMC6) Supported!");
 					Mapper = new Mmc6Mapper(this);
 					break;
 				default:
-					System.Console.WriteLine(" mapper is not supported");
+					System.Diagnostics.Debug.WriteLine(" mapper is not supported");
 					return false;
 			}
 

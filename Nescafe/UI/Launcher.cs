@@ -1,4 +1,5 @@
 ﻿using Nescafe.Services;
+using Nescafe.UI.Debug;
 using Nescafe.UI.Input;
 
 namespace Nescafe.UI;
@@ -238,5 +239,11 @@ public partial class Launcher : Form
 				mruListMenuItem.DropDownItems.Add(menuItem);
 			}
 		}
+	}
+
+	private void paletteViewerToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		var form = new PaletteViewer(_console);
+		form.Show();
 	}
 }

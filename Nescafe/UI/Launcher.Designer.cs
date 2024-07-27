@@ -71,12 +71,14 @@ partial class Launcher
 		fullScreenToolStripMenuItem = new ToolStripMenuItem();
 		glControl1 = new OpenTK.WinForms.GLControl();
 		textBoxFixForKeyEvents = new TextBox();
+		debugToolStripMenuItem = new ToolStripMenuItem();
+		paletteViewerToolStripMenuItem = new ToolStripMenuItem();
 		menuStrip1.SuspendLayout();
 		SuspendLayout();
 		// 
 		// menuStrip1
 		// 
-		menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, gToolStripMenuItem, settingsToolStripMenuItem });
+		menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, gToolStripMenuItem, settingsToolStripMenuItem, debugToolStripMenuItem });
 		menuStrip1.Location = new Point(0, 0);
 		menuStrip1.Name = "menuStrip1";
 		menuStrip1.Size = new Size(800, 24);
@@ -229,19 +231,19 @@ partial class Launcher
 		// pauseToolStripMenuItem
 		// 
 		pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-		pauseToolStripMenuItem.Size = new Size(105, 22);
+		pauseToolStripMenuItem.Size = new Size(180, 22);
 		pauseToolStripMenuItem.Text = "Pause";
 		pauseToolStripMenuItem.Click += pauseToolStripMenuItem_Click;
 		// 
 		// toolStripMenuItem3
 		// 
 		toolStripMenuItem3.Name = "toolStripMenuItem3";
-		toolStripMenuItem3.Size = new Size(102, 6);
+		toolStripMenuItem3.Size = new Size(177, 6);
 		// 
 		// resetToolStripMenuItem
 		// 
 		resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-		resetToolStripMenuItem.Size = new Size(105, 22);
+		resetToolStripMenuItem.Size = new Size(180, 22);
 		resetToolStripMenuItem.Text = "Reset";
 		resetToolStripMenuItem.Click += resetToolStripMenuItem_Click;
 		// 
@@ -398,6 +400,20 @@ partial class Launcher
 		textBoxFixForKeyEvents.Size = new Size(100, 23);
 		textBoxFixForKeyEvents.TabIndex = 2;
 		// 
+		// debugToolStripMenuItem
+		// 
+		debugToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paletteViewerToolStripMenuItem });
+		debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+		debugToolStripMenuItem.Size = new Size(54, 20);
+		debugToolStripMenuItem.Text = "&Debug";
+		// 
+		// paletteViewerToolStripMenuItem
+		// 
+		paletteViewerToolStripMenuItem.Name = "paletteViewerToolStripMenuItem";
+		paletteViewerToolStripMenuItem.Size = new Size(180, 22);
+		paletteViewerToolStripMenuItem.Text = "Palette Viewer...";
+		paletteViewerToolStripMenuItem.Click += paletteViewerToolStripMenuItem_Click;
+		// 
 		// Launcher
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
@@ -463,4 +479,6 @@ partial class Launcher
 	private ToolStripSeparator toolStripMenuItem4;
 	private ToolStripMenuItem mruListMenuItem;
 	private TextBox textBoxFixForKeyEvents;
+	private ToolStripMenuItem debugToolStripMenuItem;
+	private ToolStripMenuItem paletteViewerToolStripMenuItem;
 }

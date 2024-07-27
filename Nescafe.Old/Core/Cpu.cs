@@ -489,7 +489,7 @@ namespace Nescafe.Core
 #if DEBUG
 			if (currentInstruction.Instruction == ___)
 			{
-				System.Console.WriteLine($"Invalid opcode: {opCode.ToString("X2")} ({opCode})");
+				System.Diagnostics.Debug.WriteLine($"Invalid opcode: {opCode.ToString("X2")} ({opCode})");
 			}
 			currentInstruction.Instruction.Invoke(mode, address);
 #else

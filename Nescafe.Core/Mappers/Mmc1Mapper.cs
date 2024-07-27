@@ -86,7 +86,7 @@ public class Mmc1Mapper : Mapper
 		}
 		else
 		{
-			System.Console.WriteLine("Invalid Mapper read at address " + address.ToString("X4"));
+			System.Diagnostics.Debug.WriteLine("Invalid Mapper read at address " + address.ToString("X4"));
 			//throw new Exception("Invalid Mapper read at address " + address.ToString("X4"));
 			data = 0;
 		}

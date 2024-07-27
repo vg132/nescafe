@@ -132,7 +132,7 @@ namespace Nescafe.Core
 		/// <param name="path">Path to the iNES cartridge file to load</param>
 		public bool LoadCartridge(string path)
 		{
-			System.Console.WriteLine("Loading ROM " + path);
+			System.Diagnostics.Debug.WriteLine("Loading ROM " + path);
 			if (Cartridge != null)
 			{
 				Cartridge.Eject();
@@ -146,12 +146,12 @@ namespace Nescafe.Core
 			// Set mapper
 			if (_mappers.ContainsKey(Cartridge.MapperNumber))
 			{
-				System.Console.WriteLine($"iNES Mapper {Cartridge.MapperNumber} supported!");
+				System.Diagnostics.Debug.WriteLine($"iNES Mapper {Cartridge.MapperNumber} supported!");
 				Mapper = (Mapper)Activator.CreateInstance(_mappers[Cartridge.MapperNumber], this);
 			}
 			else
 			{
-				System.Console.WriteLine($"iNES Mapper {Cartridge.MapperNumber} not supported");
+				System.Diagnostics.Debug.WriteLine($"iNES Mapper {Cartridge.MapperNumber} not supported");
 #if DEBUG
 				throw new MapperNotSupportedException(Cartridge.MapperNumber);
 #else
