@@ -246,4 +246,10 @@ public partial class Launcher : Form
 		var form = new PaletteViewer(_console);
 		form.Show();
 	}
+
+	private void memoryViewerToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		var form = new MemoryViewer(_console);
+		form.Show();
+	}
 }

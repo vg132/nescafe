@@ -35,6 +35,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Nescafe.Core\Nescafe.Core.csproj" />
 	  <ProjectReference Include="..\OpenTK.WinForms\OpenTK.WinForms.csproj" />
+	  <ProjectReference Include="..\RPHexEditor\RPHexEditor.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
