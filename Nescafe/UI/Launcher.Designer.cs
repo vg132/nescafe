@@ -71,9 +71,10 @@ partial class Launcher
 		fullScreenToolStripMenuItem = new ToolStripMenuItem();
 		debugToolStripMenuItem = new ToolStripMenuItem();
 		paletteViewerToolStripMenuItem = new ToolStripMenuItem();
+		memoryViewerToolStripMenuItem = new ToolStripMenuItem();
 		glControl1 = new OpenTK.WinForms.GLControl();
 		textBoxFixForKeyEvents = new TextBox();
-		memoryViewerToolStripMenuItem = new ToolStripMenuItem();
+		spriteViewerToolStripMenuItem = new ToolStripMenuItem();
 		menuStrip1.SuspendLayout();
 		SuspendLayout();
 		// 
@@ -381,7 +382,7 @@ partial class Launcher
 		// 
 		// debugToolStripMenuItem
 		// 
-		debugToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paletteViewerToolStripMenuItem, memoryViewerToolStripMenuItem });
+		debugToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paletteViewerToolStripMenuItem, memoryViewerToolStripMenuItem, spriteViewerToolStripMenuItem });
 		debugToolStripMenuItem.Name = "debugToolStripMenuItem";
 		debugToolStripMenuItem.Size = new Size(54, 20);
 		debugToolStripMenuItem.Text = "&Debug";
@@ -392,6 +393,13 @@ partial class Launcher
 		paletteViewerToolStripMenuItem.Size = new Size(180, 22);
 		paletteViewerToolStripMenuItem.Text = "Palette Viewer...";
 		paletteViewerToolStripMenuItem.Click += paletteViewerToolStripMenuItem_Click;
+		// 
+		// memoryViewerToolStripMenuItem
+		// 
+		memoryViewerToolStripMenuItem.Name = "memoryViewerToolStripMenuItem";
+		memoryViewerToolStripMenuItem.Size = new Size(180, 22);
+		memoryViewerToolStripMenuItem.Text = "Memory Viewer...";
+		memoryViewerToolStripMenuItem.Click += memoryViewerToolStripMenuItem_Click;
 		// 
 		// glControl1
 		// 
@@ -415,12 +423,12 @@ partial class Launcher
 		textBoxFixForKeyEvents.Size = new Size(100, 23);
 		textBoxFixForKeyEvents.TabIndex = 2;
 		// 
-		// memoryViewerToolStripMenuItem
+		// spriteViewerToolStripMenuItem
 		// 
-		memoryViewerToolStripMenuItem.Name = "memoryViewerToolStripMenuItem";
-		memoryViewerToolStripMenuItem.Size = new Size(180, 22);
-		memoryViewerToolStripMenuItem.Text = "Memory Viewer...";
-		memoryViewerToolStripMenuItem.Click += memoryViewerToolStripMenuItem_Click;
+		spriteViewerToolStripMenuItem.Name = "spriteViewerToolStripMenuItem";
+		spriteViewerToolStripMenuItem.Size = new Size(180, 22);
+		spriteViewerToolStripMenuItem.Text = "Sprite Viewer...";
+		spriteViewerToolStripMenuItem.Click += spriteViewerToolStripMenuItem_Click;
 		// 
 		// Launcher
 		// 
@@ -490,4 +498,5 @@ partial class Launcher
 	private ToolStripMenuItem debugToolStripMenuItem;
 	private ToolStripMenuItem paletteViewerToolStripMenuItem;
 	private ToolStripMenuItem memoryViewerToolStripMenuItem;
+	private ToolStripMenuItem spriteViewerToolStripMenuItem;
 }

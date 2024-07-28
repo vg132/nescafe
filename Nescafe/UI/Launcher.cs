@@ -252,4 +252,10 @@ public partial class Launcher : Form
 		var form = new MemoryViewer(_console);
 		form.Show();
 	}
+
+	private void spriteViewerToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		var form = new SpriteViewer(_console);
+		form.Show();
+	}
 }
