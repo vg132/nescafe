@@ -139,6 +139,6 @@ public static class Palette
 		Color.FromArgb(0, 0, 0)
 	};
 
-	public static Color GetColor(int index) => _palette[index];
+	public static Color GetColor(int index) => _palette.Length < index ? _palette.Last() : _palette[index];
 	//public static Color GetColor(int index) => _alternativePalette[index];
 }
