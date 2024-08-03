@@ -93,14 +93,14 @@ public class Program
 
 	static void Main(string[] args)
 	{
-		var files = Directory.GetFiles(@"D:\Projects\nescafe\Roms", "*.nes");
+		var files = Directory.GetFiles(@"E:\nescafe\Roms", "*.nes");
 		foreach (var file in files)
 		{
 			TestRom(file);
 		}
 		_workingFiles.Insert(0, $"Working: {_workingFiles.Distinct().Count()}");
-		File.WriteAllLines(@$"D:\Projects\nescafe\tools\Test Compability\logs\working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _workingFiles.Distinct());
+		File.WriteAllLines(@$"E:\nescafe\tools\Test Compability\logs\working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _workingFiles.Distinct());
 		_notWorkingFiles.Insert(0, $"Not working: {_notWorkingFiles.Distinct().Count()}");
-		File.WriteAllLines(@$"D:\Projects\nescafe\tools\Test Compability\logs\not_working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _notWorkingFiles.Distinct());
+		File.WriteAllLines(@$"E:\nescafe\tools\Test Compability\logs\not_working_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt", _notWorkingFiles.Distinct());
 	}
 }

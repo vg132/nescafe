@@ -1,0 +1,292 @@
+Not working: 291
+E:\nescafe\Roms\1991 Du Ma Racing (Asia) (Unl).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\3-D WorldRunner (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Advanced Dungeons & Dragons - DragonStrike (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Advanced Dungeons & Dragons - Hillsfar (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Adventures in the Magic Kingdom (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Adventures of Bayou Billy, The (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Adventures of Bayou Billy, The (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Adventures of Lolo (USA) - with header.nes	14
+E:\nescafe\Roms\Adventures of Lolo (USA).nes	Not loading
+E:\nescafe\Roms\After Burner (USA) (Unl).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Air Fortress (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Airwolf (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Akira (J) [T-Eng_Chocoman][b1].nes	33
+E:\nescafe\Roms\Akira [trans].nes	33
+E:\nescafe\Roms\Akumajou Special - Boku Dracula-kun (J) [T+Eng1.02_Vice].nes	23
+E:\nescafe\Roms\Akumajou Special - Boku Dracula-kun (J) [trans].nes	23
+E:\nescafe\Roms\Alfred Chicken (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Alfred Chicken (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Alien Syndrome (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Alien Syndrome (USA) (Unl).nes	118
+E:\nescafe\Roms\Argus (Japan).nes	87
+E:\nescafe\Roms\Arkanoid (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Arkanoid (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Arkanoid II (Japan).nes	70
+E:\nescafe\Roms\Armadillo (Japan).nes	118
+E:\nescafe\Roms\Atlantis no Nazo (Japan) (Sample).nes	184
+E:\nescafe\Roms\Atlantis no Nazo (Japan).nes	184
+E:\nescafe\Roms\Attack of the Killer Tomatoes (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\B-Wings (Japan).nes	185
+E:\nescafe\Roms\Baby Boomer (USA) (Unl).nes	11
+E:\nescafe\Roms\Bandit Kings of Ancient China (USA).nes	5
+E:\nescafe\Roms\Batman (Japan).nes	69
+E:\nescafe\Roms\Batman - Return of the Joker (Europe).nes	69
+E:\nescafe\Roms\Batman - Return of the Joker (USA).nes	69
+E:\nescafe\Roms\Batman - The Video Game (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Batman - The Video Game (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Batman Returns (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Batman Returns (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Batsu & Terry - Makyou no Tetsujin Race (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bee 52 (USA) (Unl).nes	71
+E:\nescafe\Roms\Best Keiba - Derby Stallion (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Big Nose Freaks Out (USA) (Unl).nes	71
+E:\nescafe\Roms\Big Nose the Caveman (USA) (Unl).nes	71
+E:\nescafe\Roms\Bill & Ted's Excellent Video Game Adventure (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bio Hazard (Unl) [!] [trans].nes	227
+E:\nescafe\Roms\Bio Miracle Bokutte Upa (Japan).nes	25
+E:\nescafe\Roms\Booby Kids (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Boulder Dash (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Boulder Dash (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Boulder Dash (USA).nes	Not loading
+E:\nescafe\Roms\Bubble Bobble 2 (Japan).nes	33
+E:\nescafe\Roms\Bucky O'Hare (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bucky O'Hare (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bucky O'Hare (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Burai Fighter (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Captain Saver (Japan).nes	33
+E:\nescafe\Roms\Castlevania III - Dracula's Curse (USA).nes	5
+E:\nescafe\Roms\Championship Rally (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Cheetahmen II (USA) (Unl).nes	228
+E:\nescafe\Roms\Choplifter (Japan) (En) (Rev 1).nes	87
+E:\nescafe\Roms\City Connection (Japan).nes	87
+E:\nescafe\Roms\Commando (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Cosmic Wars (Japan).nes	64
+E:\nescafe\Roms\Crazy Climber (Japan).nes	180
+E:\nescafe\Roms\Crisis Force (Japan).nes	23
+E:\nescafe\Roms\Cycle Race - Road Man (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Death Race (USA) (Unl).nes	11
+E:\nescafe\Roms\Die Hard (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Dr. Mario (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Dr. Mario (Japan, USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Dragon Ball - Daimaou Fukkatsu (Japan).nes	16
+E:\nescafe\Roms\Dragon Ball 3 - Gokuu Den (Japan) (Rev 1).nes	16
+E:\nescafe\Roms\Dragon Ball Z - Kyoushuu! Saiya Jin (Japan).nes	16
+E:\nescafe\Roms\Dragon Ball Z Gaiden - Saiya Jin Zetsumetsu Keikaku (Japan).nes	16
+E:\nescafe\Roms\Dragon Ball Z II - Gekishin Freeza!! (Japan) (Rev 1).nes	16
+E:\nescafe\Roms\Dragon Ball Z III - Ressen Jinzou Ningen (Japan).nes	16
+E:\nescafe\Roms\Dragon Quest II - Akuryou no Kamigami (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Dragon Warrior (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Dragon Warrior II (USA).nes	65
+E:\nescafe\Roms\Dynamite Batman (Japan).nes	69
+E:\nescafe\Roms\Dynowarz - Destruction of Spondylus (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Elevator Action (Japan).nes	64
+E:\nescafe\Roms\Empereur, L' (USA).nes	5
+E:\nescafe\Roms\Exciting Rally - World Rally Championship (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\F-1 Sensation (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\F1 Circus (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\F15 City War (USA) (v1.1) (Unl).nes	79
+E:\nescafe\Roms\Family Circuit '91 (Japan) (En).nes	19
+E:\nescafe\Roms\Family Jockey (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Fantastic Adventures of Dizzy, The (USA) (Unl).nes	71
+E:\nescafe\Roms\Fantasy Zone (USA) (Unl).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Fantasy Zone II - Opa-Opa no Namida (Japan).nes	67
+E:\nescafe\Roms\Faxanadu (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Faxanadu (USA) (Rev A).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Faxanadu (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Fire Emblem - Ankoku Ryuu to Hikari no Tsurugi (J) [T+Eng.10_Gaijin].nes	10
+E:\nescafe\Roms\Fire Emblem Gaiden (J) [T-Eng97b_J2e].nes	10
+E:\nescafe\Roms\Fire Hawk (USA) (Unl).nes	71
+E:\nescafe\Roms\Flying Warriors (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Formula 1 Sensation (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Galactic Crusader (USA) (Unl).nes	11
+E:\nescafe\Roms\Galaga (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Galaxian (Japan) (Rev A).nes	Invalid PPU Register read from register: 2000
+E:\nescafe\Roms\Galaxian (Japan).nes	Invalid PPU Register read from register: 2000
+E:\nescafe\Roms\Ganbare Goemon 2 (Japan).nes	23
+E:\nescafe\Roms\Ganbare Goemon Gaiden - Kieta Ougon Kiseru (Japan).nes	25
+E:\nescafe\Roms\Ganbare Goemon Gaiden 2 - Tenka no Zaihou (Japan).nes	21
+E:\nescafe\Roms\Ganbare Goemon! - Karakuri Douchuu (Japan).nes	75
+E:\nescafe\Roms\Gauntlet II (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Gauntlet II (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Gluk the Thunder Warrior (Spain) (Gluk Video) (Unl).nes	189
+E:\nescafe\Roms\Goonies (Japan).nes	87
+E:\nescafe\Roms\Gradius II (Japan).nes	25
+E:\nescafe\Roms\Gremlins 2 - The New Batch (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Guardian Legend, The (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Guerrilla War (USA).nes	65
+E:\nescafe\Roms\Gun.Smoke (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Hammerin' Harry (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\High Speed (USA).nes	119
+E:\nescafe\Roms\Highway Star (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Hiryuu no Ken Special - Fighting Wars (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Hydlide 3 - Yami kara no Houmonsha (Japan).nes	19
+E:\nescafe\Roms\Indiana Jones and the Last Crusade (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Indiana Jones and the Last Crusade (USA) (Taito).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Insector X (Japan).nes	33
+E:\nescafe\Roms\Joe & Mac (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joe & Mac - Caveman Ninja (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joust (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joust (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kabuki - Quantum Fighter (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kabuki - Quantum Fighter (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kamen Rider Club (Japan).nes	70
+E:\nescafe\Roms\Karate Kid, The (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Karnov (Japan) (Rev 1).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Karnov (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kid Dracula - Akumajou Special - Boku Dracula-kun (J) [T+Eng1.02_Vice].nes	23
+E:\nescafe\Roms\Kid Dracula - Akumajou Special - Boku Dracula-kun (J) [trans].nes	23
+E:\nescafe\Roms\King of Kings (Japan).nes	19
+E:\nescafe\Roms\Laser Invasion (USA).nes	5
+E:\nescafe\Roms\Legendary Wings (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Mad City (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Magic of Scheherazade, The (USA).nes	65
+E:\nescafe\Roms\Mappy Kids (Japan).nes	19
+E:\nescafe\Roms\Mechanized Attack (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Menace Beach (USA) (Unl).nes	11
+E:\nescafe\Roms\Mendel Palace (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Metal Fighter (USA) (Unl).nes	11
+E:\nescafe\Roms\Metal Fighter Mu (Japan) (Unl).nes	113
+E:\nescafe\Roms\Metal Force (Korea) (Unl).nes	156
+E:\nescafe\Roms\Metal Gear (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Metal Gear (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Metal Gear (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Michael Andretti's World GP (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mickey Mousecapade (USA).nes	67
+E:\nescafe\Roms\Mickey's Adventure in Numberland (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Micro Machines (Europe) (Unl).nes	71
+E:\nescafe\Roms\Micro Machines (USA) (Unl).nes	71
+E:\nescafe\Roms\MiG 29 - Soviet Fighter (USA) (Unl).nes	71
+E:\nescafe\Roms\Mighty Bomb Jack (Japan) (Rev A).nes	185
+E:\nescafe\Roms\Mighty Bomb Jack (Japan).nes	185
+E:\nescafe\Roms\Mission Impossible (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mission Impossible (France).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mission Impossible (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Monster in My Pocket (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Monster in My Pocket (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Monster Party (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Moon Ranger (USA) (Unl).nes	11
+E:\nescafe\Roms\Nakajima Satoru - F-1 Hero (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Ninja Jajamaru - Ginga Daisakusen (Japan).nes	18
+E:\nescafe\Roms\Ninja Jajamaru-kun (Japan).nes	87
+E:\nescafe\Roms\Nintendo World Championships 1990 (USA).nes	105
+E:\nescafe\Roms\Nobunaga no Yabou - Bushou Fuuun Roku (Japan).nes	5
+E:\nescafe\Roms\Nobunaga no Yabou - Sengoku Gunyuu Den (Japan).nes	5
+E:\nescafe\Roms\Nobunaga's Ambition II (USA).nes	5
+E:\nescafe\Roms\Operation Secret Storm (USA) (Unl).nes	11
+E:\nescafe\Roms\Over Horizon (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\P'Radikus Conflict (USA) (Unl).nes	11
+E:\nescafe\Roms\Pac-Mania (USA) (Unl).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Palamedes II - Star Twinkle, Hoshi no Mabataki (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Pesterminator (USA) (Unl).nes	11
+E:\nescafe\Roms\Pin Bot (USA).nes	119
+E:\nescafe\Roms\Pipe 5 (Asia) (Unl).nes	142
+E:\nescafe\Roms\Pipemania (Australia) (HES) (Unl).nes	79
+E:\nescafe\Roms\Platoon (USA) (Rev A).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Platoon (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Power Blazer (Japan).nes	33
+E:\nescafe\Roms\Probotector (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Probotector II - Return of the Evil Forces (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Puzzle (USA) (Unl).nes	79
+E:\nescafe\Roms\Racer Mini Yonku - Japan Cup (Japan).nes	25
+E:\nescafe\Roms\Rad Racer (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Raid 2020 (USA) (Unl).nes	11
+E:\nescafe\Roms\Rainbow Islands - The Story of Bubble Bobble 2 (Japan) (Sample).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rainbow Islands - The Story of Bubble Bobble 2 (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rampart (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Rampart (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Resident Evil NES.nes	15
+E:\nescafe\Roms\Robin Hood - Prince of Thieves (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\RoboCop (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\RoboCop 3 (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Robodemons (USA) (Unl).nes	11
+E:\nescafe\Roms\Rockball (Asia) (Unl).nes	141
+E:\nescafe\Roms\Rollerball (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rolling Thunder (USA) (Unl).nes	64
+E:\nescafe\Roms\Romance of the Three Kingdoms II (USA).nes	5
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari (Japan) (Rev 1).nes	159
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari (Japan).nes	16
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari 2 - Hikari no Knight (Japan).nes	16
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari 3 - Densetsu no Kishi Dan (Japan).nes	16
+E:\nescafe\Roms\Secret Scout in the Temple of Demise (USA) (Unl).nes	11
+E:\nescafe\Roms\Shinobi (USA) (Unl).nes	64
+E:\nescafe\Roms\Sidewinder (Australia) (Unl).nes	113
+E:\nescafe\Roms\Silent Assault (Asia) (PAL) (Unl).nes	146
+E:\nescafe\Roms\Silent Assault (USA) (Unl).nes	11
+E:\nescafe\Roms\Silver Eagle (Asia) (PAL) (Unl).nes	138
+E:\nescafe\Roms\Snow Bros. (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Snow Brothers (Europe).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Snow Brothers (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Spartan X 2 (Japan).nes	65
+E:\nescafe\Roms\Splatter House - Wanpaku Graffiti (Japan).nes	19
+E:\nescafe\Roms\Spy Hunter (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Star Wars (Japan) (Namco).nes	19
+E:\nescafe\Roms\Star Wars - The Empire Strikes Back (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Strider (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super C (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Super Mario Bros. + Tetris + Nintendo World Cup (Europe) (Rev A).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Mario Bros. + Tetris + Nintendo World Cup (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Sprint (USA) (Unl).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Super Spy Hunter (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Star Force (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tagin' Dragon (USA) (Unl).nes	11
+E:\nescafe\Roms\Taito Chase H.Q. (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Taito Grand Prix - Eikou e no License (Japan).nes	80
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles - Tournament Fighters (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles II - The Arcade Game (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles III - The Manhattan Project (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tetris (Bulletproof) (Japan) (Rev B).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tetris (USA) (Unl).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tetris (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tetris 2 + Bombliss (Japan) (Rev A).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Thunder Warrior (Asia) (Unl).nes	189
+E:\nescafe\Roms\Tiny Toon Adventures (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tiny Toon Adventures 2 - Trouble in Wackyland (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tiny Toon Adventures Cartoon Workshop (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Toki no Tabibito (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tom & Jerry (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tom Sawyer no Bouken (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Top Gun (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Top Gun - Dual Fighters (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Top Gun - The Second Mission (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Trog! (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tsuru Pika Hagemaru - Mezase! Tsuru Seko no Akashi (Japan).nes	18
+E:\nescafe\Roms\Twin Eagle (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\TwinBee 3 - Poko Poko Dai Maou (J) [trans].nes	22
+E:\nescafe\Roms\Uchuu Keibitai SDF (Japan).nes	5
+E:\nescafe\Roms\Uchuu Keibitai SDF (Japan).nes	Invalid PPU Register read from register: 2006
+E:\nescafe\Roms\Uchuusen Cosmo Carrier (Japan).nes	78
+E:\nescafe\Roms\Ultimate Stuntman, The (USA) (Unl).nes	71
+E:\nescafe\Roms\Ultraman Club - Kaijuu Daikessen!! (Japan) [trans].nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Ultraman Club 2 - Kaettekita Ultraman Club (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Ultraman Club 3 - Matamata Shutsugeki!! Ultra Kyoudai (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Uncanny X-Men, The (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Uncharted Waters (USA).nes	5
+E:\nescafe\Roms\Urusei Yatsura - Lum no Wedding Bell (Japan).nes	87
+E:\nescafe\Roms\Valkyrie no Bouken - Toki no Kagi Densetsu (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Venus Senki - Back the City (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Vindicators (USA) (Unl).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Wagyan Land 2 (Japan).nes	19
+E:\nescafe\Roms\Wagyan Land 3 (Japan).nes	19
+E:\nescafe\Roms\Wai Wai World (J) [hFFE][T+Eng3.0_Demiforce].nes	6
+E:\nescafe\Roms\Wai Wai World (Japan).nes	23
+E:\nescafe\Roms\Wai Wai World 2 - SOS!! Paseri Jou (Japan).nes	21
+E:\nescafe\Roms\Western Kids (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Willow (USA).nes	65
+E:\nescafe\Roms\Wing of Madoola, The (J) [hFFE][t1].nes	17
+E:\nescafe\Roms\Wing of Madoola, The (J) [hM02][t1].nes	17
+E:\nescafe\Roms\Wing of Madoola, The (J).nes	184
+E:\nescafe\Roms\Wing of Madoola, The (Japan) (Sample).nes	184
+E:\nescafe\Roms\Wit's (Japan).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Wizardry II - Llylgamyn no Isan (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Woody Poko (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Wrath of the Black Manta (Europe).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Wrath of the Black Manta (USA) (Rev A).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Xexyz (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Youkai Douchuuki (Japan).nes	19
+E:\nescafe\Roms\Yume Penguin Monogatari (Japan).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Zen - Intergalactic Ninja (USA).nes	Index was outside the bounds of the array.
+E:\nescafe\Roms\Zhen Ben Xi You Ji (Asia) (Unl).nes	112
+E:\nescafe\Roms\Zombie Hunter (Japan) [trans].nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Zombie Nation (USA).nes	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Zunou Senkan Galg (Japan).nes	Index was outside the bounds of the array.
