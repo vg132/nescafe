@@ -32,12 +32,12 @@ public partial class Sprite : UserControl
 		Color[] pixelData = null;
 		if (SpriteInfo.IsLarge)
 		{
-			var spriteData = Read8x16Sprite(SpriteInfo.Test_TileIndex);
+			var spriteData = Read8x16Sprite();
 			pixelData = Convert8x16SpriteToBitmap(spriteData);
 		}
 		else
 		{
-			var spriteData = Read8x8Sprite(SpriteInfo.Test_TileIndex);
+			var spriteData = Read8x8Sprite();
 			pixelData = Convert8x8SpriteToBitmap(spriteData);
 		}
 
@@ -130,17 +130,16 @@ public partial class Sprite : UserControl
 		return bitmap;
 	}
 
-	public byte[] Read8x8Sprite(int tileIndex)
+	public byte[] Read8x8Sprite()
 	{
-		var tileOffset = Console.Ppu.State.SpritePatternTableAddress + (tileIndex * 16);
 		var spriteData = new byte[16];
 
 		for (var row = 0; row < 8; row++)
 		{
 			var currentRow = SpriteInfo.FlipVertical ? 7 - row : row;
 
-			var plane0 = Console.PpuMemory.Read((ushort)(tileOffset + row));
-			var plane1 = Console.PpuMemory.Read((ushort)(tileOffset + row + 8));
+			var plane0 = Console.PpuMemory.Read((ushort)(SpriteInfo.TileOffset + row));
+			var plane1 = Console.PpuMemory.Read((ushort)(SpriteInfo.TileOffset + row + 8));
 
 			if (SpriteInfo.FlipHorizontal)
 			{
@@ -155,32 +154,20 @@ public partial class Sprite : UserControl
 		return spriteData;
 	}
 
-	public byte[] Read8x16Sprite(int tileIndex)
+	public byte[] Read8x16Sprite()
 	{
-		int patternTableAddress = (tileIndex & 1) * 0x1000; // Determine which pattern table to use
-		int tileAddress = patternTableAddress + (tileIndex & 0xFE) * 16; // Get the base address of the tile
-
-		//tileAddress = 0xA0;
+		//int patternTableAddress = (tileIndex & 1) * 0x1000; // Determine which pattern table to use
+		//int tileAddress = patternTableAddress + (tileIndex & 0xFE) * 16; // Get the base address of the tile
 
 		var spriteData = new byte[32];
 
 		for (int row = 0; row < 16; row++)
 		{
 			var currentRow = SpriteInfo.FlipVertical ? 15 - row : row;
-			var address = tileAddress + currentRow + (currentRow >= 8 ? 8 : 0);
+			var address = SpriteInfo.TileOffset + currentRow + (currentRow >= 8 ? 8 : 0);
 
-			byte plane0 = 0;
-			byte plane1 = 0;
-			if (address >= 0x2000)
-			{
-				plane0 = Console.Cartridge.ReadChr((ushort)address);
-				plane1 = Console.Cartridge.ReadChr((ushort)(address + 8));
-			}
-			else
-			{
-				plane0 = Console.PpuMemory.Read((ushort)address);
-				plane1 = Console.PpuMemory.Read((ushort)(address + 8));
-			}
+			var plane0 = Console.PpuMemory.Read((ushort)address);
+			var plane1 = Console.PpuMemory.Read((ushort)(address + 8));
 
 			if (SpriteInfo.FlipHorizontal)
 			{

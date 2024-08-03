@@ -52,18 +52,16 @@ public partial class SpriteViewer : Form
 
 		for (int spriteIndex = 0; spriteIndex < NumSprites; spriteIndex++)
 		{
-			//int yPos = _console.Ppu.State.Oam[spriteIndex * 4];
+			int yPos = _console.Ppu.State.Oam[spriteIndex * 4];
 			var tileIndex = _console.Ppu.State.Oam[spriteIndex * 4 + 1];
 			var attributes = _console.Ppu.State.Oam[spriteIndex * 4 + 2];
-			//int xPos = _console.Ppu.State.Oam[spriteIndex * 4 + 3];
-			// Assume the sprites are from pattern table 0
+			int xPos = _console.Ppu.State.Oam[spriteIndex * 4 + 3];
 
 			int tileOffset = 0;
 			if (_console.Ppu.State.FlagSpriteSize == 1)
 			{
 				var bank = (tileIndex & 0x1);
-				//newTileIndex = (byte)((tileIndex >> 1) & 0x7f);
-				//tileOffset = (bank * 0x1000) + ((tileIndex & 0xFE) * 16);
+				tileOffset = bank + (tileIndex & 0xFE) * 16;
 			}
 			else
 			{
@@ -78,8 +76,7 @@ public partial class SpriteViewer : Form
 				FlipHorizontal = (attributes & 0x40) != 0,
 				FlipVertical = (attributes & 0x80) != 0,
 				PaletteIndex = attributes & 0x03,
-				TileOffset = tileOffset,
-				Test_TileIndex = tileIndex,
+				TileOffset = tileOffset
 			};
 
 			_sprites[spriteIndex].UpdateSprite(spriteInfo);
@@ -89,7 +86,6 @@ public partial class SpriteViewer : Form
 
 public class SpriteInfo
 {
-	public byte Test_TileIndex { get; set; }
 	public bool IsLarge { get; set; }
 	public int Index { get; set; }
 	public bool FlipHorizontal { get; set; }
