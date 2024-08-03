@@ -31,11 +31,12 @@ public partial class SpriteViewer : Form
 			{
 				var sprite = new Sprite
 				{
+					BorderStyle = BorderStyle.None,
 					Console = _console,
-					Width = 32,
-					Height = 32,
-					Top = (row * 32) + 5,
-					Left = (col * 32) + 5,
+					Width = 34,
+					Height = 34,
+					Top = (row * 39) + 5,
+					Left = (col * 39) + 5,
 				};
 				Controls.Add(sprite);
 				_sprites.Add(sprite);
@@ -61,15 +62,13 @@ public partial class SpriteViewer : Form
 			if (_console.Ppu.State.FlagSpriteSize == 1)
 			{
 				var bank = (tileIndex & 0x1);
-				tileIndex = (byte)((tileIndex >> 1) & 0x7f);
-				tileOffset = (bank * 0x1000) + (tileIndex * 16);
+				//newTileIndex = (byte)((tileIndex >> 1) & 0x7f);
+				//tileOffset = (bank * 0x1000) + ((tileIndex & 0xFE) * 16);
 			}
 			else
 			{
 				tileOffset = _console.Ppu.State.SpritePatternTableAddress + (tileIndex * 16);
 			}
-
-
 
 			var spriteInfo = new SpriteInfo
 			{
@@ -79,7 +78,8 @@ public partial class SpriteViewer : Form
 				FlipHorizontal = (attributes & 0x40) != 0,
 				FlipVertical = (attributes & 0x80) != 0,
 				PaletteIndex = attributes & 0x03,
-				TileOffset = tileOffset
+				TileOffset = tileOffset,
+				Test_TileIndex = tileIndex,
 			};
 
 			_sprites[spriteIndex].UpdateSprite(spriteInfo);
@@ -89,6 +89,7 @@ public partial class SpriteViewer : Form
 
 public class SpriteInfo
 {
+	public byte Test_TileIndex { get; set; }
 	public bool IsLarge { get; set; }
 	public int Index { get; set; }
 	public bool FlipHorizontal { get; set; }
