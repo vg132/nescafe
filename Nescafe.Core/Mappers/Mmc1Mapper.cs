@@ -64,8 +64,8 @@ public class Mmc1Mapper : Mapper
 		byte data;
 		if (address <= 0x1FFF) // CHR Banks 0 and 1 $0000-0x0FFF and $1000-$1FFF
 		{
-			var offset = (address / 0x1000) == 0 ? _chrBank0Offset : _chrBank1Offset;
-			offset += address % 0x1000;
+			var offset = (address / BankSize) == 0 ? _chrBank0Offset : _chrBank1Offset;
+			offset += address % BankSize;
 			data = _console.Cartridge.ReadChr(offset);
 		}
 		else if (address >= 0x4018 && address <= 0x5FFF)
@@ -107,8 +107,8 @@ public class Mmc1Mapper : Mapper
 			{
 				throw new Exception("Attempt to write to CHR ROM at " + address.ToString("X4"));
 			}
-			var offset = (address / 0x1000) == 0 ? _chrBank0Offset : _chrBank1Offset;
-			offset += address % 0x1000;
+			var offset = (address / BankSize) == 0 ? _chrBank0Offset : _chrBank1Offset;
+			offset += address % BankSize;
 			_console.Cartridge.WriteChr(offset, data);
 		}
 		else if(address >= 0x4018 && address<= 0x5FFF)
@@ -224,12 +224,12 @@ public class Mmc1Mapper : Mapper
 		{
 			case 0: // Switch 8 KB at a time
 							// Lowest bit of bank number ignored in 8 Kb mode
-				_chrBank0Offset = ((_chr0Reg & 0x1E) >> 1) * 0x1000;
-				_chrBank1Offset = _chrBank0Offset + 0x1000;
+				_chrBank0Offset = ((_chr0Reg & 0x1E) >> 1) * BankSize;
+				_chrBank1Offset = _chrBank0Offset + BankSize;
 				break;
 			case 1: // Switch 4 KB at a time
-				_chrBank0Offset = _chr0Reg * 0x1000;
-				_chrBank1Offset = _chr1Reg * 0x1000;
+				_chrBank0Offset = _chr0Reg * BankSize;
+				_chrBank1Offset = _chr1Reg * BankSize;
 				break;
 		}
 
@@ -255,6 +255,8 @@ public class Mmc1Mapper : Mapper
 				break;
 		}
 	}
+
+	private int BankSize => _chrMode == 0 ? 0x2000 : 0x1000;
 
 	#region Save/Load state
 
