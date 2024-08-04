@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nescafe.Services;
+using System;
 
 namespace Nescafe.Core
 {
@@ -98,7 +99,7 @@ namespace Nescafe.Core
 			}
 			else // Invalid Write
 			{
-				System.Diagnostics.Debug.WriteLine("Invalid PPU Memory Write at address: " + address.ToString("x4"));
+				DebugEventService.Warning("Invalid PPU Memory Write at address: " + address.ToString("x4"));
 				//throw new Exception("Invalid PPU Memory Write at address: " + address.ToString("x4"));
 			}
 		}

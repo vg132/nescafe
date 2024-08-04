@@ -81,6 +81,5 @@ public partial class PaletteViewer : Form
 		var mouseEvent = e as MouseEventArgs;
 		var indexX = mouseEvent.X / 32;
 		var indexY = mouseEvent.Y / 32;
-		System.Diagnostics.Debug.WriteLine($"X: {indexX}, Y: {indexY}. Index: {(indexY * 4) + indexX}");
 	}
 }

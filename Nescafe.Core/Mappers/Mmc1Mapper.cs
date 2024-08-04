@@ -1,4 +1,6 @@
-﻿namespace Nescafe.Core.Mappers;
+﻿using Nescafe.Services;
+
+namespace Nescafe.Core.Mappers;
 
 /// <summary>
 /// Represents Nintendo's MMC1 mapper.
@@ -92,7 +94,7 @@ public class Mmc1Mapper : Mapper
 		}
 		else
 		{
-			System.Diagnostics.Debug.WriteLine("Invalid Mapper read at address " + address.ToString("X4"));
+			DebugEventService.Warning($"Invalid Mapper read at address {address.ToString("X4")}");
 			//throw new Exception("Invalid Mapper read at address " + address.ToString("X4"));
 			data = 0;
 		}

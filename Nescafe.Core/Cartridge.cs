@@ -229,26 +229,26 @@ public class Cartridge
 		var magicNum = reader.ReadUInt32();
 		if (magicNum != HeaderMagic)
 		{
-			System.Diagnostics.Debug.WriteLine("Magic header value (" + magicNum.ToString("X4") + ") is incorrect");
+			DebugEventService.Warning($"Magic header value ({magicNum.ToString("X4")}) is incorrect");
 			Invalid = true;
 			return;
 		}
 
 		// Size of PRG ROM
 		PrgRomBanks = reader.ReadByte();
-		System.Diagnostics.Debug.WriteLine($"{16 * PrgRomBanks} Kb of PRG ROM in {PrgRomBanks} banks");
+		DebugEventService.Warning($"{16 * PrgRomBanks} Kb of PRG ROM in {PrgRomBanks} banks");
 
 		// Size of CHR ROM (Or set CHR RAM if using it)
 		ChrBanks = reader.ReadByte();
 		if (ChrBanks == 0)
 		{
-			System.Diagnostics.Debug.WriteLine("Cartridge uses CHR RAM");
+			DebugEventService.Warning("Cartridge uses CHR RAM");
 			ChrBanks = 2;
 			UsesChrRam = true;
 		}
 		else
 		{
-			System.Diagnostics.Debug.WriteLine($"{8 * ChrBanks} Kb of CHR ROM in {ChrBanks} banks");
+			DebugEventService.Warning($"{8 * ChrBanks} Kb of CHR ROM in {ChrBanks} banks");
 			UsesChrRam = false;
 		}
 
@@ -263,18 +263,18 @@ public class Cartridge
 		// ++++---- - Lower nybble of mapper number
 		_flags6 = reader.ReadByte();
 		VerticalVramMirroring = (_flags6 & 0x01) != 0;
-		System.Diagnostics.Debug.WriteLine("VRAM mirroring type: " + (VerticalVramMirroring ? "vertical" : "horizontal"));
+		DebugEventService.Warning($"VRAM mirroring type: {(VerticalVramMirroring ? "vertical" : "horizontal")}");
 
 		BatteryBackedMemory = (_flags6 & 0x02) != 0;
 		if (BatteryBackedMemory)
 		{
-			System.Diagnostics.Debug.WriteLine("Cartridge contains battery backed persistent memory");
+			DebugEventService.Warning("Cartridge contains battery backed persistent memory");
 		}
 
 		ContainsTrainer = (_flags6 & 0x04) != 0;
 		if (ContainsTrainer)
 		{
-			System.Diagnostics.Debug.WriteLine("Cartridge contains a 512 byte trainer");
+			DebugEventService.Warning("Cartridge contains a 512 byte trainer");
 		}
 
 		// Flags 7
