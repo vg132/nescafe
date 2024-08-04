@@ -597,6 +597,9 @@ public partial class Ppu
 				data = ReadPpuData();
 				break;
 			default:
+				//System.Diagnostics.Debug.WriteLine($"Invalid PPU Register read from register: {address.ToString("X4")}");
+				//data = 0x00;
+				//break;
 				throw new Exception("Invalid PPU Register read from register: " + address.ToString("X4"));
 		}
 

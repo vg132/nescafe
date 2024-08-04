@@ -41,7 +41,7 @@ public class Mmc1Mapper : Mapper
 	{
 		_console = console;
 
-		_shiftReg = 0x0C;
+		_shiftReg = 0x0F;
 		_controlReg = 0x00;
 		_chr0Reg = 0x00;
 		_chr1Reg = 0x00;
@@ -52,6 +52,8 @@ public class Mmc1Mapper : Mapper
 		_prgBank1Offset = (_console.Cartridge.PrgRomBanks - 1) * 0x4000;
 
 		_vramMirroringType = VramMirroring.Horizontal;
+
+		WriteControlReg(0x0F);
 	}
 
 	/// <summary>
@@ -78,6 +80,10 @@ public class Mmc1Mapper : Mapper
 		}
 		else if (address >= 0x8000 && address <= 0xFFFF) // 2 PRG ROM banks
 		{
+			//var newAddress = address - 0x8000;
+			//var offset = (newAddress / 0x4000) == 0 ? _prgBank0Offset : _prgBank1Offset;
+			//offset += newAddress % 0x4000;
+			//data = _console.Cartridge.ReadPrgRom(offset);
 
 			address -= 0x8000;
 			var offset = (address / 0x4000) == 0 ? _prgBank0Offset : _prgBank1Offset;
@@ -134,9 +140,9 @@ public class Mmc1Mapper : Mapper
 		if ((data & 0x80) != 0)
 		{
 			// If bit 7 set, clear internal shift register
-			WriteRegister(address, (byte)(_shiftReg | 0x0C));
 			_shiftReg = 0;
 			_shiftCount = 0;
+			WriteControlReg((byte)(_controlReg | 0x0C));
 		}
 		else
 		{
@@ -179,7 +185,7 @@ public class Mmc1Mapper : Mapper
 	private void WriteControlReg(byte data)
 	{
 		_controlReg = data;
-		_prgMode = (byte)((data >> 2) & 0x03);
+		_prgMode = (byte)((data >> 2) & 0x3);
 		_chrMode = (byte)((data >> 4) & 0x01);
 		switch (_controlReg & 0x03)
 		{
@@ -232,7 +238,6 @@ public class Mmc1Mapper : Mapper
 				_chrBank1Offset = _chr1Reg * BankSize;
 				break;
 		}
-
 		switch (_prgMode)
 		{
 			case 0:
