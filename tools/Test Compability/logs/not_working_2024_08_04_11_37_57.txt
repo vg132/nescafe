@@ -1,0 +1,244 @@
+Total time: 02:13, tested: 910, not working: 243
+E:\nescafe\Roms\1991 Du Ma Racing (Asia) (Unl).nes	172	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\3-D WorldRunner (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Advanced Dungeons & Dragons - DragonStrike (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Advanced Dungeons & Dragons - Hillsfar (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Adventures of Lolo (USA) - with header.nes	14	Mapper 14 not supported.
+E:\nescafe\Roms\Adventures of Lolo (USA).nes	0	Not loading
+E:\nescafe\Roms\After Burner (USA) (Unl).nes	68	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Akira (J) [T-Eng_Chocoman][b1].nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Akira [trans].nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Akumajou Special - Boku Dracula-kun (J) [T+Eng1.02_Vice].nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Akumajou Special - Boku Dracula-kun (J) [trans].nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Alfred Chicken (Europe).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Alfred Chicken (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Alien Syndrome (USA) (Unl).nes	118	Mapper 118 not supported.
+E:\nescafe\Roms\Argus (Japan).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\Arkanoid (Japan).nes	3	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Arkanoid (USA).nes	3	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Arkanoid II (Japan).nes	70	Mapper 70 not supported.
+E:\nescafe\Roms\Armadillo (Japan).nes	118	Mapper 118 not supported.
+E:\nescafe\Roms\Atlantis no Nazo (Japan) (Sample).nes	184	Mapper 184 not supported.
+E:\nescafe\Roms\Atlantis no Nazo (Japan).nes	184	Mapper 184 not supported.
+E:\nescafe\Roms\Attack of the Killer Tomatoes (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bandit Kings of Ancient China (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Batman - Return of the Joker (Europe).nes	69	Mapper 69 not supported.
+E:\nescafe\Roms\Batman - Return of the Joker (USA).nes	69	Mapper 69 not supported.
+E:\nescafe\Roms\Batman - The Video Game (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Batman - The Video Game (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Batman (Japan).nes	69	Mapper 69 not supported.
+E:\nescafe\Roms\Batman Returns (Europe).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Batman Returns (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Batsu & Terry - Makyou no Tetsujin Race (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bee 52 (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Beetlejuice (USA).nes	7	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Big Nose Freaks Out (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Big Nose the Caveman (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Bill & Ted's Excellent Video Game Adventure (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bio Hazard (Unl) [!] [trans].nes	227	Mapper 227 not supported.
+E:\nescafe\Roms\Bio Miracle Bokutte Upa (Japan).nes	25	Mapper 25 not supported.
+E:\nescafe\Roms\Booby Kids (Japan).nes	2	Index was outside the bounds of the array.
+E:\nescafe\Roms\Boulder Dash (USA).nes	0	Not loading
+E:\nescafe\Roms\Bubble Bobble 2 (Japan).nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Bucky O'Hare (Europe).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bucky O'Hare (Japan).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Bucky O'Hare (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Burai Fighter (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Captain Saver (Japan).nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Castlevania III - Dracula's Curse (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Cheetahmen II (USA) (Unl).nes	228	Mapper 228 not supported.
+E:\nescafe\Roms\Choplifter (Japan) (En) (Rev 1).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\City Connection (Japan).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\Cosmic Wars (Japan).nes	64	Mapper 64 not supported.
+E:\nescafe\Roms\Crazy Climber (Japan).nes	180	Mapper 180 not supported.
+E:\nescafe\Roms\Crisis Force (Japan).nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Die Hard (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Dragon Ball - Daimaou Fukkatsu (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Ball 3 - Gokuu Den (Japan) (Rev 1).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Ball Z - Kyoushuu! Saiya Jin (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Ball Z Gaiden - Saiya Jin Zetsumetsu Keikaku (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Ball Z II - Gekishin Freeza!! (Japan) (Rev 1).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Ball Z III - Ressen Jinzou Ningen (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Dragon Quest II - Akuryou no Kamigami (Japan).nes	2	Index was outside the bounds of the array.
+E:\nescafe\Roms\Dragon Quest IV - Michibikareshi Monotachi (Japan).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Dragon Warrior (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Dragon Warrior II (USA).nes	65	Mapper 65 not supported.
+E:\nescafe\Roms\Dragon Warrior IV (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Dynamite Batman (Japan).nes	69	Mapper 69 not supported.
+E:\nescafe\Roms\Elevator Action (Japan).nes	64	Mapper 64 not supported.
+E:\nescafe\Roms\Empereur, L' (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\F-1 Sensation (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\F1 Circus (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\F15 City War (USA) (v1.1) (Unl).nes	79	Mapper 79 not supported.
+E:\nescafe\Roms\Family Circuit '91 (Japan) (En).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Family Jockey (Japan).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Fantastic Adventures of Dizzy, The (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Fantasy Zone (USA) (Unl).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Fantasy Zone II - Opa-Opa no Namida (Japan).nes	67	Mapper 67 not supported.
+E:\nescafe\Roms\Fire Emblem - Ankoku Ryuu to Hikari no Tsurugi (J) [T+Eng.10_Gaijin].nes	10	Mapper 10 not supported.
+E:\nescafe\Roms\Fire Emblem Gaiden (J) [T-Eng97b_J2e].nes	10	Mapper 10 not supported.
+E:\nescafe\Roms\Fire Hawk (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Flying Warriors (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Formula 1 Sensation (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Galaga (Japan).nes	3	Index was outside the bounds of the array.
+E:\nescafe\Roms\Galaxian (Japan) (Rev A).nes	0	Invalid PPU Register read from register: 2000
+E:\nescafe\Roms\Galaxian (Japan).nes	0	Invalid PPU Register read from register: 2000
+E:\nescafe\Roms\Ganbare Goemon 2 (Japan).nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Ganbare Goemon Gaiden - Kieta Ougon Kiseru (Japan).nes	25	Mapper 25 not supported.
+E:\nescafe\Roms\Ganbare Goemon Gaiden 2 - Tenka no Zaihou (Japan).nes	21	Mapper 21 not supported.
+E:\nescafe\Roms\Ganbare Goemon! - Karakuri Douchuu (Japan).nes	75	Mapper 75 not supported.
+E:\nescafe\Roms\Gauntlet II (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Gauntlet II (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Gluk the Thunder Warrior (Spain) (Gluk Video) (Unl).nes	189	Mapper 189 not supported.
+E:\nescafe\Roms\Godzilla 2 - War of the Monsters (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Goonies (Japan).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\Gradius II (Japan).nes	25	Mapper 25 not supported.
+E:\nescafe\Roms\Gremlins 2 - The New Batch (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Guardian Legend, The (Europe).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Guerrilla War (USA).nes	65	Mapper 65 not supported.
+E:\nescafe\Roms\Gun.Smoke (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Hammerin' Harry (Europe).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\High Speed (USA).nes	119	Mapper 119 not supported.
+E:\nescafe\Roms\Hiryuu no Ken Special - Fighting Wars (Japan).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Hydlide 3 - Yami kara no Houmonsha (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Indiana Jones and the Last Crusade (Europe).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Insector X (Japan).nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Joe & Mac - Caveman Ninja (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joe & Mac (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joust (Japan).nes	3	Index was outside the bounds of the array.
+E:\nescafe\Roms\Joust (USA).nes	3	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kabuki - Quantum Fighter (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kabuki - Quantum Fighter (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kamen Rider Club (Japan).nes	70	Mapper 70 not supported.
+E:\nescafe\Roms\Karate Kid, The (USA).nes	3	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Karnov (Japan) (Rev 1).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Karnov (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Kid Dracula - Akumajou Special - Boku Dracula-kun (J) [T+Eng1.02_Vice].nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Kid Dracula - Akumajou Special - Boku Dracula-kun (J) [trans].nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\King of Kings (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Laser Invasion (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Legendary Wings (USA).nes	66	Index was outside the bounds of the array.
+E:\nescafe\Roms\Magic of Scheherazade, The (USA).nes	65	Mapper 65 not supported.
+E:\nescafe\Roms\Mappy Kids (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Mario Is Missing! (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mendel Palace (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Metal Fighter Mu (Japan) (Unl).nes	113	Mapper 113 not supported.
+E:\nescafe\Roms\Metal Force (Korea) (Unl).nes	156	Mapper 156 not supported.
+E:\nescafe\Roms\Metal Gear (Europe).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Metal Gear (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Metal Gear (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Michael Andretti's World GP (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mickey Mousecapade (USA).nes	67	Mapper 67 not supported.
+E:\nescafe\Roms\Mickey's Adventure in Numberland (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Micro Machines (Europe) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Micro Machines (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\MiG 29 - Soviet Fighter (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Mission Impossible (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mission Impossible (France).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Mission Impossible (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Monster in My Pocket (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Monster in My Pocket (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Nakajima Satoru - F-1 Hero (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Ninja Jajamaru - Ginga Daisakusen (Japan).nes	18	Mapper 18 not supported.
+E:\nescafe\Roms\Ninja Jajamaru-kun (Japan).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\Nintendo World Championships 1990 (USA).nes	105	Mapper 105 not supported.
+E:\nescafe\Roms\Nobunaga no Yabou - Bushou Fuuun Roku (Japan).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Nobunaga no Yabou - Sengoku Gunyuu Den (Japan).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Nobunaga's Ambition II (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Over Horizon (Europe).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Pac-Mania (USA) (Unl).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Palamedes II - Star Twinkle, Hoshi no Mabataki (Japan).nes	1	Index was outside the bounds of the array.
+E:\nescafe\Roms\Pin Bot (USA).nes	119	Mapper 119 not supported.
+E:\nescafe\Roms\Pipe 5 (Asia) (Unl).nes	142	Mapper 142 not supported.
+E:\nescafe\Roms\Pipemania (Australia) (HES) (Unl).nes	79	Mapper 79 not supported.
+E:\nescafe\Roms\Power Blazer (Japan).nes	33	Mapper 33 not supported.
+E:\nescafe\Roms\Probotector II - Return of the Evil Forces (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Puzzle (USA) (Unl).nes	79	Mapper 79 not supported.
+E:\nescafe\Roms\Racer Mini Yonku - Japan Cup (Japan).nes	25	Mapper 25 not supported.
+E:\nescafe\Roms\Rainbow Islands - The Story of Bubble Bobble 2 (Japan) (Sample).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rainbow Islands - The Story of Bubble Bobble 2 (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rampart (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Rampart (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Resident Evil NES.nes	15	Mapper 15 not supported.
+E:\nescafe\Roms\RoboCop 3 (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Rockball (Asia) (Unl).nes	141	Mapper 141 not supported.
+E:\nescafe\Roms\Rolling Thunder (USA) (Unl).nes	64	Mapper 64 not supported.
+E:\nescafe\Roms\Romance of the Three Kingdoms II (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari (Japan) (Rev 1).nes	159	Mapper 159 not supported.
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari 2 - Hikari no Knight (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\SD Gundam Gaiden - Knight Gundam Monogatari 3 - Densetsu no Kishi Dan (Japan).nes	16	Mapper 16 not supported.
+E:\nescafe\Roms\Shinobi (USA) (Unl).nes	64	Mapper 64 not supported.
+E:\nescafe\Roms\Sidewinder (Australia) (Unl).nes	113	Mapper 113 not supported.
+E:\nescafe\Roms\Silent Assault (Asia) (PAL) (Unl).nes	146	Mapper 146 not supported.
+E:\nescafe\Roms\Silver Eagle (Asia) (PAL) (Unl).nes	138	Mapper 138 not supported.
+E:\nescafe\Roms\Snow Bros. (Japan).nes	1	Index was outside the bounds of the array.
+E:\nescafe\Roms\Snow Brothers (USA).nes	1	Index was outside the bounds of the array.
+E:\nescafe\Roms\Spartan X 2 (Japan).nes	65	Mapper 65 not supported.
+E:\nescafe\Roms\Splatter House - Wanpaku Graffiti (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Spy Hunter (USA).nes	3	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Star Wars - The Empire Strikes Back (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Star Wars (Japan) (Namco).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Super C (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Super Mario Bros. + Tetris + Nintendo World Cup (Europe) (Rev A).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Mario Bros. + Tetris + Nintendo World Cup (Europe).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Sprint (USA) (Unl).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Super Spy Hunter (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Super Star Force (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Taito Chase H.Q. (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Taito Grand Prix - Eikou e no License (Japan).nes	80	Mapper 80 not supported.
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles - Tournament Fighters (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles II - The Arcade Game (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles III - The Manhattan Project (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tetris (USA) (Unl).nes	3	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tetris 2 + Bombliss (Japan) (Rev A).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Thunder Warrior (Asia) (Unl).nes	189	Mapper 189 not supported.
+E:\nescafe\Roms\Tiny Toon Adventures (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Tiny Toon Adventures 2 - Trouble in Wackyland (USA).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tiny Toon Adventures Cartoon Workshop (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Toki (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Toki no Tabibito (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tom Sawyer no Bouken (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Top Gun - Dual Fighters (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Top Gun - The Second Mission (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Top Gun (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Treasure Master (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Tsuru Pika Hagemaru - Mezase! Tsuru Seko no Akashi (Japan).nes	18	Mapper 18 not supported.
+E:\nescafe\Roms\Twin Eagle (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\TwinBee - Stinger (USA).nes	2	Invalid PPU Register read from register: 2006
+E:\nescafe\Roms\TwinBee 3 - Poko Poko Dai Maou (J) [trans].nes	22	Mapper 22 not supported.
+E:\nescafe\Roms\Uchuu Keibitai SDF (Japan).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Uchuusen Cosmo Carrier (Japan).nes	78	Mapper 78 not supported.
+E:\nescafe\Roms\Ultimate Stuntman, The (USA) (Unl).nes	71	Mapper 71 not supported.
+E:\nescafe\Roms\Ultraman Club - Kaijuu Daikessen!! (Japan) [trans].nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Ultraman Club 2 - Kaettekita Ultraman Club (Japan).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Ultraman Club 3 - Matamata Shutsugeki!! Ultra Kyoudai (Japan).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Uncanny X-Men, The (USA).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Uncharted Waters (USA).nes	5	Mapper 5 not supported.
+E:\nescafe\Roms\Urusei Yatsura - Lum no Wedding Bell (Japan).nes	87	Mapper 87 not supported.
+E:\nescafe\Roms\Valkyrie no Bouken - Toki no Kagi Densetsu (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Vindicators (USA) (Unl).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Wagyan Land 2 (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Wagyan Land 3 (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Wai Wai World (J) [hFFE][T+Eng3.0_Demiforce].nes	6	Mapper 6 not supported.
+E:\nescafe\Roms\Wai Wai World (Japan).nes	23	Mapper 23 not supported.
+E:\nescafe\Roms\Wai Wai World 2 - SOS!! Paseri Jou (Japan).nes	21	Mapper 21 not supported.
+E:\nescafe\Roms\Western Kids (Japan).nes	4	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Willow (USA).nes	65	Mapper 65 not supported.
+E:\nescafe\Roms\Wing of Madoola, The (J) [hFFE][t1].nes	17	Mapper 17 not supported.
+E:\nescafe\Roms\Wing of Madoola, The (J) [hM02][t1].nes	17	Mapper 17 not supported.
+E:\nescafe\Roms\Wing of Madoola, The (J).nes	184	Mapper 184 not supported.
+E:\nescafe\Roms\Wing of Madoola, The (Japan) (Sample).nes	184	Mapper 184 not supported.
+E:\nescafe\Roms\Wit's (Japan).nes	2	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Wizardry II - Llylgamyn no Isan (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Woody Poko (Japan).nes	2	Index was outside the bounds of the array.
+E:\nescafe\Roms\Wrath of the Black Manta (Europe).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Wrath of the Black Manta (USA) (Rev A).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Wrath of the Black Manta (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Xexyz (USA).nes	1	Exception has been thrown by the target of an invocation.
+E:\nescafe\Roms\Youkai Douchuuki (Japan).nes	19	Mapper 19 not supported.
+E:\nescafe\Roms\Yume Penguin Monogatari (Japan).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Zen - Intergalactic Ninja (Europe).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Zen - Intergalactic Ninja (USA).nes	4	Index was outside the bounds of the array.
+E:\nescafe\Roms\Zhen Ben Xi You Ji (Asia) (Unl).nes	112	Mapper 112 not supported.
+E:\nescafe\Roms\Zombie Nation (USA).nes	4	Index was outside the bounds of the array.

@@ -1,0 +1,668 @@
+Total time: 02:13, tested: 910, working: 667
+E:\nescafe\Roms\1942 (Japan, USA).nes
+E:\nescafe\Roms\1943 - The Battle of Midway (USA).nes
+E:\nescafe\Roms\2010 - Street Fighter (Japan).nes
+E:\nescafe\Roms\25th Anniversary Super Mario Bros. (Europe) (Promo, Virtual Console).nes
+E:\nescafe\Roms\8 Eyes (Japan).nes
+E:\nescafe\Roms\8 Eyes (USA).nes
+E:\nescafe\Roms\Abadox - The Deadly Inner War (USA).nes
+E:\nescafe\Roms\Action in New York (Europe).nes
+E:\nescafe\Roms\Addams Family, The - Pugsley's Scavenger Hunt (USA).nes
+E:\nescafe\Roms\Addams Family, The (USA).nes
+E:\nescafe\Roms\Advanced Dungeons & Dragons - Dragons of Flame (Japan).nes
+E:\nescafe\Roms\Advanced Dungeons & Dragons - Heroes of the Lance (USA).nes
+E:\nescafe\Roms\Advanced Dungeons & Dragons - Pool of Radiance (USA).nes
+E:\nescafe\Roms\Adventure Island - Takahashi Meijin no Bouken-jima IV (Japan) [E-patched].nes
+E:\nescafe\Roms\Adventure Island (USA).nes
+E:\nescafe\Roms\Adventure Island 2 (USA).nes
+E:\nescafe\Roms\Adventure Island 3 (USA).nes
+E:\nescafe\Roms\Adventure Island Classic (Europe).nes
+E:\nescafe\Roms\Adventure Island Part II, The (Europe).nes
+E:\nescafe\Roms\Adventures in the Magic Kingdom (USA).nes
+E:\nescafe\Roms\Adventures of Bayou Billy, The (Europe).nes
+E:\nescafe\Roms\Adventures of Bayou Billy, The (USA).nes
+E:\nescafe\Roms\Adventures of Dino Riki (USA).nes
+E:\nescafe\Roms\Adventures of Lolo 2 (USA).nes
+E:\nescafe\Roms\Adventures of Lolo 3 (USA).nes
+E:\nescafe\Roms\Adventures of Rad Gravity, The (Europe).nes
+E:\nescafe\Roms\Adventures of Rad Gravity, The (USA).nes
+E:\nescafe\Roms\Adventures of Tom Sawyer (USA).nes
+E:\nescafe\Roms\Air Fortress (USA).nes
+E:\nescafe\Roms\Airwolf (USA).nes
+E:\nescafe\Roms\Al Unser Jr. Turbo Racing (USA).nes
+E:\nescafe\Roms\Aladdin (Europe).nes
+E:\nescafe\Roms\Aladdin (Unl).nes
+E:\nescafe\Roms\Alfred Chicken (Europe).nes
+E:\nescafe\Roms\Alfred Chicken (USA).nes
+E:\nescafe\Roms\Alien 3 (USA).nes
+E:\nescafe\Roms\Alien Syndrome (Japan).nes
+E:\nescafe\Roms\Alpha Mission (USA).nes
+E:\nescafe\Roms\Amagon (USA).nes
+E:\nescafe\Roms\Argos no Senshi (Japan).nes
+E:\nescafe\Roms\Arkista's Ring (USA).nes
+E:\nescafe\Roms\Artelius (J) [T+Eng0.25_MageCraft].nes
+E:\nescafe\Roms\Artelius (Japan).nes
+E:\nescafe\Roms\Asmik-kun Land (Japan).nes
+E:\nescafe\Roms\ASO - Armored Scrum Object (Japan) (En) (Sample).nes
+E:\nescafe\Roms\Astro Robo Sasa (Japan).nes
+E:\nescafe\Roms\Astyanax (Europe).nes
+E:\nescafe\Roms\Astyanax (USA).nes
+E:\nescafe\Roms\Athena (Japan).nes
+E:\nescafe\Roms\Athena (USA).nes
+E:\nescafe\Roms\Attack Animal Gakuen (Japan).nes
+E:\nescafe\Roms\B-Wings (Japan).nes
+E:\nescafe\Roms\Baby Boomer (USA) (Unl).nes
+E:\nescafe\Roms\Back to the Future (USA).nes
+E:\nescafe\Roms\Back to the Future Part II & III (USA).nes
+E:\nescafe\Roms\Bad Dudes (USA).nes
+E:\nescafe\Roms\Bad Dudes vs. Dragon Ninja (Europe).nes
+E:\nescafe\Roms\Bad Street Brawler (USA).nes
+E:\nescafe\Roms\Balloon Fight (Europe).nes
+E:\nescafe\Roms\Balloon Fight (Japan).nes
+E:\nescafe\Roms\Balloon Fight (USA).nes
+E:\nescafe\Roms\Baltron (Japan).nes
+E:\nescafe\Roms\Barbie (USA) (Rev A).nes
+E:\nescafe\Roms\Barbie (USA).nes
+E:\nescafe\Roms\Bard's Tale II, The - The Destiny Knight (Japan).nes
+E:\nescafe\Roms\Bard's Tale, The (Japan) (Sample).nes
+E:\nescafe\Roms\Bard's Tale, The (Japan).nes
+E:\nescafe\Roms\Bard's Tale, The (USA).nes
+E:\nescafe\Roms\Battle of Olympus, The (Europe).nes
+E:\nescafe\Roms\Battle of Olympus, The (USA).nes
+E:\nescafe\Roms\BattleCity (Japan).nes
+E:\nescafe\Roms\Battletoads (Europe).nes
+E:\nescafe\Roms\Battletoads (Japan).nes
+E:\nescafe\Roms\Battletoads (USA).nes
+E:\nescafe\Roms\Battletoads-Double Dragon (Europe).nes
+E:\nescafe\Roms\Battletoads-Double Dragon (USA).nes
+E:\nescafe\Roms\Beauty and the Beast (Europe).nes
+E:\nescafe\Roms\Best Keiba - Derby Stallion (Japan).nes
+E:\nescafe\Roms\Bigfoot (USA).nes
+E:\nescafe\Roms\Bill Elliott's NASCAR Challenge (USA).nes
+E:\nescafe\Roms\Bio Senshi Dan - Increaser Tono Tatakai (Japan).nes
+E:\nescafe\Roms\Bionic Commando (USA).nes
+E:\nescafe\Roms\Blaster Master (USA).nes
+E:\nescafe\Roms\Blue Shadow (Europe).nes
+E:\nescafe\Roms\Blues Brothers, The (USA).nes
+E:\nescafe\Roms\Bomber Man (Japan).nes
+E:\nescafe\Roms\Bomber Man II (Japan).nes
+E:\nescafe\Roms\Bomberman (USA).nes
+E:\nescafe\Roms\Bomberman II (USA).nes
+E:\nescafe\Roms\Bonk's Adventure (USA).nes
+E:\nescafe\Roms\Boulder Dash (Europe).nes
+E:\nescafe\Roms\Boulder Dash (Japan).nes
+E:\nescafe\Roms\Bram Stoker's Dracula (USA).nes
+E:\nescafe\Roms\BreakThru (USA).nes
+E:\nescafe\Roms\Bubble Bobble (Europe).nes
+E:\nescafe\Roms\Bubble Bobble (USA).nes
+E:\nescafe\Roms\Bubble Bobble Part 2 (USA).nes
+E:\nescafe\Roms\Bugs Bunny Birthday Blowout, The (USA).nes
+E:\nescafe\Roms\Bugs Bunny Crazy Castle, The (USA).nes
+E:\nescafe\Roms\Bump'n'Jump (USA).nes
+E:\nescafe\Roms\BurgerTime (Japan).nes
+E:\nescafe\Roms\BurgerTime (USA).nes
+E:\nescafe\Roms\Cabal (USA).nes
+E:\nescafe\Roms\Captain America and the Avengers (Australia).nes
+E:\nescafe\Roms\Captain America and the Avengers (USA).nes
+E:\nescafe\Roms\Captain Silver (Japan).nes
+E:\nescafe\Roms\Captain Skyhawk (USA).nes
+E:\nescafe\Roms\Castelian (Europe).nes
+E:\nescafe\Roms\Castelian (USA).nes
+E:\nescafe\Roms\Castlevania (USA) (Rev A).nes
+E:\nescafe\Roms\Castlevania (USA).nes
+E:\nescafe\Roms\Castlevania II - Simon's Quest (USA).nes
+E:\nescafe\Roms\Championship Lode Runner (Japan).nes
+E:\nescafe\Roms\Championship Rally (Europe).nes
+E:\nescafe\Roms\Chaos World (J) [T-Eng.2_AGTP].nes
+E:\nescafe\Roms\Chaos World (J) [T-Eng.6a_AGTP].nes
+E:\nescafe\Roms\Chaos World (J) [T-Eng.98_AGTP].nes
+E:\nescafe\Roms\Chaos World (J) [T+Eng.98f(A)_AGTP].nes
+E:\nescafe\Roms\Chaos World (J) [T+Eng.98f(B)_AGTP].nes
+E:\nescafe\Roms\Chaos World (Japan).nes
+E:\nescafe\Roms\Chiki Chiki Machine Mou Race (Japan).nes
+E:\nescafe\Roms\Chiller (USA) (Unl).nes
+E:\nescafe\Roms\Chip 'n Dale - Rescue Rangers (USA).nes
+E:\nescafe\Roms\Chip 'n Dale - Rescue Rangers 2 (USA).nes
+E:\nescafe\Roms\Chip to Dale no Daisakusen (Japan).nes
+E:\nescafe\Roms\Chip to Dale no Daisakusen 2 (Japan).nes
+E:\nescafe\Roms\Chubby Cherub (USA).nes
+E:\nescafe\Roms\City Connection (Europe).nes
+E:\nescafe\Roms\City Connection (USA).nes
+E:\nescafe\Roms\Clash at Demonhead (USA).nes
+E:\nescafe\Roms\Cliffhanger (USA).nes
+E:\nescafe\Roms\Cobra Command (USA).nes
+E:\nescafe\Roms\Cobra Triangle (USA).nes
+E:\nescafe\Roms\Cocoron (Japan).nes
+E:\nescafe\Roms\Code Name - Viper (USA).nes
+E:\nescafe\Roms\Commando (USA).nes
+E:\nescafe\Roms\Conan (USA).nes
+E:\nescafe\Roms\Contra (USA).nes
+E:\nescafe\Roms\Contra Force (USA).nes
+E:\nescafe\Roms\Cool World (USA).nes
+E:\nescafe\Roms\Corvette ZR-1 Challenge (Europe).nes
+E:\nescafe\Roms\Cosmic Epsilon (Japan).nes
+E:\nescafe\Roms\Cosmo Genesis (Japan).nes
+E:\nescafe\Roms\Cross Fire (Japan).nes
+E:\nescafe\Roms\Crystalis (USA).nes
+E:\nescafe\Roms\Cycle Race - Road Man (Japan).nes
+E:\nescafe\Roms\Danny Sullivan's Indy Heat (USA).nes
+E:\nescafe\Roms\Darkman (Europe).nes
+E:\nescafe\Roms\Darkman (USA).nes
+E:\nescafe\Roms\Darkwing Duck (USA).nes
+E:\nescafe\Roms\Dash Galaxy in the Alien Asylum (USA).nes
+E:\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (Europe) (Rev A).nes
+E:\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (Europe).nes
+E:\nescafe\Roms\David Crane's A Boy and His Blob - Trouble on Blobolonia (USA).nes
+E:\nescafe\Roms\Days of Thunder (USA).nes
+E:\nescafe\Roms\Death Race (USA) (Unl).nes
+E:\nescafe\Roms\Defender II (USA).nes
+E:\nescafe\Roms\Destination Earthstar (USA).nes
+E:\nescafe\Roms\Devil World (Europe).nes
+E:\nescafe\Roms\Dick Tracy (USA).nes
+E:\nescafe\Roms\Dig Dug (Japan).nes
+E:\nescafe\Roms\Dig Dug II - Trouble in Paradise (USA).nes
+E:\nescafe\Roms\Dig Dug II (Japan).nes
+E:\nescafe\Roms\Dirty Harry (USA).nes
+E:\nescafe\Roms\Donald Duck (Japan).nes
+E:\nescafe\Roms\Donald Land (Japan).nes
+E:\nescafe\Roms\Donkey Kong (Japan).nes
+E:\nescafe\Roms\Donkey Kong (USA) (GameCube Edition).nes
+E:\nescafe\Roms\Donkey Kong (World) (Rev A).nes
+E:\nescafe\Roms\Donkey Kong 3 (World).nes
+E:\nescafe\Roms\Donkey Kong Classics (USA, Europe).nes
+E:\nescafe\Roms\Donkey Kong Jr. (Japan).nes
+E:\nescafe\Roms\Donkey Kong Jr. (USA) (GameCube Edition).nes
+E:\nescafe\Roms\Donkey Kong Jr. (World) (Rev A).nes
+E:\nescafe\Roms\Donkey Kong Jr. + Jr. Lesson (Japan).nes
+E:\nescafe\Roms\Donkey Kong Jr. Math (USA, Europe).nes
+E:\nescafe\Roms\Donkey Kong Jr. no Sansuu Asobi (Japan).nes
+E:\nescafe\Roms\Double Dragon - Sou Setsu Ryuu (Japan).nes
+E:\nescafe\Roms\Double Dragon (Europe).nes
+E:\nescafe\Roms\Double Dragon (USA).nes
+E:\nescafe\Roms\Double Dragon II - The Revenge (Europe).nes
+E:\nescafe\Roms\Double Dragon II - The Revenge (USA) (Rev A).nes
+E:\nescafe\Roms\Double Dragon II - The Revenge (USA).nes
+E:\nescafe\Roms\Double Dragon III - The Sacred Stones (Europe).nes
+E:\nescafe\Roms\Double Dragon III - The Sacred Stones (USA).nes
+E:\nescafe\Roms\Dough Boy (Japan).nes
+E:\nescafe\Roms\Dr. Mario (Europe).nes
+E:\nescafe\Roms\Dr. Mario (Japan, USA).nes
+E:\nescafe\Roms\Dragon Quest (Japan).nes
+E:\nescafe\Roms\Dragon Quest III - Soshite Densetsu e... (Japan) (Rev B).nes
+E:\nescafe\Roms\Dragon Warrior III (USA).nes
+E:\nescafe\Roms\DuckTales (USA).nes
+E:\nescafe\Roms\DuckTales 2 (USA).nes
+E:\nescafe\Roms\Dynablaster (Europe).nes
+E:\nescafe\Roms\Dynowarz - Destruction of Spondylus (USA).nes
+E:\nescafe\Roms\Egypt (Japan).nes
+E:\nescafe\Roms\Elevator Action (Japan) (Rev A).nes
+E:\nescafe\Roms\Elevator Action (USA).nes
+E:\nescafe\Roms\Eliminator Boat Duel (USA).nes
+E:\nescafe\Roms\Elite (Europe) (En,Fr,De).nes
+E:\nescafe\Roms\Elysion (Japan).nes
+E:\nescafe\Roms\Excitebike (Japan, USA).nes
+E:\nescafe\Roms\Exciting Rally - World Rally Championship (Japan).nes
+E:\nescafe\Roms\Exerion (Japan) (En).nes
+E:\nescafe\Roms\F-1 Race (Japan).nes
+E:\nescafe\Roms\F-117A - Stealth Fighter (USA).nes
+E:\nescafe\Roms\F-15 Strike Eagle (USA).nes
+E:\nescafe\Roms\Family Circuit (Japan).nes
+E:\nescafe\Roms\Family Pinball (Japan).nes
+E:\nescafe\Roms\Fantastic Adventures of Dizzy, The (USA) (Aladdin Compact Cartridge) (Unl).nes
+E:\nescafe\Roms\Faria - A World of Mystery & Danger! (USA).nes
+E:\nescafe\Roms\Faria - Fuuin no Tsurugi (Japan).nes
+E:\nescafe\Roms\Faxanadu (Europe).nes
+E:\nescafe\Roms\Faxanadu (Japan).nes
+E:\nescafe\Roms\Faxanadu (USA) (Rev A).nes
+E:\nescafe\Roms\Faxanadu (USA).nes
+E:\nescafe\Roms\Ferrari (Japan).nes
+E:\nescafe\Roms\Ferrari Grand Prix Challenge (USA).nes
+E:\nescafe\Roms\Fester's Quest (USA).nes
+E:\nescafe\Roms\Field Combat (Japan).nes
+E:\nescafe\Roms\Final Mission (Japan).nes
+E:\nescafe\Roms\Fire 'n Ice (USA).nes
+E:\nescafe\Roms\Fist of the North Star (USA).nes
+E:\nescafe\Roms\Flipull - An Exciting Cube Game (Japan) (En).nes
+E:\nescafe\Roms\Flying Dragon - The Secret Scroll (USA).nes
+E:\nescafe\Roms\Flying Hero (Japan).nes
+E:\nescafe\Roms\Formation Z (Japan) (Rev A).nes
+E:\nescafe\Roms\Formation Z (Japan).nes
+E:\nescafe\Roms\Formula One - Built to Win (USA).nes
+E:\nescafe\Roms\Friday the 13th (USA).nes
+E:\nescafe\Roms\Front Line (Japan).nes
+E:\nescafe\Roms\Fushigi na Blobby - Blobania no Kiki (Japan).nes
+E:\nescafe\Roms\G.I. Joe - A Real American Hero (USA).nes
+E:\nescafe\Roms\G.I. Joe - The Atlantis Factor (USA).nes
+E:\nescafe\Roms\Galactic Crusader (USA) (Unl).nes
+E:\nescafe\Roms\Galaga - Demons of Death (USA).nes
+E:\nescafe\Roms\Galaga (Europe).nes
+E:\nescafe\Roms\Galaxy 5000 (USA).nes
+E:\nescafe\Roms\Gargoyle's Quest II (Europe).nes
+E:\nescafe\Roms\Gargoyle's Quest II (USA).nes
+E:\nescafe\Roms\Garry Kitchen's BattleTank (USA).nes
+E:\nescafe\Roms\Gauntlet (USA) (Unl).nes
+E:\nescafe\Roms\Gauntlet (USA).nes
+E:\nescafe\Roms\Geimos (Japan).nes
+E:\nescafe\Roms\Ghost Lion (USA).nes
+E:\nescafe\Roms\Ghostbusters (USA).nes
+E:\nescafe\Roms\Ghostbusters II (USA).nes
+E:\nescafe\Roms\Ghosts'n Goblins (USA).nes
+E:\nescafe\Roms\Godzilla - Monster of Monsters! (USA).nes
+E:\nescafe\Roms\Golgo 13 - Daiisshou - Kamigami no Tasogare (Japan).nes
+E:\nescafe\Roms\Golgo 13 - Dainishou - Icarus no Nazo (Japan).nes
+E:\nescafe\Roms\Golgo 13 - Top Secret Episode (USA).nes
+E:\nescafe\Roms\Goonies II, The (Europe).nes
+E:\nescafe\Roms\Goonies II, The (USA).nes
+E:\nescafe\Roms\Gradius (USA).nes
+E:\nescafe\Roms\Gran Aventura Submarina, La (Spain) (Gluk Video) (Unl).nes
+E:\nescafe\Roms\Guardian Legend, The (USA).nes
+E:\nescafe\Roms\Guardic Gaiden (Japan).nes
+E:\nescafe\Roms\Guevara (Japan).nes
+E:\nescafe\Roms\Gun Nac (USA).nes
+E:\nescafe\Roms\Gun-Dec (Japan).nes
+E:\nescafe\Roms\Gunhed - Aratanaru Tatakai (Japan).nes
+E:\nescafe\Roms\Gyrodine (Japan).nes
+E:\nescafe\Roms\Gyruss (USA).nes
+E:\nescafe\Roms\Hatris (USA).nes
+E:\nescafe\Roms\Heavy Barrel (USA).nes
+E:\nescafe\Roms\Highway Star (Japan).nes
+E:\nescafe\Roms\Hiryuu no Ken II - Dragon no Tsubasa (Japan).nes
+E:\nescafe\Roms\Hiryuu no Ken III - 5 Nin no Dragon (Japan).nes
+E:\nescafe\Roms\Home Alone (USA) (Rev A).nes
+E:\nescafe\Roms\Home Alone (USA).nes
+E:\nescafe\Roms\Home Alone 2 - Lost in New York (USA).nes
+E:\nescafe\Roms\Hook (USA).nes
+E:\nescafe\Roms\Hoshi o Miru Hito (Japan).nes
+E:\nescafe\Roms\Hudson Hawk (USA).nes
+E:\nescafe\Roms\Huge Insect (Asia) (Unl).nes
+E:\nescafe\Roms\Hunt for Red October, The (USA) (Rev A).nes
+E:\nescafe\Roms\Hunt for Red October, The (USA).nes
+E:\nescafe\Roms\Hydlide (USA).nes
+E:\nescafe\Roms\Hydlide Special (Japan).nes
+E:\nescafe\Roms\Ice Climber (Japan).nes
+E:\nescafe\Roms\Ice Climber (USA, Europe).nes
+E:\nescafe\Roms\Ikari III - The Rescue (USA).nes
+E:\nescafe\Roms\Ikari Warriors (USA) (Rev A).nes
+E:\nescafe\Roms\Ikari Warriors (USA).nes
+E:\nescafe\Roms\Ikari Warriors II - Victory Road (USA).nes
+E:\nescafe\Roms\Image Fight (USA).nes
+E:\nescafe\Roms\Incredible Crash Dummies, The (Europe).nes
+E:\nescafe\Roms\Incredible Crash Dummies, The (USA).nes
+E:\nescafe\Roms\Indiana Jones and the Last Crusade (USA) (Taito).nes
+E:\nescafe\Roms\Indiana Jones and the Last Crusade (USA) (UBI Soft).nes
+E:\nescafe\Roms\Indiana Jones and the Temple of Doom (USA) (Rev A).nes
+E:\nescafe\Roms\Indiana Jones and the Temple of Doom (USA) (Unl).nes
+E:\nescafe\Roms\Indiana Jones and the Temple of Doom (USA).nes
+E:\nescafe\Roms\Infiltrator (USA).nes
+E:\nescafe\Roms\Iron Tank - The Invasion of Normandy (USA).nes
+E:\nescafe\Roms\Isolated Warrior (USA).nes
+E:\nescafe\Roms\Ivan 'Ironman' Stewart's Super Off Road (USA).nes
+E:\nescafe\Roms\Jackal (USA).nes
+E:\nescafe\Roms\James Bond Jr (USA).nes
+E:\nescafe\Roms\Jaws (USA).nes
+E:\nescafe\Roms\Jungle Book, The (Europe).nes
+E:\nescafe\Roms\Jungle Book, The (USA).nes
+E:\nescafe\Roms\Jurassic Park (USA).nes
+E:\nescafe\Roms\Kage (Japan).nes
+E:\nescafe\Roms\Kamen no Ninja - Akakage (Japan).nes
+E:\nescafe\Roms\Kamen no Ninja - Hanamaru (Japan).nes
+E:\nescafe\Roms\Kamen Rider SD - Granshocker no Yabou (Japan).nes
+E:\nescafe\Roms\Karnov (Japan) (Rev 1).nes
+E:\nescafe\Roms\Karnov (Japan).nes
+E:\nescafe\Roms\Karnov (USA).nes
+E:\nescafe\Roms\Kid Icarus (Europe) (Rev A).nes
+E:\nescafe\Roms\Kid Icarus (USA, Europe).nes
+E:\nescafe\Roms\Kirby's Adventure (USA).nes
+E:\nescafe\Roms\Krion Conquest, The (USA).nes
+E:\nescafe\Roms\Kung-Fu Heroes (USA).nes
+E:\nescafe\Roms\Labyrinth (Japan) [trans].nes
+E:\nescafe\Roms\Last Action Hero (USA).nes
+E:\nescafe\Roms\Last Starfighter, The (USA).nes
+E:\nescafe\Roms\Legend of Zelda, The (USA).nes
+E:\nescafe\Roms\Lethal Weapon (USA).nes
+E:\nescafe\Roms\Life Force - Salamander (Europe).nes
+E:\nescafe\Roms\Life Force (USA).nes
+E:\nescafe\Roms\Lion King, The (Europe).nes
+E:\nescafe\Roms\Little Mermaid - Ningyo Hime (Japan).nes
+E:\nescafe\Roms\Little Mermaid, The (USA).nes
+E:\nescafe\Roms\Lode Runner (Japan).nes
+E:\nescafe\Roms\Lode Runner (USA).nes
+E:\nescafe\Roms\Loopz (USA).nes
+E:\nescafe\Roms\M.C. Kids (USA).nes
+E:\nescafe\Roms\M.U.L.E. (USA).nes
+E:\nescafe\Roms\Mach Rider (Europe).nes
+E:\nescafe\Roms\Mach Rider (Japan, USA).nes
+E:\nescafe\Roms\Mad City (Japan).nes
+E:\nescafe\Roms\Mad Max (USA).nes
+E:\nescafe\Roms\Mafat Conspiracy, The (USA).nes
+E:\nescafe\Roms\Magician (USA).nes
+E:\nescafe\Roms\Magmax (USA).nes
+E:\nescafe\Roms\Maniac Mansion (USA).nes
+E:\nescafe\Roms\Mappy (Japan).nes
+E:\nescafe\Roms\Mappy-Land (Japan).nes
+E:\nescafe\Roms\Mappy-Land (USA).nes
+E:\nescafe\Roms\Marble Madness (Europe).nes
+E:\nescafe\Roms\Marble Madness (USA).nes
+E:\nescafe\Roms\Mario & Yoshi (Europe).nes
+E:\nescafe\Roms\Mario Bros. (Europe) (Rev A).nes
+E:\nescafe\Roms\Mario Bros. (World).nes
+E:\nescafe\Roms\Mario Bros. Classic (Europe).nes
+E:\nescafe\Roms\Mario Open Golf (Japan).nes
+E:\nescafe\Roms\Mario's Time Machine (USA).nes
+E:\nescafe\Roms\McDonaldland (Europe).nes
+E:\nescafe\Roms\McDonaldland (France).nes
+E:\nescafe\Roms\Mechanized Attack (USA).nes
+E:\nescafe\Roms\Mega Man (USA).nes
+E:\nescafe\Roms\Mega Man 2 (USA).nes
+E:\nescafe\Roms\Mega Man 3 (USA).nes
+E:\nescafe\Roms\Mega Man 4 (USA) (Rev A).nes
+E:\nescafe\Roms\Mega Man 4 (USA).nes
+E:\nescafe\Roms\Mega Man 5 (USA).nes
+E:\nescafe\Roms\Mega Man 6 (USA).nes
+E:\nescafe\Roms\Menace Beach (USA) (Unl).nes
+E:\nescafe\Roms\Metal Fighter (USA) (Unl).nes
+E:\nescafe\Roms\Metal Flame Psybuster (Japan).nes
+E:\nescafe\Roms\Metal Mech - Man & Machine (USA).nes
+E:\nescafe\Roms\Metal Storm (USA).nes
+E:\nescafe\Roms\Metroid (USA).nes
+E:\nescafe\Roms\Mickey Mouse - Fushigi no Kuni no Daibouken (Japan).nes
+E:\nescafe\Roms\Mickey Mouse III - Yume Fuusen (Japan).nes
+E:\nescafe\Roms\Mickey's Safari in Letterland (USA).nes
+E:\nescafe\Roms\Might & Magic - Secret of the Inner Sanctum (USA).nes
+E:\nescafe\Roms\Might and Magic - Book One - Secret of the Inner Sanctum (Japan).nes
+E:\nescafe\Roms\Mighty Bomb Jack (Europe).nes
+E:\nescafe\Roms\Mighty Bomb Jack (Japan) (Rev A).nes
+E:\nescafe\Roms\Mighty Bomb Jack (Japan).nes
+E:\nescafe\Roms\Mighty Bomb Jack (USA).nes
+E:\nescafe\Roms\Mighty Final Fight (Europe).nes
+E:\nescafe\Roms\Mighty Final Fight (Japan).nes
+E:\nescafe\Roms\Mighty Final Fight (USA).nes
+E:\nescafe\Roms\Millipede - Kyodai Konchuu no Gyakushuu (Japan).nes
+E:\nescafe\Roms\Millipede (USA).nes
+E:\nescafe\Roms\Milon's Secret Castle (USA).nes
+E:\nescafe\Roms\Monster Party (USA).nes
+E:\nescafe\Roms\Monster Truck Rally (USA).nes
+E:\nescafe\Roms\Moon Crystal (Japan).nes
+E:\nescafe\Roms\Moon Ranger (USA) (Unl).nes
+E:\nescafe\Roms\Mother (Japan).nes
+E:\nescafe\Roms\Motocross Champion (Japan).nes
+E:\nescafe\Roms\Ms. Pac-Man (USA) (Unl).nes
+E:\nescafe\Roms\Ms. Pac-Man (USA).nes
+E:\nescafe\Roms\New Ghostbusters II (Europe).nes
+E:\nescafe\Roms\New York Nyankies (Japan).nes
+E:\nescafe\Roms\Nigel Mansell's World Championship Challenge (USA).nes
+E:\nescafe\Roms\Nightmare on Elm Street, A (USA).nes
+E:\nescafe\Roms\Ninja Gaiden (USA).nes
+E:\nescafe\Roms\Ninja Gaiden II - The Dark Sword of Chaos (USA).nes
+E:\nescafe\Roms\Ninja Gaiden III - The Ancient Ship of Doom (USA).nes
+E:\nescafe\Roms\Ninja Hattori-kun - Ninja wa Syugyou de Gozaru (Japan).nes
+E:\nescafe\Roms\Ninja-kun - Ashura no Shou (Japan).nes
+E:\nescafe\Roms\Ninja-kun - Majou no Bouken (Japan).nes
+E:\nescafe\Roms\Noah's Ark (Europe).nes
+E:\nescafe\Roms\Nobunaga no Yabou - Zenkoku Ban (Japan).nes
+E:\nescafe\Roms\Nobunaga's Ambition (USA).nes
+E:\nescafe\Roms\Operation Secret Storm (USA) (Unl).nes
+E:\nescafe\Roms\Operation Wolf (USA) (Rev 0A).nes
+E:\nescafe\Roms\Overlord (USA).nes
+E:\nescafe\Roms\P'Radikus Conflict (USA) (Unl).nes
+E:\nescafe\Roms\Pac-Land (Japan).nes
+E:\nescafe\Roms\Pac-Man (Europe).nes
+E:\nescafe\Roms\Pac-Man (Japan) (En) (Rev B).nes
+E:\nescafe\Roms\Pac-Man (Japan) (Rev A).nes
+E:\nescafe\Roms\Pac-Man (Japan).nes
+E:\nescafe\Roms\Pac-Man (USA) (Namco).nes
+E:\nescafe\Roms\Pac-Man (USA) (Tengen) (Unl).nes
+E:\nescafe\Roms\Pac-Man (USA) (Tengen).nes
+E:\nescafe\Roms\Palamedes (USA).nes
+E:\nescafe\Roms\Paperboy (Europe).nes
+E:\nescafe\Roms\Paperboy (Japan).nes
+E:\nescafe\Roms\Paperboy (USA).nes
+E:\nescafe\Roms\Paperboy 2 (Europe).nes
+E:\nescafe\Roms\Paperboy 2 (USA).nes
+E:\nescafe\Roms\Parodius (Europe).nes
+E:\nescafe\Roms\Pesterminator (USA) (Unl).nes
+E:\nescafe\Roms\Phantom Fighter (USA).nes
+E:\nescafe\Roms\Pinball (World).nes
+E:\nescafe\Roms\Pinball Quest (USA).nes
+E:\nescafe\Roms\Pipe Dream (USA).nes
+E:\nescafe\Roms\Pirates! (USA).nes
+E:\nescafe\Roms\Platoon (USA) (Rev A).nes
+E:\nescafe\Roms\Platoon (USA).nes
+E:\nescafe\Roms\Popeye (Japan).nes
+E:\nescafe\Roms\Popeye (World) (Rev A).nes
+E:\nescafe\Roms\Popeye no Eigo Asobi (Japan).nes
+E:\nescafe\Roms\Power Blade (Europe).nes
+E:\nescafe\Roms\Power Blade (USA).nes
+E:\nescafe\Roms\Power Blade 2 (USA).nes
+E:\nescafe\Roms\Predator (USA).nes
+E:\nescafe\Roms\Prince of Persia (USA).nes
+E:\nescafe\Roms\Probotector (Europe).nes
+E:\nescafe\Roms\Punisher, The (USA).nes
+E:\nescafe\Roms\Puyo Puyo (Japan).nes
+E:\nescafe\Roms\Puzslot (Japan).nes
+E:\nescafe\Roms\Puzznic (USA).nes
+E:\nescafe\Roms\Q-bert (USA).nes
+E:\nescafe\Roms\QIX (USA).nes
+E:\nescafe\Roms\Quarth (Japan).nes
+E:\nescafe\Roms\R.C. Pro-Am (USA).nes
+E:\nescafe\Roms\R.C. Pro-Am II (USA).nes
+E:\nescafe\Roms\Race America (USA).nes
+E:\nescafe\Roms\Rad Racer (USA).nes
+E:\nescafe\Roms\Rad Racer II (USA).nes
+E:\nescafe\Roms\Raid 2020 (USA) (Unl).nes
+E:\nescafe\Roms\Raid on Bungeling Bay (USA).nes
+E:\nescafe\Roms\Rainbow Islands - Bubble Bobble 2 (Europe).nes
+E:\nescafe\Roms\Rainbow Islands (USA).nes
+E:\nescafe\Roms\Rally Bike (USA).nes
+E:\nescafe\Roms\Rambo (USA) (Rev A).nes
+E:\nescafe\Roms\Rambo (USA).nes
+E:\nescafe\Roms\Rampage (USA).nes
+E:\nescafe\Roms\Rampart (Japan).nes
+E:\nescafe\Roms\Ren & Stimpy Show, The - Buckeroo$! (USA).nes
+E:\nescafe\Roms\Renegade (USA).nes
+E:\nescafe\Roms\River City Ransom (USA).nes
+E:\nescafe\Roms\Robin Hood - Prince of Thieves (USA) (Rev A).nes
+E:\nescafe\Roms\Robin Hood - Prince of Thieves (USA).nes
+E:\nescafe\Roms\RoboCop (USA).nes
+E:\nescafe\Roms\RoboCop 2 (USA) (Rev A).nes
+E:\nescafe\Roms\RoboCop 2 (USA).nes
+E:\nescafe\Roms\Robodemons (USA) (Unl).nes
+E:\nescafe\Roms\Rocketeer, The (USA).nes
+E:\nescafe\Roms\Rockin' Kats (Europe).nes
+E:\nescafe\Roms\Rockin' Kats (USA).nes
+E:\nescafe\Roms\Rockman (Japan) (En).nes
+E:\nescafe\Roms\Rockman 2 - Dr. Wily no Nazo (Japan).nes
+E:\nescafe\Roms\Rockman 3 - Dr. Wily no Saigo! (Japan).nes
+E:\nescafe\Roms\Rockman 4 - Aratanaru Yabou!! (Japan).nes
+E:\nescafe\Roms\Rockman 5 - Blues no Wana! (Japan).nes
+E:\nescafe\Roms\Rockman 6 - Shijou Saidai no Tatakai!! (Japan).nes
+E:\nescafe\Roms\Rocman X (Asia) (Unl).nes
+E:\nescafe\Roms\Rod Land (Europe).nes
+E:\nescafe\Roms\Rollerball (USA).nes
+E:\nescafe\Roms\Romance of the Three Kingdoms (USA).nes
+E:\nescafe\Roms\Route-16 Turbo (Japan).nes
+E:\nescafe\Roms\Rush'n Attack (USA).nes
+E:\nescafe\Roms\Rygar (Europe).nes
+E:\nescafe\Roms\Rygar (USA) (Rev A).nes
+E:\nescafe\Roms\Rygar (USA).nes
+E:\nescafe\Roms\S.C.A.T. - Special Cybernetic Attack Team (USA).nes
+E:\nescafe\Roms\SD Gundam - Gachapon Senshi 2 - Capsule Senki (Japan).nes
+E:\nescafe\Roms\SD Gundam - Gachapon Senshi 3 - Eiyuu Senki (Japan).nes
+E:\nescafe\Roms\SD Gundam - Gachapon Senshi 4 - NewType Story (Japan).nes
+E:\nescafe\Roms\SD Gundam - Gachapon Senshi 5 - Battle of Universal Century (Japan).nes
+E:\nescafe\Roms\Secret Scout in the Temple of Demise (USA) (Unl).nes
+E:\nescafe\Roms\Section-Z (USA).nes
+E:\nescafe\Roms\Seicross (USA).nes
+E:\nescafe\Roms\Shadow of the Ninja (USA).nes
+E:\nescafe\Roms\Shadow Warriors (Europe).nes
+E:\nescafe\Roms\Shadow Warriors II - Ninja Gaiden II (Europe).nes
+E:\nescafe\Roms\Shatterhand (Europe).nes
+E:\nescafe\Roms\Shatterhand (USA).nes
+E:\nescafe\Roms\Silent Assault (USA) (Unl).nes
+E:\nescafe\Roms\Silent Service (USA).nes
+E:\nescafe\Roms\Silk Worm (USA).nes
+E:\nescafe\Roms\Silver Surfer (USA).nes
+E:\nescafe\Roms\Simpsons, The - Bart vs. the Space Mutants (USA).nes
+E:\nescafe\Roms\Simpsons, The - Bart vs. the World (USA).nes
+E:\nescafe\Roms\Simpsons, The - Bartman Meets Radioactive Man (USA).nes
+E:\nescafe\Roms\Simpsons, The - Krusty's Fun House (Europe).nes
+E:\nescafe\Roms\Sky Destroyer (Japan).nes
+E:\nescafe\Roms\Sky Kid (USA).nes
+E:\nescafe\Roms\Sky Shark (USA) (Rev 0A).nes
+E:\nescafe\Roms\Smash T.V. (USA).nes
+E:\nescafe\Roms\Smurfs, The (Europe) (En,Fr,De,Es).nes
+E:\nescafe\Roms\Snow Brothers (Europe).nes
+E:\nescafe\Roms\Solar Jetman - Hunt for the Golden Warpship (USA).nes
+E:\nescafe\Roms\Solomon's Key (USA).nes
+E:\nescafe\Roms\Solomon's Key 2 (Europe).nes
+E:\nescafe\Roms\Space Harrier (Japan).nes
+E:\nescafe\Roms\Space Hunter (Japan).nes
+E:\nescafe\Roms\Space Invaders (Japan).nes
+E:\nescafe\Roms\Spartan X (Japan).nes
+E:\nescafe\Roms\Spelunker (Japan).nes
+E:\nescafe\Roms\Spelunker (USA).nes
+E:\nescafe\Roms\Spelunker II - Yuusha e no Chousen (Japan).nes
+E:\nescafe\Roms\Spider-Man - Return of the Sinister Six (Europe).nes
+E:\nescafe\Roms\Spider-Man - Return of the Sinister Six (USA).nes
+E:\nescafe\Roms\Sqoon (USA).nes
+E:\nescafe\Roms\Star Force (USA).nes
+E:\nescafe\Roms\Star Luster (Japan).nes
+E:\nescafe\Roms\Star Soldier (USA).nes
+E:\nescafe\Roms\Star Trek - 25th Anniversary (USA).nes
+E:\nescafe\Roms\Star Trek - The Next Generation (USA).nes
+E:\nescafe\Roms\Star Voyager (USA).nes
+E:\nescafe\Roms\Star Wars (Europe).nes
+E:\nescafe\Roms\Star Wars (Japan) (Victor).nes
+E:\nescafe\Roms\Star Wars (USA).nes
+E:\nescafe\Roms\Starship Hector (USA).nes
+E:\nescafe\Roms\StarTropics (USA).nes
+E:\nescafe\Roms\StarTropics II - Zoda's Revenge -  (USA).nes
+E:\nescafe\Roms\Street Fighter 2010 - The Final Fight (USA).nes
+E:\nescafe\Roms\Strider (USA).nes
+E:\nescafe\Roms\Super Arabian (Japan).nes
+E:\nescafe\Roms\Super Mario Bros. (World).nes
+E:\nescafe\Roms\Super Mario Bros. + Duck Hunt (USA).nes
+E:\nescafe\Roms\Super Mario Bros. + Duck Hunt + World Class Track Meet (USA) (Rev A).nes
+E:\nescafe\Roms\Super Mario Bros. + Duck Hunt + World Class Track Meet (USA).nes
+E:\nescafe\Roms\Super Mario Bros. 2 (USA) (Rev A).nes
+E:\nescafe\Roms\Super Mario Bros. 2 (USA).nes
+E:\nescafe\Roms\Super Mario Bros. 3 (USA) (Rev A).nes
+E:\nescafe\Roms\Super Mario Bros. 3 (USA).nes
+E:\nescafe\Roms\Super Mario USA (Japan).nes
+E:\nescafe\Roms\Super Pinball (Japan).nes
+E:\nescafe\Roms\Super Pitfall (Japan).nes
+E:\nescafe\Roms\Super Pitfall (USA).nes
+E:\nescafe\Roms\Super Turrican (Europe).nes
+E:\nescafe\Roms\Super Xevious - Gump no Nazo (Japan).nes
+E:\nescafe\Roms\Superman (Japan).nes
+E:\nescafe\Roms\Superman (USA).nes
+E:\nescafe\Roms\Swamp Thing (Europe).nes
+E:\nescafe\Roms\Swamp Thing (USA).nes
+E:\nescafe\Roms\Sweet Home (J) [T+Eng1.00_Gaijin+Suicidal].nes
+E:\nescafe\Roms\Sweet Home (Japan) [E-patched].nes
+E:\nescafe\Roms\Sweet Home (Japan).nes
+E:\nescafe\Roms\Sword Master (Europe).nes
+E:\nescafe\Roms\Sword Master (Japan).nes
+E:\nescafe\Roms\Sword Master (USA).nes
+E:\nescafe\Roms\Swords and Serpents (Europe).nes
+E:\nescafe\Roms\Swords and Serpents (France).nes
+E:\nescafe\Roms\Swords and Serpents (USA).nes
+E:\nescafe\Roms\Tagin' Dragon (USA) (Unl).nes
+E:\nescafe\Roms\Taiyou no Shinden (Japan).nes
+E:\nescafe\Roms\Taiyou no Yuusha - Fighbird (Japan) [E-patched].nes
+E:\nescafe\Roms\TaleSpin (USA).nes
+E:\nescafe\Roms\Target Renegade (USA).nes
+E:\nescafe\Roms\Teenage Mutant Hero Turtles (Europe).nes
+E:\nescafe\Roms\Teenage Mutant Ninja Turtles (USA).nes
+E:\nescafe\Roms\Terminator 2 - Judgment Day (USA).nes
+E:\nescafe\Roms\Terminator, The (USA, Europe).nes
+E:\nescafe\Roms\Terra Cresta (USA).nes
+E:\nescafe\Roms\Tetrastar - The Fighter (Japan).nes
+E:\nescafe\Roms\Tetris (Bulletproof) (Japan) (Rev B).nes
+E:\nescafe\Roms\Tetris (USA).nes
+E:\nescafe\Roms\Tetris 2 (USA).nes
+E:\nescafe\Roms\Tetris Flash (Japan).nes
+E:\nescafe\Roms\Thexder (Japan).nes
+E:\nescafe\Roms\Thunderbirds (USA).nes
+E:\nescafe\Roms\Thundercade (USA).nes
+E:\nescafe\Roms\Tiger-Heli (USA).nes
+E:\nescafe\Roms\Time Lord (Europe).nes
+E:\nescafe\Roms\Time Lord (USA).nes
+E:\nescafe\Roms\Time Zone (Japan).nes
+E:\nescafe\Roms\Times of Lore (Japan).nes
+E:\nescafe\Roms\Times of Lore (USA).nes
+E:\nescafe\Roms\Tom & Jerry - The Ultimate Game of Cat and Mouse! (USA).nes
+E:\nescafe\Roms\Tom & Jerry (Japan).nes
+E:\nescafe\Roms\Tombs & Treasure (USA).nes
+E:\nescafe\Roms\Toobin' (USA) (Unl).nes
+E:\nescafe\Roms\Total Recall (USA).nes
+E:\nescafe\Roms\Totally Rad (Europe).nes
+E:\nescafe\Roms\Totally Rad (USA).nes
+E:\nescafe\Roms\Town & Country Surf Designs - Thrilla's Surfari (USA).nes
+E:\nescafe\Roms\Toxic Crusaders (USA).nes
+E:\nescafe\Roms\Trog! (USA).nes
+E:\nescafe\Roms\Trojan (Europe).nes
+E:\nescafe\Roms\Trojan (USA).nes
+E:\nescafe\Roms\Trolls in Crazyland, The (Europe).nes
+E:\nescafe\Roms\Turbo Racing (Europe).nes
+E:\nescafe\Roms\Twin Cobra (USA).nes
+E:\nescafe\Roms\TwinBee (Japan).nes
+E:\nescafe\Roms\Ufouria - The Saga (Europe).nes
+E:\nescafe\Roms\Ultima - Exodus (USA).nes
+E:\nescafe\Roms\Ultima - Quest of the Avatar (USA).nes
+E:\nescafe\Roms\Ultima - Warriors of Destiny (USA).nes
+E:\nescafe\Roms\Ultimate Air Combat (USA).nes
+E:\nescafe\Roms\Universe Soldiers, The (Unknown) (Unl).nes
+E:\nescafe\Roms\Untouchables, The (USA) (Rev B).nes
+E:\nescafe\Roms\Urban Champion (World).nes
+E:\nescafe\Roms\Ushio to Tora - Shinen no Taiyou (Japan).nes
+E:\nescafe\Roms\Utsurun Desu (Japan).nes
+E:\nescafe\Roms\Venus Senki - Back the City (Japan).nes
+E:\nescafe\Roms\Vice - Project Doom (USA).nes
+E:\nescafe\Roms\Volguard II (Japan).nes
+E:\nescafe\Roms\Wacky Races (USA).nes
+E:\nescafe\Roms\Wagyan Land (J) [T+Eng100%_AlanMidas].nes
+E:\nescafe\Roms\Wagyan Land (Japan).nes
+E:\nescafe\Roms\Wario's Woods (USA).nes
+E:\nescafe\Roms\Warpman (Japan).nes
+E:\nescafe\Roms\Wayne's World (USA).nes
+E:\nescafe\Roms\Werewolf - The Last Warrior (Europe).nes
+E:\nescafe\Roms\Werewolf - The Last Warrior (USA).nes
+E:\nescafe\Roms\Who Framed Roger Rabbit (USA).nes
+E:\nescafe\Roms\Whomp 'Em (USA).nes
+E:\nescafe\Roms\Widget (USA).nes
+E:\nescafe\Roms\Wily & Light no Rockboard - That's Paradise (J) [T+Eng0.10_Interiordi_Software].nes
+E:\nescafe\Roms\Wily & Right no Rockboard - That's Paradise (Japan) [trans].nes
+E:\nescafe\Roms\Wily & Right no Rockboard - That's Paradise (Japan).nes
+E:\nescafe\Roms\Wizardry - Knight of Diamonds - The Second Scenario (USA).nes
+E:\nescafe\Roms\Wizardry - Proving Grounds of the Mad Overlord (USA).nes
+E:\nescafe\Roms\Wizards & Warriors (USA).nes
+E:\nescafe\Roms\Wizards & Warriors II - iIronSword (USA).nes
+E:\nescafe\Roms\Wizards & Warriors III - Kuros...Visions of Power (USA).nes
+E:\nescafe\Roms\Wolverine (USA).nes
+E:\nescafe\Roms\World Grand-Prix - Pole to Finish (Japan).nes
+E:\nescafe\Roms\Wrecking Crew (World).nes
+E:\nescafe\Roms\Wurm - Journey to the Center of the Earth! (USA).nes
+E:\nescafe\Roms\Xenophobe (USA).nes
+E:\nescafe\Roms\Xevious - The Avenger (USA).nes
+E:\nescafe\Roms\Xevious (Europe).nes
+E:\nescafe\Roms\Yie Ar Kung-Fu (Japan) (Rev 1.2).nes
+E:\nescafe\Roms\Yie Ar Kung-Fu (Japan) (Rev 1.4).nes
+E:\nescafe\Roms\Yo! Noid (USA).nes
+E:\nescafe\Roms\Yoshi (USA).nes
+E:\nescafe\Roms\Yoshi no Tamago (Japan).nes
+E:\nescafe\Roms\Yoshi's Cookie (USA).nes
+E:\nescafe\Roms\Young Indiana Jones Chronicles, The (USA).nes
+E:\nescafe\Roms\Yousei Monogatari - Rod Land (Japan).nes
+E:\nescafe\Roms\Ys (Japan).nes
+E:\nescafe\Roms\Ys II - Ancient Ys Vanished - The Final Chapter (Japan).nes
+E:\nescafe\Roms\Ys III - Wanderers from Ys (Japan).nes
+E:\nescafe\Roms\Zanac (USA).nes
+E:\nescafe\Roms\Zelda II - The Adventure of Link (USA).nes
+E:\nescafe\Roms\Zippy Race (Japan).nes
+E:\nescafe\Roms\Zoids - Chuuou Tairiku no Tatakai (Japan).nes
+E:\nescafe\Roms\Zoids 2 - Zenebas no Gyakushuu (Japan).nes
+E:\nescafe\Roms\Zoids Mokushiroku (Japan).nes
+E:\nescafe\Roms\Zombie Hunter (Japan) [trans].nes
+E:\nescafe\Roms\Zombie Hunter (Japan).nes
+E:\nescafe\Roms\Zunou Senkan Galg (Japan).nes
