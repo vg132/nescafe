@@ -69,7 +69,7 @@ namespace Nescafe.Core
 		public bool IsRunning { get; set; }
 
 		public bool Pause { get; set; }
-		public readonly object CpuCycleLock = new object();
+		public readonly object FrameLock = new object();
 
 		// Used internally to determine if we've reached a new frame
 		private bool _frameEvenOdd;
@@ -111,7 +111,7 @@ namespace Nescafe.Core
 
 		public void Reset()
 		{
-			lock (CpuCycleLock)
+			lock (FrameLock)
 			{
 				CpuMemory.Reset();
 				PpuMemory.Reset();
@@ -177,20 +177,20 @@ namespace Nescafe.Core
 			_frameEvenOdd = !_frameEvenOdd;
 		}
 
-		void GoUntilFrame()
+		private void GoUntilFrame()
 		{
 			var orig = _frameEvenOdd;
+			var cpuSyncCounter = 0;
 			while (orig == _frameEvenOdd)
 			{
-				lock (CpuCycleLock)
+				lock (FrameLock)
 				{
-					var cpuCycles = Cpu.Step();
-
-					// 3 PPU cycles for each CPU cycle
-					for (var i = 0; i < cpuCycles * 3; i++)
+					Ppu.Step();
+					Mapper.Step();
+					if (++cpuSyncCounter == 3)
 					{
-						Ppu.Step();
-						Mapper.Step();
+						Cpu.Step();
+						cpuSyncCounter = 0;
 					}
 				}
 			}

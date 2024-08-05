@@ -92,13 +92,12 @@ public partial class Cpu
 	/// <summary>
 	/// Executes the next CPU instruction specified by the Program Counter.
 	/// </summary>
-	/// <returns>The number of CPU cycles excuted</returns>
-	public int Step()
+	public void Step()
 	{
 		if (State.Idle > 0)
 		{
 			State.Idle--;
-			return 1;
+			return;
 		}
 
 		if (State.IrqInterrupt)
@@ -121,8 +120,22 @@ public partial class Cpu
 		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {State.Cycles}, instruction: {currentInstruction.Name}, memory pointer: {State.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {State.S.ToString("x4")}");
 
 		// Get address to operate on
-		ushort address = 0;
 		var pageCrossed = false;
+		var address = GetMemoryAddress(currentInstruction, out pageCrossed);
+		State.PC += (ushort)currentInstruction.InstructionSize;
+		State.Cycles += currentInstruction.InstructionCycles;
+		if (pageCrossed)
+		{
+			State.Cycles += currentInstruction.InstructionPageCycles;
+		}
+		currentInstruction.Invoke(address);
+		State.Idle += State.Cycles - cyclesOrig;
+	}
+
+	private ushort GetMemoryAddress(CPUInstruction currentInstruction, out bool pageCrossed)
+	{
+		ushort address = 0;
+		pageCrossed = false;
 		switch (currentInstruction.AddressMode)
 		{
 			case AddressMode.Implied:
@@ -162,7 +175,6 @@ public partial class Cpu
 			case AddressMode.IndexedIndirect:
 				// Zeropage address of lower nibble of target address (& 0xFF to wrap at 255)
 				var lowerNibbleAddress = (ushort)((_memory.Read((ushort)(State.PC + 1)) + State.X) & 0xFF);
-
 				// Target address (Must wrap to 0x00 if at 0xFF)
 				address = _memory.Read16WrapPage(lowerNibbleAddress);
 				break;
@@ -175,14 +187,7 @@ public partial class Cpu
 				pageCrossed = IsPageCross((ushort)(address - State.Y), address);
 				break;
 		}
-		State.PC += (ushort)currentInstruction.InstructionSize;
-		State.Cycles += currentInstruction.InstructionCycles;
-		if (pageCrossed)
-		{
-			State.Cycles += currentInstruction.InstructionPageCycles;
-		}
-		currentInstruction.Invoke(address);
-		return State.Cycles - cyclesOrig;
+		return address;
 	}
 
 	private void SetZn(byte value)
@@ -327,7 +332,7 @@ public partial class Cpu
 
 	public object SaveState()
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			return new CpuState2
 			{
@@ -339,7 +344,7 @@ public partial class Cpu
 
 	public void LoadState(object stateObj)
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			var state = stateObj as CpuState2;
 			State = state.State;

@@ -49,8 +49,8 @@ public partial class Ppu
 	{
 		Array.Clear(BitmapData, 0, BitmapData.Length);
 
-		State.Scanline = 240;
-		State.Cycle = 340;
+		State.Scanline = 0;
+		State.Cycle = 0;
 
 		State.NmiOccurred = 0;
 		State.NmiOutput = 0;

@@ -87,7 +87,6 @@ public abstract class Mapper
 	/// </remarks>
 	public virtual void Step()
 	{
-
 	}
 
 	/// <summary>
