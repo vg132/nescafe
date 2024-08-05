@@ -1,4 +1,5 @@
-﻿using Nescafe.Services;
+﻿using Nescafe.Core;
+using Nescafe.Services;
 using Nescafe.UI.Debug;
 using Nescafe.UI.Input;
 
@@ -256,6 +257,12 @@ public partial class Launcher : Form
 	private void spriteViewerToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		var form = new SpriteViewer(_console);
+		form.Show();
+	}
+
+	private void loggingToolStripMenuItem_Click(object sender, EventArgs e)
+	{
+		var form = new Logging();
 		form.Show();
 	}
 }

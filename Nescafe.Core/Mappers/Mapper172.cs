@@ -19,14 +19,14 @@ public class Mapper172 : Mapper
 	public Mapper172(Console console)
 	{
 		throw new NotImplementedException();
-		_console = console;
+		//_console = console;
 
-		_bank0Offset = 0;
-		_vramMirroringType = _console.Cartridge.VerticalVramMirroring ? VramMirroring.Vertical : VramMirroring.Horizontal;
+		//_bank0Offset = 0;
+		//_vramMirroringType = _console.Cartridge.VerticalVramMirroring ? VramMirroring.Vertical : VramMirroring.Horizontal;
 
-		_invert = true;
-		_increase = false;	
-		_yFlag = false;
+		//_invert = true;
+		//_increase = false;	
+		//_yFlag = false;
 	}
 
 	public override byte Read(ushort address)

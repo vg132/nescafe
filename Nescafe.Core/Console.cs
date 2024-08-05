@@ -72,7 +72,8 @@ namespace Nescafe.Core
 		public readonly object CpuCycleLock = new object();
 
 		// Used internally to determine if we've reached a new frame
-		bool _frameEvenOdd;
+		private bool _frameEvenOdd;
+		private long _frameCount;
 
 		private IDictionary<int, Type> _mappers;
 
@@ -133,7 +134,7 @@ namespace Nescafe.Core
 		/// <param name="path">Path to the iNES cartridge file to load</param>
 		public bool LoadCartridge(string path)
 		{
-			DebugEventService.Warning($"Loading ROM {path}");
+			LoggingService.LogEvent(NESEvents.Cartridge,$"Loading ROM {path}");
 			if (Cartridge != null)
 			{
 				Cartridge.Eject();
@@ -143,16 +144,15 @@ namespace Nescafe.Core
 			{
 				return false;
 			}
-
 			// Set mapper
 			if (_mappers.ContainsKey(Cartridge.MapperNumber))
 			{
-				DebugEventService.Warning($"iNES Mapper {Cartridge.MapperNumber} supported!");
+				LoggingService.LogEvent(NESEvents.Cartridge, $"iNES Mapper {Cartridge.MapperNumber} supported!");
 				Mapper = (Mapper)Activator.CreateInstance(_mappers[Cartridge.MapperNumber], this);
 			}
 			else
 			{
-				DebugEventService.Warning($"iNES Mapper {Cartridge.MapperNumber} not supported");
+				LoggingService.LogEvent(NESEvents.Cartridge, $"iNES Mapper {Cartridge.MapperNumber} not supported");
 #if DEBUG
 				throw new MapperNotSupportedException(Cartridge.MapperNumber);
 #else
@@ -170,7 +170,7 @@ namespace Nescafe.Core
 		/// </summary>
 		public void DrawFrame()
 		{
-			if(DrawAction!=null)
+			if (DrawAction != null)
 			{
 				DrawAction(Ppu.BitmapData);
 			}
@@ -210,29 +210,39 @@ namespace Nescafe.Core
 		/// </summary>
 		public void Start()
 		{
-			_stop = false;
-			IsRunning = true;
-			OnRunning?.Invoke(this);
-			var s = new Stopwatch();
-			while (!_stop)
+			try
 			{
-				var frameRate = 60;//AppSettings.Instance.CpuSpeed;
-				s.Restart();
-				for (var i = 0; i < frameRate; i++)
+				_frameCount = 0;
+				_stop = false;
+				IsRunning = true;
+				OnRunning?.Invoke(this);
+				var s = new Stopwatch();
+				while (!_stop)
 				{
-					var frameWatch = Stopwatch.StartNew();
-					if(!Pause)
+					var frameRate = 60;//AppSettings.Instance.CpuSpeed;
+					s.Restart();
+					for (var i = 0; i < frameRate; i++)
 					{
-						GoUntilFrame();
+						LoggingService.LogEvent(NESEvents.Frame, $"start frame: {_frameCount}");
+						var frameWatch = Stopwatch.StartNew();
+						if (!Pause)
+						{
+							GoUntilFrame();
+						}
+						frameWatch.Stop();
+						LoggingService.LogEvent(NESEvents.Frame, $"end frame: {_frameCount}, frame time:{frameWatch.Elapsed}");
+						PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
 					}
-					frameWatch.Stop();
-					PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
+					s.Stop();
+					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms");
 				}
-				s.Stop();
-				Debug.WriteLine($"{frameRate} frames in {s.ElapsedMilliseconds}ms");
+				IsRunning = false;
+				LoggingService.LogEvent(NESEvents.Other, "Console Stopped");
 			}
-			IsRunning = false;
-			Debug.WriteLine("Console Stopped");
+			catch (Exception ex)
+			{
+				LoggingService.LogEvent(NESEvents.Other, ex.Message);
+			}
 		}
 	}
 }

@@ -99,7 +99,7 @@ namespace Nescafe.Core
 			}
 			else // Invalid Write
 			{
-				DebugEventService.Warning("Invalid PPU Memory Write at address: " + address.ToString("x4"));
+				LoggingService.LogEvent(NESEvents.PpuMemory, "Invalid PPU Memory Write at address: " + address.ToString("x4"));
 				//throw new Exception("Invalid PPU Memory Write at address: " + address.ToString("x4"));
 			}
 		}

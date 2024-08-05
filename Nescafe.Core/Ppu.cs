@@ -430,22 +430,25 @@ public partial class Ppu
 		State.TileShiftReg |= data << 32;
 	}
 
-	// Updates State.Scanline and State.Cycle counters, triggers NMI's if needed.
+	// Updates scanline and cycle counters, triggers NMI's if needed.
 	private void UpdateCounters()
 	{
-		// Trigger an NMI at the start of _State.Scanline 241 if VBLANK NMI's are enabled
-		if (State.Scanline == 241 && State.Cycle == 1)
+		// Trigger an NMI at the start of scanline 241 if VBLANK NMI's are enabled
+		if (State.Cycle == 1)
 		{
-			State.NmiOccurred = 1;
-			if (State.NmiOutput != 0)
+			if (State.Scanline == 241)
 			{
-				_console.Cpu.TriggerNmi();
+				State.NmiOccurred = 1;
+				if (State.NmiOutput != 0)
+				{
+					_console.Cpu.TriggerNmi();
+				}
 			}
 		}
 
 		var renderingEnabled = (State.FlagShowBackground != 0) || (State.FlagShowSprites != 0);
 
-		// Skip last State.Cycle of prerender State.Scanline on odd frames
+		// Skip last cycle of prerender scanline on odd frames
 		if (renderingEnabled)
 		{
 			if (State.Scanline == 261 && State.F == 1 && State.Cycle == 339)
@@ -459,18 +462,18 @@ public partial class Ppu
 		}
 		State.Cycle++;
 
-		// Reset State.Cycle (and State.Scanline if State.Scanline == 260)
-		// Also set to next frame if at end of last _State.Scanline
+		// Reset cycle (and scanline if scanline == 260)
+		// Also set to next frame if at end of last scanline
 		if (State.Cycle > 340)
 		{
-			if (State.Scanline == 261) // Last State.Scanline, reset to upper left corner
+			if (State.Scanline == 261) // Last scanline, reset to upper left corner
 			{
 				State.F ^= 1;
 				State.Scanline = 0;
 				State.Cycle = -1;
 				_console.DrawFrame();
 			}
-			else // Not on last State.Scanline
+			else // Not on last scanline
 			{
 				State.Cycle = -1;
 				State.Scanline++;
@@ -485,19 +488,19 @@ public partial class Ppu
 	{
 		UpdateCounters();
 
-		// State.Cycle types
+		// cycle types
 		var renderingEnabled = (State.FlagShowBackground != 0) || (State.FlagShowSprites != 0);
 		var renderCycle = State.Cycle > 0 && State.Cycle <= 256;
 		var preFetchCycle = State.Cycle >= 321 && State.Cycle <= 336;
 		var fetchCycle = renderCycle || preFetchCycle;
 
-		// State.Scanline types
+		// scanline types
 		var renderScanline = State.Scanline >= 0 && State.Scanline < 240;
 		var idleScanline = State.Scanline == 240;
 		var vBlankScanline = State.Scanline > 240;
 		var preRenderScanline = State.Scanline == 261;
 
-		// nmiOccurred flag cleared on prerender State.Scanline at State.Cycle 1
+		// nmiOccurred flag cleared on prerender scanline at cycle 1
 		if (preRenderScanline && State.Cycle == 1)
 		{
 			State.NmiOccurred = 0;
@@ -507,7 +510,7 @@ public partial class Ppu
 
 		if (renderingEnabled)
 		{
-			// Evaluate sprites at State.Cycle 257 of each render State.Scanline
+			// Evaluate sprites at cycle 257 of each render scanline
 			if (State.Cycle == 257)
 			{
 				if (renderScanline)
@@ -525,8 +528,8 @@ public partial class Ppu
 				RenderPixel();
 			}
 
-			// Read rendering data into internal latches and update State._tileShiftReg
-			// with those latches every 8 State.Cycles
+			// Read rendering data into internal latches and update tileShiftReg
+			// with those latches every 8 cycles
 			// https://wiki.nesdev.com/w/images/d/d1/Ntsc_timing.png
 			if (fetchCycle && (renderScanline || preRenderScanline))
 			{
@@ -563,13 +566,13 @@ public partial class Ppu
 				State.OamAddr = 0;
 			}
 
-			// Copy horizontal position data from t to v on _State.Cycle 257 of each State.Scanline if rendering enabled
+			// Copy horizontal position data from t to v on cycle 257 of each scanline if rendering enabled
 			if (State.Cycle == 257 && (renderScanline || preRenderScanline))
 			{
 				CopyHorizPositionData();
 			}
 
-			// Copy vertical position data from t to v repeatedly from State.Cycle 280 to 304 (if rendering is enabled)
+			// Copy vertical position data from t to v repeatedly from cycle 280 to 304 (if rendering is enabled)
 			if (State.Cycle >= 280 && State.Cycle <= 304 && State.Scanline == 261)
 			{
 				CopyVertPositionData();
@@ -602,7 +605,6 @@ public partial class Ppu
 				//break;
 				throw new Exception("Invalid PPU Register read from register: " + address.ToString("X4"));
 		}
-
 		return data;
 	}
 
@@ -750,10 +752,10 @@ public partial class Ppu
 		var startAddr = (ushort)(data << 8);
 		_console.CpuMemory.ReadBufWrapping(State.Oam, State.OamAddr, startAddr, 256);
 
-		// OAM DMA always takes at least 513 CPU State.Cycles
+		// OAM DMA always takes at least 513 CPU cycles
 		_console.Cpu.AddIdleCycles(513);
 
-		// OAM DMA takes an extra CPU State.Cycle if executed on an odd CPU State.Cycle
+		// OAM DMA takes an extra CPU cycle if executed on an odd CPU cycle
 		if (_console.Cpu.State.Cycles % 2 == 1)
 		{
 			_console.Cpu.AddIdleCycles(1);

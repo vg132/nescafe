@@ -1,4 +1,5 @@
-﻿
+﻿using Nescafe.Services;
+
 namespace Nescafe.Core;
 
 /// <summary>
@@ -115,7 +116,9 @@ public partial class Cpu
 		State.NmiInterrupt = false;
 
 		var cyclesOrig = State.Cycles;
-		var currentInstruction = _cpuInstructions[_memory.Read(State.PC)];
+		var data = _memory.Read(State.PC);
+		var currentInstruction = _cpuInstructions[data];
+		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {State.Cycles}, instruction: {currentInstruction.Name}, memory pointer: {State.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {State.S.ToString("x4")}");
 
 		// Get address to operate on
 		ushort address = 0;

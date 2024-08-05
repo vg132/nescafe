@@ -49,6 +49,7 @@ public partial class Cpu
 		public int InstructionCycles { get; set; }
 		public int InstructionPageCycles { get; set; }
 		private Delegate Instruction { get; set; }
+		public string Name => Instruction.Method.Name;
 
 		public void Invoke(ushort address)
 		{
