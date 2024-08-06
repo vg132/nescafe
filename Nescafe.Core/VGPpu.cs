@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a NTSC PPU.
 /// </summary>
-public class Ppu : IPpu
+public class VGPpu : IPpu
 {
 	/// <summary>
 	/// Gets an array containing bitmap data currently drawn to the screen.
@@ -17,7 +17,10 @@ public class Ppu : IPpu
 	private readonly int _width = 256;
 	private readonly int _height = 240;
 
-	public PpuState State { get; private set; }
+	private int _scanlineCount = 261;
+	private int _cyclesPerLine = 341;
+
+	public VGPpuState State { get; private set; }
 
 	/// <summary>
 	/// Is <c>true</c> if rendering is currently enabled.
@@ -25,15 +28,17 @@ public class Ppu : IPpu
 	/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
 	public bool RenderingEnabled => State.FlagShowSprites != 0 || State.FlagShowBackground != 0;
 
+	PpuState IPpu.State => State;
+
 	/// <summary>
 	/// Constructs a new PPU.
 	/// </summary>
 	/// <param name="console">Console that this PPU is a part of</param>
-	public Ppu(Console console)
+	public VGPpu(Console console)
 	{
 		_memory = console.PpuMemory;
 		_console = console;
-		State = new PpuState();
+		State = new VGPpuState();
 
 		BitmapData = new byte[_width * _height];
 
@@ -49,14 +54,14 @@ public class Ppu : IPpu
 	{
 		Array.Clear(BitmapData, 0, BitmapData.Length);
 
-		State.Scanline = 0;
+		State.Scanline = -1;
 		State.Cycle = 0;
 
 		State.NmiOccurred = false;
 		State.NmiOutput = 0;
 
 		State.W = 0;
-		State.F = 0;
+		State.FrameCounter = 0;
 
 		Array.Clear(State.Oam, 0, State.Oam.Length);
 		Array.Clear(State.Sprites, 0, State.Sprites.Length);
@@ -451,16 +456,15 @@ public class Ppu : IPpu
 		// Skip last cycle of prerender scanline on odd frames
 		if (renderingEnabled)
 		{
-			if (State.Scanline == 261 && State.F == 1 && State.Cycle == 339)
+			if (State.Scanline == 261 && !State.IsEvenFrame && State.Cycle == 339)
 			{
-				State.F ^= 1;
-				State.Scanline = 0;
-				State.Cycle = -1;
+				//State.Scanline = 0;
+				//State.Cycle = -1;
 				_console.DrawFrame();
 				return;
 			}
 		}
-		State.Cycle++;
+		//State.Cycle++;
 
 		// Reset cycle (and scanline if scanline == 260)
 		// Also set to next frame if at end of last scanline
@@ -468,23 +472,56 @@ public class Ppu : IPpu
 		{
 			if (State.Scanline == 261) // Last scanline, reset to upper left corner
 			{
-				State.F ^= 1;
-				State.Scanline = 0;
-				State.Cycle = -1;
+				//State.Scanline = 0;
+				//State.Cycle = -1;
 				_console.DrawFrame();
 			}
 			else // Not on last scanline
 			{
-				State.Cycle = -1;
-				State.Scanline++;
+				//State.Cycle = -1;
+				//State.Scanline++;
 			}
+		}
+	}
+
+	public void Step()
+	{
+		State.FrameCounter++;
+		for (; State.Scanline < _scanlineCount; State.Scanline++)
+		{
+			ProcessScanline(State.Scanline);
+		}
+		State.Scanline = -1;
+	}
+
+	private void ProcessScanline(int line)
+	{
+		for (; State.Cycle < _cyclesPerLine; State.Cycle++)
+		{
+			State.Cycle = State.Cycle;
+			ProcessCycle(line, State.Cycle);
+		}
+		State.Cycle = 0;
+	}
+
+	int cpuSyncCounter = 0;
+	private void ProcessCycle(int line, int cycle)
+	{
+		//bool visibleCycle = 1 <= cycle && cycle <= 256;
+		//bool prefetchCycle = 321 <= cycle && cycle <= 336;
+		//bool fetchCycle = visibleCycle || prefetchCycle;
+		OldStep();
+		if (++cpuSyncCounter == 3)
+		{
+			_console.Cpu.Step();
+			cpuSyncCounter = 0;
 		}
 	}
 
 	/// <summary>
 	/// Executes a single PPU step.
 	/// </summary>
-	public void Step()
+	private void OldStep()
 	{
 		UpdateCounters();
 
@@ -650,13 +687,7 @@ public class Ppu : IPpu
 	// $2000
 	private void WritePpuCtrl(byte data)
 	{
-		State.FlagBaseNametableAddr = (byte)(data & 0x3);
-		State.FlagVRamIncrement = (byte)((data >> 2) & 1);
-		State.FlagSpritePatternTableAddr = (byte)((data >> 3) & 1);
-		State.FlagBgPatternTableAddr = (byte)((data >> 4) & 1);
-		State.FlagSpriteSize = (byte)((data >> 5) & 1);
-		State.FlagMasterSlaveSelect = (byte)((data >> 6) & 1);
-		State.NmiOutput = (byte)((data >> 7) & 1);
+		State.PpuControl = data;
 
 		// Set values based off flags
 		State.BaseNametableAddress = (ushort)(0x2000 + (0x400 * State.FlagBaseNametableAddr));
@@ -669,23 +700,7 @@ public class Ppu : IPpu
 	}
 
 	// $2001
-	private void WritePpuMask(byte data)
-	{
-		State.FlagGreyscale = (byte)(data & 1);
-		State.FlagShowBackgroundLeft = (byte)((data >> 1) & 1);
-		State.FlagShowSpritesLeft = (byte)((data >> 2) & 1);
-		State.FlagShowBackground = (byte)((data >> 3) & 1);
-		State.FlagShowSprites = (byte)((data >> 4) & 1);
-		State.FlagEmphasizeRed = (byte)((data >> 5) & 1);
-		State.FlagEmphasizeGreen = (byte)((data >> 6) & 1);
-		State.FlagEmphasizeBlue = (byte)((data >> 7) & 1);
-	}
-
-	// $4014
-	private void WriteOamAddr(byte data)
-	{
-		State.OamAddr = data;
-	}
+	private void WritePpuMask(byte data)=> State.PpuMask = data;
 
 	// $2004
 	private void WriteOamData(byte data)
@@ -693,6 +708,9 @@ public class Ppu : IPpu
 		State.Oam[State.OamAddr] = data;
 		State.OamAddr++;
 	}
+
+	// $4014
+	private void WriteOamAddr(byte data)=> State.OamAddr = data;
 
 	// $2005
 	private void WritePpuScroll(byte data)
@@ -765,11 +783,7 @@ public class Ppu : IPpu
 	// $2002
 	private byte ReadPpuStatus()
 	{
-		byte retVal = 0;
-		retVal |= (byte)(State.LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
-		retVal |= (byte)((State.FlagSpriteOverflow.AsByte()) << 5);
-		retVal |= (byte)((State.FlagSpriteZeroHit.AsByte()) << 6);
-		retVal |= (byte)((State.NmiOccurred.AsByte()) << 7);
+		var retVal = State.PpuStatus;
 
 		State.NmiOccurred = false;
 		State.W = 0;
@@ -820,7 +834,7 @@ public class Ppu : IPpu
 	{
 		//lock (_console.CpuState.CycleLock)
 		{
-			var state = stateObj as PpuState;
+			var state = stateObj as VGPpuState;
 			State = state;
 			//_memory.LoadState(state.PpuMemory);
 		}

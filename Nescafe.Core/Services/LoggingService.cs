@@ -30,12 +30,14 @@ public static class LoggingService
 			case NESEvents.Cartridge:
 				if (AppSettings.Instance.LoggingCartridge)
 				{
+					System.Diagnostics.Debug.WriteLine(message);
 					_logEvents.Enqueue(message);
 				}
 				break;
 			case NESEvents.Frame:
 				if (AppSettings.Instance.LoggingFrame)
 				{
+					System.Diagnostics.Debug.WriteLine(message);
 					_logEvents.Enqueue(message);
 				}
 				break;
