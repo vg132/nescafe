@@ -52,7 +52,7 @@ public partial class Ppu
 		State.Scanline = 0;
 		State.Cycle = 0;
 
-		State.NmiOccurred = 0;
+		State.NmiOccurred = false;
 		State.NmiOutput = 0;
 
 		State.W = 0;
@@ -327,7 +327,7 @@ public partial class Ppu
 			{
 				if (State.NumSprites == 8)
 				{
-					State.FlagSpriteOverflow = 1;
+					State.FlagSpriteOverflow = true;
 					break;
 				}
 				else
@@ -347,7 +347,7 @@ public partial class Ppu
 		var bgPixelData = GetBgPixelData();
 
 		var spritePixelData = GetSpritePixelData(out var spriteScanlineIndex);
-		var isSpriteZero = State.FlagSpriteZeroHit == 0 && State.FlagShowBackground == 1 && State.SpriteIndicies[spriteScanlineIndex] == 0;
+		var isSpriteZero = State.FlagSpriteZeroHit == false && State.FlagShowBackground == 1 && State.SpriteIndicies[spriteScanlineIndex] == 0;
 
 		var bgColorNum = bgPixelData & 0x03;
 		var spriteColorNum = spritePixelData & 0x03;
@@ -369,7 +369,7 @@ public partial class Ppu
 				// Set sprite zero hit flag
 				if (isSpriteZero)
 				{
-					State.FlagSpriteZeroHit = 1;
+					State.FlagSpriteZeroHit = true;
 				}
 
 				// Get sprite priority
@@ -438,7 +438,7 @@ public partial class Ppu
 		{
 			if (State.Scanline == 241)
 			{
-				State.NmiOccurred = 1;
+				State.NmiOccurred = true;
 				if (State.NmiOutput != 0)
 				{
 					_console.Cpu.TriggerNmi();
@@ -503,9 +503,9 @@ public partial class Ppu
 		// nmiOccurred flag cleared on prerender scanline at cycle 1
 		if (preRenderScanline && State.Cycle == 1)
 		{
-			State.NmiOccurred = 0;
-			State.FlagSpriteOverflow = 0;
-			State.FlagSpriteZeroHit = 0;
+			State.NmiOccurred = false;
+			State.FlagSpriteOverflow = false;
+			State.FlagSpriteZeroHit = false;
 		}
 
 		if (renderingEnabled)
@@ -767,11 +767,11 @@ public partial class Ppu
 	{
 		byte retVal = 0;
 		retVal |= (byte)(State.LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
-		retVal |= (byte)(State.FlagSpriteOverflow << 5);
-		retVal |= (byte)(State.FlagSpriteZeroHit << 6);
-		retVal |= (byte)(State.NmiOccurred << 7);
+		retVal |= (byte)((State.FlagSpriteOverflow.AsByte()) << 5);
+		retVal |= (byte)((State.FlagSpriteZeroHit.AsByte()) << 6);
+		retVal |= (byte)((State.NmiOccurred.AsByte()) << 7);
 
-		State.NmiOccurred = 0;
+		State.NmiOccurred = false;
 		State.W = 0;
 		return retVal;
 	}

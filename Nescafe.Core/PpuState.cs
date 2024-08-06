@@ -15,8 +15,10 @@ public class PpuState
 	public ushort SpritePatternTableAddress;
 	public int VRamIncrement;
 	public byte LastRegisterWrite;
-	public byte FlagSpriteOverflow;
-	public byte FlagSpriteZeroHit;
+
+	public bool FlagSpriteOverflow;
+	public bool FlagSpriteZeroHit;
+
 	public byte FlagBaseNametableAddr;
 	public byte FlagVRamIncrement;
 	public byte FlagSpritePatternTableAddr;
@@ -24,7 +26,9 @@ public class PpuState
 	public byte FlagSpriteSize;
 	public byte FlagMasterSlaveSelect;
 	public byte NmiOutput;
-	public byte NmiOccurred;
+
+	public bool NmiOccurred;
+
 	public byte FlagGreyscale;
 	public byte FlagShowBackgroundLeft;
 	public byte FlagShowSpritesLeft;
