@@ -3,6 +3,8 @@
 [Serializable]
 public class VGPpuState : PpuState
 {
+	public bool VBlankStarted;
+
 	private byte _ppuControl;
 	private byte _ppuMask;
 
@@ -17,7 +19,7 @@ public class VGPpuState : PpuState
 			retVal |= (byte)(LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
 			retVal |= (byte)((FlagSpriteOverflow.AsByte()) << 5);
 			retVal |= (byte)((FlagSpriteZeroHit.AsByte()) << 6);
-			retVal |= (byte)((NmiOccurred.AsByte()) << 7);
+			retVal |= (byte)((VBlankStarted.AsByte()) << 7);
 			return retVal;
 		}
 	}

@@ -1,6 +1,5 @@
 ﻿namespace Nescafe.Core;
 
-[Serializable]
 public class PpuState
 {
 	public byte[] Oam;

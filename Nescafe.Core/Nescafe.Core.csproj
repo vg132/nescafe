@@ -11,5 +11,13 @@
 		<Compile Update="Cpu.Instructions.cs">
 			<DependentUpon>Cpu.cs</DependentUpon>
 		</Compile>
+
+		<Compile Update="Cpu.Instruction.cs">
+			<DependentUpon>Cpu.cs</DependentUpon>
+		</Compile>
+
+		<Compile Update="Cpu.InstructionAttribute.cs">
+			<DependentUpon>Cpu.cs</DependentUpon>
+		</Compile>
 	</ItemGroup>
 </Project>

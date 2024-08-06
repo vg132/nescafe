@@ -228,22 +228,22 @@ namespace Nescafe.Core
 				var s = new Stopwatch();
 				while (!_stop)
 				{
+					long avarageFrameTime = 0;
 					var frameRate = 60;//AppSettings.Instance.CpuSpeed;
 					s.Restart();
 					for (var i = 0; i < frameRate; i++)
 					{
-						LoggingService.LogEvent(NESEvents.Frame, $"start frame: {_frameCount}");
 						var frameWatch = Stopwatch.StartNew();
 						if (!Pause)
 						{
 							GoUntilFrame();
 						}
 						frameWatch.Stop();
-						LoggingService.LogEvent(NESEvents.Frame, $"end frame: {_frameCount}, frame time:{frameWatch.Elapsed}");
+						avarageFrameTime += frameWatch.ElapsedTicks;
 						PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
 					}
 					s.Stop();
-					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms");
+					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms, avarage frame time: {new TimeSpan(avarageFrameTime / 60)}");
 				}
 				IsRunning = false;
 				LoggingService.LogEvent(NESEvents.Other, "Console Stopped");

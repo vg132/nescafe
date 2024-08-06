@@ -1,4 +1,5 @@
 ﻿using Nescafe.Services;
+using System.Runtime.CompilerServices;
 
 namespace Nescafe.Core;
 
@@ -8,8 +9,8 @@ namespace Nescafe.Core;
 /// </summary>
 public partial class Cpu
 {
-	private readonly CpuMemory _memory;
-	private readonly Console _console;
+	protected readonly CpuMemory _memory;
+	protected readonly Console _console;
 
 	public enum AddressMode
 	{
@@ -28,7 +29,8 @@ public partial class Cpu
 		ZeroPageY        // 13
 	};
 
-	public CpuState State { get; private set; }
+	public CpuState State => _state;
+	private CpuState _state;
 
 	/// <summary>
 	/// Initializes a new <see cref="T:Nescafe.Cpu"/> CPU.
@@ -38,7 +40,7 @@ public partial class Cpu
 	{
 		_memory = console.CpuMemory;
 		_console = console;
-		State = new CpuState();
+		_state = new CpuState();
 		InitializeOpcodes();
 	}
 
@@ -47,17 +49,17 @@ public partial class Cpu
 	/// </summary>
 	public void Reset()
 	{
-		State.PC = _memory.Read16(0xFFFC);
-		State.S = 0xFD;
-		State.A = 0;
-		State.X = 0;
-		State.Y = 0;
+		_state.PC = _memory.Read16(0xFFFC);
+		_state.S = 0xFD;
+		_state.A = 0;
+		_state.X = 0;
+		_state.Y = 0;
 		SetProcessorFlags(0x24);
 
-		State.Cycles = 0;
-		State.Idle = 0;
+		_state.Cycles = 0;
+		_state.Idle = 0;
 
-		State.NmiInterrupt = false;
+		_state.NmiInterrupt = false;
 	}
 
 	/// <summary>
@@ -65,7 +67,7 @@ public partial class Cpu
 	/// </summary>
 	public void TriggerNmi()
 	{
-		State.NmiInterrupt = true;
+		_state.NmiInterrupt = true;
 	}
 
 	/// <summary>
@@ -74,9 +76,9 @@ public partial class Cpu
 	/// </summary>
 	public void TriggerIrq()
 	{
-		if (!State.I)
+		if (!_state.I)
 		{
-			State.IrqInterrupt = true;
+			_state.IrqInterrupt = true;
 		}
 	}
 
@@ -86,7 +88,7 @@ public partial class Cpu
 	/// <param name="idleCycles">Idle cycles.</param>
 	public void AddIdleCycles(int idleCycles)
 	{
-		State.Idle += idleCycles;
+		_state.Idle += idleCycles;
 	}
 
 	/// <summary>
@@ -94,42 +96,42 @@ public partial class Cpu
 	/// </summary>
 	public void Step()
 	{
-		if (State.Idle > 0)
+		if (_state.Idle > 0)
 		{
-			State.Idle--;
+			_state.Idle--;
 			return;
 		}
 
-		if (State.IrqInterrupt)
+		if (_state.IrqInterrupt)
 		{
 			Irq();
 		}
 
-		State.IrqInterrupt = false;
+		_state.IrqInterrupt = false;
 
-		if (State.NmiInterrupt)
+		if (_state.NmiInterrupt)
 		{
 			Nmi();
 		}
 
-		State.NmiInterrupt = false;
+		_state.NmiInterrupt = false;
 
-		var cyclesOrig = State.Cycles;
-		var data = _memory.Read(State.PC);
+		var cyclesOrig = _state.Cycles;
+		var data = _memory.Read(_state.PC);
 		var currentInstruction = _cpuInstructions[data];
-		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {State.Cycles}, instruction: {currentInstruction.Name}, memory pointer: {State.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {State.S.ToString("x4")}");
+		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_state.Cycles}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
 
 		// Get address to operate on
 		var pageCrossed = false;
 		var address = GetMemoryAddress(currentInstruction, out pageCrossed);
-		State.PC += (ushort)currentInstruction.InstructionSize;
-		State.Cycles += currentInstruction.InstructionCycles;
+		_state.PC += (ushort)currentInstruction.InstructionSize;
+		_state.Cycles += currentInstruction.InstructionCycles;
 		if (pageCrossed)
 		{
-			State.Cycles += currentInstruction.InstructionPageCycles;
+			_state.Cycles += currentInstruction.InstructionPageCycles;
 		}
-		currentInstruction.Invoke(address);
-		State.Idle += State.Cycles - cyclesOrig;
+		currentInstruction.InvokeOpCode(address);
+		_state.Idle += _state.Cycles - cyclesOrig;
 	}
 
 	private ushort GetMemoryAddress(CPUInstruction currentInstruction, out bool pageCrossed)
@@ -141,89 +143,96 @@ public partial class Cpu
 			case AddressMode.Implied:
 				break;
 			case AddressMode.Immediate:
-				address = (ushort)(State.PC + 1);
+				address = (ushort)(_state.PC + 1);
 				break;
 			case AddressMode.Absolute:
-				address = _memory.Read16((ushort)(State.PC + 1));
+				address = _memory.Read16((ushort)(_state.PC + 1));
 				break;
 			case AddressMode.AbsoluteX:
-				address = (ushort)(_memory.Read16((ushort)(State.PC + 1)) + State.X);
-				pageCrossed = IsPageCross((ushort)(address - State.X), State.X);
+				address = (ushort)(_memory.Read16((ushort)(_state.PC + 1)) + _state.X);
+				pageCrossed = IsPageCross((ushort)(address - _state.X), _state.X);
 				break;
 			case AddressMode.AbsoluteY:
-				address = (ushort)(_memory.Read16((ushort)(State.PC + 1)) + State.Y);
-				pageCrossed = IsPageCross((ushort)(address - State.Y), State.Y);
+				address = (ushort)(_memory.Read16((ushort)(_state.PC + 1)) + _state.Y);
+				pageCrossed = IsPageCross((ushort)(address - _state.Y), _state.Y);
 				break;
 			case AddressMode.Accumulator:
 				break;
 			case AddressMode.Relative:
-				address = (ushort)(State.PC + (sbyte)_memory.Read((ushort)(State.PC + 1)) + 2);
+				address = (ushort)(_state.PC + (sbyte)_memory.Read((ushort)(_state.PC + 1)) + 2);
 				break;
 			case AddressMode.ZeroPage:
-				address = _memory.Read((ushort)(State.PC + 1));
+				address = _memory.Read((ushort)(_state.PC + 1));
 				break;
 			case AddressMode.ZeroPageY:
-				address = (ushort)((_memory.Read((ushort)(State.PC + 1)) + State.Y) & 0xFF);
+				address = (ushort)((_memory.Read((ushort)(_state.PC + 1)) + _state.Y) & 0xFF);
 				break;
 			case AddressMode.ZeroPageX:
-				address = (ushort)((_memory.Read((ushort)(State.PC + 1)) + State.X) & 0xFF);
+				address = (ushort)((_memory.Read((ushort)(_state.PC + 1)) + _state.X) & 0xFF);
 				break;
 			case AddressMode.Indirect:
 				// Must wrap if at the end of a page to emulate a 6502 bug present in the JMP instruction
-				address = _memory.Read16WrapPage(_memory.Read16((ushort)(State.PC + 1)));
+				address = _memory.Read16WrapPage(_memory.Read16((ushort)(_state.PC + 1)));
 				break;
 			case AddressMode.IndexedIndirect:
 				// Zeropage address of lower nibble of target address (& 0xFF to wrap at 255)
-				var lowerNibbleAddress = (ushort)((_memory.Read((ushort)(State.PC + 1)) + State.X) & 0xFF);
+				var lowerNibbleAddress = (ushort)((_memory.Read((ushort)(_state.PC + 1)) + _state.X) & 0xFF);
 				// Target address (Must wrap to 0x00 if at 0xFF)
 				address = _memory.Read16WrapPage(lowerNibbleAddress);
 				break;
 			case AddressMode.IndirectIndexed:
 				// Zeropage address of the value to add the Y register to to get the target address
-				var valueAddress = (ushort)_memory.Read((ushort)(State.PC + 1));
+				var valueAddress = (ushort)_memory.Read((ushort)(_state.PC + 1));
 
 				// Target address (Must wrap to 0x00 if at 0xFF)
-				address = (ushort)(_memory.Read16WrapPage(valueAddress) + State.Y);
-				pageCrossed = IsPageCross((ushort)(address - State.Y), address);
+				address = (ushort)(_memory.Read16WrapPage(valueAddress) + _state.Y);
+				pageCrossed = IsPageCross((ushort)(address - _state.Y), address);
 				break;
 		}
 		return address;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void SetZn(byte value)
 	{
-		State.Z = value == 0;
-		State.N = ((value >> 7) & 1) == 1;
+		_state.Z = value == 0;
+		_state.N = ((value >> 7) & 1) == 1;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void SetCarry(uint value)
 	{
-		State.C = value > 0xff;
+		_state.C = value > 0xff;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void SetCarrySubstract(uint value)
 	{
-		State.C = value < 0x100;
+		_state.C = value < 0x100;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool IsBitSet(byte value, int index)
 	{
 		return (value & (1 << index)) != 0;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private byte PullStack()
 	{
-		State.S++;
-		var data = _memory.Read((ushort)(0x0100 | State.S));
+		_state.S++;
+		var data = _memory.Read((ushort)(0x0100 | _state.S));
 		return data;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void PushStack(byte data)
 	{
-		_memory.Write((ushort)(0x100 | State.S), data);
-		State.S--;
+		_memory.Write((ushort)(0x100 | _state.S), data);
+		_state.S--;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private ushort PullStack16()
 	{
 		var lo = PullStack();
@@ -231,6 +240,7 @@ public partial class Cpu
 		return (ushort)((hi << 8) | lo);
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void PushStack16(ushort data)
 	{
 		var lo = (byte)(data & 0xFF);
@@ -240,42 +250,43 @@ public partial class Cpu
 		PushStack(lo);
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private byte GetStatusFlags()
 	{
 		byte flags = 0;
 
-		if (State.C)
+		if (_state.C)
 		{
 			flags |= 1 << 0; // Carry flag, bit 0
 		}
 
-		if (State.Z)
+		if (_state.Z)
 		{
 			flags |= 1 << 1; // Zero flag, bit 1
 		}
 
-		if (State.I)
+		if (_state.I)
 		{
 			flags |= 1 << 2; // Interrupt disable flag, bit 2
 		}
 
-		if (State.D)
+		if (_state.D)
 		{
 			flags |= 1 << 3; // Decimal mode flag, bit 3
 		}
 
-		if (State.B)
+		if (_state.B)
 		{
 			flags |= 1 << 4; // Break mode, bit 4
 		}
 
 		flags |= 1 << 5; // Bit 5, always set
-		if (State.V)
+		if (_state.V)
 		{
 			flags |= 1 << 6; // Overflow flag, bit 6
 		}
 
-		if (State.N)
+		if (_state.N)
 		{
 			flags |= 1 << 7; // Negative flag, bit 7
 		}
@@ -283,42 +294,45 @@ public partial class Cpu
 		return flags;
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void SetProcessorFlags(byte flags)
 	{
-		State.C = IsBitSet(flags, 0);
-		State.Z = IsBitSet(flags, 1);
-		State.I = IsBitSet(flags, 2);
-		State.D = IsBitSet(flags, 3);
-		State.B = IsBitSet(flags, 4);
-		State.V = IsBitSet(flags, 6);
-		State.N = IsBitSet(flags, 7);
+		_state.C = IsBitSet(flags, 0);
+		_state.Z = IsBitSet(flags, 1);
+		_state.I = IsBitSet(flags, 2);
+		_state.D = IsBitSet(flags, 3);
+		_state.B = IsBitSet(flags, 4);
+		_state.V = IsBitSet(flags, 6);
+		_state.N = IsBitSet(flags, 7);
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool IsPageCross(ushort a, ushort b)
 	{
 		return (a & 0xFF) != (b & 0xFF);
 	}
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void HandleBranchCycles(ushort origPc, ushort branchPc)
 	{
-		State.Cycles++;
-		State.Cycles += IsPageCross(origPc, branchPc) ? 1 : 0;
+		_state.Cycles++;
+		_state.Cycles += IsPageCross(origPc, branchPc) ? 1 : 0;
 	}
 
 	private void Nmi()
 	{
-		PushStack16(State.PC);
+		PushStack16(_state.PC);
 		PushStack(GetStatusFlags());
-		State.PC = _memory.Read16(0xFFFA);
-		State.I = true;
+		_state.PC = _memory.Read16(0xFFFA);
+		_state.I = true;
 	}
 
 	private void Irq()
 	{
-		PushStack16(State.PC);
+		PushStack16(_state.PC);
 		PushStack(GetStatusFlags());
-		State.PC = _memory.Read16(0xFFFE);
-		State.I = true;
+		_state.PC = _memory.Read16(0xFFFE);
+		_state.I = true;
 	}
 
 	#region Save/Load state
@@ -347,7 +361,7 @@ public partial class Cpu
 		lock (_console.FrameLock)
 		{
 			var state = stateObj as CpuState2;
-			State = state.State;
+			_state = state.State;
 			_memory.LoadState(state.CpuMemory);
 		}
 	}
