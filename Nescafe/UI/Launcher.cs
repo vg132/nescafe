@@ -20,7 +20,7 @@ public partial class Launcher : Form
 		InitializeComponent();
 
 		glControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-		glControl1.Dock = DockStyle.Fill;
+		//glControl1.Dock = DockStyle.Fill;
 
 		// We don't want this to be visible but need it for key events to work. Bug in GLControl...
 		textBoxFixForKeyEvents.Top = -100;
@@ -129,7 +129,13 @@ public partial class Launcher : Form
 		CheckCorrectVideoSizeMenuItem();
 	}
 
-	private void SetFormSize(int size) => ClientSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height);
+	private void SetFormSize(int size)
+	{
+		ClientSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height + statusStrip1.ClientSize.Height);
+		glControl1.Left = 0;
+		glControl1.Top = menuStrip1.ClientSize.Height;
+		glControl1.Size = new Size(256 * size, 240 * size);
+	}
 
 	private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 	{
@@ -264,5 +270,17 @@ public partial class Launcher : Form
 	{
 		var form = new Logging();
 		form.Show();
+	}
+
+	private void timerFPS_Tick(object sender, EventArgs e)
+	{
+		if(_console.IsRunning)
+		{
+			toolStripStatusLabelFPS.Text = $"FPS: {_console.CurrentFPS}";
+		}
+		else
+		{
+			toolStripStatusLabelFPS.Text = "FPS: -";
+		}
 	}
 }

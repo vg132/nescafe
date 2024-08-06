@@ -77,6 +77,8 @@ namespace Nescafe.Core
 		private bool _frameEvenOdd;
 		private long _frameCount;
 
+		public int CurrentFPS { get; private set; }
+
 		private IDictionary<int, Type> _mappers;
 
 		/// <summary>
@@ -136,7 +138,7 @@ namespace Nescafe.Core
 		/// <param name="path">Path to the iNES cartridge file to load</param>
 		public bool LoadCartridge(string path)
 		{
-			LoggingService.LogEvent(NESEvents.Cartridge,$"Loading ROM {path}");
+			LoggingService.LogEvent(NESEvents.Cartridge, $"Loading ROM {path}");
 			if (Cartridge != null)
 			{
 				Cartridge.Eject();
@@ -229,7 +231,7 @@ namespace Nescafe.Core
 				while (!_stop)
 				{
 					long avarageFrameTime = 0;
-					var frameRate = 60;//AppSettings.Instance.CpuSpeed;
+					var frameRate = AppSettings.Instance.CpuSpeed;
 					s.Restart();
 					for (var i = 0; i < frameRate; i++)
 					{
@@ -243,6 +245,7 @@ namespace Nescafe.Core
 						PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
 					}
 					s.Stop();
+					CurrentFPS = (int)((frameRate * 1000) / s.ElapsedMilliseconds);
 					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms, avarage frame time: {new TimeSpan(avarageFrameTime / 60)}");
 				}
 				IsRunning = false;
