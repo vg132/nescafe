@@ -109,7 +109,6 @@ public partial class Cpu
 		var data = _memory.Read(_state.PC);
 		var currentInstruction = _cpuInstructions[data];
 		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_console.Ppu.State.CpuCalls}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
-
 		// Get address to operate on
 		var pageCrossed = false;
 		var address = GetMemoryAddress(currentInstruction, out pageCrossed);
@@ -137,12 +136,14 @@ public partial class Cpu
 				address = _memory.Read16((ushort)(_state.PC + 1));
 				break;
 			case AddressMode.AbsoluteX:
-				address = (ushort)(_memory.Read16((ushort)(_state.PC + 1)) + _state.X);
-				pageCrossed = IsPageCross((ushort)(address - _state.X), _state.X);
+				address = _memory.Read16((ushort)(_state.PC + 1));
+				pageCrossed = IsPageCross(address, (ushort)(address + _state.X));
+				address += _state.X;
 				break;
 			case AddressMode.AbsoluteY:
-				address = (ushort)(_memory.Read16((ushort)(_state.PC + 1)) + _state.Y);
-				pageCrossed = IsPageCross((ushort)(address - _state.Y), _state.Y);
+				address = _memory.Read16((ushort)(_state.PC + 1));
+				pageCrossed = IsPageCross(address, (ushort)(address + _state.Y));
+				address += _state.Y;
 				break;
 			case AddressMode.Accumulator:
 				break;
@@ -173,8 +174,9 @@ public partial class Cpu
 				var valueAddress = (ushort)_memory.Read((ushort)(_state.PC + 1));
 
 				// Target address (Must wrap to 0x00 if at 0xFF)
-				address = (ushort)(_memory.Read16WrapPage(valueAddress) + _state.Y);
-				pageCrossed = IsPageCross((ushort)(address - _state.Y), address);
+				address = _memory.Read16WrapPage(valueAddress);
+				pageCrossed = IsPageCross(address, (ushort)(address + _state.Y));
+				address += _state.Y;
 				break;
 		}
 		return address;
