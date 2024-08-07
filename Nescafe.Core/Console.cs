@@ -254,6 +254,9 @@ namespace Nescafe.Core
 			catch (Exception ex)
 			{
 				LoggingService.LogEvent(NESEvents.Other, ex.Message);
+#if DEBUG
+				throw new Exception("Error when running game", ex);
+#endif
 			}
 		}
 	}
