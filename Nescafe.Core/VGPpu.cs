@@ -17,7 +17,7 @@ public class VGPpu : IPpu
 	private readonly int _width = 256;
 	private readonly int _height = 240;
 
-	private const int _scanlineCount = 262;
+	private const int _scanlineCount = 261;
 	private const int _cyclesPerLine = 341;
 
 	//public VGPpuState State { get; private set; }
@@ -27,7 +27,7 @@ public class VGPpu : IPpu
 	/// Is <c>true</c> if rendering is currently enabled.
 	/// </summary>
 	/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
-	public bool RenderingEnabled => _state.FlagShowSprites != 0 || _state.FlagShowBackground != 0;
+	public bool RenderingEnabled => _state.ShowSprites || _state.ShowBackground;
 
 	PpuState IPpu.State => _state;
 
@@ -54,18 +54,7 @@ public class VGPpu : IPpu
 	public void Reset()
 	{
 		Array.Clear(BitmapData, 0, BitmapData.Length);
-
-		_state.Scanline = -1;
-		_state.Cycle = 0;
-
-		_state.VBlankStarted = false;
-		_state.NmiOutput = 0;
-
-		_state.W = 0;
-		_state.FrameCounter = 0;
-
-		Array.Clear(_state.Oam, 0, _state.Oam.Length);
-		Array.Clear(_state.Sprites, 0, _state.Sprites.Length);
+		_state.Reset();
 	}
 
 	private byte LookupBackgroundColor(byte data)
@@ -139,8 +128,11 @@ public class VGPpu : IPpu
 	private byte GetBgPixelData()
 	{
 		var xPos = _state.Cycle - 1;
-
-		return _state.FlagShowBackground == 0 ? (byte)0 : _state.FlagShowBackgroundLeft == 0 && xPos < 8 ? (byte)0 : (byte)((_state.TileShiftReg >> (_state.X * 4)) & 0xF);
+		if (_state.ShowBackground && (_state.ShowBackgroundLeft || xPos >= 8))
+		{
+			return (byte)((_state.TileShiftReg >> (_state.X * 4)) & 0xF);
+		}
+		return (byte)0;
 	}
 
 	private byte GetSpritePixelData(out int spriteIndex)
@@ -150,12 +142,12 @@ public class VGPpu : IPpu
 
 		spriteIndex = 0;
 
-		if (_state.FlagShowSprites == 0)
+		if (!_state.ShowSprites)
 		{
 			return 0;
 		}
 
-		if (_state.FlagShowSpritesLeft == 0 && xPos < 8)
+		if (!_state.ShowSpritesLeft && xPos < 8)
 		{
 			return 0;
 		}
@@ -179,7 +171,7 @@ public class VGPpu : IPpu
 
 				// Set the pattern table and index according to whether or not sprites
 				// ar 8x8 or 8x16
-				if (_state.FlagSpriteSize == 1)
+				if (_state.FlagLargeSprites)
 				{
 					_currSpritePatternTableAddr = (ushort)((_state.Sprites[i + 1] & 1) * 0x1000);
 					patternIndex = (byte)(_state.Sprites[i + 1] & 0xFE);
@@ -241,7 +233,7 @@ public class VGPpu : IPpu
 
 	private int GetSpritePatternPixel(ushort patternAddr, int xPos, int yPos, bool flipHoriz = false, bool flipVert = false)
 	{
-		var h = _state.FlagSpriteSize == 0 ? 7 : 15;
+		var h = _state.FlagLargeSprites ? 15 : 7;
 
 		// Flip x and y if needed
 		xPos = flipHoriz ? 7 - xPos : xPos;
@@ -316,7 +308,7 @@ public class VGPpu : IPpu
 		Array.Clear(_state.SpriteIndicies, 0, _state.SpriteIndicies.Length);
 
 		// 8x8 or 8x16 sprites
-		var h = _state.FlagSpriteSize == 0 ? 7 : 15;
+		var h = _state.FlagLargeSprites ? 15 : 7;
 
 		_state.NumSprites = 0;
 		var yPos = _state.Scanline;
@@ -353,7 +345,7 @@ public class VGPpu : IPpu
 		var bgPixelData = GetBgPixelData();
 
 		var spritePixelData = GetSpritePixelData(out var spriteScanlineIndex);
-		var isSpriteZero = _state.FlagSpriteZeroHit == false && _state.FlagShowBackground == 1 && _state.SpriteIndicies[spriteScanlineIndex] == 0;
+		var isSpriteZero = _state.FlagSpriteZeroHit == false && _state.ShowBackground && _state.SpriteIndicies[spriteScanlineIndex] == 0;
 
 		var bgColorNum = bgPixelData & 0x03;
 		var spriteColorNum = spritePixelData & 0x03;
@@ -436,9 +428,25 @@ public class VGPpu : IPpu
 		_state.TileShiftReg |= data << 32;
 	}
 
+	private long cpuCalls = 0;
+	private long ppuCalls = 0;
 	// Updates scanline and cycle counters, triggers NMI's if needed.
 	private void UpdateCounters()
 	{
+		// Skip last cycle on prerender line
+		if (RenderingEnabled && _state.Scanline == (_scanlineCount - 1) && !_state.IsEvenFrame && _state.Cycle == (_cyclesPerLine - 2))
+		{
+			return;
+		}
+	}
+
+	private void HandleNMIAndVBlank()
+	{
+		if (_state.VBlankStarted && cpuClocksSinceVBlank == 2270)
+		{
+			_state.VBlankStarted = false;
+			cpuClocksSinceVBlank = 0;
+		}
 		// Trigger an NMI at the start of scanline 241 if VBLANK NMI's are enabled
 		if (_state.Cycle == 1)
 		{
@@ -451,20 +459,13 @@ public class VGPpu : IPpu
 					_console.Cpu.TriggerNmi();
 				}
 			}
-		}
-
-		if (_state.Scanline == 261 && _state.Cycle == 1)
-		{
-			_state.VBlankStarted = false;
-			_state.FlagSpriteOverflow = false;
-			_state.FlagSpriteZeroHit = false;
-			cpuClocksSinceVBlank = 0;
-		}
-
-		// Skip last cycle on prerender line
-		if (RenderingEnabled && _state.Scanline == (_scanlineCount - 1) && !_state.IsEvenFrame && _state.Cycle == (_cyclesPerLine - 2))
-		{
-			return;
+			else if (_state.Scanline == -1)
+			{
+				_state.VBlankStarted = false;
+				_state.FlagSpriteOverflow = false;
+				_state.FlagSpriteZeroHit = false;
+				cpuClocksSinceVBlank = 0;
+			}
 		}
 	}
 
@@ -476,7 +477,7 @@ public class VGPpu : IPpu
 			ProcessScanline(_state.Scanline);
 		}
 		_state.FrameCounter++;
-		_state.Scanline = 0;
+		_state.Scanline = -1;
 		_console.DrawFrame();
 	}
 
@@ -484,7 +485,7 @@ public class VGPpu : IPpu
 	{
 		for (; _state.Cycle < _cyclesPerLine; _state.Cycle++)
 		{
-			ProcessCycle(line, _state.Cycle);
+			ProcessCycle(_state.Scanline, _state.Cycle);
 		}
 		_state.Cycle = 0;
 	}
@@ -493,13 +494,17 @@ public class VGPpu : IPpu
 	int cpuClocksSinceVBlank = 0;
 	private void ProcessCycle(int line, int cycle)
 	{
+		ppuCalls++;
 		OldStep();
+		HandleNMIAndVBlank();
+		_console.Mapper.Step();
 		if (++cpuSyncCounter == 3)
 		{
 			if (_state.VBlankStarted)
 			{
 				cpuClocksSinceVBlank++;
 			}
+			cpuCalls++;
 			_console.Cpu.Step();
 			cpuSyncCounter = 0;
 		}
@@ -662,19 +667,7 @@ public class VGPpu : IPpu
 
 
 	// $2000
-	private void WritePpuCtrl(byte data)
-	{
-		_state.PpuControl = data;
-
-		// Set values based off flags
-		_state.BaseNametableAddress = (ushort)(0x2000 + (0x400 * _state.FlagBaseNametableAddr));
-		_state.VRamIncrement = (_state.FlagVRamIncrement == 0) ? 1 : 32;
-		_state.BgPatternTableAddress = (ushort)(_state.FlagBgPatternTableAddr == 0 ? 0x0000 : 0x1000);
-		_state.SpritePatternTableAddress = (ushort)(0x1000 * _state.FlagSpritePatternTableAddr);
-
-		// t: ...BA.. ........ = d: ......BA
-		_state.T = (ushort)((_state.T & 0xF3FF) | ((data & 0x03) << 10));
-	}
+	private void WritePpuCtrl(byte data)=> _state.PpuControl = data;
 
 	// $2001
 	private void WritePpuMask(byte data) => _state.PpuMask = data;
@@ -760,11 +753,7 @@ public class VGPpu : IPpu
 	// $2002
 	private byte ReadPpuStatus()
 	{
-		byte retVal = 0;
-		retVal |= (byte)(_state.LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
-		retVal |= (byte)((_state.FlagSpriteOverflow.AsByte()) << 5);
-		retVal |= (byte)((_state.FlagSpriteZeroHit.AsByte()) << 6);
-		retVal |= (byte)((_state.VBlankStarted.AsByte()) << 7);
+		var retVal = _state.PpuStatus;
 
 		_state.VBlankStarted = false;
 		_state.W = 0;
@@ -772,10 +761,7 @@ public class VGPpu : IPpu
 	}
 
 	// $2004
-	private byte ReadOamData()
-	{
-		return _state.Oam[_state.OamAddr];
-	}
+	private byte ReadOamData() => _state.Oam[_state.OamAddr];
 
 	// $2007
 	private byte ReadPpuData()

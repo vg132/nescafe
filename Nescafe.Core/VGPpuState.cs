@@ -3,12 +3,57 @@
 [Serializable]
 public class VGPpuState : PpuState
 {
+	public void Reset()
+	{
+		Scanline = -1;
+		Cycle = 0;
+
+		VBlankStarted = false;
+		FlagSpriteOverflow = false;
+		FlagSpriteZeroHit = false;
+
+		NmiOutput = 0;
+		FrameCounter = 0;
+		PpuControl = 0;
+		PpuMask = 0;
+
+		LastRegisterWrite = 0;
+		NameTableByte = 0;
+		BaseNametableAddress = 0;
+		AttributeTableByte = 0;
+		VRamIncrement = 1;
+		FlagVRamIncrement = 0;
+		TileBitfieldHi = 0;
+		TileBitfieldLo = 0;
+		TileShiftReg = 0;
+
+		T = 0;
+		F = 0;
+		V = 0;
+		W = 0;
+		X = 0;
+
+		Array.Clear(Oam, 0, Oam.Length);
+		Array.Clear(Sprites, 0, Sprites.Length);
+	}
+
+	// New flags
 	public bool VBlankStarted;
+	public bool ShowBackground;
+	public bool ShowBackgroundLeft;
+	public bool ShowSpritesLeft;
+	public bool ShowSprites;
+	public bool EmphasizeRed;
+	public bool EmphasizeGreen;
+	public bool EmphasizeBlue;
+	public bool Greyscale;
+
+	public bool FlagLargeSprites;
 
 	private byte _ppuControl;
 	private byte _ppuMask;
 
-	public long FrameCounter { get; set; } = 0;
+	public long FrameCounter = 0;
 	public bool IsEvenFrame => (FrameCounter % 2) == 0;
 
 	public byte PpuStatus
@@ -32,14 +77,17 @@ public class VGPpuState : PpuState
 			if (_ppuControl != value)
 			{
 				_ppuControl = value;
-				FlagBaseNametableAddr = (byte)(value & 0x3);
-				FlagVRamIncrement = (byte)((value >> 2) & 1);
-				FlagSpritePatternTableAddr = (byte)((value >> 3) & 1);
-				FlagBgPatternTableAddr = (byte)((value >> 4) & 1);
+
+				BaseNametableAddress = (ushort)(0x2000 + (0x400 * (byte)(value & 0x3)));
+				VRamIncrement = (byte)((value >> 2) & 1) == 0 ? 1 : 32;
+				SpritePatternTableAddress = (ushort)(0x1000 * (byte)((value >> 3) & 1));
+				BgPatternTableAddress = (ushort)(((value >> 4) & 1) == 0 ? 0x00 : 0x1000);
 				FlagSpriteSize = (byte)((value >> 5) & 1);
+				FlagLargeSprites = (byte)((value >> 5) & 1) != 0;
 				FlagMasterSlaveSelect = (byte)((value >> 6) & 1);
 				NmiOutput = (byte)((value >> 7) & 1);
 			}
+			T = (ushort)((T & 0xF3FF) | ((value & 0x03) << 10));
 		}
 	}
 
@@ -52,14 +100,14 @@ public class VGPpuState : PpuState
 			if (_ppuMask != value)
 			{
 				_ppuMask = value;
-				FlagGreyscale = (byte)(value & 1);
-				FlagShowBackgroundLeft = (byte)((value >> 1) & 1);
-				FlagShowSpritesLeft = (byte)((value >> 2) & 1);
-				FlagShowBackground = (byte)((value >> 3) & 1);
-				FlagShowSprites = (byte)((value >> 4) & 1);
-				FlagEmphasizeRed = (byte)((value >> 5) & 1);
-				FlagEmphasizeGreen = (byte)((value >> 6) & 1);
-				FlagEmphasizeBlue = (byte)((value >> 7) & 1);
+				Greyscale = (byte)(value & 1)!=0;
+				ShowBackgroundLeft = (byte)((value >> 1) & 1) != 0;
+				ShowSpritesLeft = (byte)((value >> 2) & 1) != 0;
+				ShowBackground = (byte)((value >> 3) & 1) != 0;
+				ShowSprites = (byte)((value >> 4) & 1) != 0;
+				EmphasizeRed = (byte)((value >> 5) & 1) != 0;
+				EmphasizeGreen = (byte)((value >> 6) & 1) != 0;
+				EmphasizeBlue = (byte)((value >> 7) & 1) != 0;
 			}
 		}
 	}
