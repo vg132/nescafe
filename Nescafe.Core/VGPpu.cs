@@ -428,16 +428,6 @@ public class VGPpu : IPpu
 		_state.TileShiftReg |= data << 32;
 	}
 
-	// Updates scanline and cycle counters, triggers NMI's if needed.
-	private void UpdateCounters()
-	{
-		// Skip last cycle on prerender line
-		if (RenderingEnabled && _state.Scanline == (_scanlineCount - 1) && !_state.IsEvenFrame && _state.Cycle == (_cyclesPerLine - 2))
-		{
-			return;
-		}
-	}
-
 	private void HandleNMIAndVBlank()
 	{
 		if (_state.VBlankStarted && cpuClocksSinceVBlank == 2270)
@@ -493,6 +483,7 @@ public class VGPpu : IPpu
 	private void ProcessCycle(int line, int cycle)
 	{
 		_state.PpuCalls++;
+
 		OldStep();
 		HandleNMIAndVBlank();
 		_console.Mapper.Step();
@@ -513,7 +504,15 @@ public class VGPpu : IPpu
 	/// </summary>
 	private void OldStep()
 	{
-		UpdateCounters();
+		// Skip last cycle on prerender line
+		//if (RenderingEnabled && _state.Scanline == (_scanlineCount - 1) && !_state.IsEvenFrame && _state.Cycle == (_cyclesPerLine - 2))
+		//{
+		//	return;
+		//}
+		if (RenderingEnabled && _state.Scanline == 0 && !_state.IsEvenFrame && _state.Cycle == 0)
+		{
+			return;
+		}
 
 		// cycle types
 		var renderCycle = _state.Cycle > 0 && _state.Cycle <= 256;
@@ -639,6 +638,8 @@ public class VGPpu : IPpu
 				break;
 			case 0x2001:
 				WritePpuMask(data);
+				break;
+			case 0x2002:
 				break;
 			case 0x2003:
 				WriteOamAddr(data);
