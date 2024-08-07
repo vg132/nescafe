@@ -754,13 +754,8 @@ public class Ppu : IPpu
 		_console.CpuMemory.ReadBufWrapping(_state.Oam, _state.OamAddr, startAddr, 256);
 
 		// OAM DMA always takes at least 513 CPU cycles
-		_console.Cpu.AddIdleCycles(513);
-
 		// OAM DMA takes an extra CPU cycle if executed on an odd CPU cycle
-		if (_console.Cpu.State.Cycles % 2 == 1)
-		{
-			_console.Cpu.AddIdleCycles(1);
-		}
+		_console.Cpu.State.Cycles += 513 + (_console.Cpu.State.Cycles % 2);
 	}
 
 	// $2002

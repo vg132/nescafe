@@ -57,7 +57,6 @@ public partial class Cpu
 		SetProcessorFlags(0x24);
 
 		_state.Cycles = 0;
-		_state.Idle = 0;
 
 		_state.NmiInterrupt = false;
 	}
@@ -83,22 +82,12 @@ public partial class Cpu
 	}
 
 	/// <summary>
-	/// Instructs the CPU to idle for the specified number of cycles.
-	/// </summary>
-	/// <param name="idleCycles">Idle cycles.</param>
-	public void AddIdleCycles(int idleCycles)
-	{
-		_state.Idle += idleCycles;
-	}
-
-	/// <summary>
 	/// Executes the next CPU instruction specified by the Program Counter.
 	/// </summary>
 	public void Step()
 	{
-		if (_state.Idle > 0)
+		if (_state.Cycles-- > 0)
 		{
-			_state.Idle--;
 			return;
 		}
 
@@ -119,7 +108,7 @@ public partial class Cpu
 		var cyclesOrig = _state.Cycles;
 		var data = _memory.Read(_state.PC);
 		var currentInstruction = _cpuInstructions[data];
-		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_state.Cycles}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
+		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_console.Ppu.State.CpuCalls}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
 
 		// Get address to operate on
 		var pageCrossed = false;
@@ -131,7 +120,6 @@ public partial class Cpu
 			_state.Cycles += currentInstruction.InstructionPageCycles;
 		}
 		currentInstruction.InvokeOpCode(address);
-		_state.Idle += _state.Cycles - cyclesOrig;
 	}
 
 	private ushort GetMemoryAddress(CPUInstruction currentInstruction, out bool pageCrossed)
@@ -307,10 +295,7 @@ public partial class Cpu
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool IsPageCross(ushort a, ushort b)
-	{
-		return (a & 0xFF) != (b & 0xFF);
-	}
+	private bool IsPageCross(ushort a, ushort b) => (a & 0xFF00) != (b & 0xFF00);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void HandleBranchCycles(ushort origPc, ushort branchPc)

@@ -428,8 +428,6 @@ public class VGPpu : IPpu
 		_state.TileShiftReg |= data << 32;
 	}
 
-	private long cpuCalls = 0;
-	private long ppuCalls = 0;
 	// Updates scanline and cycle counters, triggers NMI's if needed.
 	private void UpdateCounters()
 	{
@@ -494,7 +492,7 @@ public class VGPpu : IPpu
 	int cpuClocksSinceVBlank = 0;
 	private void ProcessCycle(int line, int cycle)
 	{
-		ppuCalls++;
+		_state.PpuCalls++;
 		OldStep();
 		HandleNMIAndVBlank();
 		_console.Mapper.Step();
@@ -504,7 +502,7 @@ public class VGPpu : IPpu
 			{
 				cpuClocksSinceVBlank++;
 			}
-			cpuCalls++;
+			_state.CpuCalls++;
 			_console.Cpu.Step();
 			cpuSyncCounter = 0;
 		}
@@ -741,13 +739,8 @@ public class VGPpu : IPpu
 		_console.CpuMemory.ReadBufWrapping(_state.Oam, _state.OamAddr, startAddr, 256);
 
 		// OAM DMA always takes at least 513 CPU cycles
-		_console.Cpu.AddIdleCycles(513);
-
 		// OAM DMA takes an extra CPU cycle if executed on an odd CPU cycle
-		if (_console.Cpu.State.Cycles % 2 == 1)
-		{
-			_console.Cpu.AddIdleCycles(1);
-		}
+		_console.Cpu.State.Cycles += 513 + (_console.Cpu.State.Cycles % 2);
 	}
 
 	// $2002

@@ -24,7 +24,7 @@ public class CpuState
 	public bool NmiInterrupt;
 
 	// If positive, idle 1 cycle and deincrement each step
-	public int Idle;
+	//public int Idle;
 
 	public int Cycles;
 }

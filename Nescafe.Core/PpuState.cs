@@ -47,4 +47,10 @@ public class PpuState
 	public byte TileBitfieldLo;
 	public byte TileBitfieldHi;
 	public byte PpuDataBuffer;
+
+
+	// NEW
+
+	public long PpuCalls = 0;
+	public long CpuCalls = 0;
 }
