@@ -437,7 +437,7 @@ public class VGPpu : IPpu
 			{
 				cpuClocksSinceVBlank = 0;
 				_state.VBlankStarted = true;
-				if (_state.NmiOutput != 0)
+				if (_state.NmiTriggered)
 				{
 					_console.Cpu.TriggerNmi();
 					_state.NmiTriggered = true;
