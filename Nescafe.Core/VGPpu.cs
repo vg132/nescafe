@@ -430,11 +430,6 @@ public class VGPpu : IPpu
 
 	private void HandleNMIAndVBlank()
 	{
-		if (_state.VBlankStarted && cpuClocksSinceVBlank == 2270)
-		{
-			_state.VBlankStarted = false;
-			cpuClocksSinceVBlank = 0;
-		}
 		// Trigger an NMI at the start of scanline 241 if VBLANK NMI's are enabled
 		if (_state.Cycle == 1)
 		{
@@ -445,15 +440,24 @@ public class VGPpu : IPpu
 				if (_state.NmiOutput != 0)
 				{
 					_console.Cpu.TriggerNmi();
+					_state.NmiTriggered = true;
 				}
 			}
-			else if (_state.Scanline == -1)
-			{
-				_state.VBlankStarted = false;
-				_state.FlagSpriteOverflow = false;
-				_state.FlagSpriteZeroHit = false;
-				cpuClocksSinceVBlank = 0;
-			}
+		}
+
+		if (_state.Scanline == -1 && _state.Cycle == 2)
+		{
+			_state.VBlankStarted = false;
+			_state.FlagSpriteOverflow = false;
+			_state.FlagSpriteZeroHit = false;
+			cpuClocksSinceVBlank = 0;
+		}
+
+		if (_state.VBlankStarted && _state.TriggerNmi && !_state.NmiTriggered)
+		{
+			_console.Cpu.TriggerNmi();
+			_state.NmiTriggered = true;
+			_console.Cpu.State.NmiDelay = 1;
 		}
 	}
 
@@ -666,7 +670,7 @@ public class VGPpu : IPpu
 
 
 	// $2000
-	private void WritePpuCtrl(byte data)=> _state.PpuControl = data;
+	private void WritePpuCtrl(byte data) => _state.PpuControl = data;
 
 	// $2001
 	private void WritePpuMask(byte data) => _state.PpuMask = data;
@@ -747,6 +751,12 @@ public class VGPpu : IPpu
 	// $2002
 	private byte ReadPpuStatus()
 	{
+		// Turn off vblank if this is called on the same scanline and cycle as the vblank is set on.
+		if (_state.VBlankStarted && _state.Scanline == 241 && _state.Cycle == 1)
+		{
+			_state.VBlankStarted = false;
+		}
+
 		var retVal = _state.PpuStatus;
 
 		_state.VBlankStarted = false;

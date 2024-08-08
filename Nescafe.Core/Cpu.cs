@@ -100,10 +100,17 @@ public partial class Cpu
 
 		if (_state.NmiInterrupt)
 		{
-			Nmi();
+			if (_state.NmiDelay <= 0)
+			{
+				Nmi();
+				_state.NmiInterrupt = false;
+				_state.NmiDelay = 0;
+			}
+			else
+			{
+				_state.NmiDelay--;
+			}
 		}
-
-		_state.NmiInterrupt = false;
 
 		var cyclesOrig = _state.Cycles;
 		var data = _memory.Read(_state.PC);

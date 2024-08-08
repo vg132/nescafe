@@ -12,6 +12,9 @@ public class VGPpuState : PpuState
 		FlagSpriteOverflow = false;
 		FlagSpriteZeroHit = false;
 
+		TriggerNmi = false;
+		NmiTriggered = false;
+
 		NmiOutput = 0;
 		FrameCounter = 0;
 		PpuControl = 0;
@@ -47,6 +50,9 @@ public class VGPpuState : PpuState
 	public bool EmphasizeGreen;
 	public bool EmphasizeBlue;
 	public bool Greyscale;
+
+	public bool TriggerNmi;
+	public bool NmiTriggered;
 
 	public bool FlagLargeSprites;
 
@@ -85,7 +91,8 @@ public class VGPpuState : PpuState
 				FlagSpriteSize = (byte)((value >> 5) & 1);
 				FlagLargeSprites = (byte)((value >> 5) & 1) != 0;
 				FlagMasterSlaveSelect = (byte)((value >> 6) & 1);
-				NmiOutput = (byte)((value >> 7) & 1);
+				TriggerNmi = (byte)((value >> 7) & 1) != 0;
+				NmiTriggered = false;
 			}
 			T = (ushort)((T & 0xF3FF) | ((value & 0x03) << 10));
 		}
