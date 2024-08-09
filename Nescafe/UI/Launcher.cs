@@ -33,6 +33,7 @@ public partial class Launcher : Form
 
 		_console = new Core.Console();
 		_args = args;
+		textBoxFixForKeyEvents.Focus();
 	}
 
 	protected override void OnLoad(EventArgs e)
@@ -42,13 +43,6 @@ public partial class Launcher : Form
 		glControl1.DisableNativeInput();
 		SetupConsole();
 	}
-
-	//protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-	//{
-	//	var ret = base.ProcessCmdKey(ref msg, keyData);
-	//	Debug.WriteLine($"Key! {msg.WParam} {msg.LParam}, {keyData}");
-	//	return ret;
-	//}
 
 	private void SetupConsole()
 	{
@@ -78,6 +72,8 @@ public partial class Launcher : Form
 		_nesThread = new Thread(new ThreadStart(StartNes));
 		_nesThread.IsBackground = true;
 		_nesThread.Start();
+		textBoxFixForKeyEvents.Focus();
+		glControl1.Focus();
 	}
 
 	private void StartNes()
