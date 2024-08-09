@@ -85,7 +85,7 @@ public static class LoggingService
 
 	private static void WriteToDisk()
 	{
-		var logFile = Path.Combine(AppSettings.Instance.LoggingOutputFolder, $"nes_log_{DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss")}.txt");
+		var logFile = Path.Combine(AppSettings.Instance.LoggingOutputFolder, $"nes_log_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")}.txt");
 		using var streamWriter = new StreamWriter(new FileStream(logFile, FileMode.OpenOrCreate));
 		while(true)
 		{
