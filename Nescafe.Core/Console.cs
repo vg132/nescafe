@@ -10,8 +10,6 @@ namespace Nescafe.Core
 	/// </summary>
 	public class Console
 	{
-		private bool _useVGPpu = true;
-
 		/// <summary>
 		/// This Console's CPU.
 		/// </summary>
@@ -20,7 +18,7 @@ namespace Nescafe.Core
 		/// <summary>
 		/// This Console's PPU
 		/// </summary>
-		public readonly IPpu Ppu;
+		public readonly VGPpu Ppu;
 
 		/// <summary>
 		/// This Console's CPU Memory.
@@ -92,7 +90,7 @@ namespace Nescafe.Core
 			PpuMemory = new PpuMemory(this);
 
 			Cpu = new Cpu(this);
-			Ppu = _useVGPpu ? new VGPpu(this) : new Ppu(this);
+			Ppu = new VGPpu(this);
 
 			InitializeMappers();
 		}
@@ -183,28 +181,7 @@ namespace Nescafe.Core
 
 		private void GoUntilFrame()
 		{
-			if (_useVGPpu)
-			{
-				Ppu.Step();
-			}
-			else
-			{
-				var orig = _frameEvenOdd;
-				var cpuSyncCounter = 0;
-				while (orig == _frameEvenOdd)
-				{
-					lock (FrameLock)
-					{
-						Ppu.Step();
-						Mapper.Step();
-						if (++cpuSyncCounter == 3)
-						{
-							Cpu.Step();
-							cpuSyncCounter = 0;
-						}
-					}
-				}
-			}
+			Ppu.Step();
 		}
 
 		public void Stop()

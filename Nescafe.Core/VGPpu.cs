@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a NTSC PPU.
 /// </summary>
-public class VGPpu : IPpu
+public class VGPpu
 {
 	/// <summary>
 	/// Gets an array containing bitmap data currently drawn to the screen.
@@ -20,16 +20,14 @@ public class VGPpu : IPpu
 	private const int _scanlineCount = 261;
 	private const int _cyclesPerLine = 341;
 
-	//public VGPpuState State { get; private set; }
 	private VGPpuState _state;
+	public VGPpuState State => _state;
 
 	/// <summary>
 	/// Is <c>true</c> if rendering is currently enabled.
 	/// </summary>
 	/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
 	public bool RenderingEnabled => _state.ShowSprites || _state.ShowBackground;
-
-	PpuState IPpu.State => _state;
 
 	/// <summary>
 	/// Constructs a new PPU.
@@ -507,10 +505,6 @@ public class VGPpu : IPpu
 	private void OldStep()
 	{
 		// Skip last cycle on prerender line
-		//if (RenderingEnabled && _state.Scanline == (_scanlineCount - 1) && !_state.IsEvenFrame && _state.Cycle == (_cyclesPerLine - 2))
-		//{
-		//	return;
-		//}
 		if (RenderingEnabled && _state.Scanline == 0 && !_state.IsEvenFrame && _state.Cycle == 0)
 		{
 			return;
