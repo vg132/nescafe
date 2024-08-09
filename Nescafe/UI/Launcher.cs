@@ -2,6 +2,7 @@
 using Nescafe.Services;
 using Nescafe.UI.Debug;
 using Nescafe.UI.Input;
+using System.Drawing;
 
 namespace Nescafe.UI;
 
@@ -213,10 +214,10 @@ public partial class Launcher : Form
 		cpuSpeed50MenuItem.Checked = AppSettings.Instance.CpuSpeed == 30;
 		cpuSpeed75MenuItem.Checked = AppSettings.Instance.CpuSpeed == 45;
 		cpuSpeed100MenuItem.Checked = AppSettings.Instance.CpuSpeed == 60;
-		cpuSpeed125MenuItem.Checked = AppSettings.Instance.CpuSpeed == 75;
 		cpuSpeed150MenuItem.Checked = AppSettings.Instance.CpuSpeed == 90;
-		cpuSpeed175MenuItem.Checked = AppSettings.Instance.CpuSpeed == 105;
 		cpuSpeed200MenuItem.Checked = AppSettings.Instance.CpuSpeed == 120;
+		cpuSpeed300MenuItem.Checked = AppSettings.Instance.CpuSpeed == 180;
+		cpuSpeed400MenuItem.Checked = AppSettings.Instance.CpuSpeed == 240;
 	}
 
 	private void SetupMruList()
@@ -270,13 +271,27 @@ public partial class Launcher : Form
 
 	private void timerFPS_Tick(object sender, EventArgs e)
 	{
-		if(_console.IsRunning)
+		if (_console.IsRunning)
 		{
 			toolStripStatusLabelFPS.Text = $"FPS: {_console.CurrentFPS}";
 		}
 		else
 		{
 			toolStripStatusLabelFPS.Text = "FPS: -";
+		}
+	}
+
+	private void videoSizeToolStripMenuItem1_DropDownOpening(object sender, EventArgs e)
+	{
+		var currentScreen = Screen.FromControl(this);
+		foreach (ToolStripMenuItem menuItem in videoSizeToolStripMenuItem1.DropDownItems)
+		{
+			if (menuItem.Tag != null)
+			{
+				var size = int.Parse(menuItem.Tag.ToString());
+				var windowSize = new Size(256 * size, (240 * size) + menuStrip1.ClientSize.Height + statusStrip1.ClientSize.Height);
+				menuItem.Enabled = currentScreen.Bounds.Contains(windowSize.Width, windowSize.Height);
+			}
 		}
 	}
 }
