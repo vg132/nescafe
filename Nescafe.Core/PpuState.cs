@@ -1,7 +1,7 @@
 ﻿namespace Nescafe.Core;
 
 [Serializable]
-public class VGPpuState
+public class PpuState
 {
 	public byte[] Oam;
 	public byte OamAddr;

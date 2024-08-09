@@ -18,7 +18,7 @@ namespace Nescafe.Core
 		/// <summary>
 		/// This Console's PPU
 		/// </summary>
-		public readonly VGPpu Ppu;
+		public readonly Ppu Ppu;
 
 		/// <summary>
 		/// This Console's CPU Memory.
@@ -89,7 +89,7 @@ namespace Nescafe.Core
 			PpuMemory = new PpuMemory(this);
 
 			Cpu = new Cpu(this);
-			Ppu = new VGPpu(this);
+			Ppu = new Ppu(this);
 
 			InitializeMappers();
 		}

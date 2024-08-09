@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a NTSC PPU.
 /// </summary>
-public class VGPpu
+public class Ppu
 {
 	/// <summary>
 	/// Gets an array containing bitmap data currently drawn to the screen.
@@ -20,8 +20,8 @@ public class VGPpu
 	private const int _scanlineCount = 261;
 	private const int _cyclesPerLine = 341;
 
-	private VGPpuState _state;
-	public VGPpuState State => _state;
+	private PpuState _state;
+	public PpuState State => _state;
 
 	/// <summary>
 	/// Is <c>true</c> if rendering is currently enabled.
@@ -33,11 +33,11 @@ public class VGPpu
 	/// Constructs a new PPU.
 	/// </summary>
 	/// <param name="console">Console that this PPU is a part of</param>
-	public VGPpu(Console console)
+	public Ppu(Console console)
 	{
 		_memory = console.PpuMemory;
 		_console = console;
-		_state = new VGPpuState();
+		_state = new PpuState();
 
 		BitmapData = new byte[_width * _height];
 
@@ -797,7 +797,7 @@ public class VGPpu
 	{
 		//lock (_console.CpuState.CycleLock)
 		{
-			var state = stateObj as VGPpuState;
+			var state = stateObj as PpuState;
 			_state = state;
 			//_memory.LoadState(state.PpuMemory);
 		}
