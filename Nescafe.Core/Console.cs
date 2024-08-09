@@ -73,7 +73,6 @@ namespace Nescafe.Core
 
 		// Used internally to determine if we've reached a new frame
 		private bool _frameEvenOdd;
-		private long _frameCount;
 
 		public int CurrentFPS { get; private set; }
 
@@ -200,7 +199,6 @@ namespace Nescafe.Core
 		{
 			try
 			{
-				_frameCount = 0;
 				_stop = false;
 				IsRunning = true;
 				OnRunning?.Invoke(this);

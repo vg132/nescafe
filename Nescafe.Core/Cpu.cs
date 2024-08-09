@@ -117,7 +117,7 @@ public partial class Cpu
 		var cyclesOrig = _state.Cycles;
 		var data = _memory.Read(_state.PC);
 		var currentInstruction = _cpuInstructions[data];
-		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_console.Ppu.State.CpuCalls}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
+		LoggingService.LogEvent(NESEvents.Cpu, $"cycle: {_console.Ppu.State.CpuCallCount}, instruction: {currentInstruction.Name}, memory pointer: {_state.PC.ToString("x4")}, data: {data.ToString("x4")}, s: {_state.S.ToString("x4")}");
 		// Get address to operate on
 		var pageCrossed = false;
 		var address = GetMemoryAddress(currentInstruction, out pageCrossed);

@@ -27,7 +27,7 @@ public class VGPpu
 	/// Is <c>true</c> if rendering is currently enabled.
 	/// </summary>
 	/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
-	public bool RenderingEnabled => _state.ShowSprites || _state.ShowBackground;
+	public bool RenderingEnabled => _state.FlagShowSprites || _state.FlagShowBackground;
 
 	/// <summary>
 	/// Constructs a new PPU.
@@ -126,7 +126,7 @@ public class VGPpu
 	private byte GetBgPixelData()
 	{
 		var xPos = _state.Cycle - 1;
-		if (_state.ShowBackground && (_state.ShowBackgroundLeft || xPos >= 8))
+		if (_state.FlagShowBackground && (_state.FlagShowBackgroundLeft || xPos >= 8))
 		{
 			return (byte)((_state.TileShiftReg >> (_state.X * 4)) & 0xF);
 		}
@@ -140,12 +140,12 @@ public class VGPpu
 
 		spriteIndex = 0;
 
-		if (!_state.ShowSprites)
+		if (!_state.FlagShowSprites)
 		{
 			return 0;
 		}
 
-		if (!_state.ShowSpritesLeft && xPos < 8)
+		if (!_state.FlagShowSpritesLeft && xPos < 8)
 		{
 			return 0;
 		}
@@ -343,7 +343,7 @@ public class VGPpu
 		var bgPixelData = GetBgPixelData();
 
 		var spritePixelData = GetSpritePixelData(out var spriteScanlineIndex);
-		var isSpriteZero = _state.FlagSpriteZeroHit == false && _state.ShowBackground && _state.SpriteIndicies[spriteScanlineIndex] == 0;
+		var isSpriteZero = _state.FlagSpriteZeroHit == false && _state.FlagShowBackground && _state.SpriteIndicies[spriteScanlineIndex] == 0;
 
 		var bgColorNum = bgPixelData & 0x03;
 		var spriteColorNum = spritePixelData & 0x03;
@@ -432,29 +432,29 @@ public class VGPpu
 		if (_state.Scanline == 241 && _state.Cycle == 1)
 		{
 				cpuClocksSinceVBlank = 0;
-				_state.VBlankStarted = true;
-				if (_state.TriggerNmi && !_state.NmiTriggered)
+				_state.FlagVBlankStarted = true;
+				if (_state.FlagTriggerNmi && !_state.FlagNmiTriggered)
 				{
 					_console.Cpu.TriggerNmi();
-					_state.NmiTriggered = true;
+					_state.FlagNmiTriggered = true;
 			}
 		}
 		if (_state.Scanline == -1 && _state.Cycle == 2)
 		{
-			_state.VBlankStarted = false;
+			_state.FlagVBlankStarted = false;
 			_state.FlagSpriteOverflow = false;
 			_state.FlagSpriteZeroHit = false;
 			cpuClocksSinceVBlank = 0;
-			_state.TriggerNmi = false;
-			_state.NmiTriggered = false;
+			_state.FlagTriggerNmi = false;
+			_state.FlagNmiTriggered = false;
 		}
 
-		if (_state.VBlankStarted && _state.TriggerNmi && !_state.NmiTriggered)
-		{
-			_console.Cpu.TriggerNmi();
-			_state.NmiTriggered = true;
-			_console.Cpu.State.NmiDelay = 1;
-		}
+		//if (_state.FlagVBlankStarted && _state.FlagTriggerNmi && !_state.FlagNmiTriggered)
+		//{
+		//	_console.Cpu.TriggerNmi();
+		//	_state.FlagNmiTriggered = true;
+		//	_console.Cpu.State.NmiDelay = 1;
+		//}
 	}
 
 	// Render Frame
@@ -482,18 +482,18 @@ public class VGPpu
 	int cpuClocksSinceVBlank = 0;
 	private void ProcessCycle(int line, int cycle)
 	{
-		_state.PpuCalls++;
+		_state.PpuCallCount++;
 
 		OldStep();
 		HandleNMIAndVBlank();
 		_console.Mapper.Step();
 		if (++cpuSyncCounter == 3)
 		{
-			if (_state.VBlankStarted)
+			if (_state.FlagVBlankStarted)
 			{
 				cpuClocksSinceVBlank++;
 			}
-			_state.CpuCalls++;
+			_state.CpuCallCount++;
 			_console.Cpu.Step();
 			cpuSyncCounter = 0;
 		}
@@ -744,14 +744,14 @@ public class VGPpu
 	private byte ReadPpuStatus()
 	{
 		// Turn off vblank if this is called on the same scanline and cycle as the vblank is set on.
-		if (_state.VBlankStarted && _state.Scanline == 241 && _state.Cycle == 1)
+		if (_state.FlagVBlankStarted && _state.Scanline == 241 && _state.Cycle == 1)
 		{
-			_state.VBlankStarted = false;
+			_state.FlagVBlankStarted = false;
 		}
 
 		var retVal = _state.PpuStatus;
 
-		_state.VBlankStarted = false;
+		_state.FlagVBlankStarted = false;
 		_state.W = 0;
 		return retVal;
 	}

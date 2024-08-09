@@ -3,7 +3,6 @@
 [Serializable]
 public class VGPpuState
 {
-
 	public byte[] Oam;
 	public byte OamAddr;
 	public byte[] Sprites;
@@ -17,27 +16,24 @@ public class VGPpuState
 	public int VRamIncrement;
 	public byte LastRegisterWrite;
 
+	// Flags
 	public bool FlagSpriteOverflow;
 	public bool FlagSpriteZeroHit;
+	public bool FlagVBlankStarted;
+	public bool FlagShowBackground;
+	public bool FlagShowBackgroundLeft;
+	public bool FlagShowSpritesLeft;
+	public bool FlagShowSprites;
+	public bool FlagEmphasizeRed;
+	public bool FlagEmphasizeGreen;
+	public bool FlagEmphasizeBlue;
+	public bool FlagGreyscale;
+	public bool FlagMasterSlaveSelect;
+	public bool FlagTriggerNmi;
+	public bool FlagNmiTriggered;
+	public bool FlagLargeSprites;
 
-	public byte FlagBaseNametableAddr;
-	public byte FlagVRamIncrement;
-	public byte FlagSpritePatternTableAddr;
-	public byte FlagBgPatternTableAddr;
-	public byte FlagSpriteSize;
-	public byte FlagMasterSlaveSelect;
-	public byte NmiOutput;
-
-	public bool NmiOccurred;
-
-	public byte FlagGreyscale;
-	public byte FlagShowBackgroundLeft;
-	public byte FlagShowSpritesLeft;
-	public byte FlagShowBackground;
-	public byte FlagShowSprites;
-	public byte FlagEmphasizeRed;
-	public byte FlagEmphasizeGreen;
-	public byte FlagEmphasizeBlue;
+	// Registers
 	public ushort V;
 	public ushort T;
 	public byte X;
@@ -50,83 +46,64 @@ public class VGPpuState
 	public byte TileBitfieldHi;
 	public byte PpuDataBuffer;
 
+	// Counters
+	public long PpuCallCount = 0;
+	public long CpuCallCount = 0;
+	public long FrameCounter = 0;
 
-	// NEW
-
-	public long PpuCalls = 0;
-	public long CpuCalls = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public bool IsEvenFrame => (FrameCounter % 2) == 0;
 
 	public void Reset()
 	{
+		OamAddr = 0;
+		NumSprites = 0;
 		Scanline = -1;
 		Cycle = 0;
+		BaseNametableAddress = 0;
+		BgPatternTableAddress = 0;
+		SpritePatternTableAddress = 0;
+		VRamIncrement = 0;
+		LastRegisterWrite = 0;
 
-		VBlankStarted = false;
+		// Flags
 		FlagSpriteOverflow = false;
 		FlagSpriteZeroHit = false;
+		FlagVBlankStarted = false;
+		FlagShowBackground = false;
+		FlagShowBackgroundLeft = false;
+		FlagShowSpritesLeft = false;
+		FlagShowSprites = false;
+		FlagEmphasizeRed = false;
+		FlagEmphasizeGreen = false;
+		FlagEmphasizeBlue = false;
+		FlagGreyscale = false;
+		FlagMasterSlaveSelect = false;
+		FlagTriggerNmi = false;
+		FlagNmiTriggered = false;
+		FlagLargeSprites = false;
 
-		TriggerNmi = false;
-		NmiTriggered = false;
-
-		NmiOutput = 0;
-		FrameCounter = 0;
-		PpuControl = 0;
-		PpuMask = 0;
-
-		LastRegisterWrite = 0;
-		NameTableByte = 0;
-		BaseNametableAddress = 0;
-		AttributeTableByte = 0;
-		VRamIncrement = 1;
-		FlagVRamIncrement = 0;
-		TileBitfieldHi = 0;
-		TileBitfieldLo = 0;
-		TileShiftReg = 0;
-
-		T = 0;
-		F = 0;
+		// Registers
 		V = 0;
-		W = 0;
+		T = 0;
 		X = 0;
+		W = 0;
+		F = 0;
+		TileShiftReg = 0;
+		NameTableByte = 0;
+		AttributeTableByte = 0;
+		TileBitfieldLo = 0;
+		TileBitfieldHi = 0;
+		PpuDataBuffer = 0;
+
+		// Counters
+		PpuCallCount = 0;
+		CpuCallCount = 0;
+		FrameCounter = 0;
 
 		Array.Clear(Oam, 0, Oam.Length);
 		Array.Clear(Sprites, 0, Sprites.Length);
+		Array.Clear(SpriteIndicies, 0, SpriteIndicies.Length);
 	}
-
-	// New flags
-	public bool VBlankStarted;
-	public bool ShowBackground;
-	public bool ShowBackgroundLeft;
-	public bool ShowSpritesLeft;
-	public bool ShowSprites;
-	public bool EmphasizeRed;
-	public bool EmphasizeGreen;
-	public bool EmphasizeBlue;
-	public bool Greyscale;
-
-	public bool TriggerNmi;
-	public bool NmiTriggered;
-
-	public bool FlagLargeSprites;
-
-	private byte _ppuControl;
-	private byte _ppuMask;
-
-	public long FrameCounter = 0;
-	public bool IsEvenFrame => (FrameCounter % 2) == 0;
 
 	public byte PpuStatus
 	{
@@ -136,11 +113,12 @@ public class VGPpuState
 			retVal |= (byte)(LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
 			retVal |= (byte)((FlagSpriteOverflow.AsByte()) << 5);
 			retVal |= (byte)((FlagSpriteZeroHit.AsByte()) << 6);
-			retVal |= (byte)((VBlankStarted.AsByte()) << 7);
+			retVal |= (byte)((FlagVBlankStarted.AsByte()) << 7);
 			return retVal;
 		}
 	}
 
+	private byte _ppuControl;
 	public byte PpuControl
 	{
 		get => _ppuControl;
@@ -154,17 +132,16 @@ public class VGPpuState
 				VRamIncrement = (byte)((value >> 2) & 1) == 0 ? 1 : 32;
 				SpritePatternTableAddress = (ushort)(0x1000 * (byte)((value >> 3) & 1));
 				BgPatternTableAddress = (ushort)(((value >> 4) & 1) == 0 ? 0x00 : 0x1000);
-				FlagSpriteSize = (byte)((value >> 5) & 1);
 				FlagLargeSprites = (byte)((value >> 5) & 1) != 0;
-				FlagMasterSlaveSelect = (byte)((value >> 6) & 1);
-				TriggerNmi = (byte)((value >> 7) & 1) != 0;
-				NmiTriggered = false;
+				FlagMasterSlaveSelect = (byte)((value >> 6) & 1) != 0;
+				FlagTriggerNmi = (byte)((value >> 7) & 1) != 0;
+				FlagNmiTriggered = false;
 			}
 			T = (ushort)((T & 0xF3FF) | ((value & 0x03) << 10));
 		}
 	}
 
-
+	private byte _ppuMask;
 	public byte PpuMask
 	{
 		get => _ppuMask;
@@ -173,14 +150,14 @@ public class VGPpuState
 			if (_ppuMask != value)
 			{
 				_ppuMask = value;
-				Greyscale = (byte)(value & 1) != 0;
-				ShowBackgroundLeft = (byte)((value >> 1) & 1) != 0;
-				ShowSpritesLeft = (byte)((value >> 2) & 1) != 0;
-				ShowBackground = (byte)((value >> 3) & 1) != 0;
-				ShowSprites = (byte)((value >> 4) & 1) != 0;
-				EmphasizeRed = (byte)((value >> 5) & 1) != 0;
-				EmphasizeGreen = (byte)((value >> 6) & 1) != 0;
-				EmphasizeBlue = (byte)((value >> 7) & 1) != 0;
+				FlagGreyscale = (byte)(value & 1) != 0;
+				FlagShowBackgroundLeft = (byte)((value >> 1) & 1) != 0;
+				FlagShowSpritesLeft = (byte)((value >> 2) & 1) != 0;
+				FlagShowBackground = (byte)((value >> 3) & 1) != 0;
+				FlagShowSprites = (byte)((value >> 4) & 1) != 0;
+				FlagEmphasizeRed = (byte)((value >> 5) & 1) != 0;
+				FlagEmphasizeGreen = (byte)((value >> 6) & 1) != 0;
+				FlagEmphasizeBlue = (byte)((value >> 7) & 1) != 0;
 			}
 		}
 	}
