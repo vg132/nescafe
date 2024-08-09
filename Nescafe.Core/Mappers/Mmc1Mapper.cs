@@ -287,7 +287,7 @@ public class Mmc1Mapper : Mapper
 
 	public override object SaveState()
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			return new Mmc1MapperState
 			{
@@ -310,7 +310,7 @@ public class Mmc1Mapper : Mapper
 
 	public override void LoadState(object stateItem)
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			var state = stateItem as Mmc1MapperState;
 			_chr0Reg = state._chr0Reg;

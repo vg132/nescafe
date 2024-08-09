@@ -303,7 +303,7 @@ public class Mmc6Mapper : Mapper
 
 	public override object SaveState()
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			return new Mmc6MapperState
 			{
@@ -324,7 +324,7 @@ public class Mmc6Mapper : Mapper
 
 	public override void LoadState(object stateItem)
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			var state = stateItem as Mmc6MapperState;
 			_bank = state.Bank;

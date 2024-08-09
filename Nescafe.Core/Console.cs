@@ -69,11 +69,12 @@ namespace Nescafe.Core
 		public bool IsRunning { get; set; }
 
 		public bool Pause { get; set; }
-		public readonly object CpuCycleLock = new object();
+		public readonly object FrameLock = new object();
 
 		// Used internally to determine if we've reached a new frame
 		private bool _frameEvenOdd;
-		private long _frameCount;
+
+		public int CurrentFPS { get; private set; }
 
 		private IDictionary<int, Type> _mappers;
 
@@ -111,7 +112,7 @@ namespace Nescafe.Core
 
 		public void Reset()
 		{
-			lock (CpuCycleLock)
+			lock (FrameLock)
 			{
 				CpuMemory.Reset();
 				PpuMemory.Reset();
@@ -134,7 +135,7 @@ namespace Nescafe.Core
 		/// <param name="path">Path to the iNES cartridge file to load</param>
 		public bool LoadCartridge(string path)
 		{
-			LoggingService.LogEvent(NESEvents.Cartridge,$"Loading ROM {path}");
+			LoggingService.LogEvent(NESEvents.Cartridge, $"Loading ROM {path}");
 			if (Cartridge != null)
 			{
 				Cartridge.Eject();
@@ -177,23 +178,9 @@ namespace Nescafe.Core
 			_frameEvenOdd = !_frameEvenOdd;
 		}
 
-		void GoUntilFrame()
+		private void GoUntilFrame()
 		{
-			var orig = _frameEvenOdd;
-			while (orig == _frameEvenOdd)
-			{
-				lock (CpuCycleLock)
-				{
-					var cpuCycles = Cpu.Step();
-
-					// 3 PPU cycles for each CPU cycle
-					for (var i = 0; i < cpuCycles * 3; i++)
-					{
-						Ppu.Step();
-						Mapper.Step();
-					}
-				}
-			}
+			Ppu.Step();
 		}
 
 		public void Stop()
@@ -212,29 +199,29 @@ namespace Nescafe.Core
 		{
 			try
 			{
-				_frameCount = 0;
 				_stop = false;
 				IsRunning = true;
 				OnRunning?.Invoke(this);
 				var s = new Stopwatch();
 				while (!_stop)
 				{
-					var frameRate = 60;//AppSettings.Instance.CpuSpeed;
+					long avarageFrameTime = 0;
+					var frameRate = AppSettings.Instance.CpuSpeed;
 					s.Restart();
 					for (var i = 0; i < frameRate; i++)
 					{
-						LoggingService.LogEvent(NESEvents.Frame, $"start frame: {_frameCount}");
 						var frameWatch = Stopwatch.StartNew();
 						if (!Pause)
 						{
 							GoUntilFrame();
 						}
 						frameWatch.Stop();
-						LoggingService.LogEvent(NESEvents.Frame, $"end frame: {_frameCount}, frame time:{frameWatch.Elapsed}");
+						avarageFrameTime += frameWatch.ElapsedTicks;
 						PreciseSleep.Sleep((int)((1000.0 / frameRate) - frameWatch.ElapsedMilliseconds));
 					}
 					s.Stop();
-					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms");
+					CurrentFPS = (int)((frameRate * 1000) / s.ElapsedMilliseconds);
+					LoggingService.LogEvent(NESEvents.Frame, $"{frameRate} frames in {s.ElapsedMilliseconds}ms, avarage frame time: {new TimeSpan(avarageFrameTime / 60)}");
 				}
 				IsRunning = false;
 				LoggingService.LogEvent(NESEvents.Other, "Console Stopped");
@@ -242,6 +229,9 @@ namespace Nescafe.Core
 			catch (Exception ex)
 			{
 				LoggingService.LogEvent(NESEvents.Other, ex.Message);
+#if DEBUG
+				throw new Exception("Error when running game", ex);
+#endif
 			}
 		}
 	}

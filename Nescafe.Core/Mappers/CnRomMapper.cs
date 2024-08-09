@@ -86,7 +86,7 @@ public class CnRomMapper : Mapper
 
 	public override object SaveState()
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			return new UxRomMapperSaveState
 			{
@@ -97,7 +97,7 @@ public class CnRomMapper : Mapper
 
 	public override void LoadState(object state)
 	{
-		lock (_console.CpuCycleLock)
+		lock (_console.FrameLock)
 		{
 			_bank0Offset = ((UxRomMapperSaveState)state).Bank0Offset;
 		}

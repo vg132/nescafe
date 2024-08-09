@@ -4,8 +4,6 @@ using Nescafe.UI.Shaders;
 using Nescafe.Core;
 using Microsoft.Extensions.FileProviders;
 using System.Reflection;
-using OpenTK.Windowing.GraphicsLibraryFramework;
-using System.Windows.Forms;
 
 namespace Nescafe.UI;
 
@@ -177,7 +175,7 @@ public partial class Renderer
 				GL.BindVertexArray(_vertexArrayObject);
 				_texture.Bind(TextureUnit.Texture0);
 				GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
-				
+
 				_control.SwapBuffers();
 			}
 		}
@@ -187,7 +185,11 @@ public partial class Renderer
 	{
 		lock (_drawLock)
 		{
-			screenData = screen;
+			if (screenData == null)
+			{
+				screenData = new byte[screen.Length];
+			}
+			Array.Copy(screen, screenData, screen.Length);
 			screenDataUpdated = true;
 		}
 	}

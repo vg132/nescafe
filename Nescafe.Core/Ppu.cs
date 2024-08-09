@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a NTSC PPU.
 /// </summary>
-public partial class Ppu
+public class Ppu
 {
 	/// <summary>
 	/// Gets an array containing bitmap data currently drawn to the screen.
@@ -17,13 +17,17 @@ public partial class Ppu
 	private readonly int _width = 256;
 	private readonly int _height = 240;
 
-	public PpuState State { get; private set; }
+	private const int _scanlineCount = 261;
+	private const int _cyclesPerLine = 341;
+
+	private PpuState _state;
+	public PpuState State => _state;
 
 	/// <summary>
 	/// Is <c>true</c> if rendering is currently enabled.
 	/// </summary>
 	/// <value><c>true</c> if rendering is enabled; otherwise, <c>false</c>.</value>
-	public bool RenderingEnabled => State.FlagShowSprites != 0 || State.FlagShowBackground != 0;
+	public bool RenderingEnabled => _state.FlagShowSprites || _state.FlagShowBackground;
 
 	/// <summary>
 	/// Constructs a new PPU.
@@ -33,13 +37,13 @@ public partial class Ppu
 	{
 		_memory = console.PpuMemory;
 		_console = console;
-		State = new PpuState();
+		_state = new PpuState();
 
 		BitmapData = new byte[_width * _height];
 
-		State.Oam = new byte[256];
-		State.Sprites = new byte[32];
-		State.SpriteIndicies = new int[8];
+		_state.Oam = new byte[256];
+		_state.Sprites = new byte[32];
+		_state.SpriteIndicies = new int[8];
 	}
 
 	/// <summary>
@@ -48,18 +52,7 @@ public partial class Ppu
 	public void Reset()
 	{
 		Array.Clear(BitmapData, 0, BitmapData.Length);
-
-		State.Scanline = 240;
-		State.Cycle = 340;
-
-		State.NmiOccurred = 0;
-		State.NmiOutput = 0;
-
-		State.W = 0;
-		State.F = 0;
-
-		Array.Clear(State.Oam, 0, State.Oam.Length);
-		Array.Clear(State.Sprites, 0, State.Sprites.Length);
+		_state.Reset();
 	}
 
 	private byte LookupBackgroundColor(byte data)
@@ -132,61 +125,64 @@ public partial class Ppu
 
 	private byte GetBgPixelData()
 	{
-		var xPos = State.Cycle - 1;
-
-		return State.FlagShowBackground == 0 ? (byte)0 : State.FlagShowBackgroundLeft == 0 && xPos < 8 ? (byte)0 : (byte)((State.TileShiftReg >> (State.X * 4)) & 0xF);
+		var xPos = _state.Cycle - 1;
+		if (_state.FlagShowBackground && (_state.FlagShowBackgroundLeft || xPos >= 8))
+		{
+			return (byte)((_state.TileShiftReg >> (_state.X * 4)) & 0xF);
+		}
+		return (byte)0;
 	}
 
 	private byte GetSpritePixelData(out int spriteIndex)
 	{
-		var xPos = State.Cycle - 1;
-		var yPos = State.Scanline - 1;
+		var xPos = _state.Cycle - 1;
+		var yPos = _state.Scanline - 1;
 
 		spriteIndex = 0;
 
-		if (State.FlagShowSprites == 0)
+		if (!_state.FlagShowSprites)
 		{
 			return 0;
 		}
 
-		if (State.FlagShowSpritesLeft == 0 && xPos < 8)
+		if (!_state.FlagShowSpritesLeft && xPos < 8)
 		{
 			return 0;
 		}
 
 		// 8x8 sprites all come from the same pattern table as specified by a write to PPUCTRL
 		// 8x16 sprites come from a pattern table defined in their OAM data
-		var _currSpritePatternTableAddr = State.SpritePatternTableAddress;
+		var _currSpritePatternTableAddr = _state.SpritePatternTableAddress;
 
 		// Get sprite pattern bitfield
-		for (var i = 0; i < State.NumSprites * 4; i += 4)
+		for (var i = 0; i < _state.NumSprites * 4; i += 4)
 		{
-			int spriteXLeft = State.Sprites[i + 3];
+			int spriteXLeft = _state.Sprites[i + 3];
 			var offset = xPos - spriteXLeft;
 
 			if (offset <= 7 && offset >= 0)
 			{
 				// Found intersecting sprite
-				var yOffset = yPos - State.Sprites[i];
+				var yOffset = yPos - _state.Sprites[i];
 
 				byte patternIndex;
 
 				// Set the pattern table and index according to whether or not sprites
 				// ar 8x8 or 8x16
-				if (State.FlagSpriteSize == 1)
+				if (_state.FlagLargeSprites)
 				{
-					_currSpritePatternTableAddr = (ushort)((State.Sprites[i + 1] & 1) * 0x1000);
-					patternIndex = (byte)(State.Sprites[i + 1] & 0xFE);
+					_currSpritePatternTableAddr = (ushort)((_state.Sprites[i + 1] & 1) * 0x1000);
+					patternIndex = (byte)(_state.Sprites[i + 1] & 0xFE);
 				}
 				else
 				{
-					patternIndex = State.Sprites[i + 1];
+					patternIndex = _state.Sprites[i + 1];
 				}
 
 				var patternAddress = (ushort)(_currSpritePatternTableAddr + (patternIndex * 16));
 
-				var flipHoriz = (State.Sprites[i + 2] & 0x40) != 0;
-				var flipVert = (State.Sprites[i + 2] & 0x80) != 0;
+				var flipHoriz = (_state.Sprites[i + 2] & 0x40) != 0;
+				var flipVert = (_state.Sprites[i + 2] & 0x80) != 0;
 				var colorNum = GetSpritePatternPixel(patternAddress, offset, yOffset, flipHoriz, flipVert);
 
 				// Handle transparent sprites
@@ -196,7 +192,7 @@ public partial class Ppu
 				}
 				else // Non transparent sprite, return data
 				{
-					var paletteNum = (byte)(State.Sprites[i + 2] & 0x03);
+					var paletteNum = (byte)(_state.Sprites[i + 2] & 0x03);
 					spriteIndex = i / 4;
 					return (byte)(((paletteNum << 2) | colorNum) & 0xF);
 				}
@@ -209,33 +205,33 @@ public partial class Ppu
 	private void CopyHorizPositionData()
 	{
 		// v: ....F.. ...EDCBA = t: ....F.. ...EDCBA
-		State.V = (ushort)((State.V & 0x7BE0) | (State.T & 0x041F));
+		_state.V = (ushort)((_state.V & 0x7BE0) | (_state.T & 0x041F));
 	}
 
 	private void CopyVertPositionData()
 	{
 		// v: IHGF.ED CBA..... = t: IHGF.ED CBA.....
-		State.V = (ushort)((State.V & 0x041F) | (State.T & 0x7BE0));
+		_state.V = (ushort)((_state.V & 0x041F) | (_state.T & 0x7BE0));
 	}
 
 	private int CoarseX()
 	{
-		return State.V & 0x1f;
+		return _state.V & 0x1f;
 	}
 
 	private int CoarseY()
 	{
-		return (State.V >> 5) & 0x1f;
+		return (_state.V >> 5) & 0x1f;
 	}
 
 	private int FineY()
 	{
-		return (State.V >> 12) & 0x7;
+		return (_state.V >> 12) & 0x7;
 	}
 
 	private int GetSpritePatternPixel(ushort patternAddr, int xPos, int yPos, bool flipHoriz = false, bool flipVert = false)
 	{
-		var h = State.FlagSpriteSize == 0 ? 7 : 15;
+		var h = _state.FlagLargeSprites ? 15 : 7;
 
 		// Flip x and y if needed
 		xPos = flipHoriz ? 7 - xPos : xPos;
@@ -266,31 +262,31 @@ public partial class Ppu
 
 	private void IncrementX()
 	{
-		if ((State.V & 0x001F) == 31)
+		if ((_state.V & 0x001F) == 31)
 		{
-			State.V = (ushort)(State.V & (~0x001F)); // Reset Coarse X
-			State.V = (ushort)(State.V ^ 0x0400); // Switch horizontal nametable
+			_state.V = (ushort)(_state.V & (~0x001F)); // Reset Coarse X
+			_state.V = (ushort)(_state.V ^ 0x0400); // Switch horizontal nametable
 		}
 		else
 		{
-			State.V++; // Increment Coarse X
+			_state.V++; // Increment Coarse X
 		}
 	}
 
 	private void IncrementY()
 	{
-		if ((State.V & 0x7000) != 0x7000)
+		if ((_state.V & 0x7000) != 0x7000)
 		{ // if fine Y < 7
-			State.V += 0x1000; // increment fine Y
+			_state.V += 0x1000; // increment fine Y
 		}
 		else
 		{
-			State.V = (ushort)(State.V & ~0x7000); // Set fine Y to 0
-			var y = (State.V & 0x03E0) >> 5; // y = coarse Y
+			_state.V = (ushort)(_state.V & ~0x7000); // Set fine Y to 0
+			var y = (_state.V & 0x03E0) >> 5; // y = coarse Y
 			if (y == 29)
 			{
 				y = 0; // coarse Y = 0
-				State.V = (ushort)(State.V ^ 0x0800); // switch vertical nametable
+				_state.V = (ushort)(_state.V ^ 0x0800); // switch vertical nametable
 			}
 			else if (y == 31)
 			{
@@ -300,41 +296,41 @@ public partial class Ppu
 			{
 				y += 1; // Increment coarse Y
 			}
-			State.V = (ushort)((State.V & ~0x03E0) | (y << 5)); // Put coarse Y back into v
+			_state.V = (ushort)((_state.V & ~0x03E0) | (y << 5)); // Put coarse Y back into v
 		}
 	}
 
 	private void EvalSprites()
 	{
-		Array.Clear(State.Sprites, 0, State.Sprites.Length);
-		Array.Clear(State.SpriteIndicies, 0, State.SpriteIndicies.Length);
+		Array.Clear(_state.Sprites, 0, _state.Sprites.Length);
+		Array.Clear(_state.SpriteIndicies, 0, _state.SpriteIndicies.Length);
 
 		// 8x8 or 8x16 sprites
-		var h = State.FlagSpriteSize == 0 ? 7 : 15;
+		var h = _state.FlagLargeSprites ? 15 : 7;
 
-		State.NumSprites = 0;
-		var yPos = State.Scanline;
+		_state.NumSprites = 0;
+		var yPos = _state.Scanline;
 
 		// Sprite evaluation starts at the current OAM address and goes to the end of OAM (256 bytes)
-		for (int i = State.OamAddr; i < 256; i += 4)
+		for (int i = _state.OamAddr; i < 256; i += 4)
 		{
-			var spriteYTop = State.Oam[i];
+			var spriteYTop = _state.Oam[i];
 
 			var offset = yPos - spriteYTop;
 
-			// If this sprite is on the next State.Scanline, copy it to the State._sprites array for rendering
+			// If this sprite is on the next _state.Scanline, copy it to the _state._sprites array for rendering
 			if (offset <= h && offset >= 0)
 			{
-				if (State.NumSprites == 8)
+				if (_state.NumSprites == 8)
 				{
-					State.FlagSpriteOverflow = 1;
+					_state.FlagSpriteOverflow = true;
 					break;
 				}
 				else
 				{
-					Array.Copy(State.Oam, i, State.Sprites, State.NumSprites * 4, 4);
-					State.SpriteIndicies[State.NumSprites] = (i - State.OamAddr) / 4;
-					State.NumSprites++;
+					Array.Copy(_state.Oam, i, _state.Sprites, _state.NumSprites * 4, 4);
+					_state.SpriteIndicies[_state.NumSprites] = (i - _state.OamAddr) / 4;
+					_state.NumSprites++;
 
 				}
 			}
@@ -347,7 +343,7 @@ public partial class Ppu
 		var bgPixelData = GetBgPixelData();
 
 		var spritePixelData = GetSpritePixelData(out var spriteScanlineIndex);
-		var isSpriteZero = State.FlagSpriteZeroHit == 0 && State.FlagShowBackground == 1 && State.SpriteIndicies[spriteScanlineIndex] == 0;
+		var isSpriteZero = _state.FlagSpriteZeroHit == false && _state.FlagShowBackground && _state.SpriteIndicies[spriteScanlineIndex] == 0;
 
 		var bgColorNum = bgPixelData & 0x03;
 		var spriteColorNum = spritePixelData & 0x03;
@@ -369,55 +365,55 @@ public partial class Ppu
 				// Set sprite zero hit flag
 				if (isSpriteZero)
 				{
-					State.FlagSpriteZeroHit = 1;
+					_state.FlagSpriteZeroHit = true;
 				}
 
 				// Get sprite priority
-				var priority = (State.Sprites[(spriteScanlineIndex * 4) + 2] >> 5) & 1;
+				var priority = (_state.Sprites[(spriteScanlineIndex * 4) + 2] >> 5) & 1;
 				color = priority == 1 ? LookupBackgroundColor(bgPixelData) : LookupSpriteColor(spritePixelData);
 			}
 		}
 
-		BitmapData[(State.Scanline * 256) + (State.Cycle - 1)] = color;
+		BitmapData[(_state.Scanline * 256) + (_state.Cycle - 1)] = color;
 	}
 
 	private void FetchNametableByte()
 	{
-		var address = (ushort)(0x2000 | (State.V & 0x0FFF));
-		State.NameTableByte = _memory.Read(address);
+		var address = (ushort)(0x2000 | (_state.V & 0x0FFF));
+		_state.NameTableByte = _memory.Read(address);
 	}
 
 	private void FetchAttributeTableByte()
 	{
-		var address = (ushort)(0x23C0 | (State.V & 0x0C00) | ((State.V >> 4) & 0x38) | ((State.V >> 2) & 0x07));
-		State.AttributeTableByte = _memory.Read(address);
+		var address = (ushort)(0x23C0 | (_state.V & 0x0C00) | ((_state.V >> 4) & 0x38) | ((_state.V >> 2) & 0x07));
+		_state.AttributeTableByte = _memory.Read(address);
 	}
 
 	private void FetchTileBitfieldLo()
 	{
-		var address = (ushort)(State.BgPatternTableAddress + (State.NameTableByte * 16) + FineY());
-		State.TileBitfieldLo = _memory.Read(address);
+		var address = (ushort)(_state.BgPatternTableAddress + (_state.NameTableByte * 16) + FineY());
+		_state.TileBitfieldLo = _memory.Read(address);
 	}
 
 	private void FetchTileBitfieldHi()
 	{
-		var address = (ushort)(State.BgPatternTableAddress + (State.NameTableByte * 16) + FineY() + 8);
-		State.TileBitfieldHi = _memory.Read(address);
+		var address = (ushort)(_state.BgPatternTableAddress + (_state.NameTableByte * 16) + FineY() + 8);
+		_state.TileBitfieldHi = _memory.Read(address);
 	}
 
-	// Stores data for the next 8 pixels in the upper 32 bits of State._tileShiftReg
+	// Stores data for the next 8 pixels in the upper 32 bits of _state._tileShiftReg
 	private void StoreTileData()
 	{
-		var _palette = (byte)((State.AttributeTableByte >> ((CoarseX() & 0x2) | ((CoarseY() & 0x2) << 1))) & 0x3);
+		var _palette = (byte)((_state.AttributeTableByte >> ((CoarseX() & 0x2) | ((CoarseY() & 0x2) << 1))) & 0x3);
 
-		// Upper 32 bits to add to State._tileShiftReg
+		// Upper 32 bits to add to _state._tileShiftReg
 		ulong data = 0;
 
 		for (var i = 0; i < 8; i++)
 		{
 			// Get color number
-			var loColorBit = (byte)((State.TileBitfieldLo >> (7 - i)) & 1);
-			var hiColorBit = (byte)((State.TileBitfieldHi >> (7 - i)) & 1);
+			var loColorBit = (byte)((_state.TileBitfieldLo >> (7 - i)) & 1);
+			var hiColorBit = (byte)((_state.TileBitfieldHi >> (7 - i)) & 1);
 			var colorNum = (byte)((hiColorBit << 1) | ((loColorBit) & 0x03));
 
 			// Add palette number
@@ -426,92 +422,107 @@ public partial class Ppu
 			data |= (uint)(fullPixelData << (4 * i));
 		}
 
-		State.TileShiftReg &= 0xFFFFFFFF;
-		State.TileShiftReg |= data << 32;
+		_state.TileShiftReg &= 0xFFFFFFFF;
+		_state.TileShiftReg |= data << 32;
 	}
 
-	// Updates scanline and cycle counters, triggers NMI's if needed.
-	private void UpdateCounters()
+	private void HandleNMIAndVBlank()
 	{
 		// Trigger an NMI at the start of scanline 241 if VBLANK NMI's are enabled
-		if (State.Cycle == 1)
+		if (_state.Scanline == 241 && _state.Cycle == 1)
 		{
-			if (State.Scanline == 241)
-			{
-				State.NmiOccurred = 1;
-				if (State.NmiOutput != 0)
+				cpuClocksSinceVBlank = 0;
+				_state.FlagVBlankStarted = true;
+				if (_state.FlagTriggerNmi && !_state.FlagNmiTriggered)
 				{
 					_console.Cpu.TriggerNmi();
-				}
+					_state.FlagNmiTriggered = true;
 			}
 		}
-
-		var renderingEnabled = (State.FlagShowBackground != 0) || (State.FlagShowSprites != 0);
-
-		// Skip last cycle of prerender scanline on odd frames
-		if (renderingEnabled)
+		if (_state.Scanline == -1 && _state.Cycle == 2)
 		{
-			if (State.Scanline == 261 && State.F == 1 && State.Cycle == 339)
-			{
-				State.F ^= 1;
-				State.Scanline = 0;
-				State.Cycle = -1;
-				_console.DrawFrame();
-				return;
-			}
+			_state.FlagVBlankStarted = false;
+			_state.FlagSpriteOverflow = false;
+			_state.FlagSpriteZeroHit = false;
+			cpuClocksSinceVBlank = 0;
+			_state.FlagTriggerNmi = false;
+			_state.FlagNmiTriggered = false;
 		}
-		State.Cycle++;
 
-		// Reset cycle (and scanline if scanline == 260)
-		// Also set to next frame if at end of last scanline
-		if (State.Cycle > 340)
+		//if (_state.FlagVBlankStarted && _state.FlagTriggerNmi && !_state.FlagNmiTriggered)
+		//{
+		//	_console.Cpu.TriggerNmi();
+		//	_state.FlagNmiTriggered = true;
+		//	_console.Cpu.State.NmiDelay = 1;
+		//}
+	}
+
+	// Render Frame
+	public void Step()
+	{
+		for (; _state.Scanline < _scanlineCount; _state.Scanline++)
 		{
-			if (State.Scanline == 261) // Last scanline, reset to upper left corner
+			ProcessScanline(_state.Scanline);
+		}
+		_state.FrameCounter++;
+		_state.Scanline = -1;
+		_console.DrawFrame();
+	}
+
+	private void ProcessScanline(int line)
+	{
+		for (; _state.Cycle < _cyclesPerLine; _state.Cycle++)
+		{
+			ProcessCycle(_state.Scanline, _state.Cycle);
+		}
+		_state.Cycle = 0;
+	}
+
+	int cpuSyncCounter = 0;
+	int cpuClocksSinceVBlank = 0;
+	private void ProcessCycle(int line, int cycle)
+	{
+		_state.PpuCallCount++;
+
+		OldStep();
+		HandleNMIAndVBlank();
+		_console.Mapper.Step();
+		if (++cpuSyncCounter == 3)
+		{
+			if (_state.FlagVBlankStarted)
 			{
-				State.F ^= 1;
-				State.Scanline = 0;
-				State.Cycle = -1;
-				_console.DrawFrame();
+				cpuClocksSinceVBlank++;
 			}
-			else // Not on last scanline
-			{
-				State.Cycle = -1;
-				State.Scanline++;
-			}
+			_state.CpuCallCount++;
+			_console.Cpu.Step();
+			cpuSyncCounter = 0;
 		}
 	}
 
 	/// <summary>
 	/// Executes a single PPU step.
 	/// </summary>
-	public void Step()
+	private void OldStep()
 	{
-		UpdateCounters();
+		// Skip last cycle on prerender line
+		if (RenderingEnabled && _state.Scanline == 0 && !_state.IsEvenFrame && _state.Cycle == 0)
+		{
+			return;
+		}
 
 		// cycle types
-		var renderingEnabled = (State.FlagShowBackground != 0) || (State.FlagShowSprites != 0);
-		var renderCycle = State.Cycle > 0 && State.Cycle <= 256;
-		var preFetchCycle = State.Cycle >= 321 && State.Cycle <= 336;
+		var renderCycle = _state.Cycle > 0 && _state.Cycle <= 256;
+		var preFetchCycle = _state.Cycle >= 321 && _state.Cycle <= 336;
 		var fetchCycle = renderCycle || preFetchCycle;
 
 		// scanline types
-		var renderScanline = State.Scanline >= 0 && State.Scanline < 240;
-		var idleScanline = State.Scanline == 240;
-		var vBlankScanline = State.Scanline > 240;
-		var preRenderScanline = State.Scanline == 261;
+		var renderScanline = _state.Scanline >= 0 && _state.Scanline < 240;
+		var preRenderScanline = _state.Scanline == (_scanlineCount - 1);
 
-		// nmiOccurred flag cleared on prerender scanline at cycle 1
-		if (preRenderScanline && State.Cycle == 1)
-		{
-			State.NmiOccurred = 0;
-			State.FlagSpriteOverflow = 0;
-			State.FlagSpriteZeroHit = 0;
-		}
-
-		if (renderingEnabled)
+		if (RenderingEnabled)
 		{
 			// Evaluate sprites at cycle 257 of each render scanline
-			if (State.Cycle == 257)
+			if (_state.Cycle == 257)
 			{
 				if (renderScanline)
 				{
@@ -519,7 +530,7 @@ public partial class Ppu
 				}
 				else
 				{
-					State.NumSprites = 0;
+					_state.NumSprites = 0;
 				}
 			}
 
@@ -533,8 +544,8 @@ public partial class Ppu
 			// https://wiki.nesdev.com/w/images/d/d1/Ntsc_timing.png
 			if (fetchCycle && (renderScanline || preRenderScanline))
 			{
-				State.TileShiftReg >>= 4;
-				switch (State.Cycle % 8)
+				_state.TileShiftReg >>= 4;
+				switch (_state.Cycle % 8)
 				{
 					case 1:
 						FetchNametableByte();
@@ -551,7 +562,7 @@ public partial class Ppu
 					case 0:
 						StoreTileData();
 						IncrementX();
-						if (State.Cycle == 256)
+						if (_state.Cycle == 256)
 						{
 							IncrementY();
 						}
@@ -560,20 +571,20 @@ public partial class Ppu
 				}
 			}
 
-			// OAMADDR is set to 0 during each of ticks 257-320 (the sprite tile loading interval) of the pre-render and visible State.Scanlines. 
-			if (State.Cycle > 257 && State.Cycle <= 320 && (preRenderScanline || renderScanline))
+			// OAMADDR is set to 0 during each of ticks 257-320 (the sprite tile loading interval) of the pre-render and visible _state.Scanlines. 
+			if (_state.Cycle > 257 && _state.Cycle <= 320 && (preRenderScanline || renderScanline))
 			{
-				State.OamAddr = 0;
+				_state.OamAddr = 0;
 			}
 
 			// Copy horizontal position data from t to v on cycle 257 of each scanline if rendering enabled
-			if (State.Cycle == 257 && (renderScanline || preRenderScanline))
+			if (_state.Cycle == 257 && (renderScanline || preRenderScanline))
 			{
 				CopyHorizPositionData();
 			}
 
 			// Copy vertical position data from t to v repeatedly from cycle 280 to 304 (if rendering is enabled)
-			if (State.Cycle >= 280 && State.Cycle <= 304 && State.Scanline == 261)
+			if (_state.Cycle >= 280 && _state.Cycle <= 304 && _state.Scanline == (_scanlineCount - 1))
 			{
 				CopyVertPositionData();
 			}
@@ -615,7 +626,7 @@ public partial class Ppu
 	/// <param name="data">The byte to write to the register</param>
 	public void WriteToRegister(ushort address, byte data)
 	{
-		State.LastRegisterWrite = data;
+		_state.LastRegisterWrite = data;
 		switch (address)
 		{
 			case 0x2000:
@@ -623,6 +634,8 @@ public partial class Ppu
 				break;
 			case 0x2001:
 				WritePpuMask(data);
+				break;
+			case 0x2002:
 				break;
 			case 0x2003:
 				WriteOamAddr(data);
@@ -647,160 +660,124 @@ public partial class Ppu
 		}
 	}
 
+
 	// $2000
-	private void WritePpuCtrl(byte data)
-	{
-		State.FlagBaseNametableAddr = (byte)(data & 0x3);
-		State.FlagVRamIncrement = (byte)((data >> 2) & 1);
-		State.FlagSpritePatternTableAddr = (byte)((data >> 3) & 1);
-		State.FlagBgPatternTableAddr = (byte)((data >> 4) & 1);
-		State.FlagSpriteSize = (byte)((data >> 5) & 1);
-		State.FlagMasterSlaveSelect = (byte)((data >> 6) & 1);
-		State.NmiOutput = (byte)((data >> 7) & 1);
-
-		// Set values based off flags
-		State.BaseNametableAddress = (ushort)(0x2000 + (0x400 * State.FlagBaseNametableAddr));
-		State.VRamIncrement = (State.FlagVRamIncrement == 0) ? 1 : 32;
-		State.BgPatternTableAddress = (ushort)(State.FlagBgPatternTableAddr == 0 ? 0x0000 : 0x1000);
-		State.SpritePatternTableAddress = (ushort)(0x1000 * State.FlagSpritePatternTableAddr);
-
-		// t: ...BA.. ........ = d: ......BA
-		State.T = (ushort)((State.T & 0xF3FF) | ((data & 0x03) << 10));
-	}
+	private void WritePpuCtrl(byte data) => _state.PpuControl = data;
 
 	// $2001
-	private void WritePpuMask(byte data)
-	{
-		State.FlagGreyscale = (byte)(data & 1);
-		State.FlagShowBackgroundLeft = (byte)((data >> 1) & 1);
-		State.FlagShowSpritesLeft = (byte)((data >> 2) & 1);
-		State.FlagShowBackground = (byte)((data >> 3) & 1);
-		State.FlagShowSprites = (byte)((data >> 4) & 1);
-		State.FlagEmphasizeRed = (byte)((data >> 5) & 1);
-		State.FlagEmphasizeGreen = (byte)((data >> 6) & 1);
-		State.FlagEmphasizeBlue = (byte)((data >> 7) & 1);
-	}
-
-	// $4014
-	private void WriteOamAddr(byte data)
-	{
-		State.OamAddr = data;
-	}
+	private void WritePpuMask(byte data) => _state.PpuMask = data;
 
 	// $2004
 	private void WriteOamData(byte data)
 	{
-		State.Oam[State.OamAddr] = data;
-		State.OamAddr++;
+		_state.Oam[_state.OamAddr] = data;
+		_state.OamAddr++;
 	}
+
+	// $4014
+	private void WriteOamAddr(byte data) => _state.OamAddr = data;
 
 	// $2005
 	private void WritePpuScroll(byte data)
 	{
-		if (State.W == 0) // First write
+		if (_state.W == 0) // First write
 		{
 			// t: ....... ...HGFED = d: HGFED...
 			// x:              CBA = d: .....CBA
 			// w:                  = 1
-			State.T = (ushort)((State.T & 0xFFE0) | (data >> 3));
-			State.X = (byte)(data & 0x07);
-			State.W = 1;
+			_state.T = (ushort)((_state.T & 0xFFE0) | (data >> 3));
+			_state.X = (byte)(data & 0x07);
+			_state.W = 1;
 		}
 		else
 		{
 			// t: CBA..HG FED..... = d: HGFEDCBA
 			// w:                  = 0
-			State.T = (ushort)(State.T & 0xC1F);
-			State.T |= (ushort)((data & 0x07) << 12); // CBA
-			State.T |= (ushort)((data & 0xF8) << 2); // HG FED
-			State.W = 0;
+			_state.T = (ushort)(_state.T & 0xC1F);
+			_state.T |= (ushort)((data & 0x07) << 12); // CBA
+			_state.T |= (ushort)((data & 0xF8) << 2); // HG FED
+			_state.W = 0;
 		}
 	}
 
 	// $2006
 	private void WritePpuAddr(byte data)
 	{
-		if (State.W == 0)  // First write
+		if (_state.W == 0)  // First write
 		{
 			// t: .FEDCBA ........ = d: ..FEDCBA
 			// t: X...... ........ = 0
 			// w:                  = 1
-			State.T = (ushort)((State.T & 0x00FF) | (data << 8));
-			State.W = 1;
+			_state.T = (ushort)((_state.T & 0x00FF) | (data << 8));
+			_state.W = 1;
 		}
 		else
 		{
 			// t: ....... HGFEDCBA = d: HGFEDCBA
 			// v                   = t
 			// w:                  = 0
-			State.T = (ushort)((State.T & 0xFF00) | data);
-			State.V = State.T;
-			State.W = 0;
+			_state.T = (ushort)((_state.T & 0xFF00) | data);
+			_state.V = _state.T;
+			_state.W = 0;
 		}
 	}
 
 	// $2007
 	private void WritePpuData(byte data)
 	{
-		_memory.Write(State.V, data);
-		State.V += (ushort)State.VRamIncrement;
+		_memory.Write(_state.V, data);
+		_state.V += (ushort)_state.VRamIncrement;
 	}
 
 	// $4014
 	private void WriteOamDma(byte data)
 	{
 		var startAddr = (ushort)(data << 8);
-		_console.CpuMemory.ReadBufWrapping(State.Oam, State.OamAddr, startAddr, 256);
+		_console.CpuMemory.ReadBufWrapping(_state.Oam, _state.OamAddr, startAddr, 256);
 
 		// OAM DMA always takes at least 513 CPU cycles
-		_console.Cpu.AddIdleCycles(513);
-
 		// OAM DMA takes an extra CPU cycle if executed on an odd CPU cycle
-		if (_console.Cpu.State.Cycles % 2 == 1)
-		{
-			_console.Cpu.AddIdleCycles(1);
-		}
+		_console.Cpu.State.Cycles += 513 + (_console.Cpu.State.Cycles % 2);
 	}
 
 	// $2002
 	private byte ReadPpuStatus()
 	{
-		byte retVal = 0;
-		retVal |= (byte)(State.LastRegisterWrite & 0x1F); // Least signifigant 5 bits of last register write
-		retVal |= (byte)(State.FlagSpriteOverflow << 5);
-		retVal |= (byte)(State.FlagSpriteZeroHit << 6);
-		retVal |= (byte)(State.NmiOccurred << 7);
+		// Turn off vblank if this is called on the same scanline and cycle as the vblank is set on.
+		if (_state.FlagVBlankStarted && _state.Scanline == 241 && _state.Cycle == 1)
+		{
+			_state.FlagVBlankStarted = false;
+		}
 
-		State.NmiOccurred = 0;
-		State.W = 0;
+		var retVal = _state.PpuStatus;
+
+		_state.FlagVBlankStarted = false;
+		_state.W = 0;
 		return retVal;
 	}
 
 	// $2004
-	private byte ReadOamData()
-	{
-		return State.Oam[State.OamAddr];
-	}
+	private byte ReadOamData() => _state.Oam[_state.OamAddr];
 
 	// $2007
 	private byte ReadPpuData()
 	{
-		var data = _memory.Read(State.V);
+		var data = _memory.Read(_state.V);
 
 		// Buffered read emulation
 		// https://wiki.nesdev.com/w/index.php/PPU_registers#The_PPUDATA_read_buffer_.28post-fetch.29
-		if (State.V < 0x3F00)
+		if (_state.V < 0x3F00)
 		{
-			var bufferedData = State.PpuDataBuffer;
-			State.PpuDataBuffer = data;
+			var bufferedData = _state.PpuDataBuffer;
+			_state.PpuDataBuffer = data;
 			data = bufferedData;
 		}
 		else
 		{
-			State.PpuDataBuffer = _memory.Read((ushort)(State.V - 0x1000));
+			_state.PpuDataBuffer = _memory.Read((ushort)(_state.V - 0x1000));
 		}
 
-		State.V += (ushort)State.VRamIncrement;
+		_state.V += (ushort)_state.VRamIncrement;
 		return data;
 	}
 
@@ -812,7 +789,7 @@ public partial class Ppu
 		{
 			//state.PpuMemory = _memory.SaveState();
 
-			return State;
+			return _state;
 		}
 	}
 
@@ -821,7 +798,7 @@ public partial class Ppu
 		//lock (_console.CpuState.CycleLock)
 		{
 			var state = stateObj as PpuState;
-			State = state;
+			_state = state;
 			//_memory.LoadState(state.PpuMemory);
 		}
 	}

@@ -22,9 +22,10 @@ public class CpuState
 	// Interrupts
 	public bool IrqInterrupt;
 	public bool NmiInterrupt;
+	public byte NmiDelay;
 
 	// If positive, idle 1 cycle and deincrement each step
-	public int Idle;
+	//public int Idle;
 
 	public int Cycles;
 }

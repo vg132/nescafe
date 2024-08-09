@@ -58,7 +58,7 @@ public partial class SpriteViewer : Form
 			int xPos = _console.Ppu.State.Oam[spriteIndex * 4 + 3];
 
 			int tileOffset = 0;
-			if (_console.Ppu.State.FlagSpriteSize == 1)
+			if (_console.Ppu.State.FlagLargeSprites)
 			{
 				var bank = (tileIndex & 0x1);
 				tileOffset = bank + (tileIndex & 0xFE) * 16;
@@ -70,7 +70,7 @@ public partial class SpriteViewer : Form
 
 			var spriteInfo = new SpriteInfo
 			{
-				IsLarge = _console.Ppu.State.FlagSpriteSize == 1,
+				IsLarge = _console.Ppu.State.FlagLargeSprites,
 				Index = spriteIndex,
 				Background = (attributes & 0x20) != 0,
 				FlipHorizontal = (attributes & 0x40) != 0,

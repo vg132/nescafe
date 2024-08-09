@@ -28,6 +28,7 @@ partial class Launcher
 	/// </summary>
 	private void InitializeComponent()
 	{
+		components = new System.ComponentModel.Container();
 		menuStrip1 = new MenuStrip();
 		fileToolStripMenuItem = new ToolStripMenuItem();
 		openToolStripMenuItem = new ToolStripMenuItem();
@@ -61,6 +62,8 @@ partial class Launcher
 		cpuSpeed150MenuItem = new ToolStripMenuItem();
 		cpuSpeed175MenuItem = new ToolStripMenuItem();
 		cpuSpeed200MenuItem = new ToolStripMenuItem();
+		toolStripMenuItem6 = new ToolStripMenuItem();
+		fpsToolStripMenuItem = new ToolStripMenuItem();
 		videoSizeToolStripMenuItem1 = new ToolStripMenuItem();
 		videoSize1MenuItem = new ToolStripMenuItem();
 		videoSize2MenuItem = new ToolStripMenuItem();
@@ -73,10 +76,14 @@ partial class Launcher
 		paletteViewerToolStripMenuItem = new ToolStripMenuItem();
 		memoryViewerToolStripMenuItem = new ToolStripMenuItem();
 		spriteViewerToolStripMenuItem = new ToolStripMenuItem();
+		loggingToolStripMenuItem = new ToolStripMenuItem();
 		glControl1 = new OpenTK.WinForms.GLControl();
 		textBoxFixForKeyEvents = new TextBox();
-		loggingToolStripMenuItem = new ToolStripMenuItem();
+		statusStrip1 = new StatusStrip();
+		toolStripStatusLabelFPS = new ToolStripStatusLabel();
+		timerFPS = new System.Windows.Forms.Timer(components);
 		menuStrip1.SuspendLayout();
+		statusStrip1.SuspendLayout();
 		SuspendLayout();
 		// 
 		// menuStrip1
@@ -259,7 +266,7 @@ partial class Launcher
 		// 
 		// videoSizeToolStripMenuItem
 		// 
-		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cpuSpeed50MenuItem, cpuSpeed75MenuItem, cpuSpeed100MenuItem, cpuSpeed125MenuItem, cpuSpeed150MenuItem, cpuSpeed175MenuItem, cpuSpeed200MenuItem });
+		videoSizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cpuSpeed50MenuItem, cpuSpeed75MenuItem, cpuSpeed100MenuItem, cpuSpeed125MenuItem, cpuSpeed150MenuItem, cpuSpeed175MenuItem, cpuSpeed200MenuItem, toolStripMenuItem6, fpsToolStripMenuItem });
 		videoSizeToolStripMenuItem.Name = "videoSizeToolStripMenuItem";
 		videoSizeToolStripMenuItem.Size = new Size(127, 22);
 		videoSizeToolStripMenuItem.Text = "Speed";
@@ -319,6 +326,22 @@ partial class Launcher
 		cpuSpeed200MenuItem.Tag = "120";
 		cpuSpeed200MenuItem.Text = "200% (120 fps)";
 		cpuSpeed200MenuItem.Click += cpuSpeedMenuItem_Click;
+		// 
+		// toolStripMenuItem6
+		// 
+		toolStripMenuItem6.Name = "toolStripMenuItem6";
+		toolStripMenuItem6.Size = new Size(150, 22);
+		toolStripMenuItem6.Tag = "180";
+		toolStripMenuItem6.Text = "300% (180 fps)";
+		toolStripMenuItem6.Click += cpuSpeedMenuItem_Click;
+		// 
+		// fpsToolStripMenuItem
+		// 
+		fpsToolStripMenuItem.Name = "fpsToolStripMenuItem";
+		fpsToolStripMenuItem.Size = new Size(150, 22);
+		fpsToolStripMenuItem.Tag = "240";
+		fpsToolStripMenuItem.Text = "400% (240 fps)";
+		fpsToolStripMenuItem.Click += cpuSpeedMenuItem_Click;
 		// 
 		// videoSizeToolStripMenuItem1
 		// 
@@ -391,23 +414,30 @@ partial class Launcher
 		// paletteViewerToolStripMenuItem
 		// 
 		paletteViewerToolStripMenuItem.Name = "paletteViewerToolStripMenuItem";
-		paletteViewerToolStripMenuItem.Size = new Size(180, 22);
+		paletteViewerToolStripMenuItem.Size = new Size(166, 22);
 		paletteViewerToolStripMenuItem.Text = "Palette Viewer...";
 		paletteViewerToolStripMenuItem.Click += paletteViewerToolStripMenuItem_Click;
 		// 
 		// memoryViewerToolStripMenuItem
 		// 
 		memoryViewerToolStripMenuItem.Name = "memoryViewerToolStripMenuItem";
-		memoryViewerToolStripMenuItem.Size = new Size(180, 22);
+		memoryViewerToolStripMenuItem.Size = new Size(166, 22);
 		memoryViewerToolStripMenuItem.Text = "Memory Viewer...";
 		memoryViewerToolStripMenuItem.Click += memoryViewerToolStripMenuItem_Click;
 		// 
 		// spriteViewerToolStripMenuItem
 		// 
 		spriteViewerToolStripMenuItem.Name = "spriteViewerToolStripMenuItem";
-		spriteViewerToolStripMenuItem.Size = new Size(180, 22);
+		spriteViewerToolStripMenuItem.Size = new Size(166, 22);
 		spriteViewerToolStripMenuItem.Text = "Sprite Viewer...";
 		spriteViewerToolStripMenuItem.Click += spriteViewerToolStripMenuItem_Click;
+		// 
+		// loggingToolStripMenuItem
+		// 
+		loggingToolStripMenuItem.Name = "loggingToolStripMenuItem";
+		loggingToolStripMenuItem.Size = new Size(166, 22);
+		loggingToolStripMenuItem.Text = "Logging...";
+		loggingToolStripMenuItem.Click += loggingToolStripMenuItem_Click;
 		// 
 		// glControl1
 		// 
@@ -431,18 +461,34 @@ partial class Launcher
 		textBoxFixForKeyEvents.Size = new Size(100, 23);
 		textBoxFixForKeyEvents.TabIndex = 2;
 		// 
-		// loggingToolStripMenuItem
+		// statusStrip1
 		// 
-		loggingToolStripMenuItem.Name = "loggingToolStripMenuItem";
-		loggingToolStripMenuItem.Size = new Size(180, 22);
-		loggingToolStripMenuItem.Text = "Logging...";
-		loggingToolStripMenuItem.Click += loggingToolStripMenuItem_Click;
+		statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelFPS });
+		statusStrip1.Location = new Point(0, 428);
+		statusStrip1.Name = "statusStrip1";
+		statusStrip1.Size = new Size(800, 22);
+		statusStrip1.SizingGrip = false;
+		statusStrip1.TabIndex = 3;
+		statusStrip1.Text = "statusStrip1";
+		// 
+		// toolStripStatusLabelFPS
+		// 
+		toolStripStatusLabelFPS.Name = "toolStripStatusLabelFPS";
+		toolStripStatusLabelFPS.Size = new Size(37, 17);
+		toolStripStatusLabelFPS.Text = "FPS: -";
+		// 
+		// timerFPS
+		// 
+		timerFPS.Enabled = true;
+		timerFPS.Interval = 1000;
+		timerFPS.Tick += timerFPS_Tick;
 		// 
 		// Launcher
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
 		AutoScaleMode = AutoScaleMode.Font;
 		ClientSize = new Size(800, 450);
+		Controls.Add(statusStrip1);
 		Controls.Add(textBoxFixForKeyEvents);
 		Controls.Add(glControl1);
 		Controls.Add(menuStrip1);
@@ -454,6 +500,8 @@ partial class Launcher
 		Text = "NEScafé";
 		menuStrip1.ResumeLayout(false);
 		menuStrip1.PerformLayout();
+		statusStrip1.ResumeLayout(false);
+		statusStrip1.PerformLayout();
 		ResumeLayout(false);
 		PerformLayout();
 	}
@@ -508,4 +556,9 @@ partial class Launcher
 	private ToolStripMenuItem memoryViewerToolStripMenuItem;
 	private ToolStripMenuItem spriteViewerToolStripMenuItem;
 	private ToolStripMenuItem loggingToolStripMenuItem;
+	private StatusStrip statusStrip1;
+	private ToolStripStatusLabel toolStripStatusLabelFPS;
+	private System.Windows.Forms.Timer timerFPS;
+	private ToolStripMenuItem toolStripMenuItem6;
+	private ToolStripMenuItem fpsToolStripMenuItem;
 }

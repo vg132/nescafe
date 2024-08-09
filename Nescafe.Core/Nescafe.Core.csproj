@@ -4,10 +4,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
 	<ItemGroup>
 		<Compile Update="Cpu.Instructions.cs">
+			<DependentUpon>Cpu.cs</DependentUpon>
+		</Compile>
+
+		<Compile Update="Cpu.Instruction.cs">
+			<DependentUpon>Cpu.cs</DependentUpon>
+		</Compile>
+
+		<Compile Update="Cpu.InstructionAttribute.cs">
 			<DependentUpon>Cpu.cs</DependentUpon>
 		</Compile>
 	</ItemGroup>

@@ -1,64 +1,10 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Nescafe.Core;
 
 public partial class Cpu
 {
-	#region Private class definitions
-
-	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-	private class CpuInstructionAttribute : Attribute
-	{
-		private readonly byte _id;
-		private readonly Cpu.AddressMode _addressMode;
-		private readonly int _instructionSize;
-		private readonly int _instructionCycles;
-		private readonly int _instructionPageCycles;
-
-		public CpuInstructionAttribute(byte id, Cpu.AddressMode addressMode, int instructionSize, int instructionCycles, int instructionPageCycles)
-		{
-			_id = id;
-			_addressMode = addressMode;
-			_instructionSize = instructionSize;
-			_instructionCycles = instructionCycles;
-			_instructionPageCycles = instructionPageCycles;
-		}
-
-		public byte Id => _id;
-		public Cpu.AddressMode AddressMode => _addressMode;
-		public int InstructionSize => _instructionSize;
-		public int InstructionCycles => _instructionCycles;
-		public int InstructionPageCycles => _instructionPageCycles;
-	}
-
-	private class CPUInstruction
-	{
-		public CPUInstruction(CpuInstructionAttribute cpuInstructionAttribute, Delegate instruction)
-		{
-			Id = cpuInstructionAttribute.Id;
-			AddressMode = cpuInstructionAttribute.AddressMode;
-			InstructionSize = cpuInstructionAttribute.InstructionSize;
-			InstructionCycles = cpuInstructionAttribute.InstructionCycles;
-			InstructionPageCycles = cpuInstructionAttribute.InstructionPageCycles;
-			Instruction = instruction;
-		}
-
-		public byte Id { get; set; }
-		public AddressMode AddressMode { get; set; }
-		public int InstructionSize { get; set; }
-		public int InstructionCycles { get; set; }
-		public int InstructionPageCycles { get; set; }
-		private Delegate Instruction { get; set; }
-		public string Name => Instruction.Method.Name;
-
-		public void Invoke(ushort address)
-		{
-			Instruction.DynamicInvoke(new object[] { AddressMode, address });
-		}
-	}
-
-	#endregion
-
 	private readonly IDictionary<byte, CPUInstruction> _cpuInstructions = new Dictionary<byte, CPUInstruction>();
 
 	private void InitializeOpcodes()
@@ -67,10 +13,9 @@ public partial class Cpu
 			.Where(item => item.GetCustomAttributes<CpuInstructionAttribute>(false).Any());
 		foreach (var method in methods)
 		{
-			var invokeMethod = Delegate.CreateDelegate(typeof(Action<AddressMode, ushort>), this, method.Name);
 			foreach (var attribute in method.GetCustomAttributes<CpuInstructionAttribute>(false))
 			{
-				_cpuInstructions.Add(attribute.Id, new CPUInstruction(attribute, invokeMethod));
+				_cpuInstructions.Add(attribute.Id, new CPUInstruction(attribute, method, this));
 			}
 		}
 	}
@@ -88,6 +33,7 @@ public partial class Cpu
 	[CpuInstruction(178, AddressMode.Implied, 0, 2, 0)]
 	[CpuInstruction(210, AddressMode.Implied, 0, 2, 0)]
 	[CpuInstruction(242, AddressMode.Implied, 0, 2, 0)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void ___(AddressMode mode, ushort address)
 	{
 		throw new Exception("Illegal Opcode");
@@ -1132,7 +1078,6 @@ public partial class Cpu
 		_memory.Write(address, shiftedValue);
 		//WriteMemory(address, shiftedValue);
 	}
-
 
 	#endregion
 }
