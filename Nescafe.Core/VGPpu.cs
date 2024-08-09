@@ -431,26 +431,24 @@ public class VGPpu : IPpu
 	private void HandleNMIAndVBlank()
 	{
 		// Trigger an NMI at the start of scanline 241 if VBLANK NMI's are enabled
-		if (_state.Cycle == 1)
+		if (_state.Scanline == 241 && _state.Cycle == 1)
 		{
-			if (_state.Scanline == 241)
-			{
 				cpuClocksSinceVBlank = 0;
 				_state.VBlankStarted = true;
-				if (_state.NmiTriggered)
+				if (_state.TriggerNmi && !_state.NmiTriggered)
 				{
 					_console.Cpu.TriggerNmi();
 					_state.NmiTriggered = true;
-				}
 			}
 		}
-
 		if (_state.Scanline == -1 && _state.Cycle == 2)
 		{
 			_state.VBlankStarted = false;
 			_state.FlagSpriteOverflow = false;
 			_state.FlagSpriteZeroHit = false;
 			cpuClocksSinceVBlank = 0;
+			_state.TriggerNmi = false;
+			_state.NmiTriggered = false;
 		}
 
 		if (_state.VBlankStarted && _state.TriggerNmi && !_state.NmiTriggered)

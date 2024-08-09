@@ -98,7 +98,7 @@ public class VGPpuState : PpuState
 		}
 	}
 
-	
+
 	public byte PpuMask
 	{
 		get => _ppuMask;
@@ -107,7 +107,7 @@ public class VGPpuState : PpuState
 			if (_ppuMask != value)
 			{
 				_ppuMask = value;
-				Greyscale = (byte)(value & 1)!=0;
+				Greyscale = (byte)(value & 1) != 0;
 				ShowBackgroundLeft = (byte)((value >> 1) & 1) != 0;
 				ShowSpritesLeft = (byte)((value >> 2) & 1) != 0;
 				ShowBackground = (byte)((value >> 3) & 1) != 0;

@@ -66,6 +66,7 @@ public partial class Cpu
 	/// </summary>
 	public void TriggerNmi()
 	{
+		LoggingService.LogEvent(NESEvents.Cpu, "mni triggered");
 		_state.NmiInterrupt = true;
 	}
 
@@ -102,6 +103,7 @@ public partial class Cpu
 		{
 			if (_state.NmiDelay <= 0)
 			{
+				LoggingService.LogEvent(NESEvents.Cpu, "handle nmi");
 				Nmi();
 				_state.NmiInterrupt = false;
 				_state.NmiDelay = 0;
